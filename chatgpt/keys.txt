@@ -1,0 +1,3 @@
+Alt + Space, M, Arrow Keys:
+
+Press Alt + Space to open the window menu, then press M to initiate the move action. Use the arrow keys to move the window, and press Enter to drop it at the desired position.
