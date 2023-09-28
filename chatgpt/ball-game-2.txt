@@ -32176,4 +32176,628 @@ export class PlayerAction implements IPlayerAction {
   // Initialize the car controller
   private carController = new CarController(this.player);
 }
-In this refactored code, the movement control-related methods and properties have been extracted into the CarController class, leaving the PlayerAction class focused on other functionality. The CarController is initialized within the PlayerAction constructor, and you can continue to use it to handle the car's movement controls.
+In this refactored code, the movement control-related methods and properties have been extracted into the CarController class, 
+leaving the PlayerAction class focused on other functionality. The CarController is initialized within the PlayerAction constructor, 
+and you can continue to use it to handle the car's movement controls.
+
+import { MapDto, MatchDto, MessageDto, PlayerDto, TeamDto } from 'api'
+import { hostConfig } from './config/config'
+import { CanvasRenderer } from './canvas/CanvasRenderer'
+import { SocketManager } from './SocketManager'
+import { LogManager } from './logger/LogManager'
+import { IInput } from './api/IInput'
+import { AnimationLoop } from './canvas/AnimationLoop'
+import { PlayerModel } from './player/PlayerModel'
+
+export class GameClient {
+  private socketManager: SocketManager
+  private canvasRenderer: CanvasRenderer
+  private logManager: LogManager
+  private map: MapDto | null = null
+  private teams: TeamDto[] = []
+  private match: MatchDto | null = null
+  private animationLoop: AnimationLoop
+  private players: PlayerModel[] = []
+
+  constructor() {
+    this.socketManager = new SocketManager(
+      hostConfig.selectedHost,
+      this.players
+    )
+    this.canvasRenderer = new CanvasRenderer()
+    this.logManager = new LogManager()
+    this.animationLoop = new AnimationLoop(this.render.bind(this))
+
+    this.initializeSocketListeners()
+    this.initializeEventListeners()
+    this.animationLoop.start()
+  }
+
+  private initializeSocketListeners() {
+    this.socketManager.handleNewPlayer(this.onNewPlayer.bind(this))
+    this.socketManager.handleMapUpdate(this.handleMapUpdate.bind(this))
+    this.socketManager.handleTeamUpdate(this.handleTeamUpdate.bind(this))
+    this.socketManager.handleLogMessage(this.handleLogMessage.bind(this))
+    this.socketManager.handleLogReset(this.handleLogReset.bind(this))
+    this.socketManager.handleMatchUpdate(this.handleMatchUpdate.bind(this))
+  }
+
+  private onNewPlayer(dto: PlayerDto) {
+    if (!this.players.find((p) => p.id === dto.id)) {
+      const newPlayer = new PlayerModel()
+      newPlayer.id = dto.id
+      this.players.push(newPlayer)
+    }
+  }
+
+  private initializeEventListeners() {
+    document.addEventListener('keydown', this.handleKeyDown.bind(this))
+  }
+
+  private handleMapUpdate(dto: MapDto) {
+    this.map = dto
+  }
+
+  private handleTeamUpdate(dto: TeamDto) {
+    this.teams.push(dto)
+    this.players.forEach((player) => {
+      if (!player.teamColor) {
+        if (dto.playerIds.find((id) => id === player.id)) {
+          player.teamColor = dto.color
+        }
+      }
+    })
+  }
+
+  private handleMatchUpdate(dto: MatchDto) {
+    this.match = dto
+  }
+
+  private handleLogMessage(dto: MessageDto) {
+    this.logManager.logMessage(dto)
+  }
+
+  private handleLogReset() {
+    this.logManager.clearTextArea()
+  }
+
+  private handleKeyDown(event: KeyboardEvent) {
+    const input: IInput = {
+      up: event.key === 'ArrowUp',
+      down: event.key === 'ArrowDown',
+      left: event.key === 'ArrowLeft',
+      right: event.key === 'ArrowRight',
+    }
+    this.socketManager.sendPlayerInput(input)
+  }
+
+  private render(dt: number) {
+    this.canvasRenderer.clearCanvas()
+    if (this.map) {
+      const { gates, field } = this.map
+      this.canvasRenderer.drawField(field)
+      this.canvasRenderer.drawGates(gates)
+    }
+    if (this.match) {
+      const { players, ball } = this.match
+      players.forEach((player) => {
+        const myplayer = this.players.find((p) => p.id === player.id)
+        if (myplayer) {
+          myplayer.moveDto = player
+          this.canvasRenderer.drawPlayer(myplayer, dt)
+        }
+      })
+      this.canvasRenderer.drawBall(ball)
+    }
+  }
+
+  public stopGame() {
+    this.animationLoop.stop()
+  }
+}
+//pls extract input handler to separete class and use it in gameClient
+ChatGPT
+To extract the input handling logic into a separate class and use it in the GameClient, you can create an InputHandler class. Here's a simplified implementation of the InputHandler and how to integrate it into your GameClient:
+
+typescript
+Copy code
+// InputHandler.ts
+
+export class InputHandler {
+  private input: IInput = {
+    up: false,
+    down: false,
+    left: false,
+    right: false,
+  };
+
+  constructor() {
+    document.addEventListener('keydown', this.handleKeyDown.bind(this));
+  }
+
+  private handleKeyDown(event: KeyboardEvent) {
+    switch (event.key) {
+      case 'ArrowUp':
+        this.input.up = true;
+        break;
+      case 'ArrowDown':
+        this.input.down = true;
+        break;
+      case 'ArrowLeft':
+        this.input.left = true;
+        break;
+      case 'ArrowRight':
+        this.input.right = true;
+        break;
+    }
+  }
+
+  public getInput(): IInput {
+    return this.input;
+  }
+}
+Now, you can use this InputHandler class in your GameClient:
+
+typescript
+Copy code
+// GameClient.ts
+
+import { InputHandler } from './InputHandler';
+
+export class GameClient {
+  // ... (other properties)
+
+  private inputHandler: InputHandler;
+
+  constructor() {
+    // ... (other constructor code)
+
+    this.inputHandler = new InputHandler();
+  }
+
+  // ... (other methods)
+
+  private render(dt: number) {
+    // ... (existing render code)
+
+    const input = this.inputHandler.getInput();
+    this.socketManager.sendPlayerInput(input);
+  }
+
+  // ... (other methods)
+}
+With this separation, your InputHandler class is responsible for handling user input and providing it to the GameClient for processing and sending to the server. This simplifies the code and makes it more modular.
+
+
+
+
+User
+export class MySocketIo {
+  private _socket: Socket
+
+  get socket(): Socket {
+    return this._socket
+  }
+
+  constructor(serverHost: string) {
+    this._socket = io(serverHost)
+  }
+}// pls extract interface for this
+ChatGPT
+To create an interface for the MySocketIo class, you can define a separate interface that describes the public contract of the class. Here's how you can do it:
+
+typescript
+Copy code
+import { Socket } from 'socket.io';
+
+// Define an interface for MySocketIo
+export interface ISocketIo {
+  socket: Socket;
+}
+
+// Implement the MySocketIo class
+export class MySocketIo implements ISocketIo {
+  private _socket: Socket;
+
+  get socket(): Socket {
+    return this._socket;
+  }
+
+  constructor(serverHost: string) {
+    this._socket = io(serverHost);
+  }
+}
+In this code:
+
+We define an ISocketIo interface that declares a socket property, which represents the Socket object.
+
+We implement the MySocketIo class and explicitly state that it implements the ISocketIo interface. The socket property is defined as a getter, and the constructor initializes the _socket property with a new Socket instance.
+
+Now, you have an interface ISocketIo that you can use to specify the contract for any class or object that needs to work with instances of MySocketIo.
+
+
+
+
+User
+export class SocketInManager {
+  private socket: Socket
+
+  constructor(socket: MySocketIo) {
+    this.socket = socket.socket
+  }
+
+  handlePing(callback: () => void) {
+    this.socket.on('ping', callback)
+  }
+
+  handleConnect(callback: () => void) {
+    this.socket.on('connect', callback)
+  }
+
+  handleYourPlayerId(callback: (id: string) => void) {
+    this.socket.on('yourPlayerId', callback)
+  }
+
+  handleNewPlayer(callback: (dto: PlayerDto) => void) {
+    this.socket.on('newPlayer', callback)
+  }
+
+  handleMapUpdate(callback: (mapData: MapDto) => void) {
+    this.socket.on('map', callback)
+  }
+
+  handleTeamUpdate(callback: (teamData: TeamDto) => void) {
+    this.socket.on('team', callback)
+  }
+
+  handleLogMessage(callback: (message: MessageDto) => void) {
+    this.socket.on('log', callback)
+  }
+
+  handleLogReset(callback: () => void) {
+    this.socket.on('log-reset', callback)
+  }
+
+  handleMatchUpdate(callback: (matchData: MatchDto) => void) {
+    this.socket.on('update', callback)
+  }
+}
+extract interface from this class pls
+ChatGPT
+You can create an interface for the SocketInManager class to define its contract. Here's how you can do it:
+
+typescript
+Copy code
+import { PlayerDto, MapDto, TeamDto, MessageDto, MatchDto } from 'api';
+import { MySocketIo } from './MySocketIo';
+
+// Define an interface for SocketInManager
+export interface ISocketInManager {
+  handlePing(callback: () => void): void;
+  handleConnect(callback: () => void): void;
+  handleYourPlayerId(callback: (id: string) => void): void;
+  handleNewPlayer(callback: (dto: PlayerDto) => void): void;
+  handleMapUpdate(callback: (mapData: MapDto) => void): void;
+  handleTeamUpdate(callback: (teamData: TeamDto) => void): void;
+  handleLogMessage(callback: (message: MessageDto) => void): void;
+  handleLogReset(callback: () => void): void;
+  handleMatchUpdate(callback: (matchData: MatchDto) => void): void;
+}
+
+// Implement the SocketInManager class
+export class SocketInManager implements ISocketInManager {
+  private socket: Socket;
+
+  constructor(socket: MySocketIo) {
+    this.socket = socket.socket;
+  }
+
+  handlePing(callback: () => void) {
+    this.socket.on('ping', callback);
+  }
+
+  handleConnect(callback: () => void) {
+    this.socket.on('connect', callback);
+  }
+
+  handleYourPlayerId(callback: (id: string) => void) {
+    this.socket.on('yourPlayerId', callback);
+  }
+
+  handleNewPlayer(callback: (dto: PlayerDto) => void) {
+    this.socket.on('newPlayer', callback);
+  }
+
+  handleMapUpdate(callback: (mapData: MapDto) => void) {
+    this.socket.on('map', callback);
+  }
+
+  handleTeamUpdate(callback: (teamData: TeamDto) => void) {
+    this.socket.on('team', callback);
+  }
+
+  handleLogMessage(callback: (message: MessageDto) => void) {
+    this.socket.on('log', callback);
+  }
+
+  handleLogReset(callback: () => void) {
+    this.socket.on('log-reset', callback);
+  }
+
+  handleMatchUpdate(callback: (matchData: MatchDto) => void) {
+    this.socket.on('update', callback);
+  }
+}
+In this code:
+
+We define an ISocketInManager interface that declares methods for handling various socket events, each with its corresponding callback function signature.
+
+We implement the SocketInManager class and explicitly state that it implements the ISocketInManager interface. The class methods are implemented according to the interface's method signatures.
+
+Now, you have an interface ISocketInManager that defines the contract for the SocketInManager class, making it easier to work with and mock in your code.
+
+
+
+
+User
+export class SocketOutManager {
+  private socket: Socket
+
+  constructor(socket: MySocketIo) {
+    this.socket = socket.socket
+  }
+
+  sendPlayerInput(input: IInput) {
+    this.socket.emit('input', input)
+  }
+
+  sendPlayerId(playerId: string) {
+    this.socket.emit('setPlayerId', playerId)
+  }
+
+  sendPong() {
+    this.socket.emit('pong')
+  }
+}
+//pls extract interface also here
+ChatGPT
+You can create an interface for the SocketOutManager class to define its contract. Here's how you can do it:
+
+typescript
+Copy code
+import { IInput } from './api/IInput';
+import { MySocketIo } from './MySocketIo';
+
+// Define an interface for SocketOutManager
+export interface ISocketOutManager {
+  sendPlayerInput(input: IInput): void;
+  sendPlayerId(playerId: string): void;
+  sendPong(): void;
+}
+
+// Implement the SocketOutManager class
+export class SocketOutManager implements ISocketOutManager {
+  private socket: Socket;
+
+  constructor(socket: MySocketIo) {
+    this.socket = socket.socket;
+  }
+
+  sendPlayerInput(input: IInput) {
+    this.socket.emit('input', input);
+  }
+
+  sendPlayerId(playerId: string) {
+    this.socket.emit('setPlayerId', playerId);
+  }
+
+  sendPong() {
+    this.socket.emit('pong');
+  }
+}
+In this code:
+
+We define an ISocketOutManager interface that declares methods for sending different types of messages via the socket.
+
+We implement the SocketOutManager class and explicitly state that it implements the ISocketOutManager interface. The class methods are implemented according to the interface's method signatures.
+
+Now, you have an interface ISocketOutManager that defines the contract for the SocketOutManager class, making it easier to work with and mock in your code.
+
+
+
+
+User
+import { MapDto, MatchDto, MessageDto, PlayerDto, TeamDto } from 'api'
+import { Socket } from 'socket.io-client'
+import { ISocketIo } from './ISocketIo'
+import { ISocketInManager } from './ISocketInManager'
+
+export class SocketInManager implements ISocketInManager {
+  private socket: Socket
+
+  constructor(socket: ISocketIo) {
+    this.socket = socket.socket
+  }
+
+  handlePing(callback: () => void) {
+    this.socket.on('ping', callback)
+  }
+
+  handleConnect(callback: () => void) {
+    this.socket.on('connect', callback)
+  }
+
+  handleYourPlayerId(callback: (id: string) => void) {
+    this.socket.on('yourPlayerId', callback)
+  }
+
+  handleNewPlayer(callback: (dto: PlayerDto) => void) {
+    this.socket.on('newPlayer', callback)
+  }
+
+  handleMapUpdate(callback: (mapData: MapDto) => void) {
+    this.socket.on('map', callback)
+  }
+
+  handleTeamUpdate(callback: (teamData: TeamDto) => void) {
+    this.socket.on('team', callback)
+  }
+
+  handleLogMessage(callback: (message: MessageDto) => void) {
+    this.socket.on('log', callback)
+  }
+
+  handleLogReset(callback: () => void) {
+    this.socket.on('log-reset', callback)
+  }
+
+  handleMatchUpdate(callback: (matchData: MatchDto) => void) {
+    this.socket.on('update', callback)
+  }
+}
+//can we do something with this strings in events so that i have some typed thing instead of string ?
+ChatGPT
+Yes, you can improve type safety by using TypeScript's string literal types to represent the event names as typed constants. This way, you won't have to use raw strings for event names throughout your code. Here's how you can do it:
+
+Create a file, for example, SocketEvents.ts, to define string literal types for event names:
+typescript
+Copy code
+// SocketEvents.ts
+
+export const Events = {
+  Ping: 'ping',
+  Connect: 'connect',
+  YourPlayerId: 'yourPlayerId',
+  NewPlayer: 'newPlayer',
+  Map: 'map',
+  Team: 'team',
+  Log: 'log',
+  LogReset: 'log-reset',
+  MatchUpdate: 'update',
+} as const;
+
+export type SocketEvent = keyof typeof Events;
+In this code, we define an Events object with string literal types for each event name, and we also create a SocketEvent type that represents all the event names.
+
+Update your SocketInManager class to use these typed event names:
+typescript
+Copy code
+import { MapDto, MatchDto, MessageDto, PlayerDto, TeamDto } from 'api';
+import { Socket } from 'socket.io-client';
+import { ISocketIo } from './ISocketIo';
+import { ISocketInManager } from './ISocketInManager';
+import { Events } from './SocketEvents'; // Import the event names
+
+export class SocketInManager implements ISocketInManager {
+  private socket: Socket;
+
+  constructor(socket: ISocketIo) {
+    this.socket = socket.socket;
+  }
+
+  handlePing(callback: () => void) {
+    this.socket.on(Events.Ping, callback); // Use the typed event name
+  }
+
+  handleConnect(callback: () => void) {
+    this.socket.on(Events.Connect, callback); // Use the typed event name
+  }
+
+  handleYourPlayerId(callback: (id: string) => void) {
+    this.socket.on(Events.YourPlayerId, callback); // Use the typed event name
+  }
+
+  handleNewPlayer(callback: (dto: PlayerDto) => void) {
+    this.socket.on(Events.NewPlayer, callback); // Use the typed event name
+  }
+
+  handleMapUpdate(callback: (mapData: MapDto) => void) {
+    this.socket.on(Events.Map, callback); // Use the typed event name
+  }
+
+  handleTeamUpdate(callback: (teamData: TeamDto) => void) {
+    this.socket.on(Events.Team, callback); // Use the typed event name
+  }
+
+  handleLogMessage(callback: (message: MessageDto) => void) {
+    this.socket.on(Events.Log, callback); // Use the typed event name
+  }
+
+  handleLogReset(callback: () => void) {
+    this.socket.on(Events.LogReset, callback); // Use the typed event name
+  }
+
+  handleMatchUpdate(callback: (matchData: MatchDto) => void) {
+    this.socket.on(Events.MatchUpdate, callback); // Use the typed event name
+  }
+}
+Now, you're using the typed event names defined in SocketEvents.ts, which provides better type safety and code readability. If you ever need to change an event name, you can do so in one place (in SocketEvents.ts) without worrying about manually updating it throughout your code.
+
+
+
+
+User
+export class SocketOutManager implements ISocketOutManager {
+  private socket: Socket
+
+  constructor(socket: ISocketIo) {
+    this.socket = socket.socket
+  }
+
+  sendPlayerInput(input: IInput) {
+    this.socket.emit('input', input)
+  }
+
+  sendPlayerId(playerId: string) {
+    this.socket.emit('setPlayerId', playerId)
+  }
+
+  sendPong() {
+    this.socket.emit('pong')
+  }
+}//can we do same here ?
+ChatGPT
+Yes, you can apply the same approach to the SocketOutManager class to improve type safety for event names. Here's how you can do it:
+
+Create a file, for example, SocketEvents.ts, to define string literal types for event names, just like we did for the SocketInManager:
+typescript
+Copy code
+// SocketEvents.ts
+
+export const Events = {
+  Input: 'input',
+  SetPlayerId: 'setPlayerId',
+  Pong: 'pong',
+} as const;
+
+export type SocketEvent = keyof typeof Events;
+Update your SocketOutManager class to use these typed event names:
+typescript
+Copy code
+import { IInput } from './api/IInput';
+import { ISocketIo } from './ISocketIo';
+import { ISocketOutManager } from './ISocketOutManager';
+import { Events } from './SocketEvents'; // Import the event names
+
+export class SocketOutManager implements ISocketOutManager {
+  private socket: Socket;
+
+  constructor(socket: ISocketIo) {
+    this.socket = socket.socket;
+  }
+
+  sendPlayerInput(input: IInput) {
+    this.socket.emit(Events.Input, input); // Use the typed event name
+  }
+
+  sendPlayerId(playerId: string) {
+    this.socket.emit(Events.SetPlayerId, playerId); // Use the typed event name
+  }
+
+  sendPong() {
+    this.socket.emit(Events.Pong); // Use the typed event name
+  }
+}
+By using the typed event names defined in SocketEvents.ts, you enhance type safety and make your code more maintainable. 
+If you ever need to change an event name, you can do so in one place (in SocketEvents.ts) without worrying about manually updating it 
+throughout your code.
