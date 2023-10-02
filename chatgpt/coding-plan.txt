@@ -1,0 +1,35 @@
+I have state pattern in ts server for a player for idle, walk and animation, i need to put state pattern in client also and switch animations. But first maby i should extract client-api which is interfaces of client to other package just to have it ordered this way. Make some plans for this, that maybe uses pomodoro method 
+ChatGPT
+Sure, let's break this down into simple steps and create a plan using the Pomodoro method. Here's a step-by-step plan for your task:
+
+Pomodoro 1 (25 minutes): Extract Client API
+
+Create a new package in your client-side codebase to house the client API.
+Move the existing client interfaces and related code into this new package.
+Update any import statements to reflect the new package structure.
+Make sure your code still compiles and runs without errors.
+Pomodoro 2 (25 minutes): Implement State Pattern on Client Side
+
+Create a new package or directory for handling client-side states.
+Define state interfaces/classes for the idle, walk, and animation states.
+Implement these state interfaces/classes with the necessary logic and methods to handle animations.
+Create a client-side context or manager class to handle state transitions.
+Pomodoro 3 (25 minutes): Connect Client States to Server States
+
+Ensure that your server-side state pattern is well-documented and understood.
+Modify your client-side state classes to mirror the server-side states.
+Implement a mechanism for the client to communicate with the server and receive updates on the player's state.
+Update the client's state based on the server's state changes.
+Pomodoro 4 (25 minutes): Test and Debug
+
+Test your client-server communication to ensure that state changes are properly synchronized.
+Debug any issues that may arise during testing.
+Verify that animations and states are switching correctly on the client side.
+Make any necessary adjustments to your code based on testing results.
+Pomodoro 5 (25 minutes): Documentation and Cleanup
+
+Document your client-side state pattern and how it interacts with the server.
+Ensure that your code is clean, well-organized, and follows best practices.
+Remove any unnecessary or redundant code.
+Prepare your codebase for review by peers or team members.
+Repeat these Pomodoro sessions as needed until you have successfully implemented the state pattern on the client side and synchronized it with the server. This structured approach should help you tackle the task efficiently while keeping it simple.
