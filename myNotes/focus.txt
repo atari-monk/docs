@@ -1,11 +1,7 @@
+Could not focus so used desperete method of bad notes:
 1. decided to copy state api to client and game (server), becouse
 it dosent matter if its shared or not at this point, what matters is i make this 
 feature at last
-01. meditation is staying with whatever u do, u forget self
-02. it dosent matter if u are in relationship or not, u are always to nature and stuff,
-but dont be in relationship if its so u can remain stupid or just convinient
-or do it but be honest to yourself and maybe even others, or not, at least to urself
-03. economy of selling and bying pussy
 2. Moved player state enum type to shared-api and include shared-api in game-api and client-api now
 3. looking at changes 
 shared-api:

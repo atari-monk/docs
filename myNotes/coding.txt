@@ -1,0 +1,5 @@
+1. write as little as possible to get to test
+2. just create structure from language
+3. note what u want to do
+4. lean against compiler
+5. always add new feature, refactor only if needed for feature

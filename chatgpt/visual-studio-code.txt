@@ -1,0 +1,23 @@
+what is keys to go to zen mode in vscode ?
+ChatGPT
+To enter Zen Mode in Visual Studio Code (VSCode), you can follow these simple steps:
+
+Windows/Linux: Press Ctrl + K followed by Z.
+
+macOS: Press Cmd + K followed by Z.
+
+This key combination will toggle Zen Mode on and off, providing a distraction-free, full-screen writing environment in VSCode.
+
+
+
+
+User
+toogle folders
+ChatGPT
+In Visual Studio Code (VSCode), you can toggle the Explorer sidebar (which contains the folder and file tree) to hide or show it. Here's how to do it:
+
+Windows/Linux: Press Ctrl + B.
+
+macOS: Press Cmd + B.
+
+This keyboard shortcut will toggle the visibility of the sidebar, allowing you to focus on your code when it's hidden and reveal the folder and file tree when needed.
