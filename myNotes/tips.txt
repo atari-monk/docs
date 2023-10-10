@@ -1,0 +1,5 @@
+1. For some reason connecting to local mongodb 
+//works
+mongodb://127.0.0.1:27017/sleep
+//didnt work at that point
+mongodb://localhost:27017/sleep

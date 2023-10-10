@@ -1,0 +1,10 @@
+ball-game-2
+2. some info printed on canvas
+3. model of a ball
+4. kick ball
+5. virtual joustick
+
+user app
+1. form to test api
+2. use it in user app 
+3. use it in some other app
