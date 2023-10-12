@@ -1578,3 +1578,587 @@ const ApiTesterForm: React.FC = () => {
 
 export default ApiTesterForm;
 In this example, we map the form field name to the username property in the request, and we map the form field email to the email property in the request. You can follow a similar pattern for other fields if they have different names in the model. Fields that are not required or not available in the model can be omitted from the request.
+
+how can i use axios in library that i then import to react app, so that there is no mismatch ?
+ChatGPT
+To use Axios in a library that you import into a React app to prevent any potential mismatches, you can follow a simple approach. This approach involves bundling Axios within your library, so it doesn't interfere with the Axios version used in the React app. Here are the steps:
+
+Create a library project:
+Set up your library project. You can use a bundler like Webpack or create a simple JavaScript file that exports your library functions or components.
+
+Bundle Axios with your library:
+Within your library project, bundle Axios with your code. You can do this using a bundler or by manually including Axios in your library's source code. Here's a simple example using a script tag in your library's HTML file:
+
+html
+Copy code
+<script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+By including Axios in your library's code, you ensure that your library always uses a consistent version of Axios, independent of the React app.
+
+Develop your library functions/components:
+Implement your library's functionality as needed, utilizing Axios for making HTTP requests.
+
+Export your library:
+In your library project, make sure to export the functions or components that you want to use in your React app.
+
+Import and use your library in the React app:
+In your React app, import and use your library as you would with any other library. Since your library includes its own Axios version, there won't be any version conflicts with Axios used in your React app.
+
+Here's an example of how you might import and use your library in your React app:
+
+javascript
+Copy code
+import MyLibrary from 'my-library'; // Replace 'my-library' with the actual name of your library
+
+function App() {
+  const fetchData = async () => {
+    const response = await MyLibrary.fetchDataUsingAxios();
+    console.log(response.data);
+  };
+
+  return (
+    <div>
+      <button onClick={fetchData}>Fetch Data</button>
+    </div>
+  );
+}
+
+export default App;
+By bundling Axios with your library and ensuring your library doesn't depend on the Axios version in the React app, you can avoid version mismatches and keep your code simple and consistent.
+
+
+
+
+User
+i think i need a webpack since i dont have html
+ChatGPT
+If you're using Webpack to bundle your library and don't have an HTML file, you can still bundle Axios with your library. Here's a simplified example of how to achieve this using Webpack:
+
+Install Axios as a dependency for your library project:
+bash
+Copy code
+npm install axios
+Create your library code in a separate file, for example, my-library.js. Within this file, you can import Axios:
+javascript
+Copy code
+import axios from 'axios';
+
+// Your library code here
+
+export function fetchDataUsingAxios() {
+  return axios.get('https://api.example.com/data');
+}
+Configure your Webpack build for the library. In your Webpack configuration, make sure to include Axios as an external dependency, so it doesn't get bundled into your library:
+javascript
+Copy code
+// webpack.config.js
+
+const path = require('path');
+
+module.exports = {
+  entry: './src/my-library.js',
+  output: {
+    filename: 'my-library.js',
+    path: path.resolve(__dirname, 'dist'),
+    library: 'MyLibrary',
+    libraryTarget: 'umd',
+  },
+  externals: {
+    axios: 'axios',
+  },
+};
+In the above configuration, we specify Axios as an external dependency so that it won't be included in the library bundle. The library and libraryTarget options are used to export your library as a UMD module.
+
+Build your library:
+bash
+Copy code
+webpack --config webpack.config.js
+This will generate a my-library.js file in the dist directory, which you can then import into your React app.
+
+In your React app, import and use your library:
+javascript
+Copy code
+import MyLibrary from 'path-to-your-library/dist/my-library';
+
+function App() {
+  const fetchData = async () => {
+    const response = await MyLibrary.fetchDataUsingAxios();
+    console.log(response.data);
+  };
+
+  return (
+    <div>
+      <button onClick={fetchData}>Fetch Data</button>
+    </div>
+  );
+}
+
+export default App;
+Make sure to replace 'path-to-your-library' with the actual path to your library in your project.
+
+By configuring Webpack to treat Axios as an external dependency and not bundling it with your library, you can avoid version conflicts and ensure that your library uses a consistent Axios version, even if your React app uses a different version.
+
+
+
+
+User
+Won't this mean that a lot of code of axios will be added to my library just so imports are not a problem, this is very big mess for a very little problem 
+ChatGPT
+You're correct that the method I described in the previous responses may introduce unnecessary code from Axios into your library, which could increase the library's size. If you want to avoid including Axios in your library altogether and keep it as lightweight as possible, you can instruct the consumers of your library to pass their own Axios instance.
+
+Here's a simpler approach:
+
+In your library, don't include Axios or any Axios-related code.
+
+In the documentation or README of your library, specify that the consumers of your library should pass their Axios instance when using your library's functions or components. For example:
+
+javascript
+Copy code
+import MyLibrary from 'my-library';
+import axios from 'axios';
+
+// Create an Axios instance
+const instance = axios.create({
+  baseURL: 'https://api.example.com',
+});
+
+// Use your library with the Axios instance
+MyLibrary.fetchDataUsingAxios(instance);
+In your library's functions or components, accept the Axios instance as a parameter and use it for making HTTP requests:
+javascript
+Copy code
+export function fetchDataUsingAxios(axiosInstance) {
+  return axiosInstance.get('/data');
+}
+This way, your library doesn't have any direct dependency on Axios, and it simplifies the implementation for both your library and its consumers. Consumers can provide their Axios instance with their desired configuration, and your library will use it for making HTTP requests. This keeps your library clean and avoids any unnecessary code bloat.
+
+
+
+
+User
+Ok but it's ts not js 
+ChatGPT
+If you're working with TypeScript (ts) instead of JavaScript, you can still follow a similar approach. Here's how you can modify the TypeScript code to accept Axios instances:
+
+In your TypeScript library, define the function to accept an Axios instance as a parameter:
+typescript
+Copy code
+import axios, { AxiosInstance, AxiosResponse } from 'axios';
+
+export function fetchDataUsingAxios(axiosInstance: AxiosInstance): Promise<AxiosResponse> {
+  return axiosInstance.get('/data');
+}
+In the consumer's TypeScript code, create an Axios instance and pass it to your library:
+typescript
+Copy code
+import MyLibrary from 'my-library';
+import axios, { AxiosInstance } from 'axios';
+
+// Create an Axios instance
+const axiosInstance: AxiosInstance = axios.create({
+  baseURL: 'https://api.example.com',
+});
+
+// Use your library with the Axios instance
+MyLibrary.fetchDataUsingAxios(axiosInstance);
+This TypeScript code ensures that the Axios instance is properly typed, making it a seamless integration with your library while keeping your library clean and avoiding unnecessary dependencies on Axios.
+
+
+
+
+User
+But u are import ing from axios in the library there 
+ChatGPT
+I understand your concern about the import statement for Axios within the library. In TypeScript, if you import Axios within the library, it technically introduces a dependency on Axios. If you want to completely decouple your library from Axios and ensure that consumers of your library provide their own Axios instance, you can follow a pattern where you avoid importing Axios in your library and have consumers pass Axios instances directly.
+
+Here's how you can structure your library without any direct Axios imports:
+
+In your TypeScript library, do not import Axios:
+typescript
+Copy code
+export function fetchDataUsingAxios(axiosInstance: any): Promise<any> {
+  return axiosInstance.get('/data');
+}
+In the consumer's TypeScript code, import Axios and pass an Axios instance to your library:
+typescript
+Copy code
+import MyLibrary from 'my-library';
+import axios, { AxiosInstance } from 'axios';
+
+// Create an Axios instance
+const axiosInstance: AxiosInstance = axios.create({
+  baseURL: 'https://api.example.com',
+});
+
+// Use your library with the Axios instance
+MyLibrary.fetchDataUsingAxios(axiosInstance);
+By not importing Axios in your library and accepting a generic axiosInstance parameter, you decouple your library from Axios and leave it up to consumers to provide their own instance of Axios. This approach should address your concern about keeping your library free from Axios dependencies while allowing consumers to use the library with their preferred Axios configuration.
+
+import React, { useContext, useEffect } from 'react'
+import {
+  auth,
+  GoogleAuthProvider,
+  signInWithPopup,
+} from './../../config/firebase'
+import { signOut } from 'firebase/auth'
+import ILoginGoogleProps from './../../interfaces/login/ILoginGoogleProps'
+import { AuthContext } from './../auth/AuthContext'
+import axios from 'axios'
+
+export const LoginGoogle: React.FC<ILoginGoogleProps> = ({
+  config,
+  setMessage,
+}) => {
+  const { isLoggedIn, setIsLoggedIn, setUserId } = useContext(AuthContext)
+
+  useEffect(() => {
+    const storedIsLoggedIn = localStorage.getItem('isLoggedIn')
+    const storedUserId = localStorage.getItem('userId')
+
+    if (storedIsLoggedIn && storedUserId) {
+      setIsLoggedIn(true)
+      setUserId(storedUserId)
+    }
+  }, [setIsLoggedIn, setUserId])
+
+  const handleGoogleLogin = async () => {
+    try {
+      const provider = new GoogleAuthProvider()
+      const userCredential = await signInWithPopup(auth, provider)
+      const { email, displayName } = userCredential.user
+      if (email) {
+        await createUser(email, displayName || '')
+        const userId = await getUserIdByEmail(email)
+        setUserId(userId)
+        setIsLoggedIn(true)
+        localStorage.setItem('isLoggedIn', 'true')
+        localStorage.setItem('userId', userId)
+        setMessage(`User logged in with Google: ${email}`)
+      } else {
+        setMessage(
+          'User email not available. Please ensure you allow access to your email during the login process.'
+        )
+      }
+    } catch (error) {
+      setMessage(`Error logging in with Google: ${(error as Error).message}`)
+    }
+  }
+
+  const handleLogout = async () => {
+    try {
+      await signOut(auth)
+      setIsLoggedIn(false)
+      setUserId('')
+      localStorage.removeItem('isLoggedIn')
+      localStorage.removeItem('userId')
+      setMessage('User logged out successfully.')
+    } catch (error) {
+      setMessage(`Error logging out: ${(error as Error).message}`)
+    }
+  }
+
+  const createUser = async (email: string, displayName: string) => {
+    try {
+      await axios.post(`${config.apiUrl}/users`, {
+        email,
+        displayName,
+      })
+    } catch (error) {
+      console.error(error)
+      console.error(
+        `Failed to create record for email: ${email} and name: ${displayName}`
+      )
+    }
+  }
+
+  const getUserIdByEmail = async (email: string) => {
+    try {
+      const response = await axios.get(`${config.apiUrl}/users/email/${email}`)
+      return response.data.userId
+    } catch (error) {
+      console.error(`No record of user for email ${email}`)
+      return null
+    }
+  }
+
+  return (
+    <div>
+      {isLoggedIn ? (
+        <>
+          <button onClick={handleLogout}>Logout</button>
+        </>
+      ) : (
+        <>
+          <button onClick={handleGoogleLogin}>Login with Google</button>
+        </>
+      )}
+    </div>
+  )
+}
+how to inject here a axios instance ? it has no ctor
+ChatGPT
+To inject an Axios instance into your LoginGoogle component, you can simply create a separate module or file where you configure your Axios instance and then import that instance into your component. Here's a simplified example of how you can do this:
+
+Create a separate Axios configuration file (e.g., axiosConfig.js):
+javascript
+Copy code
+// axiosConfig.js
+import axios from 'axios';
+
+const axiosInstance = axios.create({
+  baseURL: 'https://your-api-base-url.com', // Replace with your API base URL
+});
+
+export default axiosInstance;
+In your LoginGoogle component file, import the Axios instance and use it as needed:
+javascript
+Copy code
+import React, { useContext, useEffect } from 'react';
+import { auth, GoogleAuthProvider, signInWithPopup } from './../../config/firebase';
+import { signOut } from 'firebase/auth';
+import ILoginGoogleProps from './../../interfaces/login/ILoginGoogleProps';
+import { AuthContext } from './../auth/AuthContext';
+import axiosInstance from './axiosConfig'; // Import the Axios instance
+
+export const LoginGoogle: React.FC<ILoginGoogleProps> = ({ config, setMessage }) => {
+  // ...
+
+  const createUser = async (email: string, displayName: string) => {
+    try {
+      await axiosInstance.post('/users', {
+        email,
+        displayName,
+      });
+    } catch (error) {
+      console.error(error);
+      console.error(`Failed to create record for email: ${email} and name: ${displayName}`);
+    }
+  }
+
+  const getUserIdByEmail = async (email: string) => {
+    try {
+      const response = await axiosInstance.get(`/users/email/${email}`);
+      return response.data.userId;
+    } catch (error) {
+      console.error(`No record of a user for email ${email}`);
+      return null;
+    }
+  }
+
+  // ...
+}
+By following this approach, you can easily inject your Axios instance into your LoginGoogle component without the need for a constructor. This promotes cleaner and more modular code by separating the Axios configuration from your component logic.
+
+
+
+
+User
+listen i cant put axios in dependencies i want to pass it as param
+ChatGPT
+If you want to pass the Axios instance as a parameter to your LoginGoogle component, you can do so by adding an additional prop for the Axios instance when you use the component. Here's how you can modify your component and how you would use it:
+
+Modify the LoginGoogle component to accept an Axios instance prop:
+javascript
+Copy code
+// LoginGoogle.js
+
+import React, { useContext, useEffect } from 'react';
+import { auth, GoogleAuthProvider, signInWithPopup } from './../../config/firebase';
+import { signOut } from 'firebase/auth';
+import ILoginGoogleProps from './../../interfaces/login/ILoginGoogleProps';
+import { AuthContext } from './../auth/AuthContext';
+
+export const LoginGoogle: React.FC<ILoginGoogleProps> = ({ config, setMessage, axiosInstance }) => {
+  // ...
+
+  const createUser = async (email: string, displayName: string) => {
+    try {
+      await axiosInstance.post(`${config.apiUrl}/users`, {
+        email,
+        displayName,
+      });
+    } catch (error) {
+      console.error(error);
+      console.error(`Failed to create record for email: ${email} and name: ${displayName}`);
+    }
+  }
+
+  const getUserIdByEmail = async (email: string) => {
+    try {
+      const response = await axiosInstance.get(`${config.apiUrl}/users/email/${email}`);
+      return response.data.userId;
+    } catch (error) {
+      console.error(`No record of a user for email ${email}`);
+      return null;
+    }
+  }
+
+  // ...
+}
+When using the LoginGoogle component, pass the Axios instance as a prop:
+javascript
+Copy code
+import React from 'react';
+import LoginGoogle from './LoginGoogle'; // Import your LoginGoogle component
+
+// Import your Axios instance configuration
+import axiosInstance from './axiosConfig'; // Adjust the import path accordingly
+
+const App = () => {
+  // ...
+
+  return (
+    <div>
+      <LoginGoogle config={yourConfig} setMessage={yourMessageFunction} axiosInstance={axiosInstance} />
+    </div>
+  );
+}
+
+export default App;
+By passing the Axios instance as a prop, you can provide it as a parameter to your LoginGoogle component when using it. This allows you to keep the Axios instance separate from the component's logic and provides flexibility when using the component in different parts of your application.
+
+
+
+
+User
+import React, { useContext, useEffect } from 'react'
+import {
+  auth,
+  GoogleAuthProvider,
+  signInWithPopup,
+} from './../../config/firebase'
+import { signOut } from 'firebase/auth'
+import ILoginGoogleProps from './../../interfaces/login/ILoginGoogleProps'
+import { AuthContext } from './../auth/AuthContext'
+
+export const LoginGoogle: React.FC<ILoginGoogleProps> = ({
+  config,
+  setMessage,
+  axiosInstance,
+}) => {
+  const { isLoggedIn, setIsLoggedIn, setUserId } = useContext(AuthContext)
+
+  useEffect(() => {
+    const storedIsLoggedIn = localStorage.getItem('isLoggedIn')
+    const storedUserId = localStorage.getItem('userId')
+
+    if (storedIsLoggedIn && storedUserId) {
+      setIsLoggedIn(true)
+      setUserId(storedUserId)
+    }
+  }, [setIsLoggedIn, setUserId])
+
+  const handleGoogleLogin = async () => {
+    try {
+      const provider = new GoogleAuthProvider()
+      const userCredential = await signInWithPopup(auth, provider)
+      const { email, displayName } = userCredential.user
+      if (email) {
+        await createUser(email, displayName || '')
+        const userId = await getUserIdByEmail(email)
+        setUserId(userId)
+        setIsLoggedIn(true)
+        localStorage.setItem('isLoggedIn', 'true')
+        localStorage.setItem('userId', userId)
+        setMessage(`User logged in with Google: ${email}`)
+      } else {
+        setMessage(
+          'User email not available. Please ensure you allow access to your email during the login process.'
+        )
+      }
+    } catch (error) {
+      setMessage(`Error logging in with Google: ${(error as Error).message}`)
+    }
+  }
+
+  const handleLogout = async () => {
+    try {
+      await signOut(auth)
+      setIsLoggedIn(false)
+      setUserId('')
+      localStorage.removeItem('isLoggedIn')
+      localStorage.removeItem('userId')
+      setMessage('User logged out successfully.')
+    } catch (error) {
+      setMessage(`Error logging out: ${(error as Error).message}`)
+    }
+  }
+
+  const createUser = async (email: string, displayName: string) => {
+    try {
+      await axiosInstance.post(`${config.apiUrl}/users`, {
+        email,
+        displayName,
+      })
+    } catch (error) {
+      console.error(error)
+      console.error(
+        `Failed to create record for email: ${email} and name: ${displayName}`
+      )
+    }
+  }
+
+  const getUserIdByEmail = async (email: string) => {
+    try {
+      const response = await axiosInstance.get(
+        `${config.apiUrl}/users/email/${email}`
+      )
+      return response.data.userId
+    } catch (error) {
+      console.error(`No record of user for email ${email}`)
+      return null
+    }
+  }
+
+  return (
+    <div>
+      {isLoggedIn ? (
+        <>
+          <button onClick={handleLogout}>Logout</button>
+        </>
+      ) : (
+        <>
+          <button onClick={handleGoogleLogin}>Login with Google</button>
+        </>
+      )}
+    </div>
+  )
+}
+why this dosent switch to logout after login ?
+ChatGPT
+The issue with your code not switching to "Logout" after logging in is likely related to the order of execution and the initial state of the isLoggedIn variable. Make sure you have correctly initialized the isLoggedIn state in the AuthContext or wherever it is managed.
+
+Here's a simple example of how to set up and manage the isLoggedIn state:
+
+javascript
+Copy code
+// AuthContext.js (Assuming your AuthContext is something like this)
+
+import { createContext, useState } from 'react';
+
+export const AuthContext = createContext();
+
+export const AuthProvider = ({ children }) => {
+  const [isLoggedIn, setIsLoggedIn] = useState(false); // Initial state is false
+
+  return (
+    <AuthContext.Provider value={{ isLoggedIn, setIsLoggedIn }}>
+      {children}
+    </AuthContext.Provider>
+  );
+};
+Now, ensure that the isLoggedIn state is being updated correctly when the user logs in and out. For example, in your handleGoogleLogin and handleLogout functions, set isLoggedIn accordingly:
+
+javascript
+Copy code
+const handleGoogleLogin = async () => {
+  // ... (Your login logic)
+  setIsLoggedIn(true); // Set isLoggedIn to true after successful login
+}
+
+const handleLogout = async () => {
+  // ... (Your logout logic)
+  setIsLoggedIn(false); // Set isLoggedIn to false after successful logout
+}
+If you've properly set up your state management and ensured that isLoggedIn is being updated correctly in your login and logout logic, your UI should switch between "Login with Google" and "Logout" as expected.
+
+If you're still facing issues with this switch, please provide more details about how isLoggedIn is being managed in your application so I can help you further.
