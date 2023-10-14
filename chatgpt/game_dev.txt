@@ -1,0 +1,49 @@
+I am wondering how to write games 
+ChatGPT
+To write games, you'll need to start with the basics. Here are simplified steps to get you started:
+
+Choose a Game Concept: Decide what type of game you want to create. It could be a simple puzzle game, a platformer, a quiz, or something else.
+
+Learn a Programming Language: If you don't know how to code, start with a beginner-friendly language like Python or a game development platform like Scratch.
+
+Design Your Game: Create a plan for your game. Decide on the rules, objectives, and how it will look. Sketch out your game's design on paper.
+
+Write the Code: Start coding your game based on the design. Break it down into smaller tasks, such as creating characters, adding interactions, and handling game logic.
+
+Test Your Game: Regularly test your game as you develop it. Fix any bugs and make improvements as you go.
+
+Add Graphics and Sound: Incorporate visuals and sound to make your game more engaging. You can use free or simple tools for creating graphics and audio.
+
+Publish Your Game: Once your game is complete, share it with friends or upload it to a platform like itch.io or the Google Play Store (for Android games) if it's a mobile game.
+
+Gather Feedback: Listen to feedback from players and make updates to improve your game.
+
+Keep Learning: Game development is an ongoing learning process. Keep improving your skills and trying new game ideas.
+
+Remember, start small and gradually work your way up to more complex games. There are many online resources and tutorials to help you along the way.
+
+
+
+
+User
+Should I finish my socker game and get some engine out of it? Or should i start writing engine or both 
+ChatGPT
+If you're just starting out with game development and you have a soccer game in progress, it's a good idea to focus on finishing your soccer game first. Here's a simplified approach:
+
+Finish Your Soccer Game: Completing a project, even a simple one, will help you learn a lot about game development. It will give you a sense of accomplishment and a better understanding of the entire development process.
+
+Learn from Your Project: While working on your soccer game, you'll encounter various challenges and gain practical experience. Use this experience to identify areas where you need to learn more.
+
+Consider Game Engines: After completing your soccer game, if you're interested in creating more games, you can explore game engines like Unity, Godot, or Unreal Engine. These engines offer powerful tools and can save you a lot of development time.
+
+Start Simple with Engines: When you transition to using a game engine, start with simpler projects to get comfortable with the engine's features and workflow.
+
+In summary, completing your soccer game will provide valuable experience. Once you're comfortable with the basics, you can explore game engines for more advanced projects. Starting with a finished game will give you a better perspective on how engines can enhance your game development process.
+
+
+
+
+User
+I think i will complete the socker game and then use it to extract engine to prototype another project 
+ChatGPT
+That sounds like a good plan. Completing your soccer game and using it as a basis to extract a game engine or framework is an excellent way to learn and build on your experience. It can provide you with a foundation to prototype and develop future projects more efficiently. As you work on this, be sure to document and modularize your code to make it easier to extract and reuse in future game development endeavors. Good luck with your soccer game and your future projects!

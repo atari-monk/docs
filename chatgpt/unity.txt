@@ -1,0 +1,55 @@
+I want to start a game project in unity, i need basic player controller 
+ChatGPT
+To create a basic player controller in Unity, you can follow these steps:
+
+Create a New Project:
+Open Unity and create a new 2D or 3D project, depending on your game's style.
+
+Import Assets (if needed):
+Import any assets like player character sprites or models into your project.
+
+Create a Player Object:
+In the Hierarchy panel, right-click and choose "Create Empty" to create an empty GameObject. Rename it to "Player."
+
+Add a Sprite or Model:
+Attach a Sprite Renderer (for 2D) or a Mesh Renderer (for 3D) component to your Player GameObject. Assign your character sprite or model to it.
+
+Add a Rigidbody (if needed):
+Attach a Rigidbody2D (for 2D) or Rigidbody (for 3D) component to enable physics interactions.
+
+Script the Player Controller:
+Create a C# script by right-clicking in the Assets panel and selecting "Create > C# Script." Name it something like "PlayerController."
+
+Open the Script:
+Double-click the script to open it in your code editor.
+
+Write the Player Controller Script:
+Here's a simple example of a 2D player controller script that moves the player using arrow keys. Replace the script with this code:
+
+csharp
+Copy code
+using UnityEngine;
+
+public class PlayerController : MonoBehaviour
+{
+    public float moveSpeed = 5f;
+
+    void Update()
+    {
+        float horizontalInput = Input.GetAxis("Horizontal");
+        float verticalInput = Input.GetAxis("Vertical");
+
+        Vector3 moveDirection = new Vector3(horizontalInput, verticalInput, 0);
+        transform.Translate(moveDirection * moveSpeed * Time.deltaTime);
+    }
+}
+Attach the Script:
+Attach the "PlayerController" script to your Player GameObject by dragging it onto the GameObject in the Hierarchy panel.
+
+Set Up Input Axes:
+In Unity, go to "Edit > Project Settings > Input Manager." Create two new Input Axes, named "Horizontal" and "Vertical," and set the buttons/keys you want to use for player movement.
+
+Test Your Player Controller:
+Press Play to test your player controller. Your player should move in response to the arrow keys or your designated input keys.
+
+This is a very basic player controller script. You can expand and customize it further to suit your game's specific needs, such as handling jumping, animations, or interactions.

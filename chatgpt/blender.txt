@@ -1,0 +1,44 @@
+Could you write me how to create low poly blender model for my game character? 
+
+ChatGPT
+Creating a low-poly Blender model for a game character can be done in a few simple steps:
+
+Modeling:
+
+Start with a basic shape, like a cube or cylinder, to represent the character's body.
+Use basic modeling tools (such as extrude, scale, and loop cuts) to shape the character's features. Keep the polygon count low by not adding unnecessary details.
+Keep It Simple:
+
+Avoid complex shapes and intricate details.
+Use as few vertices as possible to define the character's form.
+Edge Loops:
+
+Create efficient edge loops to define the character's major features (e.g., head, torso, limbs).
+These loops should flow smoothly without unnecessary subdivisions.
+Symmetry:
+
+Work on one side of the character and use a mirror modifier to create symmetry.
+Texture Mapping:
+
+Create a simple UV map by unwrapping the model's geometry.
+Keep UV islands simple and well-organized.
+Materials:
+
+Apply basic materials to your model.
+Avoid complex shaders or PBR (Physically Based Rendering) materials.
+Rigging and Animation:
+
+Keep the rig simple and use as few bones as needed for animation.
+Animate with basic keyframes and poses.
+Optimization:
+
+Remove any hidden or unnecessary geometry.
+Use a decimate modifier to reduce polygon count while preserving the overall shape.
+Exporting:
+
+Export your model to the appropriate format for your game engine, such as FBX or OBJ.
+Testing:
+
+Import your character into your game engine and test its performance.
+Adjust the level of detail as needed to maintain good performance.
+Remember, the key to low-poly modeling is simplicity. Focus on the essential features and maintain a clean, efficient mesh.
