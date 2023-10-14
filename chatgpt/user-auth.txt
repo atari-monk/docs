@@ -2162,3 +2162,573 @@ const handleLogout = async () => {
 If you've properly set up your state management and ensured that isLoggedIn is being updated correctly in your login and logout logic, your UI should switch between "Login with Google" and "Logout" as expected.
 
 If you're still facing issues with this switch, please provide more details about how isLoggedIn is being managed in your application so I can help you further.
+
+export DarkModeToggle from './components/DarkModeToggle' how is this wrong on default import ?
+
+ChatGPT
+The code you provided seems to be an ES6 import statement used in JavaScript or TypeScript. The syntax export DarkModeToggle from './components/DarkModeToggle' is incorrect for default exports. To fix this, you should use the following syntax to export the DarkModeToggle component as the default export:
+
+javascript
+Copy code
+export { default as DarkModeToggle } from './components/DarkModeToggle';
+In this corrected code:
+
+We use the export keyword to indicate that we want to export something.
+We use the {} to create an object that specifies what we want to export.
+We use the default as DarkModeToggle syntax to indicate that we are exporting the default export of the './components/DarkModeToggle' module and naming it DarkModeToggle.
+This syntax allows you to import the DarkModeToggle component as the default export in another module like this:
+
+javascript
+Copy code
+import DarkModeToggle from './path-to-this-file';
+Make sure to adjust the path './path-to-this-file' to match the actual relative path to the file containing the DarkModeToggle component.
+
+
+
+
+User
+@emotion/react": "^11.11.1 // can i install this in library or better in react app ?
+ChatGPT
+The decision of whether to install the "@emotion/react" library in a separate library or in your React app depends on your specific use case and project structure. Here are some considerations to help you make the choice:
+
+In a Separate Library:
+
+If you are developing a reusable UI library or a component library that you plan to share across multiple React projects, it makes sense to include "@emotion/react" as a dependency in the library itself.
+This approach allows the library to be self-contained and not rely on external projects for its dependencies. It's a good choice when you want to maintain the library independently.
+Users of the library will not need to install "@emotion/react" separately; it will be included as a dependency when they install the library.
+In a React App:
+
+If you are working on a specific React application and the library is tightly integrated with that application, it's generally fine to install "@emotion/react" in your React app.
+This approach is simpler and might make your project's dependencies cleaner, as you don't need to manage the same dependency in multiple places.
+It's a good choice when the library is not intended to be reused across multiple projects.
+In summary, if your library is intended to be reused across multiple projects and you want it to be self-contained, you can include "@emotion/react" as a dependency in the library. However, if the library is tightly coupled with a specific React app, it's fine to install it in the app.
+
+Just keep in mind that if you install it in the library and later decide to use the library in a project that doesn't use Emotion for styling, you might encounter compatibility issues. In such cases, it's a good practice to clearly document the library's dependencies and requirements.
+
+
+
+
+User
+react-jsx-dev-runtime.development.js:87 Warning: React.jsx: type is invalid -- expected a string (for built-in components) or a class/function (for composite components) but got: undefined. You likely forgot to export your component from the file it's defined in, or you might have mixed up default and named imports.
+
+Check your code at App.tsx:17.
+    at App (http://localhost:3000/static/js/bundle.js:48:56)
+    at AuthProvider (http://localhost:3000/static/js/bundle.js:21882:3)
+ChatGPT
+The warning you're encountering in your React application typically occurs when you're trying to render a component that React doesn't recognize. The warning message you provided suggests that the issue might be in your App.tsx file at line 17.
+
+Here are some common reasons for this warning and how to fix it:
+
+Component Import Issue:
+
+Make sure you have properly imported the component you are trying to use in App.tsx.
+Check if the import statement is correct and that the component is correctly exported in its source file. Ensure there are no typos in the import or export statements.
+If you're using a relative path for the import, ensure that the path is correct.
+Example of a correct import:
+
+jsx
+Copy code
+import SomeComponent from './SomeComponent';
+Default vs. Named Exports:
+
+Ensure that the component is correctly exported as the default export (using export default) if you're importing it as a default import.
+If you're using named exports, make sure you're importing the component using the correct name (e.g., { SomeComponent } for a named export).
+Example of exporting and importing a default component:
+
+jsx
+Copy code
+// In SomeComponent.js
+export default SomeComponent;
+
+// In App.tsx
+import SomeComponent from './SomeComponent';
+Example of exporting and importing a named component:
+
+jsx
+Copy code
+// In SomeComponent.js
+export const SomeComponent = /* ... */;
+
+// In App.tsx
+import { SomeComponent } from './SomeComponent';
+Typo or Case Sensitivity:
+
+Check for typos in the component name, including capitalization. JavaScript is case-sensitive.
+Ensure that the component name matches the exported name exactly.
+Component File Path:
+
+Verify that the path to the component file in the import statement is accurate and leads to the correct component.
+If you're still encountering issues after checking these points, please provide more specific code from your App.tsx file and the component you're trying to render, and I can provide more targeted assistance.
+
+
+
+
+User
+//dark/light toogle feature
+import { css } from '@emotion/react'
+import styled from '@emotion/styled'
+import { IStyledDarkModeToggleProps } from './IStyledDarkModeToggleProps'
+
+const lightModeVariables = {
+  '--background-color': '#f9f9f9',
+  '--text-color': '#000',
+  '--button-background': '#333',
+  '--button-text': '#fff',
+}
+
+const darkModeVariables = {
+  '--background-color': '#333',
+  '--text-color': '#fff',
+  '--button-background': '#f9f9f9',
+  '--button-text': '#000',
+}
+
+export const StyledDarkModeToggle = styled.button<IStyledDarkModeToggleProps>`
+  background-color: var(--button-background);
+  color: var(--button-text);
+  border: none;
+  cursor: pointer;
+  padding: 8px 16px;
+  border-radius: 20px;
+`
+
+export const setDarkMode = (darkMode: boolean) => {
+  const root = document.documentElement
+
+  if (darkMode) {
+    for (const [key, value] of Object.entries(darkModeVariables)) {
+      root.style.setProperty(key, value)
+    }
+  } else {
+    for (const [key, value] of Object.entries(lightModeVariables)) {
+      root.style.setProperty(key, value)
+    }
+  }
+}
+
+//styles supporting above feature
+export const appContainer = css`
+  max-width: 600px;
+  margin: 0 auto;
+  padding: 20px;
+  background-color: var(--background-color);
+  color: var(--text-color);
+`
+
+export const StyledAppContainer = styled.div`
+  ${appContainer}
+`
+//this is in library but it wont work unless i install @emotion stuff in  react app, probably it's some import mismatch or some ?
+ChatGPT
+The code you provided seems to be related to implementing a dark/light mode toggle feature using Emotion for styling. It should work as expected when used in a React application, but there are a few things to ensure for it to work correctly:
+
+Emotion Dependencies: As you mentioned, you need to install @emotion/react and @emotion/styled in your React application to use the styling and CSS-in-JS features provided by Emotion. You should add these dependencies to your React project's package.json and make sure they are correctly installed.
+
+You can install these packages in your React app using npm or yarn:
+
+bash
+Copy code
+npm install @emotion/react @emotion/styled
+# or
+yarn add @emotion/react @emotion/styled
+Import Paths: Verify that the import paths for your Emotion-related code are accurate. Make sure the paths match the actual file locations in your project.
+
+For example, if your Emotion-related code is in a separate library, ensure that the import paths in your React application correctly point to the library's files. Double-check that there are no typos or mismatched paths.
+
+Integration in React App: Ensure that you're using the StyledDarkModeToggle and other styled components in your React application correctly. You should import them into your React component and use them as intended.
+
+Example of using StyledDarkModeToggle in a React component:
+
+jsx
+Copy code
+import React, { useState } from 'react';
+import { StyledDarkModeToggle, setDarkMode } from 'your-library'; // Adjust the import path
+
+function App() {
+  const [darkMode, setDarkMode] = useState(false);
+
+  const handleDarkModeToggle = () => {
+    setDarkMode(!darkMode);
+    setDarkMode(!darkMode);
+  };
+
+  return (
+    <div>
+      <StyledDarkModeToggle onClick={handleDarkModeToggle}>
+        Toggle Dark Mode
+      </StyledDarkModeToggle>
+    </div>
+  );
+}
+
+export default App;
+Root Element: Ensure that you have a root HTML element in your React application's HTML (usually in public/index.html) where the CSS custom properties (variables) can be applied. These variables are set in your setDarkMode function to control the styling.
+
+Example root element in HTML:
+
+html
+Copy code
+<div id="root"></div>
+Your setDarkMode function should set CSS custom properties on the document.documentElement to affect the styling.
+
+Once you've addressed these points and installed the necessary Emotion dependencies in your React application, your dark/light mode toggle feature should work as expected. If you encounter specific issues or error messages, please provide more details, and I can assist further.
+
+
+
+
+User
+but i would like to install @emotion in library
+ChatGPT
+If you want to install @emotion/react and @emotion/styled in your library rather than your React application, you can certainly do that. However, you should ensure that users of your library are aware of the Emotion dependencies and handle the installation in their own projects.
+
+Here's how you can set up your library to include Emotion, and what users of your library will need to do:
+
+In Your Library:
+
+Add @emotion/react and @emotion/styled as dependencies in your library's package.json:
+
+json
+Copy code
+"dependencies": {
+  "@emotion/react": "^11.11.1",
+  "@emotion/styled": "^11.11.1"
+}
+Continue to use Emotion for styling within your library as you have in your code sample.
+
+In Your Library's Documentation:
+
+Include clear documentation in your library's README or documentation files to inform users that your library relies on Emotion for styling. Explain that users will need to install these Emotion packages in their own projects when using your library. You can provide installation instructions like the following:
+
+markdown
+Copy code
+## Getting Started
+
+1. Install the library in your React project:
+
+   ```bash
+   npm install your-library
+   # or
+   yarn add your-library
+Important: To use the library's styling features, you'll also need to install @emotion/react and @emotion/styled in your project. These are peer dependencies of your-library. Please install them in your project:
+
+bash
+Copy code
+npm install @emotion/react @emotion/styled
+# or
+yarn add @emotion/react @emotion/styled
+Import and use the library components in your React components as needed.
+
+Example usage:
+
+jsx
+Copy code
+import React from 'react';
+import { YourLibraryComponent } from 'your-library';
+
+function MyComponent() {
+  return <YourLibraryComponent />;
+}
+
+export default MyComponent;
+By following these steps, users of your library will be aware of the Emotion dependencies and can install them in their own projects to ensure proper functionality. This approach keeps your library lightweight and flexible for different use cases.
+
+
+
+
+User
+so as i understand i need to install  @emotion both in my lib and in react app that uses it right ? becouse that only seems to work 
+ChatGPT
+Yes, you are correct. If your library relies on Emotion for styling, you should install @emotion/react and @emotion/styled as dependencies in both your library and in the React application that uses your library. This ensures that the styling functionality provided by Emotion works correctly when your library is used in a consuming project.
+
+Here's a breakdown of the necessary steps:
+
+In Your Library:
+
+Install @emotion/react and @emotion/styled as dependencies in your library's package.json.
+In Your React Application (Consumer of the Library):
+
+Install your library using npm or yarn, which will include the library as a dependency.
+
+Install @emotion/react and @emotion/styled as dependencies in your React application. These are required for the styling aspects of your library to function correctly.
+
+By installing Emotion in both your library and the React application that uses it, you ensure that the styling features provided by Emotion work seamlessly when your library is integrated into different projects.
+
+
+
+
+User
+//for this page
+import React from 'react'
+
+const Home: React.FC = () => {
+  return (
+    <div>
+      <h2>Home Page</h2>
+      <p>This is the home page content.</p>
+    </div>
+  )
+}
+
+export default Home
+
+//using emotion stuf like below, pls define style for Home
+
+export const appContainer = css`
+  max-width: 600px;
+  margin: 0 auto;
+  padding: 20px;
+  background-color: var(--background-color);
+  color: var(--text-color);
+`
+
+export const StyledAppContainer = styled.div`
+  ${appContainer}
+`
+ChatGPT
+To apply the defined styles to your Home component using Emotion, you can wrap your component with the StyledAppContainer component. Here's how you can do it:
+
+javascript
+Copy code
+import React from 'react';
+import { css } from '@emotion/react';
+import styled from '@emotion/styled';
+
+export const appContainer = css`
+  max-width: 600px;
+  margin: 0 auto;
+  padding: 20px;
+  background-color: var(--background-color);
+  color: var(--text-color);
+`;
+
+export const StyledAppContainer = styled.div`
+  ${appContainer}
+`;
+
+const Home: React.FC = () => {
+  return (
+    <StyledAppContainer>
+      <h2>Home Page</h2>
+      <p>This is the home page content.</p>
+    </StyledAppContainer>
+  );
+};
+
+export default Home;
+In this code:
+
+The styles are defined using the appContainer CSS-in-JS object and the StyledAppContainer styled component.
+
+The Home component is wrapped with the StyledAppContainer component, which applies the defined styles to the content within it.
+
+This way, the content of the Home component will be displayed within a container with the specified styles, including the max-width, margin, padding, background-color, and color styles defined in appContainer.
+
+
+
+
+User
+well i was thinking u would provide StyledHomeContainer 
+ChatGPT
+I understand your request, and if you want to create a specific style for your Home component using Emotion, you can define a StyledHomeContainer styled component. Here's how you can do it:
+
+javascript
+Copy code
+import React from 'react';
+import { css } from '@emotion/react';
+import styled from '@emotion/styled';
+
+export const StyledHomeContainer = styled.div`
+  max-width: 600px;
+  margin: 0 auto;
+  padding: 20px;
+  background-color: var(--background-color);
+  color: var(--text-color);
+`;
+
+const Home: React.FC = () => {
+  return (
+    <StyledHomeContainer>
+      <h2>Home Page</h2>
+      <p>This is the home page content.</p>
+    </StyledHomeContainer>
+  );
+};
+
+export default Home;
+In this code, the StyledHomeContainer component is created to encapsulate the styles for the Home component. The styles are applied directly within this component, giving you a specific styled container for your Home component's content.
+
+
+
+
+User
+it seems u copied style from app container i was thinking u will intorduce style suited for home page
+ChatGPT
+I apologize for the oversight. If you want to introduce a style specifically suited for the home page, you can define a new set of styles for StyledHomeContainer. Here's an example with different styles tailored for the home page:
+
+javascript
+Copy code
+import React from 'react';
+import { css } from '@emotion/react';
+import styled from '@emotion/styled';
+
+export const StyledHomeContainer = styled.div`
+  max-width: 800px; /* Adjust the max width */
+  margin: 0 auto;
+  padding: 40px; /* Adjust the padding */
+  background-color: #f0f0f0; /* Change the background color */
+  color: #333; /* Change the text color */
+`;
+
+const Home: React.FC = () => {
+  return (
+    <StyledHomeContainer>
+      <h2>Home Page</h2>
+      <p>This is the home page content.</p>
+    </StyledHomeContainer>
+  );
+};
+
+export default Home;
+In this updated code:
+
+StyledHomeContainer has different styles, such as a wider max-width, increased padding, and different background and text colors, which are better suited for the home page.
+You can customize these styles further to better match your specific design requirements for the home page.
+
+
+
+
+User
+//styles.ts file
+export const appContainer = css`
+  max-width: 600px;
+  margin: 0 auto;
+  padding: 20px;
+  background-color: var(--background-color);
+  color: var(--text-color);
+`
+
+export const StyledAppContainer = styled.div`
+  ${appContainer}
+`
+
+//import.ts
+export { DarkModeToggle } from './components/DarkModeToggle'
+export { StyledAppContainer } from './styles/StyledAppContainer'
+
+why do i get error 
+Cannot find module './styles/StyledAppContainer' or its corresponding type declarations.
+ChatGPT
+The error message you're encountering, "Cannot find module './styles/StyledAppContainer' or its corresponding type declarations," typically indicates that there's an issue with the import statement or the file path.
+
+Let's break down the potential causes and solutions:
+
+File Path: Double-check that the file path in your import statement is correct. The error suggests that it's not finding the module at the specified path. Make sure that the path matches the actual location of the StyledAppContainer file.
+
+For example, if the StyledAppContainer file is in a directory called "styles," and it's in the same directory as your "import.ts" file, the import should look like this:
+
+javascript
+Copy code
+export { StyledAppContainer } from './styles';
+Ensure that the file extension is not necessary, as long as your StyledAppContainer is exported from the "styles" directory.
+
+Index File: If the "styles" directory contains an index.ts or index.js file, you can import the StyledAppContainer directly from that directory without specifying the filename.
+
+For example, if you have an index.ts file in the "styles" directory that re-exports StyledAppContainer, your import could be:
+
+javascript
+Copy code
+export { StyledAppContainer } from './styles';
+Typo or Spelling: Check for typos in the file or directory names, including case sensitivity. Ensure that the names match exactly.
+
+If you've checked these points and the issue persists, please verify your project's folder structure and make sure the "styles" directory and the StyledAppContainer file are correctly located. Additionally, ensure that your TypeScript configuration is set up to handle module imports correctly.
+
+
+
+
+User
+const lightModeVariables = {
+  '--background-color': '#f9f9f9',
+  '--text-color': '#000',
+  '--button-background': '#333',
+  '--button-text': '#fff',
+} can i use my emotion var in css ?
+ChatGPT
+In Emotion, you can use JavaScript variables, including the ones you've defined for your light mode, within your CSS styles by using template literals. To use your Emotion variables in CSS, you can create a template literal and use the JavaScript variables inside the CSS.
+
+Here's how you can use your lightModeVariables in Emotion CSS:
+
+javascript
+Copy code
+import { css } from '@emotion/react';
+
+const lightModeVariables = {
+  '--background-color': '#f9f9f9',
+  '--text-color': '#000',
+  '--button-background': '#333',
+  '--button-text': '#fff',
+};
+
+const customStyles = css`
+  background-color: ${lightModeVariables['--background-color']};
+  color: ${lightModeVariables['--text-color']};
+  /* Other styles using your variables */
+`;
+
+const MyComponent = () => {
+  return <div css={customStyles}>Content with Emotion Variables</div>;
+};
+
+export default MyComponent;
+In this example:
+
+We import css from @emotion/react.
+We define the lightModeVariables object with the custom CSS variables.
+We create a customStyles CSS template literal where we use the Emotion variables within the styles using ${} syntax.
+This way, you can use your Emotion variables to define styles in your components, making it easy to switch between different styles for light mode and dark mode by changing the variables accordingly.
+
+
+
+
+User
+.App-header {
+  background-color: #282c34;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: calc(10px + 2vmin);
+  color: white;
+} can i use --background-color var from emotion in this css ?
+ChatGPT
+Unfortunately, you cannot directly use Emotion custom CSS variables like --background-color in regular CSS files, as they are specific to the Emotion CSS-in-JS library. The use of custom CSS variables is a feature of CSS-in-JS, not standard CSS.
+
+If you want to use a custom CSS variable like --background-color from Emotion in a regular CSS file, you would need to manually define that custom variable in your regular CSS file using standard CSS.
+
+Here's how you can define the --background-color variable in a regular CSS file:
+
+css
+Copy code
+:root {
+  --background-color: #f9f9f9; /* Define the variable with your desired color */
+}
+
+.App-header {
+  background-color: var(--background-color); /* Use the custom variable in your regular CSS */
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: calc(10px + 2vmin);
+  color: white;
+}
+In this example:
+
+We define --background-color within the :root pseudo-class, which is a standard CSS way to define custom variables.
+In the .App-header class, we use background-color: var(--background-color); to apply the value of the custom variable to the background color of the .App-header element.
+This allows you to use the variable --background-color in your regular CSS, even though it was initially defined using Emotion in a different part of your project.
+
+
+
+
