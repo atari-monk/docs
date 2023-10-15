@@ -2729,6 +2729,40 @@ We define --background-color within the :root pseudo-class, which is a standard 
 In the .App-header class, we use background-color: var(--background-color); to apply the value of the custom variable to the background color of the .App-header element.
 This allows you to use the variable --background-color in your regular CSS, even though it was initially defined using Emotion in a different part of your project.
 
+in ts lib, how to export from index, var that is default export from it module
+ChatGPT
+In TypeScript, if you have an index.ts file in a directory that re-exports a module from that directory as a default export, you can follow these simple steps to export that default export from the index.ts file:
 
+Create an index.ts file in the directory.
 
+Inside the index.ts file, import the module you want to re-export as a default export.
+
+Re-export the imported module as a default export in the index.ts file.
+
+Here's a step-by-step example:
+
+Suppose you have a directory structure like this:
+
+Copy code
+myDirectory/
+  └── moduleA.ts
+  └── moduleB.ts
+  └── index.ts
+And you want to export moduleA.ts as the default export from index.ts. You can do this in the index.ts file as follows:
+
+typescript
+Copy code
+// index.ts
+export { default as moduleA } from './moduleA';
+This code imports moduleA from moduleA.ts and re-exports it as the default export of the index.ts module.
+
+Now, when you import from the index.ts file elsewhere in your project, you will get the default export from moduleA.ts:
+
+typescript
+Copy code
+import myDirectory from './myDirectory'; // Import the index.ts file
+// Now you can use myDirectory as the default export, which is moduleA from moduleA.ts
+
+console.log(myDirectory); // Access moduleA
+This is a simple and common pattern to re-export modules from an index.ts file in TypeScript.
 

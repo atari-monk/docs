@@ -1,0 +1,47 @@
+1. I have an idea for driving game, u need to drive correctly on hard situation on road 
+ChatGPT
+That sounds like a fun idea for a driving game! To create a simple version of it, you can start by designing a basic road with challenging obstacles. Players can control a vehicle using arrow keys or tilting their device, and the goal is to navigate the road without crashing. You can gradually add complexity and features as you develop the game.
+
+2. I have an idea for driving game, u need to drive correctly on hard situation on road 
+ChatGPT
+That sounds like a fun idea for a driving game! To create a simple version of it, you can start by designing a basic road with challenging obstacles. Players can control a vehicle using arrow keys or tilting their device, and the goal is to navigate the road without crashing. You can gradually add complexity and features as you develop the game.
+
+
+
+
+User
+what about map in shape of circle that moves and has obstacles and u ster ur car left and right to not collide
+ChatGPT
+Creating a circular map with a moving road and obstacles is a great concept for a simple driving game. Here are some basic steps to get you started:
+
+Game Environment:
+
+Set up a circular playing field with the road looping around.
+Create a background with a rotating circle to give the illusion of motion.
+Player Controls:
+
+Allow the player to control the car by moving it left and right.
+Use simple input methods like arrow keys or screen taps for mobile devices.
+Obstacles:
+
+Generate random obstacles on the circular road, such as cones, barriers, or other cars.
+Ensure these obstacles move toward the player's car to create a challenge.
+Scoring:
+
+Implement a scoring system where players earn points for every obstacle they avoid.
+Display the score on the screen.
+Game Over:
+
+Define conditions for the game to end, such as when the player collides with an obstacle.
+Show a game over screen with the player's score and a "Play Again" button.
+Graphics and Sound:
+
+Add simple graphics and sound effects to enhance the gaming experience.
+Progression:
+
+As the player's score increases, you can increase the speed of the road or introduce more challenging obstacles.
+Testing and Refinement:
+
+Playtest the game to ensure it's both challenging and enjoyable.
+Make adjustments based on player feedback.
+Remember to keep the initial version of the game as simple as possible, and then you can gradually add more features and polish as you go along.
