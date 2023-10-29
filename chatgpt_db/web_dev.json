@@ -1,0 +1,29 @@
+{
+  "sections": [
+    {
+      "title": "webpack",
+      "questions": [
+        {
+          "question": "What config do i need to have multiple pages in seperate folders ?",
+          "answer": "```javascript\nconst path = require('path')\nconst CopyWebpackPlugin = require('copy-webpack-plugin')\nconst MiniCssExtractPlugin = require('mini-css-extract-plugin')\n\nmodule.exports = () => {\n  return {\n    mode: 'development',\n    devtool: false,\n    entry: {\n      'stacked-ui': './src/stacked-ui/index.ts',\n      'stacked-ui-2': './src/stacked-ui-2/index.ts',\n    },\n    output: {\n      filename: '[name]/index.js',\n      path: path.resolve(__dirname, 'build'),\n    },\n    resolve: {\n      extensions: ['.ts', '.js'],\n    },\n    module: {\n      rules: [\n        {\n          test: /\\.ts$/,\n          use: 'ts-loader',\n          exclude: /node_modules/,\n        },\n        {\n          test: /\\.css$/,\n          use: [MiniCssExtractPlugin.loader, 'css-loader'],\n        },\n        {\n          test: /\\.(png|jpg|jpeg|gif|svg)$/,\n          use: [\n            {\n              loader: 'file-loader',\n              options: {\n                name: '[name]/assets/[name].[ext]',\n              },\n            },\n          ],\n        },\n      ],\n    },\n    plugins: [\n      new CopyWebpackPlugin({\n        patterns: [\n          { from: 'src/stacked-ui/index.html', to: 'stacked-ui/index.html' },\n          {\n            from: 'src/stacked-ui-2/index.html',\n            to: 'stacked-ui-2/index.html',\n          },\n        ],\n      }),\n      new MiniCssExtractPlugin({\n        filename: '[name]/styles.css',\n      }),\n    ],\n  }\n}\n```\nAlso remove \n```json\n\"main\": \"index.js\", \n```\nfrom  package.json",
+          "dateTime": "2023-10-29T19:16:09.935Z"
+        },
+        {
+          "question": "How to include styles.css file in build folder ?",
+          "answer": "You need to import it in index.ts file\n```typescript\nimport './css/styles.css'\n```",
+          "dateTime": "2023-10-29T20:02:31.285Z"
+        }
+      ]
+    },
+    {
+      "title": "css",
+      "questions": [
+        {
+          "question": "flex",
+          "answer": "[CSS Flex Container](https://www.w3schools.com/css/css3_flexbox_container.asp)\n\n[CSS Flex Items](https://www.w3schools.com/css/css3_flexbox_items.asp)",
+          "dateTime": "2023-10-29T19:29:18.785Z"
+        }
+      ]
+    }
+  ]
+}
