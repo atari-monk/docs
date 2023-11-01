@@ -1,0 +1,19 @@
+{
+  "sections": [
+    {
+      "title": "Content",
+      "questions": [
+        {
+          "question": "Content",
+          "answer": "- [Create Project](#create-project) - 0:20 to 0:25\n- [Prepare Layout](#prepare-layout) - 0:25 to 0:32\n- [Setup Visual Studio](#setup-visual-studio) - 0:32 to 0:35\n- [Naming Rules](#naming-rules) - 0:35.5 to 0:39.5\n- [Importing Assets](#importing-assets) - 0:39.5 to 0:41\n- [Post Processing](#post-processing) - 0:41 to 0:56\n- [Character Controller](#character-controller) - 0:56 to 1:15\n- [Character Visual, Rotation](#character-visual-rotation) - 1:15 to 1:23\n- [Animations](#animations) - 1:23 to 1:43\n- [Cinemachine](#cinemachine) - 1:43 to 1:49\n- [Input System Refactor](#input-system-refactor) - 1:49 to 2:04\n- [Collision Detection](#collision-detection) - 2:04 to 2:17\n- [Clear Counter](#clear-counter) - 2:17 to 2:38\n- [Interact Action, C# Events](#interact-action-c-events) - 2:38 to 2:48\n- [Selected Counter Visual, Singleton Pattern](#selected-counter-visual-singleton-pattern) - 2:48 to 3:11\n- [Kitchen Object, Scriptable Objects](#kitchen-object-scriptable-objects) - 3:11 to 3:25\n- [Kitchen Object Parent](#kitchen-object-parent) - 3:25 to 3:38\n- [Player Pick up, C# Interfaces](#player-pick-up-c-interfaces) - 3:38 to 3:50\n- [Container Counter](#container-counter) - 3:50 to 4:13\n",
+          "dateTime": "2023-10-30T20:13:35.626Z"
+        },
+        {
+          "question": "Unity Project GitHub repo",
+          "answer": "Sure, here's the text you provided formatted using Markdown:\n\n1. **Add .gitignore for Unity (link in Source) to root project folder.**\n\n2. **Open Git in the project folder.**\n\n   ```shell\n   git init -b main\n   ```\n\n3. **Add all project files to the Git staging area.**\n\n   ```shell\n   git add .\n   ```\n\n4. **Check the status of the files to verify that they are staged.**\n\n   ```shell\n   git status\n   ```\n\n5. **Commit the changes with a meaningful message.**\n\n   ```shell\n   git commit -m 'First commit, project files and .gitignore'\n   ```\n\n**Details:**\n\n- Default branch name.\n\n- Use a dot to represent files in the current folder.\n\n- Ensure that the .gitignore file is configured to ignore specific files.\n\n6. **Create a GitHub repository using the GitHub web page.**\n\n7. **Add a remote named 'origin' with the URL of your GitHub repository.**\n\n   ```shell\n   git remote add origin https://github.com/atari-monk/unity-kitchen-chaos.git\n   ```\n\n8. **Rename the main branch to 'main' (if it's not already named 'main').**\n\n   ```shell\n   git branch -M main\n   ```\n\n9. **Push your local repository to the GitHub repository, setting the upstream branch to 'main.**\n\n   ```shell\n   git push -u origin main\n   ```\n\n10. **Add and commit the license on the GitHub repository page.**\n\nYou can use this Markdown-formatted text for your documentation or instructions.",
+          "dateTime": "2023-10-30T20:21:50.927Z"
+        }
+      ]
+    }
+  ]
+}

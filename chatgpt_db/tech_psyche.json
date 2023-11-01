@@ -9,6 +9,16 @@
           "dateTime": "2023-10-29T20:37:34.407Z"
         }
       ]
+    },
+    {
+      "title": "Thinking about Coding",
+      "questions": [
+        {
+          "question": "What matters",
+          "answer": "*If you want to block out feature, dont be clever, just make it work as simple as possible in first commits.",
+          "dateTime": "2023-11-01T14:01:39.159Z"
+        }
+      ]
     }
   ]
 }

@@ -1,0 +1,24 @@
+{
+  "sections": [
+    {
+      "title": "Visual Studio Code",
+      "questions": [
+        {
+          "question": "Visual Studio Code keys",
+          "answer": "Zen Mode - Ctrl+K Z",
+          "dateTime": "2023-11-01T14:07:10.074Z"
+        }
+      ]
+    },
+    {
+      "title": "Blender",
+      "questions": [
+        {
+          "question": "Blender keys",
+          "answer": "*Bevel the Edges* - Ctrl + B\nAdd loop cuts by mouse wheel\n\n*Invoke the Loop Cut Tool* - Ctrl + R\nAdd loop cuts by mouse wheel\n\n*Animation interpolation* - T\nChoose linear for endless looping animations\n\ntest",
+          "dateTime": "2023-11-01T15:22:38.149Z"
+        }
+      ]
+    }
+  ]
+}
