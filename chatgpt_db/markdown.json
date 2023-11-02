@@ -1,0 +1,14 @@
+{
+  "sections": [
+    {
+      "title": "Lists",
+      "questions": [
+        {
+          "question": "how do i mark list in markdown ?",
+          "answer": "To create a numbered or bulleted list in Markdown, you can follow these simple formatting rules:\n\n1. **Ordered (Numbered) List:**\n\n   To create an ordered (numbered) list, simply start each line with a number followed by a period and a space. For example:\n\n   ```markdown\n   1. First item\n   2. Second item\n   3. Third item\n   ```\n\n   This will render as:\n\n   1. First item\n   2. Second item\n   3. Third item\n\n2. **Unordered (Bulleted) List:**\n\n   To create an unordered (bulleted) list, begin each line with an asterisk (*), plus (+), or a minus (-) sign, followed by a space. For example:\n\n   ```markdown\n   * First item\n   * Second item\n   * Third item\n   ```\n\n   This will display as:\n\n   * First item\n   * Second item\n   * Third item\n\nRemember to include a space after the asterisk, plus, or minus sign to properly format the list.\n\nThat's it! Markdown will automatically format the list items for you.",
+          "dateTime": "2023-11-01T21:47:11.843Z"
+        }
+      ]
+    }
+  ]
+}
