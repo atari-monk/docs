@@ -47,6 +47,11 @@
           "question": "Prepare Layout",
           "answer": "- Put Inspector on the right\n- put Hierarchy down on left side\n- next to it, place Project and Console\n- Scene and Game view in the center\n- Go to Project, 3 dots menu, select one column layout\n- Go to Console, 3 dots menu, \n  * select Log Entry-> one line\n  * Clear->Clear on play\n  * untoogle collapse\n  * toogle pause on error\n- On Game view, \n  * Free Aspect -> Full HD\n  * turn on VSync (limit fps)\n  * Play Unfocused\n  * scale should be pushed max to the left\n- On Scene view\n  * use Pivot (not center)\n  * Global (rotation)\n  * grid on\n  * snaping off \n- On the right\n  * draw mode on Shaded\n  * 2D off\n  * ligh on\n  * audio off\n  * special effects on (refresh off)\n  * hidden objs on\n  * camera stays on defaults\n  * gizmos stayes on defaults\n- Go to layouts (top right), save layout as KitchenChaos\n",
           "dateTime": "2023-11-03T23:17:38.126Z"
+        },
+        {
+          "question": "Setup Visual Studio",
+          "answer": "1. **Install package**\n    - Open proj in Unity Editor\n    - Window->Package Manager\n    - Packeges->Unity Registry\n    - Find editor of liking, Visual Studio or Visual Studio Code, install (with upd btn)\n\n2. **Turn on editor in Unity**\n    - Edit->Preferences\n    - External Tools\n    - External Script Editor\n    - select VS, untick checkboxes\n    - Go to Assets->Open C# Project, VS opens up\n\n3. **VS setup**\n    - Extensions->Manage Extensions, Viasfora, install\n    - Go to Tools->Options, Viasfora\n       * Enable Dev Margin false\n    - Go to Tools->Options, C#->Code Style->Formating\n       * uncheck to make braces not start in new lines\n\n4. **Add cs file**\n    - Go to Unity Editor\n    - Project, +, add c# script, name it Testing\n    - wait to compile, click to open in VS",
+          "dateTime": "2023-11-04T16:59:17.094Z"
         }
       ]
     }
