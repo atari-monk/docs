@@ -4,9 +4,9 @@
       "title": "Food",
       "chats": [
         {
-          "question": "Can i prepare food for tomorrow ? Store coocked white beans, coock grean beans ? ",
-          "answer": "* Stored white beans in 4 middle size jars\n* Stored coocked green beans in container in frige",
-          "dateTime": "2023-11-14T15:28:42.232Z"
+          "question": "Prepare food for tomorrow: \n  1. Store cooked white beans\n  2. Cook grean beans\n  3. Cook pasta",
+          "answer": "* Stored white beans in 4 middle size jars\n* Stored cooked green beans in container in frige\n* Stored cooked  pasta in 3 jars in frige",
+          "dateTime": "2023-11-14T21:34:46.971Z"
         }
       ]
     },
@@ -14,9 +14,9 @@
       "title": "House",
       "chats": [
         {
-          "question": "Can i add strings to tarp on the balcony ?",
+          "question": "Add strings to tarp on the balcony",
           "answer": "*",
-          "dateTime": "2023-11-14T12:22:34.288Z"
+          "dateTime": "2023-11-14T21:35:08.412Z"
         }
       ]
     },
@@ -24,9 +24,9 @@
       "title": "Notes Proj",
       "chats": [
         {
-          "question": "Task List",
-          "answer": "1. Add created and last edited timestamp and show them in Notes and Reader\n2. Rename db folder\n3. Fix all the data in notes db (format changed)",
-          "dateTime": "2023-11-14T15:39:42.715Z"
+          "question": "Task List:\n1. Fix all the data in notes db (format changed)\n2. Fix index, add string for index in data, make section more on left and chats under it to right\n2. Add created and last edited timestamp and show them in Notes and Reader\n3. Rename db folder",
+          "answer": "1. Fixed notes format and some data",
+          "dateTime": "2023-11-14T21:38:34.201Z"
         }
       ]
     }

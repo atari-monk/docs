@@ -29,9 +29,14 @@
           "dateTime": "2023-11-12T21:52:18.471Z"
         },
         {
-          "question": "Button H toogles visability of collision regions, vectors and so on, it's not visible by default ?\n**14.11.2023**",
-          "answer": "1. updated client api to hold key input",
-          "dateTime": "2023-11-14T13:53:01.401Z"
+          "question": "Button H toogles visability of collision regions, vectors and so on, it's not visible by default ?",
+          "answer": "1. updated client api to hold key input\n2. implement H key in client.\n  * sharad-api SocketEvents needs keys event\n  * socketOutManager updated with event\n  * implemented H handler\n3. implement H on server\n   ",
+          "dateTime": "2023-11-14T21:22:02.886Z"
+        },
+        {
+          "question": "i have InputHandler for player input\n```typescript\nimport { IInput, ISocketOutManager } from 'client-api'\n\nexport class InputHandler {\n  private input: IInput = {\n    up: false,\n    down: false,\n    left: false,\n    right: false,\n  }\n\n  constructor(private readonly socketOutManager: ISocketOutManager) {\n    document.addEventListener('keydown', this.handleKeyDown.bind(this))\n    document.addEventListener('keyup', this.handleKeyUp.bind(this))\n  }\n\n  private handleKeyDown(event: KeyboardEvent) {\n    this.setKeyState(event.key, true)\n  }\n\n  private handleKeyUp(event: KeyboardEvent) {\n    this.setKeyState(event.key, false)\n  }\n\n  private setKeyState(key: string, state: boolean) {\n    switch (key) {\n      case 'ArrowUp':\n        this.input.up = state\n        break\n      case 'ArrowDown':\n        this.input.down = state\n        break\n      case 'ArrowLeft':\n        this.input.left = state\n        break\n      case 'ArrowRight':\n        this.input.right = state\n        break\n    }\n    this.socketOutManager.sendPlayerInput(this.input)\n  }\n\n  public getInput(): IInput {\n    return this.input\n  }\n}\n```\nnow i want similar one but for keys using\n```typescript\nexport interface IKeyInput {\n  H: boolean\n}\n```\npls write it",
+          "answer": "Certainly! Here's a simple `KeyInputHandler` class for handling key inputs using the `IKeyInput` interface:\n\n```typescript\nimport { IKeyInput, ISocketOutManager } from 'client-api';\n\nexport class KeyInputHandler {\n  private keyInput: IKeyInput = {\n    H: false,\n  };\n\n  constructor(private readonly socketOutManager: ISocketOutManager) {\n    document.addEventListener('keydown', this.handleKeyDown.bind(this));\n    document.addEventListener('keyup', this.handleKeyUp.bind(this));\n  }\n\n  private handleKeyDown(event: KeyboardEvent) {\n    this.setKeyState(event.key, true);\n  }\n\n  private handleKeyUp(event: KeyboardEvent) {\n    this.setKeyState(event.key, false);\n  }\n\n  private setKeyState(key: string, state: boolean) {\n    switch (key) {\n      case 'h':\n      case 'H':\n        this.keyInput.H = state;\n        break;\n    }\n    this.socketOutManager.sendKeyInput(this.keyInput);\n  }\n\n  public getKeyInput(): IKeyInput {\n    return this.keyInput;\n  }\n}\n```\n\nThis `KeyInputHandler` class listens for 'keydown' and 'keyup' events and updates the `keyInput` object accordingly. It sends the updated input to the server using the `sendKeyInput` method from the `socketOutManager`.",
+          "dateTime": "2023-11-14T21:05:40.727Z"
         }
       ]
     }
