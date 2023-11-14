@@ -1,0 +1,49 @@
+{
+  "sections": [
+    {
+      "title": "Start",
+      "chats": [
+        {
+          "question": "Repo",
+          "answer": "1. [Repo](https://github.com/atari-monk/micro-engine)\n",
+          "dateTime": "2023-11-14T15:36:02.987Z"
+        },
+        {
+          "question": "engine_api",
+          "answer": "Assumptions:\n1. API that describes my engine\n2. This will be taking some stuff from my ball-game-2\n3. This will be used by client and server",
+          "dateTime": "2023-11-14T16:02:53.597Z"
+        },
+        {
+          "question": ".prettierrc",
+          "answer": "Formatting will be delegated to prettier with this config:\n\n```json\n{\n  \"singleQuote\": true,\n  \"indent\": 2,\n  \"semi\": false\n}\n```\n",
+          "dateTime": "2023-11-14T16:18:25.896Z"
+        },
+        {
+          "question": "script",
+          "answer": "This folder contains scripts shared by projects:\n\njs:\n\n1. copy-package.js - copy package.json to build folder in project\n```javascript\nconst fs = require('fs')\nconst path = require('path')\n\nfunction getPaths(sourceFile, targetDir) {\n  const dirname = __dirname\n  const dirname_resolve = path.resolve(dirname, '.')\n\n  const sourcePath = path.join(dirname_resolve, sourceFile)\n\n  const targetPath = path.join(\n    dirname_resolve,\n    targetDir,\n    path.basename(sourceFile)\n  )\n\n  return {\n    dirname_resolve: dirname_resolve,\n    sourcePath: sourcePath,\n    targetPath: targetPath,\n  }\n}\n\nfunction printPaths(paths) {\n  console.log('dirname_resolve:', paths.dirname_resolve)\n  console.log('sourcePath:', paths.sourcePath)\n  console.log('targetPath:', paths.targetPath)\n}\n\nfunction copyFileToBuild(paths) {\n  if (!fs.existsSync(path.dirname(paths.targetPath))) {\n    fs.mkdirSync(path.dirname(paths.targetPath), { recursive: true })\n  }\n\n  fs.copyFileSync(paths.sourcePath, paths.targetPath)\n\n  console.log(`Copied ${paths.sourcePath} to ${paths.targetPath}`)\n}\n\nmodule.exports = { getPaths, printPaths, copyFileToBuild }\n```\n\nps1:\n\n1. CommonFunctions.ps1 - this is for installing lib to other projects using local package\n\n```powershell\n$Global:RepoPath = \"C:\\atari-monk\\Code\\micro-engine\\\"\n\nfunction Build-Lib () {\n  npm i\n  npm run build\n  Set-Location build\n  npm pack  \n}\n\nfunction Copy-And-Install-Pack {\n  param (\n    [string]$packPath,\n    [string]$projDir,\n    [string]$packName\n  )\n  Copy-Item $packPath $projDir \n  Set-Location $projDir\n  npm i (Get-Item $packName).Name\n}\n```\n\n2. run_notes.ps1 - this is for running apps used to making this notes\n\n```powershell\n$clientPath = \"C:\\atari-monk\\code\\notes\\notes_client\\build\\index.html\"\n$readerPath = \"C:\\atari-monk\\code\\notes\\notes_reader\\build\\index.html\"\n$serverPath = \"C:\\atari-monk\\code\\notes\\notes_server\\build\\server.js\"\n\nif (Test-Path $clientPath -PathType Leaf) {\n    Start-Process $clientPath\n} else {\n    Write-Host \"The client file does not exist: $clientPath\"\n}\n\nif (Test-Path $readerPath -PathType Leaf) {\n    Start-Process $readerPath\n} else {\n    Write-Host \"The reader file does not exist: $readerPath\"\n}\n\nif (Test-Path $serverPath -PathType Leaf) {\n    Start-Process node $serverPath\n} else {\n    Write-Host \"The server file does not exist: $serverPath\"\n}\n```\n",
+          "dateTime": "2023-11-14T17:14:01.652Z"
+        },
+        {
+          "question": ".gitignore",
+          "answer": "Removed VisualStudio .gitignore template (used from reflex) and initially used:\n\n```bash\nbuild\nnode_modules\n```",
+          "dateTime": "2023-11-14T17:26:38.132Z"
+        },
+        {
+          "question": "engine",
+          "answer": "Assumptions:\n\n1. Implementation of my engine\n2. implementation of engine_api lib\n3. This will be taking some stuff from my ball-game-2\n4. This will be used by client and server of a game or libs that will be used in them\n5. Initial project was commited with files from section engine_api, question Project, only with name engine",
+          "dateTime": "2023-11-14T17:37:45.595Z"
+        }
+      ]
+    },
+    {
+      "title": "engine_api",
+      "chats": [
+        {
+          "question": "Project",
+          "answer": "Assumptions:\n1. typescript library\n\nInitial proj files:\n1. tsconfig.json:\n\n```json\n{\n  \"compilerOptions\": {\n    \"target\": \"es2016\",\n    \"module\": \"commonjs\",\n    \"outDir\": \"./build\",\n    \"declarationDir\": \"./build\",\n    \"rootDir\": \"./src\",\n    \"strict\": true,\n    \"esModuleInterop\": true,\n    \"forceConsistentCasingInFileNames\": true,\n    \"skipLibCheck\": true,\n    \"declaration\": true\n  },\n  \"exclude\": [\"node_modules\", \"script\", \"build\"]\n}\n```\n\n2. package.json:\n\n```json\n{\n  \"name\": \"engine_api\",\n  \"version\": \"1.0.0\",\n  \"description\": \"Description of my engine\",\n  \"main\": \"index.js\",\n  \"scripts\": {\n    \"build\": \"node ./script/copy-package.js && tsc\",\n    \"i-lib\": \"powershell.exe -ExecutionPolicy Bypass -File .\\\\script\\\\i-lib.ps1\"\n  },\n  \"keywords\": [\n    \"typescript\",\n    \"library\",\n    \"engine api\"\n  ],\n  \"author\": \"atari_monk\",\n  \"license\": \"ISC\",\n  \"devDependencies\": {\n    \"typescript\": \"^5.2.2\"\n  },\n  \"dependencies\": {}\n}\n```\n\n3. script folder:\n\n  1. copy-package.js - assuming lib and proj structure, this copies package.json to build if proj name is set\n\n```javascript\nconst lib = require('./../../script/js/copy-package')\n\nconst projName = 'engine_api'\nconst sourceFile = `../../${projName}/package.json`\nconst targetDir = `../../${projName}/build`\nconst debug = false\n\nconst paths = lib.getPaths(sourceFile, targetDir)\nif (debug) lib.printPaths(paths)\nlib.copyFileToBuild(paths)\n```\n\n2. i-lib.ps1 - this installs lib to repo projects according to list using local package\n\n```powershell\n. \"C:\\atari-monk\\Code\\micro-engine\\script\\ps1\\CommonFunctions.ps1\"\n\n$libName = \"engine_api\"\n$build = \"$libName\\build\\\"\n$pack = \"$libName-1.0.0.tgz\"\n$lib = $RepoPath + $build + $pack\n\n$targetProjects = @(\n  \"$RepoPath\\engine\\\"\n)\n\nBuild-Lib\nforeach ($targetProj in $targetProjects) {\n  Copy-And-Install-Pack -packPath $lib -projDir $targetProj -packName $pack\n}\n```",
+          "dateTime": "2023-11-14T17:22:12.521Z"
+        }
+      ]
+    }
+  ]
+}

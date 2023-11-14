@@ -2,7 +2,7 @@
   "sections": [
     {
       "title": "webpack",
-      "questions": [
+      "chats": [
         {
           "question": "What config do i need to have multiple pages in seperate folders ?",
           "answer": "```javascript\nconst path = require('path')\nconst CopyWebpackPlugin = require('copy-webpack-plugin')\nconst MiniCssExtractPlugin = require('mini-css-extract-plugin')\n\nmodule.exports = () => {\n  return {\n    mode: 'development',\n    devtool: false,\n    entry: {\n      'stacked-ui': './src/stacked-ui/index.ts',\n      'stacked-ui-2': './src/stacked-ui-2/index.ts',\n    },\n    output: {\n      filename: '[name]/index.js',\n      path: path.resolve(__dirname, 'build'),\n    },\n    resolve: {\n      extensions: ['.ts', '.js'],\n    },\n    module: {\n      rules: [\n        {\n          test: /\\.ts$/,\n          use: 'ts-loader',\n          exclude: /node_modules/,\n        },\n        {\n          test: /\\.css$/,\n          use: [MiniCssExtractPlugin.loader, 'css-loader'],\n        },\n        {\n          test: /\\.(png|jpg|jpeg|gif|svg)$/,\n          use: [\n            {\n              loader: 'file-loader',\n              options: {\n                name: '[name]/assets/[name].[ext]',\n              },\n            },\n          ],\n        },\n      ],\n    },\n    plugins: [\n      new CopyWebpackPlugin({\n        patterns: [\n          { from: 'src/stacked-ui/index.html', to: 'stacked-ui/index.html' },\n          {\n            from: 'src/stacked-ui-2/index.html',\n            to: 'stacked-ui-2/index.html',\n          },\n        ],\n      }),\n      new MiniCssExtractPlugin({\n        filename: '[name]/styles.css',\n      }),\n    ],\n  }\n}\n```\nAlso remove \n```json\n\"main\": \"index.js\", \n```\nfrom  package.json",
@@ -17,11 +17,31 @@
     },
     {
       "title": "css",
-      "questions": [
+      "chats": [
         {
           "question": "flex",
           "answer": "[CSS Flex Container](https://www.w3schools.com/css/css3_flexbox_container.asp)\n\n[CSS Flex Items](https://www.w3schools.com/css/css3_flexbox_items.asp)",
           "dateTime": "2023-10-29T19:29:18.785Z"
+        }
+      ]
+    },
+	{
+      "title": "url params",
+      "chats": [
+        {
+          "question": "/user-api/v1/users/email/id or with ? (just id or notation with ?)",
+          "answer": "If your URL pattern includes parameters in the path, you can access them using `req.params`. If it includes query parameters (those after the `?`), you can access them using `req.query`. Here's an example:\n\n```javascript\n// URL: /user-api/v1/users/email/id\napp.get('/user-api/v1/users/:email/:id', (req, res) => {\n  const userEmail = req.params.email;\n  const userId = req.params.id;\n  // Rest of the route handling logic\n});\n\n// URL: /user-api/v1/users?email=user@example.com&id=123\napp.get('/user-api/v1/users', (req, res) => {\n  const userEmail = req.query.email;\n  const userId = req.query.id;\n  // Rest of the route handling logic\n});\n```\n\nIn the first example, parameters (`:email` and `:id`) are part of the path, and you access them using `req.params`. In the second example, parameters (`email` and `id`) are query parameters, and you access them using `req.query`.\n\nMake sure to adjust your route definitions and access methods based on your specific API structure and requirements.",
+          "dateTime": "2023-11-13T20:35:41.857Z"
+        }
+      ]
+    },
+    {
+      "title": "libs, packages",
+      "chats": [
+        {
+          "question": "When using for example axios in lib and app",
+          "answer": "1. Use axios as any param in lib and install lib in app !!!!!",
+          "dateTime": "2023-11-13T21:25:57.160Z"
         }
       ]
     }

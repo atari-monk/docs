@@ -1,6 +1,16 @@
 {
   "sections": [
     {
+      "title": "plan",
+      "chats": [
+        {
+          "question": "What is my plan with this ?",
+          "answer": "**14.11.2023**\n1. Current state:\n  * 14.11.2023 game is not playable but maybe there is still potential in whole thing ?\n2. Plan\n  * button h toogles visability of collision regions, vectors and so on, it's not visible by default\n  * right button next to joystic should kick the ball\n  * note all code regions where data and params are, that have impact on gameplay mechanics",
+          "dateTime": "2023-11-14T12:49:00.712Z"
+        }
+      ]
+    },
+    {
       "title": "Notes during coding",
       "chats": [
         {
@@ -17,6 +27,11 @@
           "question": "12.11.2023\nJust imprve as much as possible in 4h",
           "answer": "1. Find a place where to put info that server is waking up.\n   * Text to wait for server and then on player is displaying\n\n2. I want to add ability to kick ball\n   * Added two buttons (next i need to add them to my input)",
           "dateTime": "2023-11-12T21:52:18.471Z"
+        },
+        {
+          "question": "Button H toogles visability of collision regions, vectors and so on, it's not visible by default ?\n**14.11.2023**",
+          "answer": "1. updated client api to hold key input",
+          "dateTime": "2023-11-14T13:53:01.401Z"
         }
       ]
     }

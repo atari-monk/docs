@@ -1,12 +1,17 @@
 {
   "sections": [
     {
-      "title": "Lists",
-      "questions": [
+      "title": "Marks",
+      "chats": [
         {
-          "question": "how do i mark list in markdown ?",
+          "question": "Lists",
           "answer": "To create a numbered or bulleted list in Markdown, you can follow these simple formatting rules:\n\n1. **Ordered (Numbered) List:**\n\n   To create an ordered (numbered) list, simply start each line with a number followed by a period and a space. For example:\n\n   ```markdown\n   1. First item\n   2. Second item\n   3. Third item\n   ```\n\n   This will render as:\n\n   1. First item\n   2. Second item\n   3. Third item\n\n2. **Unordered (Bulleted) List:**\n\n   To create an unordered (bulleted) list, begin each line with an asterisk (*), plus (+), or a minus (-) sign, followed by a space. For example:\n\n   ```markdown\n   * First item\n   * Second item\n   * Third item\n   ```\n\n   This will display as:\n\n   * First item\n   * Second item\n   * Third item\n\nRemember to include a space after the asterisk, plus, or minus sign to properly format the list.\n\nThat's it! Markdown will automatically format the list items for you.",
           "dateTime": "2023-11-01T21:47:11.843Z"
+        },
+        {
+          "question": "Links",
+          "answer": "In Markdown, creating links is quite simple. You can use the following syntax:\n\n```markdown\n[Link Text](URL)\n```\n\nHere, `Link Text` is the text you want to display for the link, and `URL` is the actual web address or link you want to point to. For example:\n\n```markdown\n[Visit OpenAI](https://www.openai.com)\n```\n\nThis will create a link that, when clicked, directs the user to the OpenAI website, and the text \"Visit OpenAI\" will be the clickable link.\n\nIf you're working with a Markdown library in a programming language, you would use this syntax within the context of that language. For example, in Python using the `markdown` library:\n\n```python\nimport markdown\n\ntext = \"[Visit OpenAI](https://www.openai.com)\"\nhtml = markdown.markdown(text)\nprint(html)\n```\n\nThis will convert the Markdown text to HTML, and you can then use or display the HTML as needed.\n\nKeep in mind that the exact implementation may vary depending on the Markdown library you are using, so be sure to check the documentation for the specific library you have in mind.",
+          "dateTime": "2023-11-14T15:04:36.969Z"
         }
       ]
     }
