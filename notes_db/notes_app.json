@@ -1,0 +1,15 @@
+{
+  "sections": [
+    {
+      "title": "Plan",
+      "chats": [
+        {
+          "indexTitle": "",
+          "question": "Task List",
+          "answer": "1. Fix all the data in notes db (format changed)\n  * Fixed notes format and some data\n2. Fix index, make section more on left and chats under it to right\n  * added style classes and left margins for section and chat\n  * made reader page look a bit better (smaller title, theme btn and file picker) \n3. Fix index, add indexTitle string for index in data\n  * added indexTitle to data in server, editor and reader\n4. Big refactor, types need to be shared among server, reader and editor, lib is needed.\n  * shared lib added\n  * move types from server to lib\n  * use lib types in editor\n  * use lib types in reader\n5. Refactor\n  * read and refactored append chat to sections, tested it in server_tests proj\n6. Add created and last edited timestamp and show them in Notes and Reader\n7. Rename db folder",
+          "dateTime": "2023-11-15T17:19:41.602Z"
+        }
+      ]
+    }
+  ]
+}
