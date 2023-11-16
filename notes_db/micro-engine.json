@@ -1,105 +1,164 @@
 {
   "sections": [
     {
-      "title": "Start",
+      "title": "Main Project micro-engine",
       "chats": [
         {
-          "indexTitle": "Repo",
-          "question": "Repo",
-          "answer": "1. [Repo](https://github.com/atari-monk/micro-engine)\n",
-          "dateTime": "2023-11-14T15:36:02.987Z"
+          "indexTitle": "Repository",
+          "question": "Repository",
+          "answer": "1. Local Repository \n```bash\n    C:\\atari-monk\\code\\micro-engine)\n```\n2. [GitHub Repository](https://github.com/atari-monk/micro-engine)",
+          "dateTime": "2023-11-16T14:25:21.898Z"
         },
         {
-          "indexTitle": "engine_api",
-          "question": "engine_api",
-          "answer": "Assumptions:\n1. API that describes my engine\n2. This will be taking some stuff from my ball-game-2\n3. This will be used by client and server",
-          "dateTime": "2023-11-14T16:02:53.597Z"
+          "indexTitle": "File .gitignore",
+          "question": "File .gitignore",
+          "answer": "Initially, just two elements, excluded from commit, should be fine. \n\n```bash\nbuild\nnode_modules\n```",
+          "dateTime": "2023-11-16T15:05:25.536Z"
         },
         {
-          "indexTitle": "formater",
-          "question": ".prettierrc",
+          "indexTitle": "Formater",
+          "question": "File .prettierrc",
           "answer": "Formatting will be delegated to prettier with this config:\n\n```json\n{\n  \"singleQuote\": true,\n  \"indent\": 2,\n  \"semi\": false\n}\n```\n",
-          "dateTime": "2023-11-14T16:18:25.896Z"
+          "dateTime": "2023-11-16T15:07:02.496Z"
         },
         {
-          "indexTitle": "Scripts",
-          "question": "script",
-          "answer": "This folder contains scripts shared by projects:\n\njs:\n\n1. copy-package.js - copy package.json to build folder in project\n```javascript\nconst fs = require('fs')\nconst path = require('path')\n\nfunction getPaths(sourceFile, targetDir) {\n  const dirname = __dirname\n  const dirname_resolve = path.resolve(dirname, '.')\n\n  const sourcePath = path.join(dirname_resolve, sourceFile)\n\n  const targetPath = path.join(\n    dirname_resolve,\n    targetDir,\n    path.basename(sourceFile)\n  )\n\n  return {\n    dirname_resolve: dirname_resolve,\n    sourcePath: sourcePath,\n    targetPath: targetPath,\n  }\n}\n\nfunction printPaths(paths) {\n  console.log('dirname_resolve:', paths.dirname_resolve)\n  console.log('sourcePath:', paths.sourcePath)\n  console.log('targetPath:', paths.targetPath)\n}\n\nfunction copyFileToBuild(paths) {\n  if (!fs.existsSync(path.dirname(paths.targetPath))) {\n    fs.mkdirSync(path.dirname(paths.targetPath), { recursive: true })\n  }\n\n  fs.copyFileSync(paths.sourcePath, paths.targetPath)\n\n  console.log(`Copied ${paths.sourcePath} to ${paths.targetPath}`)\n}\n\nmodule.exports = { getPaths, printPaths, copyFileToBuild }\n```\n\nps1:\n\n1. CommonFunctions.ps1 - this is for installing lib to other projects using local package\n\n```powershell\n$Global:RepoPath = \"C:\\atari-monk\\Code\\micro-engine\\\"\n\nfunction Build-Lib () {\n  npm i\n  npm run build\n  Set-Location build\n  npm pack  \n}\n\nfunction Copy-And-Install-Pack {\n  param (\n    [string]$packPath,\n    [string]$projDir,\n    [string]$packName\n  )\n  Copy-Item $packPath $projDir \n  Set-Location $projDir\n  npm i (Get-Item $packName).Name\n}\n```\n",
-          "dateTime": "2023-11-15T20:41:01.927Z"
+          "indexTitle": "Script",
+          "question": "Script",
+          "answer": "Folder script contains scripts shared by projects",
+          "dateTime": "2023-11-16T15:19:20.594Z"
         },
         {
-          "indexTitle": "gitignore",
-          "question": ".gitignore",
-          "answer": "Removed VisualStudio .gitignore template (used from reflex) and initially used:\n\n```bash\nbuild\nnode_modules\n```",
-          "dateTime": "2023-11-14T17:26:38.132Z"
+          "indexTitle": "Script copy-package.js",
+          "question": "```bash\ncopy-package.js\n```\nCopy package.json to folder build in project",
+          "answer": "```javascript\nconst fs = require('fs')\nconst path = require('path')\n\nfunction getPaths(sourceFile, targetDir) {\n  const dirname = __dirname\n  const dirname_resolve = path.resolve(dirname, '.')\n\n  const sourcePath = path.join(dirname_resolve, sourceFile)\n\n  const targetPath = path.join(\n    dirname_resolve,\n    targetDir,\n    path.basename(sourceFile)\n  )\n\n  return {\n    dirname_resolve: dirname_resolve,\n    sourcePath: sourcePath,\n    targetPath: targetPath,\n  }\n}\n\nfunction printPaths(paths) {\n  console.log('dirname_resolve:', paths.dirname_resolve)\n  console.log('sourcePath:', paths.sourcePath)\n  console.log('targetPath:', paths.targetPath)\n}\n\nfunction copyFileToBuild(paths) {\n  if (!fs.existsSync(path.dirname(paths.targetPath))) {\n    fs.mkdirSync(path.dirname(paths.targetPath), { recursive: true })\n  }\n\n  fs.copyFileSync(paths.sourcePath, paths.targetPath)\n\n  console.log(`Copied ${paths.sourcePath} to ${paths.targetPath}`)\n}\n\nmodule.exports = { getPaths, printPaths, copyFileToBuild }\n```",
+          "dateTime": "2023-11-16T16:32:04.790Z"
         },
         {
-          "indexTitle": "engine",
-          "question": "engine",
-          "answer": "Assumptions:\n\n1. Implementation of my engine\n2. implementation of engine_api lib\n3. This will be taking some stuff from my ball-game-2\n4. This will be used by client and server of a game or libs that will be used in them\n5. Initial project was commited with files from section engine_api, question Project, only with name engine",
-          "dateTime": "2023-11-14T17:37:45.595Z"
-        },
-        {
-          "indexTitle": "engine_tests",
-          "question": "engine_tests",
-          "answer": "Assumptions:\n 1. tests for engine_api and engine libs\n\nStart proj:\n1. Project files (some) copied from engine_api and ajusted\n2. Using jest\n```bash\nnpm install --save-dev jest ts-jest @types/jest\n```\n3. Configure jest\n`jest.config.js`\n```javascript\nmodule.exports = {\n  preset: 'ts-jest',\n  testEnvironment: 'node',\n  testRegex: '(/__tests__/.*|(\\\\.|/)(test|spec))\\\\.tsx?$',\n};\n```\n4. First test\n`Vector2.test.ts`\n```typescript\nimport { Vector2 } from './Vector2';\n\ndescribe('Vector2', () => {\n  it('should add two vectors', () => {\n    const v1 = new Vector2(1, 2);\n    const v2 = new Vector2(3, 4);\n    const result = v1.add(v2);\n\n    expect(result).toEqual(new Vector2(4, 6));\n  });\n});\n```\n5. Run test\n```bash\nnpm test\n```",
-          "dateTime": "2023-11-14T22:29:20.566Z"
+          "indexTitle": "Script CommonFunctions.ps1",
+          "question": "```bash\nCommonFunctions.ps1\n```\nThis is for installing lib to other projects using local .tgz package",
+          "answer": "```powershell\n$Global:RepoPath = \"C:\\atari-monk\\Code\\micro-engine\\\"\n\nfunction Build-Lib () {\n  npm i\n  npm run build\n  Set-Location build\n  npm pack  \n}\n\nfunction Copy-And-Install-Pack {\n  param (\n    [string]$packPath,\n    [string]$projDir,\n    [string]$packName\n  )\n  Copy-Item $packPath $projDir \n  Set-Location $projDir\n  npm i (Get-Item $packName).Name\n}\n```",
+          "dateTime": "2023-11-16T16:33:09.533Z"
         }
       ]
     },
     {
-      "title": "engine_api",
+      "title": "Project engine_api",
       "chats": [
         {
-          "indexTitle": "Project",
-          "question": "Project",
-          "answer": "Assumptions:\n1. typescript library\n\nInitial proj files:\n1. tsconfig.json:\n\n```json\n{\n  \"compilerOptions\": {\n    \"target\": \"es2016\",\n    \"module\": \"commonjs\",\n    \"outDir\": \"./build\",\n    \"declarationDir\": \"./build\",\n    \"rootDir\": \"./src\",\n    \"strict\": true,\n    \"esModuleInterop\": true,\n    \"forceConsistentCasingInFileNames\": true,\n    \"skipLibCheck\": true,\n    \"declaration\": true\n  },\n  \"exclude\": [\"node_modules\", \"script\", \"build\"]\n}\n```\n\n2. package.json:\n\n```json\n{\n  \"name\": \"engine_api\",\n  \"version\": \"1.0.0\",\n  \"description\": \"Description of my engine\",\n  \"main\": \"index.js\",\n  \"scripts\": {\n    \"build\": \"node ./script/copy-package.js && tsc\",\n    \"i-lib\": \"powershell.exe -ExecutionPolicy Bypass -File .\\\\script\\\\i-lib.ps1\"\n  },\n  \"keywords\": [\n    \"typescript\",\n    \"library\",\n    \"engine api\"\n  ],\n  \"author\": \"atari_monk\",\n  \"license\": \"ISC\",\n  \"devDependencies\": {\n    \"typescript\": \"^5.2.2\"\n  },\n  \"dependencies\": {}\n}\n```\n\n3. script folder:\n\n  1. copy-package.js - assuming lib and proj structure, this copies package.json to build if proj name is set\n\n```javascript\nconst lib = require('./../../script/copy-package')\n\nconst projName = 'engine_api'\nconst sourceFile = `../${projName}/package.json`\nconst targetDir = `../${projName}/build`\nconst debug = false\n\nconst paths = lib.getPaths(sourceFile, targetDir)\nif (debug) lib.printPaths(paths)\nlib.copyFileToBuild(paths)\n```\n\n2. i-lib.ps1 - this installs lib to repo projects according to list using local package\n\n```powershell\n. \"C:\\atari-monk\\Code\\micro-engine\\script\\CommonFunctions.ps1\"\n\n$libFolder = \"engine_api\"\n$libName = \"engine_api\"\n$build = \"$libFolder\\build\\\"\n$pack = \"$libName-1.0.0.tgz\"\n$lib = $RepoPath + $build + $pack\n\n$targetProjects = @(\n  \"$RepoPath\\engine\\\",\n  \"$RepoPath\\engine_tests\\\"\n)\n\nBuild-Lib\nforeach ($targetProj in $targetProjects) {\n  Copy-And-Install-Pack -packPath $lib -projDir $targetProj -packName $pack\n}\n```",
-          "dateTime": "2023-11-15T20:41:46.494Z"
+          "indexTitle": "Assumptions",
+          "question": "Assumptions",
+          "answer": "1. Typescript library\n2. API that describes my engine\n3. Each folder is name of the component with it's interfaces\n4. This will be used by client and server of game as a technology layer in form of library package, or by libs of game used by client and server\n",
+          "dateTime": "2023-11-16T16:30:51.953Z"
         },
         {
-          "indexTitle": "Math",
-          "question": "Math",
-          "answer": "Vector2:\n\n```typescript\nexport interface IVector2 {\n  x: number\n  y: number\n\n  add(other: IVector2): IVector2\n  subtract(other: IVector2): IVector2\n  multiply(scalar: number): IVector2\n  dot(other: IVector2): number\n  length(): number\n  squaredLength(): number\n  normalize(): IVector2\n}\n```",
-          "dateTime": "2023-11-15T20:46:29.103Z"
+          "indexTitle": "File package.json",
+          "question": "File package.json",
+          "answer": "```json\n{\n  \"name\": \"engine_api\",\n  \"version\": \"1.0.0\",\n  \"description\": \"Description of my engine\",\n  \"main\": \"index.js\",\n  \"scripts\": {\n    \"build\": \"node ./script/copy-package.js && tsc\",\n    \"i-lib\": \"powershell.exe -ExecutionPolicy Bypass -File .\\\\script\\\\i-lib.ps1\"\n  },\n  \"keywords\": [\n    \"typescript\",\n    \"library\",\n    \"engine api\"\n  ],\n  \"author\": \"atari_monk\",\n  \"license\": \"ISC\",\n  \"devDependencies\": {\n    \"typescript\": \"^5.2.2\"\n  },\n  \"dependencies\": {}\n}\n```",
+          "dateTime": "2023-11-16T16:18:49.280Z"
         },
         {
-          "indexTitle": "entity-component",
-          "question": "entity-component",
-          "answer": "```typescript\nexport interface IComponent {\n  update(): void\n  render(): void\n}\n```\n```typescript\nimport { IComponent } from './IComponent'\n\nexport interface IEntity {\n  addComponent(component: IComponent): void\n  update(): void\n  render(): void\n}\n```\n- Is this ok for entity-component for small engine ?\n\n  * Consideration for Component Dependencies: If your components might have dependencies on each other, you may need to introduce an initialization step or handle the order of component updates carefully. For simplicity, make sure that components are designed to work independently or have a clear dependency resolution mechanism.\n\nRemember, simplicity is key, and your current design seems well-suited for a small engine. If it meets your needs and is easy to understand and work with, then it's a good design.",
-          "dateTime": "2023-11-15T22:34:34.017Z"
+          "indexTitle": "File tsconfig.json",
+          "question": "File tsconfig.json",
+          "answer": "```json\n{\n  \"compilerOptions\": {\n    \"target\": \"es2016\",\n    \"module\": \"commonjs\",\n    \"outDir\": \"./build\",\n    \"declarationDir\": \"./build\",\n    \"rootDir\": \"./src\",\n    \"strict\": true,\n    \"esModuleInterop\": true,\n    \"forceConsistentCasingInFileNames\": true,\n    \"skipLibCheck\": true,\n    \"declaration\": true\n  },\n  \"exclude\": [\"node_modules\", \"script\", \"build\"]\n}\n```",
+          "dateTime": "2023-11-16T16:16:26.180Z"
+        },
+        {
+          "indexTitle": "Script",
+          "question": "script folder",
+          "answer": "* Folder with scripts of the project\n* usually used in package.json \"scripts\":\n",
+          "dateTime": "2023-11-16T16:23:52.096Z"
+        },
+        {
+          "indexTitle": "Script copy-package.js",
+          "question": "```bash\ncopy-package.js\n```\nAssuming lib and proj structure, this copies package.json to build if proj name is set",
+          "answer": "```javascript\nconst lib = require('./../../script/copy-package')\n\nconst projName = 'engine_api'\nconst sourceFile = `../${projName}/package.json`\nconst targetDir = `../${projName}/build`\nconst debug = false\n\nconst paths = lib.getPaths(sourceFile, targetDir)\nif (debug) lib.printPaths(paths)\nlib.copyFileToBuild(paths)\n```",
+          "dateTime": "2023-11-16T16:21:48.997Z"
+        },
+        {
+          "indexTitle": "Script i-lib.ps1",
+          "question": "```bash\ni-lib.ps1\n```\nThis installs lib to repo projects according to list using local package",
+          "answer": "```powershell\n. \"C:\\atari-monk\\Code\\micro-engine\\script\\CommonFunctions.ps1\"\n\n$libFolder = \"engine_api\"\n$libName = \"engine_api\"\n$build = \"$libFolder\\build\\\"\n$pack = \"$libName-1.0.0.tgz\"\n$lib = $RepoPath + $build + $pack\n\n$targetProjects = @(\n  \"$RepoPath\\engine\\\",\n  \"$RepoPath\\engine_tests\\\"\n)\n\nBuild-Lib\nforeach ($targetProj in $targetProjects) {\n  Copy-And-Install-Pack -packPath $lib -projDir $targetProj -packName $pack\n}\n```",
+          "dateTime": "2023-11-16T16:25:31.500Z"
         }
       ]
     },
     {
-      "title": "engine",
+      "title": "Project engine",
       "chats": [
         {
-          "indexTitle": "engine proj",
-          "question": "engine proj",
-          "answer": "1. Project\n  * same template as engine_api\n2. Math\n\n```typescript\nimport { IVector2 } from './IVector2'\n\nexport class Vector2 implements IVector2 {\n  constructor(public x: number, public y: number) {}\n\n  add(other: IVector2): IVector2 {\n    return new Vector2(this.x + (other?.x ?? 0), this.y + (other?.y ?? 0))\n  }\n\n  subtract(other: IVector2): IVector2 {\n    return new Vector2(this.x - (other?.x ?? 0), this.y - (other?.y ?? 0))\n  }\n\n  multiply(scalar: number): IVector2 {\n    return new Vector2(this.x * scalar, this.y * scalar)\n  }\n\n  dot(other: IVector2): number {\n    return this.x * other.x + this.y * other.y\n  }\n\n  length(): number {\n    return Math.sqrt(this.x * this.x + this.y * this.y)\n  }\n\n  squaredLength(): number {\n    return this.x * this.x + this.y * this.y\n  }\n\n  normalize(): IVector2 {\n    const mag = this.length()\n    return mag ? new Vector2(this.x / mag, this.y / mag) : new Vector2(0, 0)\n  }\n}\n```",
-          "dateTime": "2023-11-15T20:47:03.692Z"
+          "indexTitle": "Assumptions",
+          "question": "Assumptions",
+          "answer": "1. Same project template as engine_api\n2. Implementation of my engine\n3. Implementation of engine_api lib\n4. This will be used by client and server of a game or libs that will be used in them\n\n\n",
+          "dateTime": "2023-11-16T16:40:06.479Z"
         }
       ]
     },
     {
-      "title": "engine_tests",
+      "title": "Project engine_tests",
       "chats": [
         {
-          "indexTitle": "engine_tests",
-          "question": "Vector2.test.ts",
-          "answer": "```typescript\nimport { Vector2 } from 'engine_api'\n\ndescribe('Vector2', () => {\n  it('should add two vectors', () => {\n    const v1 = new Vector2(1, 2)\n    const v2 = new Vector2(3, 4)\n    const result = v1.add(v2)\n\n    expect(result).toEqual(new Vector2(4, 6))\n  })\n\n  it('should subtract two vectors', () => {\n    const v1 = new Vector2(5, 6)\n    const v2 = new Vector2(2, 3)\n    const result = v1.subtract(v2)\n\n    expect(result).toEqual(new Vector2(3, 3))\n  })\n\n  it('should multiply vector by scalar', () => {\n    const v = new Vector2(2, 3)\n    const scalar = 2\n    const result = v.multiply(scalar)\n\n    expect(result).toEqual(new Vector2(4, 6))\n  })\n\n  it('should calculate dot product of two vectors', () => {\n    const v1 = new Vector2(2, 3)\n    const v2 = new Vector2(4, 5)\n    const result = v1.dot(v2)\n\n    expect(result).toEqual(2 * 4 + 3 * 5)\n  })\n\n  it('should calculate the length of the vector', () => {\n    const v = new Vector2(3, 4)\n    const result = v.length()\n\n    expect(result).toEqual(5)\n  })\n\n  it('should calculate the squared length of the vector', () => {\n    const v = new Vector2(3, 4)\n    const result = v.squaredLength()\n\n    expect(result).toEqual(3 * 3 + 4 * 4)\n  })\n\n  it('should normalize the vector', () => {\n    const v = new Vector2(3, 4)\n    const result = v.normalize()\n\n    const expectedLength = v.length()\n    const expected = expectedLength\n      ? new Vector2(3 / expectedLength, 4 / expectedLength)\n      : new Vector2(0, 0)\n\n    expect(result).toEqual(expected)\n  })\n\n  it('should handle zero vector normalization', () => {\n    const zeroVector = new Vector2(0, 0)\n    const result = zeroVector.normalize()\n\n    expect(result).toEqual(new Vector2(0, 0))\n  })\n})\n```",
-          "dateTime": "2023-11-14T22:32:32.001Z"
+          "indexTitle": "Assumptions",
+          "question": "Assumptions",
+          "answer": "1. Tests for engine_api and engine libs",
+          "dateTime": "2023-11-16T16:42:09.309Z"
+        },
+        {
+          "indexTitle": "Initial configuration",
+          "question": "Initial configuration",
+          "answer": "1. Project template copied from engine_api and ajusted\n2. Install  jest\n```bash\nnpm install --save-dev jest ts-jest @types/jest\n```\n3. Configure jest\n```bash\njest.config.js\n```\n```javascript\nmodule.exports = {\n  preset: 'ts-jest',\n  testEnvironment: 'node',\n  testRegex: '(/__tests__/.*|(\\\\.|/)(test|spec))\\\\.tsx?$',\n};\n```\n4. Add tests\n5. Run test\n```bash\nnpm test\n```",
+          "dateTime": "2023-11-16T16:53:55.188Z"
         }
       ]
     },
     {
-      "title": "New Concepts",
+      "title": "Vector2",
       "chats": [
         {
-          "indexTitle": "Entity-Component System",
-          "question": "Entity-Component System",
-          "answer": "- I want to create ts game engine, i want to have entity that will be evrything in game \n\n* Consider starting with a basic entity-component system. Each entity can be a simple container for components, which define specific functionalities like rendering, physics, or behavior. This approach offers flexibility as your game evolves.\n\n- How to implement this?\n\n* Create a basic `Entity` class that can hold a collection of components. Each component should handle a specific aspect of the entity's behavior, such as rendering or movement. When updating or rendering, iterate through the components attached to an entity and let them handle their responsibilities. This allows you to compose entities with different functionalities easily.\n\n- Can you provide ts code for this? \n\n* Certainly! Here's a simple TypeScript code snippet for a basic entity-component system:\n\n```typescript\nclass Component {\n    update() {\n        // Implement component update logic\n    }\n\n    render() {\n        // Implement component render logic\n    }\n}\n\nclass Entity {\n    private components: Component[] = [];\n\n    addComponent(component: Component) {\n        this.components.push(component);\n    }\n\n    update() {\n        for (const component of this.components) {\n            component.update();\n        }\n    }\n\n    render() {\n        for (const component of this.components) {\n            component.render();\n        }\n    }\n}\n\n// Example usage:\nclass RenderComponent extends Component {\n    render() {\n        console.log(\"Rendering...\");\n    }\n}\n\nclass MovementComponent extends Component {\n    update() {\n        console.log(\"Updating position...\");\n    }\n}\n\nconst playerEntity = new Entity();\nplayerEntity.addComponent(new RenderComponent());\nplayerEntity.addComponent(new MovementComponent());\n\n// Update and render the entity\nplayerEntity.update();\nplayerEntity.render();\n```\n\nThis is a basic example to get you started. You can expand and customize the `Component` and `Entity` classes based on your specific game requirements.\n\n- This seems so simple yet powerful \n\n* Absolutely! The simplicity of an entity-component system provides a solid foundation that can scale with the complexity of your game. As your project grows, you can easily add new components to enhance functionality without the need for significant refactoring. It promotes a modular and flexible design, making it easier to manage and extend your game engine. If you have more specific features or functionalities in mind, feel free to ask for guidance on how to incorporate them into your game engine!",
-          "dateTime": "2023-11-15T22:14:26.505Z"
+          "indexTitle": "Assumptions",
+          "question": "Assumptions",
+          "answer": "1. Folder math \n2. Simple vector 2d implementation\n3. Squered length to avoid using sqrt for performance (is it still justified?)",
+          "dateTime": "2023-11-16T17:09:51.328Z"
+        },
+        {
+          "indexTitle": "API",
+          "question": "API",
+          "answer": "```typescript\nexport interface IVector2 {\n  x: number\n  y: number\n\n  add(other: IVector2): IVector2\n  subtract(other: IVector2): IVector2\n  multiply(scalar: number): IVector2\n  dot(other: IVector2): number\n  length(): number\n  squaredLength(): number\n  normalize(): IVector2\n}\n```",
+          "dateTime": "2023-11-16T17:17:34.718Z"
+        },
+        {
+          "indexTitle": "Vector2",
+          "question": "Vector2",
+          "answer": "```typescript\nimport { IVector2 } from 'engine_api'\n\nexport class Vector2 implements IVector2 {\n  constructor(public x: number, public y: number) {}\n\n  add(other: IVector2): IVector2 {\n    return new Vector2(this.x + (other?.x ?? 0), this.y + (other?.y ?? 0))\n  }\n\n  subtract(other: IVector2): IVector2 {\n    return new Vector2(this.x - (other?.x ?? 0), this.y - (other?.y ?? 0))\n  }\n\n  multiply(scalar: number): IVector2 {\n    return new Vector2(this.x * scalar, this.y * scalar)\n  }\n\n  dot(other: IVector2): number {\n    return this.x * other.x + this.y * other.y\n  }\n\n  length(): number {\n    return Math.sqrt(this.x * this.x + this.y * this.y)\n  }\n\n  squaredLength(): number {\n    return this.x * this.x + this.y * this.y\n  }\n\n  normalize(): IVector2 {\n    const mag = this.length()\n    return mag ? new Vector2(this.x / mag, this.y / mag) : new Vector2(0, 0)\n  }\n}\n```",
+          "dateTime": "2023-11-16T17:17:43.957Z"
+        },
+        {
+          "indexTitle": "Tests",
+          "question": "Tests",
+          "answer": "```bash\nVector2.test.ts\n```\n```typescript\nimport { Vector2 } from 'engine_api'\n\ndescribe('Vector2', () => {\n  it('should add two vectors', () => {\n    const v1 = new Vector2(1, 2)\n    const v2 = new Vector2(3, 4)\n    const result = v1.add(v2)\n\n    expect(result).toEqual(new Vector2(4, 6))\n  })\n\n  it('should subtract two vectors', () => {\n    const v1 = new Vector2(5, 6)\n    const v2 = new Vector2(2, 3)\n    const result = v1.subtract(v2)\n\n    expect(result).toEqual(new Vector2(3, 3))\n  })\n\n  it('should multiply vector by scalar', () => {\n    const v = new Vector2(2, 3)\n    const scalar = 2\n    const result = v.multiply(scalar)\n\n    expect(result).toEqual(new Vector2(4, 6))\n  })\n\n  it('should calculate dot product of two vectors', () => {\n    const v1 = new Vector2(2, 3)\n    const v2 = new Vector2(4, 5)\n    const result = v1.dot(v2)\n\n    expect(result).toEqual(2 * 4 + 3 * 5)\n  })\n\n  it('should calculate the length of the vector', () => {\n    const v = new Vector2(3, 4)\n    const result = v.length()\n\n    expect(result).toEqual(5)\n  })\n\n  it('should calculate the squared length of the vector', () => {\n    const v = new Vector2(3, 4)\n    const result = v.squaredLength()\n\n    expect(result).toEqual(3 * 3 + 4 * 4)\n  })\n\n  it('should normalize the vector', () => {\n    const v = new Vector2(3, 4)\n    const result = v.normalize()\n\n    const expectedLength = v.length()\n    const expected = expectedLength\n      ? new Vector2(3 / expectedLength, 4 / expectedLength)\n      : new Vector2(0, 0)\n\n    expect(result).toEqual(expected)\n  })\n\n  it('should handle zero vector normalization', () => {\n    const zeroVector = new Vector2(0, 0)\n    const result = zeroVector.normalize()\n\n    expect(result).toEqual(new Vector2(0, 0))\n  })\n})\n```",
+          "dateTime": "2023-11-16T17:18:14.596Z"
+        }
+      ]
+    },
+    {
+      "title": "Entity-Component System",
+      "chats": [
+        {
+          "indexTitle": "Assumptions",
+          "question": "Assumptions",
+          "answer": "",
+          "dateTime": "2023-11-16T16:30:51.953Z"
+        },
+        {
+          "indexTitle": "Example",
+          "question": "Example",
+          "answer": "```typescript\nclass Component {\n    update() {\n        // Implement component update logic\n    }\n\n    render() {\n        // Implement component render logic\n    }\n}\n\nclass Entity {\n    private components: Component[] = [];\n\n    addComponent(component: Component) {\n        this.components.push(component);\n    }\n\n    update() {\n        for (const component of this.components) {\n            component.update();\n        }\n    }\n\n    render() {\n        for (const component of this.components) {\n            component.render();\n        }\n    }\n}\n\n// Example usage:\nclass RenderComponent extends Component {\n    render() {\n        console.log(\"Rendering...\");\n    }\n}\n\nclass MovementComponent extends Component {\n    update() {\n        console.log(\"Updating position...\");\n    }\n}\n\nconst playerEntity = new Entity();\nplayerEntity.addComponent(new RenderComponent());\nplayerEntity.addComponent(new MovementComponent());\n\n// Update and render the entity\nplayerEntity.update();\nplayerEntity.render();\n```",
+          "dateTime": "2023-11-16T17:15:07.916Z"
+        },
+        {
+          "indexTitle": "API",
+          "question": "API",
+          "answer": "```typescript\nexport interface IComponent {\n  update(): void\n  render(): void\n}\n```\n```typescript\nimport { IComponent } from './IComponent'\n\nexport interface IEntity {\n  addComponent(component: IComponent): void\n  update(): void\n  render(): void\n}\n```",
+          "dateTime": "2023-11-16T17:15:37.390Z"
         }
       ]
     }
