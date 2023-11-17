@@ -302,6 +302,76 @@
         }
       ]
     },
+	{
+      "title": "Component Template",
+      "chats": [
+        {
+          "indexTitle": "Assumptions",
+          "question": "Assumptions",
+          "answer": "1. ",
+          "dateTime": "2023-11-17T21:26:38.091Z"
+        },
+        {
+          "indexTitle": "API",
+          "question": "API",
+          "answer": "```typescript\n \n```",
+		  "dateTime": "2023-11-17T21:38:02.671Z"
+        },
+        {
+          "indexTitle": "Component",
+          "question": "Component",
+          "answer": "",
+		  "dateTime": "2023-11-17T21:34:01.322Z"
+        },
+        {
+          "indexTitle": "Tests",
+          "question": "Tests",
+          "answer": "",
+		  "dateTime": "2023-11-17T22:04:36.549Z"
+        },
+        {
+          "indexTitle": "Integration",
+          "question": "Integration",
+          "answer": "",
+		  "dateTime": "2023-11-17T21:14:53.111Z"
+        }
+      ]
+    },
+	{
+      "title": "Component Template",
+      "chats": [
+        {
+          "indexTitle": "Assumptions",
+          "question": "Assumptions",
+          "answer": "1. ",
+          "dateTime": "2023-11-17T21:26:38.091Z"
+        },
+        {
+          "indexTitle": "API",
+          "question": "API",
+          "answer": "```typescript\n \n```",
+		  "dateTime": "2023-11-17T21:38:02.671Z"
+        },
+        {
+          "indexTitle": "Component",
+          "question": "Component",
+          "answer": "",
+		  "dateTime": "2023-11-17T21:34:01.322Z"
+        },
+        {
+          "indexTitle": "Tests",
+          "question": "Tests",
+          "answer": "",
+		  "dateTime": "2023-11-17T22:04:36.549Z"
+        },
+        {
+          "indexTitle": "Integration",
+          "question": "Integration",
+          "answer": "",
+		  "dateTime": "2023-11-17T21:14:53.111Z"
+        }
+      ]
+    },
     {
       "title": "Examples",
       "chats": [
