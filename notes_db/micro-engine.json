@@ -302,8 +302,8 @@
         }
       ]
     },
-	{
-      "title": "Component Template",
+    {
+      "title": "Input Manager",
       "chats": [
         {
           "indexTitle": "Assumptions",
@@ -314,30 +314,30 @@
         {
           "indexTitle": "API",
           "question": "API",
-          "answer": "```typescript\n \n```",
-		  "dateTime": "2023-11-17T21:38:02.671Z"
+          "answer": "```typescript\nexport default interface IInputCallback {\n  (inputData: any): void;\n}\n```\n```typescript\nexport default interface IInputManager {\n  subscribeInputEvent(eventType: string, callback: InputCallback): void;\n  handleKeyDown(key: string): void;\n  handleKeyUp(key: string): void;\n  isKeyDown(key: string): boolean;\n}\n```",
+          "dateTime": "2023-11-17T22:47:40.040Z"
         },
         {
-          "indexTitle": "Component",
-          "question": "Component",
-          "answer": "",
-		  "dateTime": "2023-11-17T21:34:01.322Z"
+          "indexTitle": "Input Manager",
+          "question": "InputManager",
+          "answer": "```typescript\nexport default class InputManager implements IInputManager {\n  private inputCallbacks: { [key: string]: InputCallback[] } = {};\n  private keyStates: { [key: string]: boolean } = {};\n\n  subscribeInputEvent(eventType: string, callback: InputCallback): void {\n    if (!this.inputCallbacks[eventType]) {\n      this.inputCallbacks[eventType] = [];\n    }\n    this.inputCallbacks[eventType].push(callback);\n  }\n\n  handleKeyDown(key: string): void {\n    this.keyStates[key] = true;\n    this.handleInputEvent('KeyDown', key);\n  }\n\n  handleKeyUp(key: string): void {\n    this.keyStates[key] = false;\n    this.handleInputEvent('KeyUp', key);\n  }\n\n  isKeyDown(key: string): boolean {\n    return this.keyStates[key] || false;\n  }\n\n  private handleInputEvent(eventType: string, inputData: any): void {\n    const callbacks = this.inputCallbacks[eventType];\n    if (callbacks) {\n      callbacks.forEach((callback) => callback(inputData));\n    }\n  }\n}\n```",
+          "dateTime": "2023-11-17T22:54:38.952Z"
         },
         {
           "indexTitle": "Tests",
           "question": "Tests",
-          "answer": "",
-		  "dateTime": "2023-11-17T22:04:36.549Z"
+          "answer": "```typescript\n// inputManager.test.ts\nimport { InputManager } from './inputManager';\n\ndescribe('InputManager', () => {\n  let inputManager: InputManager;\n\n  beforeEach(() => {\n    inputManager = new InputManager();\n  });\n\n  it('should subscribe and trigger key events', () => {\n    const keyDownCallback = jest.fn();\n    const keyUpCallback = jest.fn();\n\n    inputManager.subscribeInputEvent('KeyDown', keyDownCallback);\n    inputManager.subscribeInputEvent('KeyUp', keyUpCallback);\n\n    inputManager.handleKeyDown('Space');\n    inputManager.handleKeyUp('Space');\n\n    expect(keyDownCallback).toHaveBeenCalledWith('Space');\n    expect(keyUpCallback).toHaveBeenCalledWith('Space');\n  });\n\n  it('should track key state', () => {\n    expect(inputManager.isKeyDown('Space')).toBeFalsy();\n\n    inputManager.handleKeyDown('Space');\n    expect(inputManager.isKeyDown('Space')).toBeTruthy();\n\n    inputManager.handleKeyUp('Space');\n    expect(inputManager.isKeyDown('Space')).toBeFalsy();\n  });\n});\n```",
+          "dateTime": "2023-11-17T22:50:08.565Z"
         },
         {
           "indexTitle": "Integration",
           "question": "Integration",
-          "answer": "",
-		  "dateTime": "2023-11-17T21:14:53.111Z"
+          "answer": "```typescript\n// player.ts\nclass Player {\n  private x: number;\n  private y: number;\n\n  constructor() {\n    this.x = 0;\n    this.y = 0;\n  }\n\n  moveLeft() {\n    this.x -= 1;\n  }\n\n  moveRight() {\n    this.x += 1;\n  }\n\n  moveUp() {\n    this.y -= 1;\n  }\n\n  moveDown() {\n    this.y += 1;\n  }\n\n  getPosition() {\n    return { x: this.x, y: this.y };\n  }\n}\n\n// game.ts\nconst inputManager = new InputManager();\nconst player = new Player();\n\n// Subscribe to arrow key events\ninputManager.subscribeInputEvent('KeyDown', (key) => {\n  switch (key) {\n    case 'ArrowLeft':\n      player.moveLeft();\n      break;\n    case 'ArrowRight':\n      player.moveRight();\n      break;\n    case 'ArrowUp':\n      player.moveUp();\n      break;\n    case 'ArrowDown':\n      player.moveDown();\n      break;\n    default:\n      // Handle other keys or ignore\n      break;\n  }\n});\n\n// Game loop example\nfunction gameLoop() {\n  // Update player position or perform other game logic based on player input\n  console.log('Player position:', player.getPosition());\n\n  // Other game logic...\n\n  requestAnimationFrame(gameLoop);\n}\n\n// Event listener for keydown\ndocument.addEventListener('keydown', (event) => {\n  inputManager.handleKeyDown(event.key);\n});\n\n// Start the game loop\ngameLoop();\n```",
+          "dateTime": "2023-11-17T22:51:17.355Z"
         }
       ]
     },
-	{
+    {
       "title": "Component Template",
       "chats": [
         {
@@ -349,26 +349,61 @@
         {
           "indexTitle": "API",
           "question": "API",
-          "answer": "```typescript\n \n```",
-		  "dateTime": "2023-11-17T21:38:02.671Z"
+          "answer": "```typescript\n \n```\n```typescript\n \n```",
+          "dateTime": "2023-11-17T21:38:02.671Z"
         },
         {
           "indexTitle": "Component",
           "question": "Component",
-          "answer": "",
-		  "dateTime": "2023-11-17T21:34:01.322Z"
+          "answer": "```typescript\n \n```",
+          "dateTime": "2023-11-17T21:34:01.322Z"
         },
         {
           "indexTitle": "Tests",
           "question": "Tests",
-          "answer": "",
-		  "dateTime": "2023-11-17T22:04:36.549Z"
+          "answer": "```typescript\n \n```",
+          "dateTime": "2023-11-17T22:04:36.549Z"
         },
         {
           "indexTitle": "Integration",
           "question": "Integration",
-          "answer": "",
-		  "dateTime": "2023-11-17T21:14:53.111Z"
+          "answer": "```typescript\n \n```",
+          "dateTime": "2023-11-17T21:14:53.111Z"
+        }
+      ]
+    },
+    {
+      "title": "Component Template",
+      "chats": [
+        {
+          "indexTitle": "Assumptions",
+          "question": "Assumptions",
+          "answer": "1. ",
+          "dateTime": "2023-11-17T21:26:38.091Z"
+        },
+        {
+          "indexTitle": "API",
+          "question": "API",
+          "answer": "```typescript\n \n```\n```typescript\n \n```",
+          "dateTime": "2023-11-17T21:38:02.671Z"
+        },
+        {
+          "indexTitle": "Component",
+          "question": "Component",
+          "answer": "```typescript\n \n```",
+          "dateTime": "2023-11-17T21:34:01.322Z"
+        },
+        {
+          "indexTitle": "Tests",
+          "question": "Tests",
+          "answer": "```typescript\n \n```",
+          "dateTime": "2023-11-17T22:04:36.549Z"
+        },
+        {
+          "indexTitle": "Integration",
+          "question": "Integration",
+          "answer": "```typescript\n \n```",
+          "dateTime": "2023-11-17T21:14:53.111Z"
         }
       ]
     },
