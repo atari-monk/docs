@@ -268,6 +268,41 @@
       ]
     },
     {
+      "title": "Game Loop",
+      "chats": [
+        {
+          "indexTitle": "Assumptions",
+          "question": "Assumptions",
+          "answer": "1. subscribe, unsubscribe to update and render\n2. start, stop, pause, resume",
+          "dateTime": "2023-11-17T21:26:38.091Z"
+        },
+        {
+          "indexTitle": "API",
+          "question": "API",
+          "answer": "```typescript\nexport default interface IUpdateCallback {\n  (deltaTime: number): void;\n}\n```\n```typescript\nexport default interface IRenderCallback {\n  (deltaTime: number): void;\n}\n```\n```typescript\nexport default interface IGameLoop {\n  startLoop(): void;\n  stopLoop(): void;\n  pauseLoop(): void;\n  resumeLoop(): void;\n  subscribeToUpdate(callback: UpdateCallback): void;\n  unsubscribeFromUpdate(callback: UpdateCallback): void;\n  subscribeToRender(callback: RenderCallback): void;\n  unsubscribeFromRender(callback: RenderCallback): void;\n}\n```",
+          "dateTime": "2023-11-17T21:38:02.671Z"
+        },
+        {
+          "indexTitle": "Game Loop",
+          "question": "GameLoop",
+          "answer": "```typescript\nexport default class GameLoop implements IGameLoop {\n  private animationFrameId: number | null = null;\n  private lastFrameTime: number = 0;\n  private updateCallbacks: IUpdateCallback[] = [];\n  private renderCallbacks: IRenderCallback[] = [];\n  private paused: boolean = false;\n\n  startLoop(): void {\n    this.paused = false;\n    this.loop();\n  }\n\n  stopLoop(): void {\n    if (this.animationFrameId !== null) {\n      cancelAnimationFrame(this.animationFrameId);\n    }\n  }\n\n  pauseLoop(): void {\n    this.paused = true;\n  }\n\n  resumeLoop(): void {\n    this.paused = false;\n    this.loop();\n  }\n\n  loop = (): void => {\n    if (this.paused) {\n      return;\n    }\n\n    const currentTime = performance.now();\n    if (!this.lastFrameTime) {\n      this.lastFrameTime = currentTime;\n    }\n\n    const deltaTime = (currentTime - this.lastFrameTime) / 1000; // Convert to seconds\n\n    // Call update callbacks\n    this.updateCallbacks.forEach((callback) => callback(deltaTime));\n\n    // Call render callbacks with deltaTime\n    this.renderCallbacks.forEach((callback) => callback(deltaTime));\n\n    this.lastFrameTime = currentTime;\n\n    this.animationFrameId = requestAnimationFrame(this.loop);\n  };\n\n  subscribeToUpdate(callback: IUpdateCallback): void {\n    this.updateCallbacks.push(callback);\n  }\n\n  unsubscribeFromUpdate(callback: IUpdateCallback): void {\n    this.updateCallbacks = this.updateCallbacks.filter((cb) => cb !== callback);\n  }\n\n  subscribeToRender(callback: IRenderCallback): void {\n    this.renderCallbacks.push(callback);\n  }\n\n  unsubscribeFromRender(callback: IRenderCallback): void {\n    this.renderCallbacks = this.renderCallbacks.filter((cb) => cb !== callback);\n  }\n}\n```\nNow you can use stopLoop to completely stop the loop, pauseLoop to pause it, and resumeLoop to resume it. The startLoop method initiates or restarts the loop.\n",
+          "dateTime": "2023-11-17T21:34:01.322Z"
+        },
+        {
+          "indexTitle": "Tests",
+          "question": "Tests",
+          "answer": "```typescript\n// gameLoop.test.ts\n\nimport { GameLoop } from 'engine'\n\ndescribe('GameLoop', () => {\n  let gameLoop: GameLoop\n  let mockUpdateCallback: jest.Mock\n  let mockRenderCallback: jest.Mock\n\n  beforeEach(() => {\n    gameLoop = new GameLoop()\n    mockUpdateCallback = jest.fn()\n    mockRenderCallback = jest.fn()\n  })\n\n  afterEach(() => {\n    jest.clearAllMocks()\n  })\n\n  test('subscribeToUpdate adds update callback', () => {\n    gameLoop.subscribeToUpdate(mockUpdateCallback)\n    expect(gameLoop['updateCallbacks']).toContain(mockUpdateCallback)\n  })\n\n  test('unsubscribeFromUpdate removes update callback', () => {\n    gameLoop.subscribeToUpdate(mockUpdateCallback)\n    gameLoop.unsubscribeFromUpdate(mockUpdateCallback)\n    expect(gameLoop['updateCallbacks']).not.toContain(mockUpdateCallback)\n  })\n\n  test('subscribeToRender adds render callback', () => {\n    gameLoop.subscribeToRender(mockRenderCallback)\n    expect(gameLoop['renderCallbacks']).toContain(mockRenderCallback)\n  })\n\n  test('unsubscribeFromRender removes render callback', () => {\n    gameLoop.subscribeToRender(mockRenderCallback)\n    gameLoop.unsubscribeFromRender(mockRenderCallback)\n    expect(gameLoop['renderCallbacks']).not.toContain(mockRenderCallback)\n  })\n\n  test('startLoop calls requestAnimationFrame', () => {\n    window.requestAnimationFrame = jest.fn()\n\n    gameLoop.startLoop()\n\n    expect(window.requestAnimationFrame).toHaveBeenCalled()\n  })\n\n  test('stopLoop cancels requestAnimationFrame', () => {\n    window.cancelAnimationFrame = jest.fn()\n\n    gameLoop.startLoop()\n    gameLoop.stopLoop()\n\n    expect(window.cancelAnimationFrame).toHaveBeenCalled()\n  })\n\n  test('pauseLoop stops loop execution', () => {\n    const mockLoop = jest.spyOn(gameLoop, 'loop')\n\n    gameLoop.startLoop()\n    gameLoop.pauseLoop()\n\n    expect(mockLoop).toHaveBeenCalledTimes(1)\n  })\n\n  test('resumeLoop continues loop execution', () => {\n    const mockLoop = jest.spyOn(gameLoop, 'loop')\n\n    gameLoop.startLoop()\n    gameLoop.pauseLoop()\n    gameLoop.resumeLoop()\n\n    expect(mockLoop).toHaveBeenCalledTimes(2)\n  })\n})\n```",
+          "dateTime": "2023-11-17T22:04:36.549Z"
+        },
+        {
+          "indexTitle": "Integration",
+          "question": "Integration",
+          "answer": "```typescript\nimport { GameLoop } from 'engine';\nimport { Entity, Component } from 'engine'\n\nconst gameLoop = new GameLoop();\nconst entity1 = new Entity();\nconst positionComponent1 = new PositionComponent();\n\nconst entity2 = new Entity();\nconst positionComponent2 = new PositionComponent();\n\nentity1.addComponent(positionComponent1);\nentity2.addComponent(positionComponent2);\n\n// Subscribe entities to the game loop\ngameLoop.subscribeToUpdate((deltaTime) => {\n  entity1.update();\n  entity2.update();\n});\n\ngameLoop.subscribeToRender(() => {\n  entity1.render();\n  entity2.render();\n});\n```",
+          "dateTime": "2023-11-17T21:14:53.111Z"
+        }
+      ]
+    },
+    {
       "title": "Examples",
       "chats": [
         {
