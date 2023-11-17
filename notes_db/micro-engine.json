@@ -38,6 +38,12 @@
           "question": "Script CommonFunctions.ps1  \nThis is for installing lib to other projects using local .tgz package",
           "answer": "```bash\nCommonFunctions.ps1\n```\n```powershell\n$Global:RepoPath = \"C:\\atari-monk\\Code\\micro-engine\\\"\n\nfunction Build-Lib () {\n  npm i\n  npm run build\n  Set-Location build\n  npm pack  \n}\n\nfunction Copy-And-Install-Pack {\n  param (\n    [string]$packPath,\n    [string]$projDir,\n    [string]$packName\n  )\n  Copy-Item $packPath $projDir \n  Set-Location $projDir\n  npm i (Get-Item $packName).Name\n}\n```",
           "dateTime": "2023-11-16T19:06:17.823Z"
+        },
+        {
+          "indexTitle": "Order Projects",
+          "question": "Order Projects in Visual Studio Code",
+          "answer": "File->Save Workspace As...\n```json\n{\n  \"folders\": [\n    {\n      \"name\": \"engine_api\",\n      \"path\": \"engine_api\"\n    },\n    {\n      \"name\": \"engine\",\n      \"path\": \"engine\"\n    },\n    {\n      \"name\": \"engine_node_tests\",\n      \"path\": \"engine_node_tests\"\n    },\n    {\n      \"name\": \"engine_jsdom_tests\",\n      \"path\": \"engine_jsdom_tests\"\n    },\n    {\n      \"name\": \"sln\",\n      \"path\": \".\"\n    }\n  ],\n  \"settings\": {\n    \"files.exclude\": {\n      \"**/engine_api/**\": true,\n      \"**/engine/**\": true,\n      \"**/engine_node_tests/**\": true,\n      \"**/engine_jsdom_tests/**\": true\n    }\n  }\n}\n```\nThis shows projects from path under name  \n. selects all i guess, but exclude in settings removes projs so only sln files and folders remain",
+          "dateTime": "2023-11-17T15:49:56.843Z"
         }
       ]
     },
@@ -94,13 +100,13 @@
       ]
     },
     {
-      "title": "Project engine_tests",
+      "title": "Project engine_node_tests",
       "chats": [
         {
           "indexTitle": "Assumptions",
           "question": "Assumptions",
-          "answer": "1. Tests for engine_api and engine libs",
-          "dateTime": "2023-11-16T16:42:09.309Z"
+          "answer": "1. Tests for engine_api and engine libs\n2. Test Environment: 'node'",
+          "dateTime": "2023-11-17T13:19:57.748Z"
         },
         {
           "indexTitle": "Initial configuration",
@@ -113,6 +119,23 @@
           "question": "Debug",
           "answer": "```json\n\"devDependencies\": {\n    \"@types/jest\": \"^29.5.8\",\n    \"jest\": \"^29.7.0\",\n    \"ts-jest\": \"^29.1.1\",\n    \"ts-node\": \"^10.9.1\",\n    \"typescript\": \"^5.2.2\"\n  }\n```\n```bash\n \"debug:test\": \"node --inspect-brk -r ts-node/register ./node_modules/jest/bin/jest.js --runInBand --detectOpenHandles\"\n```\nF12 in chrome, There should be node icon for node dev tools  \nWrite beakpoint in test\n```bash\ndebbuger\n```\n```bash\nnpm run debug:test\n```\nBrakpoints were available in node dev tool",
           "dateTime": "2023-11-16T20:20:40.430Z"
+        }
+      ]
+    },
+    {
+      "title": "Project engine_jsdom_tests",
+      "chats": [
+        {
+          "indexTitle": "Assumptions",
+          "question": "Assumptions",
+          "answer": "1. Tests for engine in js dom environment",
+          "dateTime": "2023-11-17T18:48:39.197Z"
+        },
+        {
+          "indexTitle": "Initial configuration",
+          "question": "Initial configuration",
+          "answer": "1. tsconfig.json and package.json copied from engine_node_tests and ajusted\n2. test libs \n```json\n\"devDependencies\": {\n    \"@types/jest\": \"^29.5.8\",\n    \"@types/jsdom\": \"^21.1.5\",\n    \"jest\": \"^29.7.0\",\n    \"jest-canvas-mock\": \"^2.5.2\",\n    \"jest-environment-jsdom\": \"^29.7.0\",\n    \"jsdom\": \"^22.1.0\",\n    \"ts-jest\": \"^29.1.1\"\n  }\n```\n3. jest.config.js\n```javascript\nmodule.exports = {\n  preset: 'ts-jest',\n  testEnvironment: 'jest-environment-jsdom',\n  setupFiles: ['./src/setupTests.ts'],\n  testRegex: '(/__tests__/.*|(\\\\.|/)(test|spec))\\\\.tsx?$',\n}\n```\n4. setupTests.ts\n```typescript\nimport 'jest-canvas-mock'\n```",
+          "dateTime": "2023-11-17T18:54:46.249Z"
         }
       ]
     },
@@ -134,20 +157,20 @@
         {
           "indexTitle": "Vector2",
           "question": "Vector2",
-          "answer": "```typescript\nimport { IVector2 } from 'engine_api'\n\nexport class Vector2 implements IVector2 {\n  constructor(public x: number = 0, public y: number = 0) {}\n\n  operate(\n    { x = 0, y = 0 }: IVector2 | { x?: number; y?: number } = {},\n    operation: 'add' | 'subtract' | 'multiply' | 'divide' = 'add'\n  ): this {\n    switch (operation) {\n      case 'add':\n        this.x += x\n        this.y += y\n        break\n      case 'subtract':\n        this.x -= x\n        this.y -= y\n        break\n      case 'multiply':\n        this.x *= x\n        this.y *= y\n        break\n      case 'divide':\n        if (x !== 0) this.x /= x\n        if (y !== 0) this.y /= y\n        break\n      default:\n        throw new Error(`Unsupported operation: ${operation}`)\n    }\n\n    return this\n  }\n\n  add(other: IVector2): this {\n    return this.operate(other, 'add')\n  }\n\n  subtract(other: IVector2): this {\n    return this.operate(other, 'subtract')\n  }\n\n  multiply(scalar: number): this {\n    return this.operate({ x: scalar, y: scalar }, 'multiply')\n  }\n\n  dot(other: IVector2): number {\n    return this.x * other.x + this.y * other.y\n  }\n\n  length(): number {\n    return Math.hypot(this.x, this.y)\n  }\n\n  squaredLength(): number {\n    return this.x * this.x + this.y * this.y\n  }\n\n  normalize(): this {\n    const mag = this.length()\n    if (mag !== 0) {\n      this.operate({ x: mag, y: mag }, 'divide')\n    }\n    return this\n  }\n\n  static zero(): Vector2 {\n    return new Vector2()\n  }\n\n  static unitX(): Vector2 {\n    return new Vector2(1, 0)\n  }\n\n  static unitY(): Vector2 {\n    return new Vector2(0, 1)\n  }\n}\n```",
-          "dateTime": "2023-11-16T21:58:19.327Z"
+          "answer": "```typescript\nimport { IVector2 } from 'engine_api'\n\ntype Operation = 'add' | 'subtract' | 'multiply' | 'divide'\n\nconst operationMap: Record<Operation, (a: number, b: number) => number> = {\n  add: (a, b) => a + b,\n  subtract: (a, b) => a - b,\n  multiply: (a, b) => a * b,\n  divide: (a, b) => (b !== 0 ? a / b : a),\n}\n\nexport default class Vector2 implements IVector2 {\n  public x: number\n  public y: number\n\n  constructor(x: number = 0, y: number = 0) {\n    this.x = x\n    this.y = y\n  }\n\n  private operate(\n    { x = 0, y = 0 }: IVector2 | { x: number; y: number } = { x: 0, y: 0 },\n    operation: Operation = 'add'\n  ): this {\n    this.x = operationMap[operation](this.x, x)\n    this.y = operationMap[operation](this.y, y)\n\n    return this\n  }\n\n  add(other: IVector2): this {\n    return this.operate(other, 'add')\n  }\n\n  subtract(other: IVector2): this {\n    return this.operate(other, 'subtract')\n  }\n\n  multiply(scalar: number): this {\n    return this.operate({ x: scalar, y: scalar }, 'multiply')\n  }\n\n  dot(other: IVector2): number {\n    return this.x * other.x + this.y * other.y\n  }\n\n  length(): number {\n    return Math.hypot(this.x, this.y)\n  }\n\n  squaredLength(): number {\n    return this.x * this.x + this.y * this.y\n  }\n\n  normalize(): this {\n    const mag = this.length()\n    if (mag !== 0) {\n      this.operate({ x: mag, y: mag }, 'divide')\n    }\n    return this\n  }\n\n  static zero(): Vector2 {\n    return new Vector2()\n  }\n\n  static unitX(): Vector2 {\n    return new Vector2(1, 0)\n  }\n\n  static unitY(): Vector2 {\n    return new Vector2(0, 1)\n  }\n}\n```",
+          "dateTime": "2023-11-17T13:12:21.309Z"
         },
         {
           "indexTitle": "ImmutableVector2",
           "question": "ImmutableVector2",
-          "answer": "```typescript\nimport { IVector2 } from 'engine_api'\n\nexport class ImmutableVector2 implements IVector2 {\n  constructor(public readonly x: number = 0, public readonly y: number = 0) {}\n\n  operate(\n    { x = 0, y = 0 }: IVector2 | { x?: number; y?: number } = {},\n    operation: 'add' | 'subtract' | 'multiply' | 'divide' = 'add'\n  ): ImmutableVector2 {\n    switch (operation) {\n      case 'add':\n        return new ImmutableVector2(this.x + x, this.y + y)\n      case 'subtract':\n        return new ImmutableVector2(this.x - x, this.y - y)\n      case 'multiply':\n        return new ImmutableVector2(this.x * x, this.y * y)\n      case 'divide':\n        return new ImmutableVector2(\n          x !== 0 ? this.x / x : this.x,\n          y !== 0 ? this.y / y : this.y\n        )\n      default:\n        throw new Error(`Unsupported operation: ${operation}`)\n    }\n  }\n\n  add(other: IVector2): ImmutableVector2 {\n    return this.operate(other, 'add')\n  }\n\n  subtract(other: IVector2): ImmutableVector2 {\n    return this.operate(other, 'subtract')\n  }\n\n  multiply(scalar: number): ImmutableVector2 {\n    return this.operate({ x: scalar, y: scalar }, 'multiply')\n  }\n\n  dot(other: IVector2): number {\n    return this.x * other.x + this.y * other.y\n  }\n\n  length(): number {\n    return Math.hypot(this.x, this.y)\n  }\n\n  squaredLength(): number {\n    return this.x * this.x + this.y * this.y\n  }\n\n  normalize(): ImmutableVector2 {\n    const mag = this.length()\n    if (mag !== 0) {\n      return this.operate({ x: mag, y: mag }, 'divide')\n    } else {\n      return new ImmutableVector2()\n    }\n  }\n\n  static zero(): ImmutableVector2 {\n    return new ImmutableVector2()\n  }\n\n  static unitX(): ImmutableVector2 {\n    return new ImmutableVector2(1, 0)\n  }\n\n  static unitY(): ImmutableVector2 {\n    return new ImmutableVector2(0, 1)\n  }\n}\n```",
-          "dateTime": "2023-11-16T21:58:40.517Z"
+          "answer": "```typescript\nimport { IVector2 } from 'engine_api'\n\ntype Operation = 'add' | 'subtract' | 'multiply' | 'divide'\n\nconst operationMap: Record<Operation, (a: number, b: number) => number> = {\n  add: (a, b) => a + b,\n  subtract: (a, b) => a - b,\n  multiply: (a, b) => a * b,\n  divide: (a, b) => (b !== 0 ? a / b : a),\n}\n\nexport default class ImmutableVector2 implements IVector2 {\n  constructor(public readonly x: number = 0, public readonly y: number = 0) {}\n\n  private operateWithImmutableVector(\n    { x = 0, y = 0 }: IVector2 | { x: number; y: number } = { x: 0, y: 0 },\n    operation: Operation = 'add'\n  ): ImmutableVector2 {\n    return new ImmutableVector2(\n      operationMap[operation](this.x, x),\n      operationMap[operation](this.y, y)\n    )\n  }\n\n  operate(\n    { x = 0, y = 0 }: IVector2 | { x?: number; y?: number } = {},\n    operation: Operation = 'add'\n  ): ImmutableVector2 {\n    return this.operateWithImmutableVector({ x, y }, operation)\n  }\n\n  add(other: IVector2): ImmutableVector2 {\n    return this.operateWithImmutableVector(other, 'add')\n  }\n\n  subtract(other: IVector2): ImmutableVector2 {\n    return this.operateWithImmutableVector(other, 'subtract')\n  }\n\n  multiply(scalar: number): ImmutableVector2 {\n    return this.operateWithImmutableVector({ x: scalar, y: scalar }, 'multiply')\n  }\n\n  dot(other: IVector2): number {\n    return this.x * other.x + this.y * other.y\n  }\n\n  length(): number {\n    return Math.hypot(this.x, this.y)\n  }\n\n  squaredLength(): number {\n    return this.x * this.x + this.y * this.y\n  }\n\n  normalize(): ImmutableVector2 {\n    const mag = this.length()\n    return mag !== 0\n      ? this.operateWithImmutableVector({ x: mag, y: mag }, 'divide')\n      : new ImmutableVector2()\n  }\n\n  static zero(): ImmutableVector2 {\n    return new ImmutableVector2()\n  }\n\n  static unitX(): ImmutableVector2 {\n    return new ImmutableVector2(1, 0)\n  }\n\n  static unitY(): ImmutableVector2 {\n    return new ImmutableVector2(0, 1)\n  }\n}\n```",
+          "dateTime": "2023-11-17T13:14:02.838Z"
         },
         {
           "indexTitle": "Tests",
           "question": "Tests",
           "answer": "```bash\nVector2.test.ts\n```\n```typescript\nimport { Vector2, ImmutableVector2 } from 'engine'\n\nconst runVectorTests = (Vector: new (x: number, y: number) => any) => {\n  test('should add two vectors', () => {\n    const v1 = new Vector(1, 2)\n    const v2 = new Vector(3, 4)\n    const result = v1.add(v2)\n    expect(result).toEqual(new Vector(4, 6))\n  })\n\n  test('should subtract two vectors', () => {\n    const v1 = new Vector(5, 6)\n    const v2 = new Vector(2, 3)\n    const result = v1.subtract(v2)\n    expect(result).toEqual(new Vector(3, 3))\n  })\n\n  test('should multiply vector by scalar', () => {\n    const v = new Vector(2, 3)\n    const scalar = 2\n    const result = v.multiply(scalar)\n    expect(result).toEqual(new Vector(4, 6))\n  })\n\n  it('should calculate dot product of two vectors', () => {\n    const v1 = new Vector(2, 3)\n    const v2 = new Vector(4, 5)\n    const result = v1.dot(v2)\n\n    expect(result).toEqual(2 * 4 + 3 * 5)\n  })\n\n  it('should calculate the length of the vector', () => {\n    const v = new Vector(3, 4)\n    const result = v.length()\n\n    expect(result).toEqual(5)\n  })\n\n  it('should calculate the squared length of the vector', () => {\n    const v = new Vector(3, 4)\n    const result = v.squaredLength()\n\n    expect(result).toEqual(3 * 3 + 4 * 4)\n  })\n\n  it('should normalize the vector', () => {\n    const v = new Vector(3, 4)\n    const length = v.length()\n    const result = v.normalize()\n\n    const tolerance = 1e-8\n\n    const expected = length\n      ? new Vector(3 / length, 4 / length)\n      : new Vector(0, 0)\n\n    expect(result.x).toBeCloseTo(expected.x, tolerance)\n    expect(result.y).toBeCloseTo(expected.y, tolerance)\n  })\n\n  it('should handle zero vector normalization', () => {\n    const zeroVector = new Vector(0, 0)\n    const result = zeroVector.normalize()\n\n    expect(result).toEqual(new Vector(0, 0))\n  })\n\n  test('should chain multiple operations', () => {\n    const result = new Vector(1, 2)\n      .add(new Vector(3, 4))\n      .multiply(2)\n      .subtract(new Vector(1, 1))\n    expect(result).toEqual(new Vector(7, 11))\n  })\n\n  test('should destructure the result of an operation', () => {\n    const { x, y } = new Vector(2, 4).multiply(1.5)\n    expect(x).toBeCloseTo(3)\n    expect(y).toBeCloseTo(6)\n  })\n\n  test('should chain and destructure in one statement', () => {\n    const { x, y } = new Vector(1, 2)\n      .add(new Vector(3, 4))\n      .multiply(2)\n      .subtract(new Vector(1, 1))\n    expect(x).toEqual(7)\n    expect(y).toEqual(11)\n  })\n}\n\ndescribe('Vector2', () => {\n  runVectorTests(Vector2)\n})\n\ndescribe('ImmutableVector2', () => {\n  runVectorTests(ImmutableVector2)\n})\n```",
-          "dateTime": "2023-11-16T21:59:07.697Z"
+          "dateTime": "2023-11-17T13:15:19.915Z"
         }
       ]
     },
@@ -161,16 +184,86 @@
           "dateTime": "2023-11-16T16:30:51.953Z"
         },
         {
-          "indexTitle": "Example",
-          "question": "Example",
-          "answer": "```typescript\nclass Component {\n    update() {\n        // Implement component update logic\n    }\n\n    render() {\n        // Implement component render logic\n    }\n}\n\nclass Entity {\n    private components: Component[] = [];\n\n    addComponent(component: Component) {\n        this.components.push(component);\n    }\n\n    update() {\n        for (const component of this.components) {\n            component.update();\n        }\n    }\n\n    render() {\n        for (const component of this.components) {\n            component.render();\n        }\n    }\n}\n\n// Example usage:\nclass RenderComponent extends Component {\n    render() {\n        console.log(\"Rendering...\");\n    }\n}\n\nclass MovementComponent extends Component {\n    update() {\n        console.log(\"Updating position...\");\n    }\n}\n\nconst playerEntity = new Entity();\nplayerEntity.addComponent(new RenderComponent());\nplayerEntity.addComponent(new MovementComponent());\n\n// Update and render the entity\nplayerEntity.update();\nplayerEntity.render();\n```",
-          "dateTime": "2023-11-16T17:15:07.916Z"
-        },
-        {
           "indexTitle": "API",
           "question": "API",
           "answer": "```typescript\nexport interface IComponent {\n  update(): void\n  render(): void\n}\n```\n```typescript\nimport { IComponent } from './IComponent'\n\nexport interface IEntity {\n  addComponent(component: IComponent): void\n  update(): void\n  render(): void\n}\n```",
           "dateTime": "2023-11-16T17:15:37.390Z"
+        },
+        {
+          "indexTitle": "Entity-Component",
+          "question": "Entity-Component ",
+          "answer": "```typescript\nimport { IComponent } from 'engine_api'\n\nexport class Component implements IComponent {\n  update() {}\n\n  render() {}\n}\n```\n```typescript\nimport { IComponent, IEntity } from 'engine_api'\n\nexport class Entity implements IEntity {\n  private components: IComponent[] = []\n\n  addComponent(component: IComponent) {\n    this.components.push(component)\n  }\n\n  update() {\n    for (const component of this.components) {\n      component.update()\n    }\n  }\n\n  render() {\n    for (const component of this.components) {\n      component.render()\n    }\n  }\n}\n```",
+          "dateTime": "2023-11-16T22:07:34.047Z"
+        },
+        {
+          "indexTitle": "Tests",
+          "question": "Tests",
+          "answer": "```bash\nEntityComponent.test.ts\n```\n```typescript\nimport { Entity, Component } from 'engine'\n\ndescribe('Entity and Component tests', () => {\n  test('Entity can add a component', () => {\n    const entity = new Entity()\n    const component = new Component()\n\n    entity.addComponent(component)\n\n    expect(entity['components']).toContain(component)\n  })\n\n  test('Entity update calls update on all components', () => {\n    const entity = new Entity()\n    const component1 = new Component()\n    const component2 = new Component()\n\n    entity.addComponent(component1)\n    entity.addComponent(component2)\n\n    const updateSpy1 = jest.spyOn(component1, 'update')\n    const updateSpy2 = jest.spyOn(component2, 'update')\n\n    entity.update()\n\n    expect(updateSpy1).toHaveBeenCalled()\n    expect(updateSpy2).toHaveBeenCalled()\n  })\n\n  test('Entity render calls render on all components', () => {\n    const entity = new Entity()\n    const component1 = new Component()\n    const component2 = new Component()\n\n    entity.addComponent(component1)\n    entity.addComponent(component2)\n\n    const renderSpy1 = jest.spyOn(component1, 'render')\n    const renderSpy2 = jest.spyOn(component2, 'render')\n\n    entity.render()\n\n    expect(renderSpy1).toHaveBeenCalled()\n    expect(renderSpy2).toHaveBeenCalled()\n  })\n})\n```",
+          "dateTime": "2023-11-17T13:40:02.793Z"
+        }
+      ]
+    },
+    {
+      "title": "Component",
+      "chats": [
+        {
+          "indexTitle": "Assumptions",
+          "question": "Assumptions",
+          "answer": "1. Not sure if this is correct, to make Entity from such small elements, but maybe each bite send counts",
+          "dateTime": "2023-11-17T13:46:20.974Z"
+        },
+        {
+          "indexTitle": "PositionComponent",
+          "question": "PositionComponent",
+          "answer": "```typescript\nimport { IComponent, IVector2 } from 'engine_api'\nimport Vector2 from '../math/Vector2'\n\nexport default class PositionComponent implements IComponent {\n  public position: IVector2\n\n  constructor(initialPosition: IVector2 = Vector2.zero()) {\n    this.position = initialPosition\n  }\n\n  update() {}\n\n  render() {}\n}\n```",
+          "dateTime": "2023-11-17T13:24:25.157Z"
+        },
+        {
+          "indexTitle": "Tests",
+          "question": "Tests",
+          "answer": "```bash\nPositionComponent.test.ts\n```\n```typescript\nimport { PositionComponent, Vector2 } from 'engine'\n\ndescribe('PositionComponent tests', () => {\n  test('PositionComponent initializes with the correct position', () => {\n    const initialPosition = new Vector2(10, 20)\n    const positionComponent = new PositionComponent(initialPosition)\n\n    expect(positionComponent.position).toEqual(initialPosition)\n  })\n\n  test('PositionComponent can set and get the position', () => {\n    const positionComponent = new PositionComponent()\n    const newPosition = new Vector2(30, 40)\n\n    positionComponent.position = newPosition\n\n    expect(positionComponent.position).toEqual(newPosition)\n  })\n})\n```",
+          "dateTime": "2023-11-17T13:42:56.582Z"
+        }
+      ]
+    },
+    {
+      "title": "Renderer",
+      "chats": [
+        {
+          "indexTitle": "Assumptions",
+          "question": "Assumptions",
+          "answer": "1. Basic Canvas renderer written manually\n2. Version with basic types and with my Vector2\n3. Probably to be replaceable by pixi or 3d libs on npm",
+          "dateTime": "2023-11-17T13:31:47.701Z"
+        },
+        {
+          "indexTitle": "BaseRenderer",
+          "question": "BaseRenderer",
+          "answer": "```typescript\nexport default abstract class BaseRenderer {\n  protected canvas: HTMLCanvasElement\n  protected context: CanvasRenderingContext2D\n\n  constructor(canvasId: string) {\n    this.canvas = document.getElementById(canvasId) as HTMLCanvasElement\n    this.context = this.canvas.getContext('2d')!\n  }\n\n  clearCanvas(): void {\n    this.context.clearRect(0, 0, this.canvas.width, this.canvas.height)\n  }\n\n  getContext(): CanvasRenderingContext2D {\n    return this.context\n  }\n}\n```",
+          "dateTime": "2023-11-17T13:27:28.546Z"
+        },
+        {
+          "indexTitle": "Renderer",
+          "question": "Renderer",
+          "answer": "```typescript\nimport { IRenderer } from 'engine_api'\nimport BaseRenderer from './BaseRenderer'\n\nexport default class Renderer extends BaseRenderer implements IRenderer {\n  constructor(canvasId: string) {\n    super(canvasId)\n  }\n\n  drawRect(\n    x: number,\n    y: number,\n    width: number,\n    height: number,\n    color: string\n  ): void {\n    this.context.fillStyle = color\n    this.context.fillRect(x, y, width, height)\n  }\n  // Add more drawing methods as needed (circles, images, etc.)\n}\n```",
+          "dateTime": "2023-11-17T13:33:39.477Z"
+        },
+        {
+          "indexTitle": "Renderer.test.ts",
+          "question": "Renderer.test.ts",
+          "answer": "```typescript\nimport { Renderer } from 'engine'\n\ndescribe('Renderer', () => {\n  let renderer: Renderer\n\n  beforeEach(() => {\n    document.body.innerHTML = '<canvas id=\"myCanvas\"></canvas>'\n    renderer = new Renderer('myCanvas')\n  })\n\n  test('clearCanvas method should clear the canvas', () => {\n    const red = '#ff0000'\n    const black = '#000000'\n    renderer.drawRect(0, 0, 10, 10, red)\n\n    expect(renderer.getContext().fillStyle).toBe(red)\n\n    renderer.clearCanvas()\n\n    expect(renderer.getContext().fillStyle).toBe(black)\n  })\n\n  test('drawRect method should draw a rectangle on the canvas', () => {\n    const blue = '#0000ff'\n    renderer.drawRect(0, 0, 10, 10, blue)\n\n    expect(renderer.getContext().fillStyle).toBe(blue)\n  })\n})\n```",
+          "dateTime": "2023-11-17T18:55:46.372Z"
+        },
+        {
+          "indexTitle": "RendererV2",
+          "question": "RendererV2",
+          "answer": "```typescript\nimport { IRendererV2, IVector2 } from 'engine_api'\nimport BaseRenderer from './BaseRenderer'\n\nexport default class RendererV2 extends BaseRenderer implements IRendererV2 {\n  constructor(canvasId: string) {\n    super(canvasId)\n  }\n\n  drawRect(position: IVector2, size: IVector2, color: string): void {\n    this.context.fillStyle = color\n    this.context.fillRect(position.x, position.y, size.x, size.y)\n  }\n  // Add more drawing methods as needed (circles, images, etc.)\n}\n```",
+          "dateTime": "2023-11-17T13:34:11.940Z"
+        },
+        {
+          "indexTitle": "RendererV2.test.ts",
+          "question": "RendererV2.test.ts",
+          "answer": "```typescript\nimport { RendererV2, Vector2 } from 'engine'\n\ndescribe('RendererV2', () => {\n  let renderer: RendererV2\n\n  beforeEach(() => {\n    document.body.innerHTML = '<canvas id=\"myCanvas\"></canvas>'\n    renderer = new RendererV2('myCanvas')\n  })\n\n  test('drawRect method should draw a rectangle on the canvas', () => {\n    const blue = '#0000ff'\n    renderer.drawRect(new Vector2(0, 0), new Vector2(10, 10), blue)\n\n    expect(renderer.getContext().fillStyle).toBe(blue)\n  })\n})\n```",
+          "dateTime": "2023-11-17T18:57:03.794Z"
         }
       ]
     },
@@ -182,6 +275,29 @@
           "question": "Object.assign",
           "answer": "```typescript\nclass Point {\n  constructor(public x: number = 0, public y: number = 0) {\n    Object.assign(this, { x: this.validateX(x), y: this.validateY(y) });\n  }\n\n  private validateX(value: number): number {\n    // Some validation logic for the 'x' property\n    return Math.max(value, 0);\n  }\n\n  private validateY(value: number): number {\n    // Some validation logic for the 'y' property\n    return Math.max(value, 0);\n  }\n}\n\n// Usage\nconst point = new Point(-5, 10);\nconsole.log(point); // Output: Point { x: 0, y: 10 }\n```",
           "dateTime": "2023-11-16T20:54:48.453Z"
+        },
+        {
+          "indexTitle": "Basic Entity-Component System",
+          "question": "Basic Entity-Component System",
+          "answer": "```typescript\nclass Component {\n    update() {\n        // Implement component update logic\n    }\n\n    render() {\n        // Implement component render logic\n    }\n}\n\nclass Entity {\n    private components: Component[] = [];\n\n    addComponent(component: Component) {\n        this.components.push(component);\n    }\n\n    update() {\n        for (const component of this.components) {\n            component.update();\n        }\n    }\n\n    render() {\n        for (const component of this.components) {\n            component.render();\n        }\n    }\n}\n\n// Example usage:\nclass RenderComponent extends Component {\n    render() {\n        console.log(\"Rendering...\");\n    }\n}\n\nclass MovementComponent extends Component {\n    update() {\n        console.log(\"Updating position...\");\n    }\n}\n\nconst playerEntity = new Entity();\nplayerEntity.addComponent(new RenderComponent());\nplayerEntity.addComponent(new MovementComponent());\n\n// Update and render the entity\nplayerEntity.update();\nplayerEntity.render();\n```",
+          "dateTime": "2023-11-16T17:15:07.916Z"
+        },
+        {
+          "indexTitle": "Reasons for Immutable ",
+          "question": "What is advantage of using immutable vector2 instead of muttable in ts ?",
+          "answer": "Using an immutable Vector2 instead of a mutable one in TypeScript offers several advantages:\n\n1. **Predictable State:**\n   - Immutable objects cannot be changed once they are created. This helps avoid unexpected changes to the state of your Vector2 instance, leading to more predictable behavior in your code.\n\n2. **Concurrency:**\n   - Immutable data structures are inherently thread-safe. If you're working in a concurrent or parallel environment, using immutable Vector2 instances can help prevent race conditions and make it easier to reason about your code.\n\n3. **Debugging:**\n   - Immutable objects make it easier to debug code. Since their state doesn't change, you can trust that the values remain constant throughout their lifecycle, simplifying the debugging process.\n\n4. **Functional Programming:**\n   - Immutability aligns well with functional programming principles. It encourages the use of pure functions, which don't have side effects, leading to more maintainable and testable code.\n\n5. **Undo/Redo Functionality:**\n   - Immutable objects are well-suited for implementing undo/redo functionality. You can keep track of the state changes by storing previous versions of the Vector2 without worrying about them being modified elsewhere in your code.\n\nHere's a simple example in TypeScript using an immutable Vector2 class:\n\n```typescript\nclass Vector2 {\n  constructor(public readonly x: number, public readonly y: number) {}\n\n  add(other: Vector2): Vector2 {\n    return new Vector2(this.x + other.x, this.y + other.y);\n  }\n\n  // Other methods...\n\n  static zero(): Vector2 {\n    return new Vector2(0, 0);\n  }\n}\n\n// Example usage:\nconst vectorA = new Vector2(1, 2);\nconst vectorB = new Vector2(3, 4);\n\nconst sum = vectorA.add(vectorB);\nconsole.log(sum); // Output: Vector2 { x: 4, y: 6 }\n\nconst zeroVector = Vector2.zero();\nconsole.log(zeroVector); // Output: Vector2 { x: 0, y: 0 }\n```\n\nIn this example, the `Vector2` class is immutable, and methods like `add` return a new instance without modifying the existing ones.",
+          "dateTime": "2023-11-16T22:12:59.941Z"
+        }
+      ]
+    },
+    {
+      "title": "Highlight",
+      "chats": [
+        {
+          "indexTitle": "PIXI.js",
+          "question": "Pixi is a renderer only much more advanced right ?",
+          "answer": "Yes, that's correct. PIXI.js is a powerful 2D rendering engine for the web that provides a wide range of features for creating rich and interactive graphics. It is more than just a renderer; it's a comprehensive library that includes rendering capabilities along with features like display objects, animation, interaction handling, and more.\n\nSome key features of PIXI.js include:\n\n1. **Display Objects:** PIXI allows you to work with a hierarchy of display objects, such as sprites, containers, text, and graphics.\n\n2. **WebGL and Canvas Rendering:** PIXI.js can utilize WebGL for hardware-accelerated rendering when available, providing better performance. It also has a fallback to the 2D canvas for compatibility with a wider range of devices.\n\n3. **Filters and Effects:** PIXI supports a variety of filters and effects that can be applied to display objects, allowing for advanced visual enhancements.\n\n4. **Interactivity:** PIXI provides built-in support for handling user interactions, making it easy to create interactive applications and games.\n\n5. **Asset Loader:** PIXI includes a flexible asset loader for handling the loading of images, spritesheets, and other resources.\n\n6. **Animation:** PIXI supports animations and tweening, making it easier to create dynamic and fluid movement in your applications.\n\n7. **Compatibility:** PIXI is designed to work across different platforms and devices, providing a consistent experience.\n\nIn summary, PIXI.js is a feature-rich 2D rendering engine that goes beyond a simple renderer, offering a robust set of tools and capabilities for building interactive and visually appealing web applications and games.",
+          "dateTime": "2023-11-17T19:06:51.764Z"
         }
       ]
     }
