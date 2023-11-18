@@ -545,6 +545,76 @@
           "dateTime": "2023-11-18T20:20:05.979Z"
         }
       ]
+    },
+    {
+      "title": "Scene Manager",
+      "chats": [
+        {
+          "indexTitle": "Assumptions",
+          "question": "Assumptions",
+          "answer": "1. ",
+          "dateTime": "2023-11-18T20:34:17.446Z"
+        },
+        {
+          "indexTitle": "API",
+          "question": "API",
+          "answer": "```typescript\nexport default interface IScene {\n  start(): void;\n}\n```\n```typescript\nexport default interface ISceneManager {\n  loadScene(scene: Scene): void;\n  unloadCurrentScene(): void;\n}\n```",
+          "dateTime": "2023-11-18T20:36:16.038Z"
+        },
+        {
+          "indexTitle": "SceneManager",
+          "question": "SceneManager",
+          "answer": "```typescript\nexport default class SceneManager implements ISceneManager {\n  private currentScene: Scene | null = null;\n\n  loadScene(scene: Scene): void {\n    this.unloadCurrentScene();\n    this.currentScene = scene;\n    this.currentScene.start();\n  }\n\n  unloadCurrentScene(): void {\n    if (this.currentScene) {\n      console.log('Unloading current scene');\n    }\n  }\n}\n```",
+          "dateTime": "2023-11-18T20:37:09.362Z"
+        },
+        {
+          "indexTitle": "Tests",
+          "question": "Tests",
+          "answer": "```typescript\n// sceneManager.test.ts\n\nimport { Scene, SceneManagerInterface, SceneManager } from './sceneManager';\n\nclass MockScene implements Scene {\n  start(): void {\n    console.log('Mock Scene Started');\n  }\n}\n\ndescribe('SceneManager', () => {\n  let sceneManager: SceneManagerInterface;\n\n  beforeEach(() => {\n    sceneManager = new SceneManager();\n  });\n\n  test('loads and unloads scenes correctly', () => {\n    const mockScene1 = new MockScene();\n    const mockScene2 = new MockScene();\n\n    // Load the first scene\n    sceneManager.loadScene(mockScene1);\n    expect(console.log).toHaveBeenCalledWith('Mock Scene Started');\n\n    // Unload the current scene\n    sceneManager.unloadCurrentScene();\n    expect(console.log).toHaveBeenCalledWith('Unloading current scene');\n\n    // Load the second scene\n    sceneManager.loadScene(mockScene2);\n    expect(console.log).toHaveBeenCalledWith('Mock Scene Started');\n  });\n});\n```",
+          "dateTime": "2023-11-18T20:38:08.556Z"
+        },
+        {
+          "indexTitle": "Usage Example",
+          "question": "Usage Example",
+          "answer": "```typescript\nconst sceneManager: ISceneManager = new SceneManager();\n\n// Define scenes\nclass StartScene implements Scene {\n  start(): void {\n    console.log('Starting Start Scene');\n  }\n}\n\nclass GameScene implements Scene {\n  start(): void {\n    console.log('Starting Game Scene');\n  }\n}\n\n// Load scenes\nsceneManager.loadScene(new StartScene());\n\n// Switch to another scene\nsceneManager.loadScene(new GameScene());\n```",
+          "dateTime": "2023-11-18T20:39:06.257Z"
+        }
+      ]
+    },
+    {
+      "title": "Animation Manager",
+      "chats": [
+        {
+          "indexTitle": "Assumptions",
+          "question": "Assumptions",
+          "answer": "1. ",
+          "dateTime": "2023-11-18T22:37:19.407Z"
+        },
+        {
+          "indexTitle": "API",
+          "question": "API",
+          "answer": "```typescript\nexport default interface IAnimationCallback {\n  (progress: number): void;\n}\n```\n```typescript\nexport default interface IAnimationManager {\n  animate(duration: number, callback: IAnimationCallback): void;\n  addAnimation(animation: IAnimationCallback): void;\n}\n```",
+          "dateTime": "2023-11-18T22:38:51.733Z"
+        },
+        {
+          "indexTitle": "AnimationManager",
+          "question": "AnimationManager",
+          "answer": "```typescript\nexport default class AnimationManager implements IAnimationManager {\n  private animations: IAnimationCallback[] = [];\n\n  animate(duration: number, callback: IAnimationCallback): void {\n    const startTime = performance.now();\n\n    const animateFrame = () => {\n      const currentTime = performance.now();\n      const progress = (currentTime - startTime) / duration;\n\n      if (progress < 1) {\n        callback(progress);\n        requestAnimationFrame(animateFrame);\n      } else {\n        callback(1);\n      }\n    };\n\n    animateFrame();\n  }\n\n  addAnimation(animation: IAnimationCallback): void {\n    this.animations.push(animation);\n  }\n}\n```",
+          "dateTime": "2023-11-18T22:39:58.515Z"
+        },
+        {
+          "indexTitle": "Tests",
+          "question": "Tests",
+          "answer": "```typescript\n// animation.test.ts\nimport { AnimationManager, IAnimationCallback, IAnimationManager } from './animation';\n\n// Mocking the requestAnimationFrame function\njest.spyOn(window, 'requestAnimationFrame').mockImplementation((cb) => cb());\n\ndescribe('AnimationManager', () => {\n  let animationManager: IAnimationManager;\n  let scaleAnimation: IAnimationCallback;\n\n  beforeEach(() => {\n    animationManager = new AnimationManager();\n\n    scaleAnimation = jest.fn();\n  });\n\n  it('should add and play animation', () => {\n    animationManager.addAnimation(scaleAnimation);\n    animationManager.animate(2000, scaleAnimation);\n\n    // You can add assertions based on your specific use case\n    // For example, you can check if scaleAnimation was called with expected arguments.\n    expect(scaleAnimation).toHaveBeenCalledTimes(2); // Once when adding and once during animation\n  });\n});\n```",
+          "dateTime": "2023-11-18T22:40:38.503Z"
+        },
+        {
+          "indexTitle": "Usage Example",
+          "question": "Usage Example",
+          "answer": "```typescript\nconst animationManager = new AnimationManager();\n\nfunction scaleAnimation(progress: number) {\n  const scale = 1 + 0.5 * Math.sin(progress * Math.PI);\n  console.log(`Scaling animation: ${scale}`);\n}\n\nanimationManager.addAnimation(scaleAnimation);\nanimationManager.animate(2000, scaleAnimation);\n```",
+          "dateTime": "2023-11-18T22:41:39.511Z"
+        }
+      ]
     }
   ]
 }
