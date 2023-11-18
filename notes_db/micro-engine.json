@@ -468,11 +468,46 @@
           "answer": "```typescript\n// ResourceManager.test.ts\nimport { ResourceManager } from './ResourceManager';\n\ndescribe('ResourceManager', () => {\n  let resourceManager: ResourceManager;\n\n  beforeEach(() => {\n    resourceManager = new ResourceManager();\n  });\n\n  it('should load and unload resources', async () => {\n    const texture = new Image();\n    texture.src = 'path/to/texture.png';\n\n    // Load resource\n    await resourceManager.loadResource('playerTexture', texture);\n    expect(resourceManager.getResource('playerTexture')).toEqual(texture);\n\n    // Unload resource\n    resourceManager.unloadResource('playerTexture');\n    expect(resourceManager.getResource('playerTexture')).toBeUndefined();\n  });\n});\n```",
           "dateTime": "2023-11-18T18:15:34.818Z"
         },
-		{
+        {
           "indexTitle": "Usage Example",
           "question": "Usage Example",
           "answer": "```typescript\nconst resourceManager: ResourceLoader = new ResourceManager();\n\n// Load a texture asynchronously\nconst loadTexture = (path: string): Promise<Resource> => {\n  return new Promise((resolve) => {\n    const texture = new Image();\n    texture.onload = () => resolve({ key: 'playerTexture', data: texture });\n    texture.src = path;\n  });\n};\n\n// Usage of asynchronous loading with async/await\nconst main = async () => {\n  const resource: Resource = await loadTexture('path/to/texture.png');\n  await resourceManager.loadResource(resource.key, resource.data);\n\n  // Get the loaded texture\n  const playerTexture = resourceManager.getResource(resource.key);\n  console.log(playerTexture);\n\n  // Unload the texture when it's no longer needed\n  resourceManager.unloadResource(resource.key);\n};\n\nmain();\n```",
           "dateTime": "2023-11-18T18:17:30.802Z"
+        }
+      ]
+    },
+    {
+      "title": "Collision Detector ",
+      "chats": [
+        {
+          "indexTitle": "Assumptions",
+          "question": "Assumptions",
+          "answer": "1. ",
+          "dateTime": "2023-11-18T18:24:32.152Z"
+        },
+		{
+          "indexTitle": "API",
+          "question": "API",
+          "answer": "```typescript\nexport default interface IGameObject {\n  x: number;\n  y: number;\n  width: number;\n  height: number;\n}\n\nexport default interface ICollisionInfo {\n  object1: IGameObject;\n  object2: IGameObject;\n}\n\nexport default interface ICollisionCallback {\n  (collisionInfo: ICollisionInfo): void;\n}\n\nexport default interface ICollisionDetector {\n  checkCollision(object1: GameObject, object2: GameObject): void;\n  subscribeToCollisions(callback: CollisionCallback): void;\n}\n```",
+          "dateTime": "2023-11-18T18:28:37.416Z"
+        },
+        {
+          "indexTitle": "Collision Detector",
+          "question": "CollisionDetector",
+          "answer": "```typescript\nexport default class CollisionDetector implements ICollisionDetector {\n  private collisionCallbacks: ICollisionCallback[] = [];\n\n  checkCollision(object1: IGameObject, object2: IGameObject): void {\n    const isColliding =\n      object1.x < object2.x + object2.width &&\n      object1.x + object1.width > object2.x &&\n      object1.y < object2.y + object2.height &&\n      object1.y + object1.height > object2.y;\n\n    if (isColliding) {\n      this.collisionCallbacks.forEach(callback => callback({ object1, object2 }));\n    }\n  }\n\n  subscribeToCollisions(callback: ICollisionCallback): void {\n    this.collisionCallbacks.push(callback);\n  }\n}\n```",
+          "dateTime": "2023-11-18T18:30:20.965Z"
+        },
+        {
+          "indexTitle": "Tests",
+          "question": "Tests",
+          "answer": "```typescript\n// collisionDetector.test.ts\nimport { CollisionDetector, GameObject, CollisionInfo, CollisionCallback } from './collisionDetector';\n\ndescribe('CollisionDetector', () => {\n  let collisionDetector: CollisionDetector;\n  let collisionCallback: jest.Mock;\n\n  beforeEach(() => {\n    collisionDetector = new CollisionDetector();\n    collisionCallback = jest.fn();\n    collisionDetector.subscribeToCollisions(collisionCallback);\n  });\n\n  test('should detect collision and invoke callback', () => {\n    const object1: GameObject = { x: 10, y: 10, width: 20, height: 20 };\n    const object2: GameObject = { x: 15, y: 15, width: 20, height: 20 };\n\n    collisionDetector.checkCollision(object1, object2);\n\n    const expectedCollisionInfo: CollisionInfo = { object1, object2 };\n    expect(collisionCallback).toHaveBeenCalledWith(expectedCollisionInfo);\n  });\n\n  test('should not detect collision when objects do not collide', () => {\n    const object1: GameObject = { x: 10, y: 10, width: 20, height: 20 };\n    const object2: GameObject = { x: 50, y: 50, width: 20, height: 20 };\n\n    collisionDetector.checkCollision(object1, object2);\n\n    expect(collisionCallback).not.toHaveBeenCalled();\n  });\n});\n```",
+          "dateTime": "2023-11-18T18:31:08.746Z"
+        },
+        {
+          "indexTitle": "Usage Example",
+          "question": "Usage Example",
+          "answer": "```typescript\nconst collisionDetector: ICollisionDetector = new CollisionDetector();\n\n// Subscribe to collision events\ncollisionDetector.subscribeToCollisions(collisionInfo => {\n  console.log('Collision detected!', collisionInfo);\n});\n\n// Simulate a collision\nconst object1: GameObject = { x: 10, y: 10, width: 20, height: 20 };\nconst object2: GameObject = { x: 15, y: 15, width: 20, height: 20 };\ncollisionDetector.checkCollision(object1, object2);\n```",
+          "dateTime": "2023-11-18T18:33:03.253Z"
         }
       ]
     }
