@@ -615,6 +615,41 @@
           "dateTime": "2023-11-18T22:41:39.511Z"
         }
       ]
+    },
+    {
+      "title": "Save Game Manager",
+      "chats": [
+        {
+          "indexTitle": "Assumptions",
+          "question": "Assumptions",
+          "answer": "1. ",
+          "dateTime": "2023-11-18T22:49:02.268Z"
+        },
+        {
+          "indexTitle": "API",
+          "question": "API",
+          "answer": "```typescript\nexport default interface ISaveGameManager {\n  saveData<T>(key: string, data: T): void;\n  loadData<T>(key: string): T | null;\n}\n```",
+          "dateTime": "2023-11-18T22:50:38.075Z"
+        },
+        {
+          "indexTitle": "SaveGameManager ",
+          "question": "SaveGameManager ",
+          "answer": "```typescript\nexport default class SaveGameManager implements ISaveGameManager {\n  saveData<T>(key: string, data: T): void {\n    try {\n      const serializedData = JSON.stringify(data);\n      localStorage.setItem(key, serializedData);\n    } catch (error) {\n      console.error(`Error saving data for key ${key}: ${error.message}`);\n    }\n  }\n\n  loadData<T>(key: string): T | null {\n    try {\n      const serializedData = localStorage.getItem(key);\n      return serializedData ? JSON.parse(serializedData) : null;\n    } catch (error) {\n      console.error(`Error loading data for key ${key}: ${error.message}`);\n      return null;\n    }\n  }\n}\n```",
+          "dateTime": "2023-11-18T22:51:49.341Z"
+        },
+        {
+          "indexTitle": "Tests",
+          "question": "Tests",
+          "answer": "```typescript\n// SaveGameManager.test.ts\nimport { SaveGameManager, GameData } from './SaveGameManager';\n\ndescribe('SaveGameManager', () => {\n  // Mock localStorage for testing\n  const localStorageMock = (() => {\n    let store: { [key: string]: string } = {};\n\n    return {\n      getItem: (key: string) => store[key],\n      setItem: (key: string, value: string) => (store[key] = value),\n      clear: () => (store = {}),\n    };\n  })();\n\n  beforeEach(() => {\n    Object.defineProperty(window, 'localStorage', {\n      value: localStorageMock,\n    });\n  });\n\n  afterEach(() => {\n    jest.clearAllMocks();\n  });\n\n  it('should save and load game data', () => {\n    const saveGameManager = new SaveGameManager();\n\n    // Save game data\n    const gameData: GameData = { score: 100, level: 5 };\n    saveGameManager.saveData<GameData>('playerData', gameData);\n\n    // Load saved data\n    const loadedData = saveGameManager.loadData<GameData>('playerData');\n\n    // Check if the loaded data matches the saved data\n    expect(loadedData).toEqual(gameData);\n  });\n\n  it('should handle errors when saving data', () => {\n    const saveGameManager = new SaveGameManager();\n\n    // Mock JSON.stringify to throw an error\n    jest.spyOn(JSON, 'stringify').mockImplementation(() => {\n      throw new Error('Mock stringify error');\n    });\n\n    // Save game data\n    const gameData: GameData = { score: 100, level: 5 };\n    saveGameManager.saveData<GameData>('playerData', gameData);\n\n    // Expect an error message to be logged\n    expect(console.error).toHaveBeenCalledWith(\n      'Error saving data for key playerData: Mock stringify error'\n    );\n  });\n\n  it('should handle errors when loading data', () => {\n    const saveGameManager = new SaveGameManager();\n\n    // Mock localStorage.getItem to throw an error\n    jest.spyOn(localStorage, 'getItem').mockImplementation(() => {\n      throw new Error('Mock getItem error');\n    });\n\n    // Load saved data\n    const loadedData = saveGameManager.loadData<GameData>('playerData');\n\n    // Expect an error message to be logged\n    expect(console.error).toHaveBeenCalledWith(\n      'Error loading data for key playerData: Mock getItem error'\n    );\n\n    // Expect loaded data to be null\n    expect(loadedData).toBeNull();\n  });\n});\n```",
+          "dateTime": "2023-11-18T22:52:25.987Z"
+        },
+        {
+          "indexTitle": "Usage Example",
+          "question": "Usage Example",
+          "answer": "```typescript\nconst saveGameManager: ISaveGameManager = new SaveGameManager();\n\n// Save game data\nconst gameData: GameData = { score: 100, level: 5 };\nsaveGameManager.saveData<GameData>('playerData', gameData);\n\n// Load saved data\nconst loadedData = saveGameManager.loadData<GameData>('playerData');\nconsole.log(loadedData);\n```",
+          "dateTime": "2023-11-18T22:55:24.726Z"
+        }
+      ]
     }
   ]
 }
