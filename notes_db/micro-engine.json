@@ -485,7 +485,7 @@
           "answer": "1. ",
           "dateTime": "2023-11-18T18:24:32.152Z"
         },
-		{
+        {
           "indexTitle": "API",
           "question": "API",
           "answer": "```typescript\nexport default interface IGameObject {\n  x: number;\n  y: number;\n  width: number;\n  height: number;\n}\n\nexport default interface ICollisionInfo {\n  object1: IGameObject;\n  object2: IGameObject;\n}\n\nexport default interface ICollisionCallback {\n  (collisionInfo: ICollisionInfo): void;\n}\n\nexport default interface ICollisionDetector {\n  checkCollision(object1: GameObject, object2: GameObject): void;\n  subscribeToCollisions(callback: CollisionCallback): void;\n}\n```",
@@ -508,6 +508,41 @@
           "question": "Usage Example",
           "answer": "```typescript\nconst collisionDetector: ICollisionDetector = new CollisionDetector();\n\n// Subscribe to collision events\ncollisionDetector.subscribeToCollisions(collisionInfo => {\n  console.log('Collision detected!', collisionInfo);\n});\n\n// Simulate a collision\nconst object1: GameObject = { x: 10, y: 10, width: 20, height: 20 };\nconst object2: GameObject = { x: 15, y: 15, width: 20, height: 20 };\ncollisionDetector.checkCollision(object1, object2);\n```",
           "dateTime": "2023-11-18T18:33:03.253Z"
+        }
+      ]
+    },
+    {
+      "title": "Sound Manager",
+      "chats": [
+        {
+          "indexTitle": "Assumptions",
+          "question": "Assumptions",
+          "answer": "1. ",
+          "dateTime": "2023-11-18T20:13:25.376Z"
+        },
+        {
+          "indexTitle": "API",
+          "question": "API",
+          "answer": "```typescript\nexport default interface ISoundManager {\n  loadSound(url: string): Promise<AudioBuffer>;\n  playSound(buffer: AudioBuffer, loop?: boolean): AudioBufferSourceNode;\n  stopSound(source: AudioBufferSourceNode): void;\n}\n```",
+          "dateTime": "2023-11-18T20:13:25.376Z"
+        },
+        {
+          "indexTitle": "Sound Manager",
+          "question": "SoundManager",
+          "answer": "```typescript\nexport default class SoundManager implements ISoundManager {\n  private audioContext: AudioContext;\n\n  constructor() {\n    this.audioContext = new (window.AudioContext || (window as any).webkitAudioContext)();\n  }\n\n  loadSound(url: string): Promise<AudioBuffer> {\n    return fetch(url)\n      .then(response => response.arrayBuffer())\n      .then(data => this.audioContext.decodeAudioData(data));\n  }\n\n  playSound(buffer: AudioBuffer, loop: boolean = false): AudioBufferSourceNode {\n    const source = this.audioContext.createBufferSource();\n    source.buffer = buffer;\n    source.connect(this.audioContext.destination);\n    source.loop = loop;\n    source.start(0);\n\n    return source;\n  }\n\n  stopSound(source: AudioBufferSourceNode): void {\n    source.stop(0);\n  }\n}\n```",
+          "dateTime": "2023-11-18T20:14:25.780Z"
+        },
+        {
+          "indexTitle": "Tests",
+          "question": "Tests",
+          "answer": "```typescript\n//soundManager.test.ts\n\nimport { SoundManagerInterface } from './SoundManager'; // Assuming your SoundManager and interface are in the same directory\n\ndescribe('SoundManager', () => {\n  let soundManager: ISoundManager;\n\n  beforeEach(() => {\n    soundManager = new SoundManager();\n  });\n\n  test('loadSound should load a sound', async () => {\n    const url = 'path/to/sound.mp3';\n    const buffer = await soundManager.loadSound(url);\n    expect(buffer).toBeInstanceOf(AudioBuffer);\n  });\n\n  test('playSound should return an AudioBufferSourceNode', () => {\n    const dummyBuffer = {} as AudioBuffer; // You can use a mock or a real buffer for testing\n    const source = soundManager.playSound(dummyBuffer);\n    expect(source).toBeInstanceOf(AudioBufferSourceNode);\n  });\n\n  test('stopSound should stop the sound', () => {\n    const dummySource = {} as AudioBufferSourceNode; // You can use a mock or a real source for testing\n    const stopSpy = jest.spyOn(dummySource, 'stop');\n    \n    soundManager.stopSound(dummySource);\n\n    expect(stopSpy).toHaveBeenCalledWith(0);\n  });\n});\n```",
+          "dateTime": "2023-11-18T20:16:55.274Z"
+        },
+        {
+          "indexTitle": "Usage Example",
+          "question": "Usage Example",
+          "answer": "```typescript\nimport { SoundManagerInterface } from './SoundManager'; // Assuming your SoundManager and interface are in the same directory\n\ndescribe('SoundManager', () => {\n  let soundManager: ISoundManager;\n\n  beforeEach(() => {\n    soundManager = new SoundManager();\n  });\n\n  test('playSound and stopSound with async/await', async () => {\n    const url = 'path/to/sound.mp3';\n\n    try {\n      const buffer = await soundManager.loadSound(url);\n\n      // Play the loaded sound without looping\n      const source = soundManager.playSound(buffer);\n\n      // Stop the sound after 3 seconds (for example)\n      await new Promise(resolve => setTimeout(resolve, 3000));\n\n      // Stop the sound\n      soundManager.stopSound(source);\n    } catch (error) {\n      // Handle any errors during the process\n      console.error('Error:', error);\n    }\n  });\n});\n```",
+          "dateTime": "2023-11-18T20:20:05.979Z"
         }
       ]
     }
