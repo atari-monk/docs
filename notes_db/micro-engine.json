@@ -338,76 +338,6 @@
       ]
     },
     {
-      "title": "Component Template",
-      "chats": [
-        {
-          "indexTitle": "Assumptions",
-          "question": "Assumptions",
-          "answer": "1. ",
-          "dateTime": "2023-11-17T21:26:38.091Z"
-        },
-        {
-          "indexTitle": "API",
-          "question": "API",
-          "answer": "```typescript\n \n```\n```typescript\n \n```",
-          "dateTime": "2023-11-17T21:38:02.671Z"
-        },
-        {
-          "indexTitle": "Component",
-          "question": "Component",
-          "answer": "```typescript\n \n```",
-          "dateTime": "2023-11-17T21:34:01.322Z"
-        },
-        {
-          "indexTitle": "Tests",
-          "question": "Tests",
-          "answer": "```typescript\n \n```",
-          "dateTime": "2023-11-17T22:04:36.549Z"
-        },
-        {
-          "indexTitle": "Integration",
-          "question": "Integration",
-          "answer": "```typescript\n \n```",
-          "dateTime": "2023-11-17T21:14:53.111Z"
-        }
-      ]
-    },
-    {
-      "title": "Component Template",
-      "chats": [
-        {
-          "indexTitle": "Assumptions",
-          "question": "Assumptions",
-          "answer": "1. ",
-          "dateTime": "2023-11-17T21:26:38.091Z"
-        },
-        {
-          "indexTitle": "API",
-          "question": "API",
-          "answer": "```typescript\n \n```\n```typescript\n \n```",
-          "dateTime": "2023-11-17T21:38:02.671Z"
-        },
-        {
-          "indexTitle": "Component",
-          "question": "Component",
-          "answer": "```typescript\n \n```",
-          "dateTime": "2023-11-17T21:34:01.322Z"
-        },
-        {
-          "indexTitle": "Tests",
-          "question": "Tests",
-          "answer": "```typescript\n \n```",
-          "dateTime": "2023-11-17T22:04:36.549Z"
-        },
-        {
-          "indexTitle": "Integration",
-          "question": "Integration",
-          "answer": "```typescript\n \n```",
-          "dateTime": "2023-11-17T21:14:53.111Z"
-        }
-      ]
-    },
-    {
       "title": "Examples",
       "chats": [
         {
@@ -438,6 +368,76 @@
           "question": "Pixi is a renderer only much more advanced right ?",
           "answer": "Yes, that's correct. PIXI.js is a powerful 2D rendering engine for the web that provides a wide range of features for creating rich and interactive graphics. It is more than just a renderer; it's a comprehensive library that includes rendering capabilities along with features like display objects, animation, interaction handling, and more.\n\nSome key features of PIXI.js include:\n\n1. **Display Objects:** PIXI allows you to work with a hierarchy of display objects, such as sprites, containers, text, and graphics.\n\n2. **WebGL and Canvas Rendering:** PIXI.js can utilize WebGL for hardware-accelerated rendering when available, providing better performance. It also has a fallback to the 2D canvas for compatibility with a wider range of devices.\n\n3. **Filters and Effects:** PIXI supports a variety of filters and effects that can be applied to display objects, allowing for advanced visual enhancements.\n\n4. **Interactivity:** PIXI provides built-in support for handling user interactions, making it easy to create interactive applications and games.\n\n5. **Asset Loader:** PIXI includes a flexible asset loader for handling the loading of images, spritesheets, and other resources.\n\n6. **Animation:** PIXI supports animations and tweening, making it easier to create dynamic and fluid movement in your applications.\n\n7. **Compatibility:** PIXI is designed to work across different platforms and devices, providing a consistent experience.\n\nIn summary, PIXI.js is a feature-rich 2D rendering engine that goes beyond a simple renderer, offering a robust set of tools and capabilities for building interactive and visually appealing web applications and games.",
           "dateTime": "2023-11-17T19:06:51.764Z"
+        }
+      ]
+    },
+    {
+      "title": "Event System",
+      "chats": [
+        {
+          "indexTitle": "Assumptions",
+          "question": "Assumptions",
+          "answer": "The provided code defines a simple event system in TypeScript. This event system allows different parts of a program, particularly in the context of a game engine or game development, to communicate with each other through events.\n\nLet's break down the code:\n\n1. **Event System Class:**\n   - `EventSystem` is a class that manages events and event handlers.\n   - It has a private property `events`, which is an object where keys are event names, and values are arrays of event handlers.\n\n2. **subscribe Method:**\n   - The `subscribe` method is used to add an event handler to a specific event.\n   - If the event doesn't exist in the `events` object, it creates an empty array for that event.\n   - It then adds the provided event handler to the array for the specified event.\n\n3. **publish Method:**\n   - The `publish` method is used to trigger an event and execute all the associated event handlers.\n   - It retrieves the array of event handlers for the specified event and calls each handler with optional data.\n\n4. **Example Usage:**\n   - An instance of `EventSystem` is created: `const eventSystem = new EventSystem();`\n   - An event ('PlayerMoved') is subscribed to, with a handler that logs the player's position when the event is triggered.\n   - The event is published with some data (player's new position).\n\n**In the context of a game engine or game development:**\n- **Subscribing to Events:** Different parts of the game engine or game can subscribe to events they are interested in. For example, the rendering system may subscribe to a 'PlayerMoved' event to update the player's visual representation.\n\n- **Publishing Events:** Various components of the game (e.g., player input, physics system) can publish events to notify other parts of the system about changes. For instance, when the player moves, a 'PlayerMoved' event is published with the new position.\n\n- **Loose Coupling:** The event system helps achieve loose coupling between different modules or systems. Components can communicate without needing direct references to each other, promoting modularity and maintainability.\n\n- **Flexibility:** It provides a flexible way to extend or modify the behavior of the system. New features can be added by introducing new events and corresponding handlers.\n\n- **Example Expansion:** In a game context, you might expand this by adding events for various game actions (e.g., 'EnemySpawned', 'GamePaused') and allowing different systems to react accordingly.",
+          "dateTime": "2023-11-18T16:55:02.488Z"
+        },
+        {
+          "indexTitle": "API",
+          "question": "API",
+          "answer": "```typescript\nexport default interface IEventHandler {\n  (data?: any): void;\n}\n```\n```typescript\nexport default interface IEventSystem {\n  subscribe(eventName: string, handler: EventHandler): void;\n  publish(eventName: string, data?: any): void;\n}\n```",
+          "dateTime": "2023-11-18T17:01:02.310Z"
+        },
+        {
+          "indexTitle": "Event System",
+          "question": "EventSystem",
+          "answer": "```typescript\nexport default class EventSystem implements EventSystemInterface {\n  private events: { [key: string]: EventHandler[] } = {};\n\n  subscribe(eventName: string, handler: EventHandler): void {\n    if (!this.events[eventName]) {\n      this.events[eventName] = [];\n    }\n    this.events[eventName].push(handler);\n  }\n\n  publish(eventName: string, data?: any): void {\n    const handlers = this.events[eventName];\n    if (handlers) {\n      handlers.forEach(handler => handler(data));\n    }\n  }\n}\n```",
+          "dateTime": "2023-11-18T17:02:13.488Z"
+        },
+        {
+          "indexTitle": "Tests",
+          "question": "Tests",
+          "answer": "```typescript\nimport { IEventSystem } from 'engine_api'\n\ndescribe('EventSystem', () => {\n  let eventSystem: IEventSystem;\n\n  beforeEach(() => {\n    eventSystem = new EventSystem();\n  });\n\n  it('should subscribe to and publish events', () => {\n    // Arrange\n    const eventName = 'TestEvent';\n    const eventData = { message: 'Hello, World!' };\n    let handlerCalled = false;\n\n    // Act\n    eventSystem.subscribe(eventName, (data) => {\n      handlerCalled = true;\n      expect(data).toEqual(eventData);\n    });\n\n    eventSystem.publish(eventName, eventData);\n\n    // Assert\n    expect(handlerCalled).toBe(true);\n  });\n\n  it('should handle multiple handlers for the same event', () => {\n    // Arrange\n    const eventName = 'MultiHandlerEvent';\n    const eventData = { value: 42 };\n    let handler1Called = false;\n    let handler2Called = false;\n\n    // Act\n    eventSystem.subscribe(eventName, (data) => {\n      handler1Called = true;\n      expect(data).toEqual(eventData);\n    });\n\n    eventSystem.subscribe(eventName, (data) => {\n      handler2Called = true;\n      expect(data).toEqual(eventData);\n    });\n\n    eventSystem.publish(eventName, eventData);\n\n    // Assert\n    expect(handler1Called).toBe(true);\n    expect(handler2Called).toBe(true);\n  });\n\n  it('should handle events without subscribers', () => {\n    // Arrange\n    const eventName = 'NoSubscriberEvent';\n    const eventData = { value: 123 };\n\n    // Act & Assert (no error should be thrown)\n    expect(() => eventSystem.publish(eventName, eventData)).not.toThrow();\n  });\n});\n\n```",
+          "dateTime": "2023-11-18T17:04:17.111Z"
+        },
+        {
+          "indexTitle": "Usage Example",
+          "question": "Usage Example",
+          "answer": "```typescript\n// Assuming the EventSystem and interfaces are in separate files\n\n// Import necessary interfaces and classes\nimport { EventSystemInterface, EventHandler } from './EventSystem';\n\n// PlayerInput component\nclass PlayerInput {\n  constructor(private eventSystem: EventSystemInterface) {}\n\n  // Simulate player movement and publish 'PlayerMoved' event\n  movePlayer(newPosition: { x: number; y: number }): void {\n    this.eventSystem.publish('PlayerMoved', newPosition);\n  }\n}\n\n// RenderingSystem component\nclass RenderingSystem {\n  constructor(private eventSystem: EventSystemInterface) {\n    // Subscribe to the 'PlayerMoved' event\n    this.eventSystem.subscribe('PlayerMoved', this.handlePlayerMoved);\n  }\n\n  // Event handler for 'PlayerMoved' event\n  private handlePlayerMoved = (position: { x: number; y: number }) => {\n    // Update the visual representation of the player\n    console.log(`RenderingSystem: Player moved to ${position.x}, ${position.y}`);\n    // Actual rendering logic would go here\n  };\n}\n\n// Example usage:\n\n// Create an instance of EventSystem\nconst eventSystem: EventSystemInterface = new EventSystem();\n\n// Create instances of PlayerInput and RenderingSystem with the EventSystem\nconst playerInput = new PlayerInput(eventSystem);\nconst renderingSystem = new RenderingSystem(eventSystem);\n\n// Simulate player movement\nplayerInput.movePlayer({ x: 15, y: 30 });\n```",
+          "dateTime": "2023-11-18T17:06:02.133Z"
+        }
+      ]
+    },
+    {
+      "title": "State Manager",
+      "chats": [
+        {
+          "indexTitle": "Assumptions",
+          "question": "Assumptions",
+          "answer": "1.",
+          "dateTime": "2023-11-18T17:17:40.559Z"
+        },
+        {
+          "indexTitle": "API",
+          "question": "API",
+          "answer": "```typescript\nexport default interface IGenericState {\n  [key: string]: any;\n}\n```\n```typescript\nexport default interface IStateManager<T extends IGenericState> {\n  getState(): T;\n  updateState(newState: Partial<T>): void;\n}\n```\n",
+          "dateTime": "2023-11-18T17:20:27.397Z"
+        },
+        {
+          "indexTitle": "StateManager",
+          "question": "StateManager",
+          "answer": "```typescript\nexport default class StateManager<T extends IGenericState> implements IStateManager<T> {\n  private currentState: T;\n\n  constructor(initialState: T) {\n    this.currentState = { ...initialState };\n  }\n\n  getState(): T {\n    return { ...this.currentState };\n  }\n\n  updateState(newState: Partial<T>): void {\n    this.currentState = { ...this.currentState, ...newState };\n  }\n}\n```",
+          "dateTime": "2023-11-18T17:21:08.303Z"
+        },
+        {
+          "indexTitle": "Tests",
+          "question": "Tests",
+          "answer": "```typescript\n// stateManager.test.ts\n\nimport StateManager, { IPlayerState, ICustomState } from './stateManager';\n\n// Create a StateManager instance with IPlayerState for testing\nconst playerStateManager = new StateManager<IPlayerState>({\n  playerHealth: 100,\n  gameScore: 0,\n});\n\n// Create another StateManager with ICustomState for testing\nconst customStateManager = new StateManager<ICustomState>({\n  someValue: 'Hello',\n  anotherValue: 42,\n});\n\ndescribe('StateManager', () => {\n  describe('getState', () => {\n    it('should return the current state for PlayerState', () => {\n      const currentState = playerStateManager.getState();\n      expect(currentState).toEqual({\n        playerHealth: 100,\n        gameScore: 0,\n      });\n    });\n\n    it('should return the current state for CustomState', () => {\n      const currentState = customStateManager.getState();\n      expect(currentState).toEqual({\n        someValue: 'Hello',\n        anotherValue: 42,\n      });\n    });\n  });\n\n  describe('updateState', () => {\n    it('should update the state for PlayerState', () => {\n      playerStateManager.updateState({ gameScore: 50, playerHealth: 80 });\n      const currentState = playerStateManager.getState();\n      expect(currentState).toEqual({\n        playerHealth: 80,\n        gameScore: 50,\n      });\n    });\n\n    it('should update the state for CustomState', () => {\n      customStateManager.updateState({ someValue: 'World', anotherValue: 99 });\n      const currentState = customStateManager.getState();\n      expect(currentState).toEqual({\n        someValue: 'World',\n        anotherValue: 99,\n      });\n    });\n  });\n});\n```",
+          "dateTime": "2023-11-18T17:26:20.306Z"
+        },
+        {
+          "indexTitle": "Usage Example",
+          "question": "Usage Example",
+          "answer": "\n```typescript\nexport default interface IPlayerState {\n  playerHealth: number;\n  gameScore: number;\n}\n\nexport default interface ICustomState {\n  someValue: string;\n  anotherValue: number;\n}\n\n// Create a StateManager instance with IPlayerState\nconst playerStateManager = new StateManager<IPlayerState>({\n  playerHealth: 100,\n  gameScore: 0,\n});\n\n// Get the current state\nconst currentPlayerState = playerStateManager.getState();\nconsole.log(currentPlayerState);\n\n// Update the state\nplayerStateManager.updateState({ gameScore: 50, playerHealth: 80 });\nconsole.log(playerStateManager.getState());\n\n// Create another StateManager with ICustomState\nconst customStateManager = new StateManager<ICustomState>({\n  someValue: 'Hello',\n  anotherValue: 42,\n});\n\n// Get the current custom state\nconst currentCustomState = customStateManager.getState();\nconsole.log(currentCustomState);\n\n// Update the custom state\ncustomStateManager.updateState({ someValue: 'World', anotherValue: 99 });\nconsole.log(customStateManager.getState());\n```",
+          "dateTime": "2023-11-18T18:03:46.179Z"
         }
       ]
     }
