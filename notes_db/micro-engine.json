@@ -440,6 +440,41 @@
           "dateTime": "2023-11-18T18:03:46.179Z"
         }
       ]
+    },
+    {
+      "title": "Resource Manager",
+      "chats": [
+        {
+          "indexTitle": "Assumptions",
+          "question": "Assumptions",
+          "answer": "1. ",
+          "dateTime": "2023-11-18T18:10:38.141Z"
+        },
+        {
+          "indexTitle": "API",
+          "question": "API",
+          "answer": "```typescript\nexport default interface IResource {\n  key: string;\n  data: any;\n}\n```\n```typescript\nexport default interface IResourceManager {\n  loadResource(key: string, resource: any): Promise<void>;\n  unloadResource(key: string): void;\n  getResource(key: string): any | undefined;\n}\n```",
+          "dateTime": "2023-11-18T18:12:27.043Z"
+        },
+        {
+          "indexTitle": "ResourceManager",
+          "question": "ResourceManager",
+          "answer": "```typescript\nexport default class ResourceManager implements IResourceManager {\n  private loadedResources: { [key: string]: any } = {};\n\n  async loadResource(key: string, resource: any): Promise<void> {\n    return new Promise((resolve) => {\n      this.loadedResources[key] = resource;\n      resolve();\n    });\n  }\n\n  unloadResource(key: string): void {\n    if (this.loadedResources[key]) {\n      delete this.loadedResources[key];\n    }\n  }\n\n  getResource(key: string): any | undefined {\n    return this.loadedResources[key];\n  }\n}\n```",
+          "dateTime": "2023-11-18T18:13:22.718Z"
+        },
+        {
+          "indexTitle": "Tests",
+          "question": "Tests",
+          "answer": "```typescript\n// ResourceManager.test.ts\nimport { ResourceManager } from './ResourceManager';\n\ndescribe('ResourceManager', () => {\n  let resourceManager: ResourceManager;\n\n  beforeEach(() => {\n    resourceManager = new ResourceManager();\n  });\n\n  it('should load and unload resources', async () => {\n    const texture = new Image();\n    texture.src = 'path/to/texture.png';\n\n    // Load resource\n    await resourceManager.loadResource('playerTexture', texture);\n    expect(resourceManager.getResource('playerTexture')).toEqual(texture);\n\n    // Unload resource\n    resourceManager.unloadResource('playerTexture');\n    expect(resourceManager.getResource('playerTexture')).toBeUndefined();\n  });\n});\n```",
+          "dateTime": "2023-11-18T18:15:34.818Z"
+        },
+		{
+          "indexTitle": "Usage Example",
+          "question": "Usage Example",
+          "answer": "```typescript\nconst resourceManager: ResourceLoader = new ResourceManager();\n\n// Load a texture asynchronously\nconst loadTexture = (path: string): Promise<Resource> => {\n  return new Promise((resolve) => {\n    const texture = new Image();\n    texture.onload = () => resolve({ key: 'playerTexture', data: texture });\n    texture.src = path;\n  });\n};\n\n// Usage of asynchronous loading with async/await\nconst main = async () => {\n  const resource: Resource = await loadTexture('path/to/texture.png');\n  await resourceManager.loadResource(resource.key, resource.data);\n\n  // Get the loaded texture\n  const playerTexture = resourceManager.getResource(resource.key);\n  console.log(playerTexture);\n\n  // Unload the texture when it's no longer needed\n  resourceManager.unloadResource(resource.key);\n};\n\nmain();\n```",
+          "dateTime": "2023-11-18T18:17:30.802Z"
+        }
+      ]
     }
   ]
 }
