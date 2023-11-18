@@ -337,41 +337,7 @@
         }
       ]
     },
-    {
-      "title": "Examples",
-      "chats": [
-        {
-          "indexTitle": "Object.assign",
-          "question": "Object.assign",
-          "answer": "```typescript\nclass Point {\n  constructor(public x: number = 0, public y: number = 0) {\n    Object.assign(this, { x: this.validateX(x), y: this.validateY(y) });\n  }\n\n  private validateX(value: number): number {\n    // Some validation logic for the 'x' property\n    return Math.max(value, 0);\n  }\n\n  private validateY(value: number): number {\n    // Some validation logic for the 'y' property\n    return Math.max(value, 0);\n  }\n}\n\n// Usage\nconst point = new Point(-5, 10);\nconsole.log(point); // Output: Point { x: 0, y: 10 }\n```",
-          "dateTime": "2023-11-16T20:54:48.453Z"
-        },
-        {
-          "indexTitle": "Basic Entity-Component System",
-          "question": "Basic Entity-Component System",
-          "answer": "```typescript\nclass Component {\n    update() {\n        // Implement component update logic\n    }\n\n    render() {\n        // Implement component render logic\n    }\n}\n\nclass Entity {\n    private components: Component[] = [];\n\n    addComponent(component: Component) {\n        this.components.push(component);\n    }\n\n    update() {\n        for (const component of this.components) {\n            component.update();\n        }\n    }\n\n    render() {\n        for (const component of this.components) {\n            component.render();\n        }\n    }\n}\n\n// Example usage:\nclass RenderComponent extends Component {\n    render() {\n        console.log(\"Rendering...\");\n    }\n}\n\nclass MovementComponent extends Component {\n    update() {\n        console.log(\"Updating position...\");\n    }\n}\n\nconst playerEntity = new Entity();\nplayerEntity.addComponent(new RenderComponent());\nplayerEntity.addComponent(new MovementComponent());\n\n// Update and render the entity\nplayerEntity.update();\nplayerEntity.render();\n```",
-          "dateTime": "2023-11-16T17:15:07.916Z"
-        },
-        {
-          "indexTitle": "Reasons for Immutable ",
-          "question": "What is advantage of using immutable vector2 instead of muttable in ts ?",
-          "answer": "Using an immutable Vector2 instead of a mutable one in TypeScript offers several advantages:\n\n1. **Predictable State:**\n   - Immutable objects cannot be changed once they are created. This helps avoid unexpected changes to the state of your Vector2 instance, leading to more predictable behavior in your code.\n\n2. **Concurrency:**\n   - Immutable data structures are inherently thread-safe. If you're working in a concurrent or parallel environment, using immutable Vector2 instances can help prevent race conditions and make it easier to reason about your code.\n\n3. **Debugging:**\n   - Immutable objects make it easier to debug code. Since their state doesn't change, you can trust that the values remain constant throughout their lifecycle, simplifying the debugging process.\n\n4. **Functional Programming:**\n   - Immutability aligns well with functional programming principles. It encourages the use of pure functions, which don't have side effects, leading to more maintainable and testable code.\n\n5. **Undo/Redo Functionality:**\n   - Immutable objects are well-suited for implementing undo/redo functionality. You can keep track of the state changes by storing previous versions of the Vector2 without worrying about them being modified elsewhere in your code.\n\nHere's a simple example in TypeScript using an immutable Vector2 class:\n\n```typescript\nclass Vector2 {\n  constructor(public readonly x: number, public readonly y: number) {}\n\n  add(other: Vector2): Vector2 {\n    return new Vector2(this.x + other.x, this.y + other.y);\n  }\n\n  // Other methods...\n\n  static zero(): Vector2 {\n    return new Vector2(0, 0);\n  }\n}\n\n// Example usage:\nconst vectorA = new Vector2(1, 2);\nconst vectorB = new Vector2(3, 4);\n\nconst sum = vectorA.add(vectorB);\nconsole.log(sum); // Output: Vector2 { x: 4, y: 6 }\n\nconst zeroVector = Vector2.zero();\nconsole.log(zeroVector); // Output: Vector2 { x: 0, y: 0 }\n```\n\nIn this example, the `Vector2` class is immutable, and methods like `add` return a new instance without modifying the existing ones.",
-          "dateTime": "2023-11-16T22:12:59.941Z"
-        }
-      ]
-    },
-    {
-      "title": "Highlight",
-      "chats": [
-        {
-          "indexTitle": "PIXI.js",
-          "question": "Pixi is a renderer only much more advanced right ?",
-          "answer": "Yes, that's correct. PIXI.js is a powerful 2D rendering engine for the web that provides a wide range of features for creating rich and interactive graphics. It is more than just a renderer; it's a comprehensive library that includes rendering capabilities along with features like display objects, animation, interaction handling, and more.\n\nSome key features of PIXI.js include:\n\n1. **Display Objects:** PIXI allows you to work with a hierarchy of display objects, such as sprites, containers, text, and graphics.\n\n2. **WebGL and Canvas Rendering:** PIXI.js can utilize WebGL for hardware-accelerated rendering when available, providing better performance. It also has a fallback to the 2D canvas for compatibility with a wider range of devices.\n\n3. **Filters and Effects:** PIXI supports a variety of filters and effects that can be applied to display objects, allowing for advanced visual enhancements.\n\n4. **Interactivity:** PIXI provides built-in support for handling user interactions, making it easy to create interactive applications and games.\n\n5. **Asset Loader:** PIXI includes a flexible asset loader for handling the loading of images, spritesheets, and other resources.\n\n6. **Animation:** PIXI supports animations and tweening, making it easier to create dynamic and fluid movement in your applications.\n\n7. **Compatibility:** PIXI is designed to work across different platforms and devices, providing a consistent experience.\n\nIn summary, PIXI.js is a feature-rich 2D rendering engine that goes beyond a simple renderer, offering a robust set of tools and capabilities for building interactive and visually appealing web applications and games.",
-          "dateTime": "2023-11-17T19:06:51.764Z"
-        }
-      ]
-    },
-    {
+	{
       "title": "Event System",
       "chats": [
         {
@@ -683,6 +649,40 @@
           "question": "Usage Example",
           "answer": "```typescript\nconst rng: IRandomNumberGenerator = new RandomNumberGenerator();\n\n// Generate random integer\nconst randomInt = rng.getRandomInt(1, 10);\nconsole.log(`Random Integer: ${randomInt}`);\n\n// Generate random float\nconst randomFloat = rng.getRandomFloat(0.5, 1.5);\nconsole.log(`Random Float: ${randomFloat}`);\n\n// Generate random boolean\nconst randomBoolean = rng.getRandomBoolean();\nconsole.log(`Random Boolean: ${randomBoolean}`);\n\n// Pick a random element from an array\nconst fruits = ['Apple', 'Banana', 'Orange', 'Grapes'];\nconst randomFruit = rng.getRandomArrayElement(fruits);\nconsole.log(`Random Fruit: ${randomFruit}`);\n```",
           "dateTime": "2023-11-18T23:32:36.109Z"
+        }
+      ]
+    },
+    {
+      "title": "Examples",
+      "chats": [
+        {
+          "indexTitle": "Object.assign",
+          "question": "Object.assign",
+          "answer": "```typescript\nclass Point {\n  constructor(public x: number = 0, public y: number = 0) {\n    Object.assign(this, { x: this.validateX(x), y: this.validateY(y) });\n  }\n\n  private validateX(value: number): number {\n    // Some validation logic for the 'x' property\n    return Math.max(value, 0);\n  }\n\n  private validateY(value: number): number {\n    // Some validation logic for the 'y' property\n    return Math.max(value, 0);\n  }\n}\n\n// Usage\nconst point = new Point(-5, 10);\nconsole.log(point); // Output: Point { x: 0, y: 10 }\n```",
+          "dateTime": "2023-11-16T20:54:48.453Z"
+        },
+        {
+          "indexTitle": "Basic Entity-Component System",
+          "question": "Basic Entity-Component System",
+          "answer": "```typescript\nclass Component {\n    update() {\n        // Implement component update logic\n    }\n\n    render() {\n        // Implement component render logic\n    }\n}\n\nclass Entity {\n    private components: Component[] = [];\n\n    addComponent(component: Component) {\n        this.components.push(component);\n    }\n\n    update() {\n        for (const component of this.components) {\n            component.update();\n        }\n    }\n\n    render() {\n        for (const component of this.components) {\n            component.render();\n        }\n    }\n}\n\n// Example usage:\nclass RenderComponent extends Component {\n    render() {\n        console.log(\"Rendering...\");\n    }\n}\n\nclass MovementComponent extends Component {\n    update() {\n        console.log(\"Updating position...\");\n    }\n}\n\nconst playerEntity = new Entity();\nplayerEntity.addComponent(new RenderComponent());\nplayerEntity.addComponent(new MovementComponent());\n\n// Update and render the entity\nplayerEntity.update();\nplayerEntity.render();\n```",
+          "dateTime": "2023-11-16T17:15:07.916Z"
+        },
+        {
+          "indexTitle": "Reasons for Immutable ",
+          "question": "What is advantage of using immutable vector2 instead of muttable in ts ?",
+          "answer": "Using an immutable Vector2 instead of a mutable one in TypeScript offers several advantages:\n\n1. **Predictable State:**\n   - Immutable objects cannot be changed once they are created. This helps avoid unexpected changes to the state of your Vector2 instance, leading to more predictable behavior in your code.\n\n2. **Concurrency:**\n   - Immutable data structures are inherently thread-safe. If you're working in a concurrent or parallel environment, using immutable Vector2 instances can help prevent race conditions and make it easier to reason about your code.\n\n3. **Debugging:**\n   - Immutable objects make it easier to debug code. Since their state doesn't change, you can trust that the values remain constant throughout their lifecycle, simplifying the debugging process.\n\n4. **Functional Programming:**\n   - Immutability aligns well with functional programming principles. It encourages the use of pure functions, which don't have side effects, leading to more maintainable and testable code.\n\n5. **Undo/Redo Functionality:**\n   - Immutable objects are well-suited for implementing undo/redo functionality. You can keep track of the state changes by storing previous versions of the Vector2 without worrying about them being modified elsewhere in your code.\n\nHere's a simple example in TypeScript using an immutable Vector2 class:\n\n```typescript\nclass Vector2 {\n  constructor(public readonly x: number, public readonly y: number) {}\n\n  add(other: Vector2): Vector2 {\n    return new Vector2(this.x + other.x, this.y + other.y);\n  }\n\n  // Other methods...\n\n  static zero(): Vector2 {\n    return new Vector2(0, 0);\n  }\n}\n\n// Example usage:\nconst vectorA = new Vector2(1, 2);\nconst vectorB = new Vector2(3, 4);\n\nconst sum = vectorA.add(vectorB);\nconsole.log(sum); // Output: Vector2 { x: 4, y: 6 }\n\nconst zeroVector = Vector2.zero();\nconsole.log(zeroVector); // Output: Vector2 { x: 0, y: 0 }\n```\n\nIn this example, the `Vector2` class is immutable, and methods like `add` return a new instance without modifying the existing ones.",
+          "dateTime": "2023-11-16T22:12:59.941Z"
+        }
+      ]
+    },
+    {
+      "title": "Highlight",
+      "chats": [
+        {
+          "indexTitle": "PIXI.js",
+          "question": "Pixi is a renderer only much more advanced right ?",
+          "answer": "Yes, that's correct. PIXI.js is a powerful 2D rendering engine for the web that provides a wide range of features for creating rich and interactive graphics. It is more than just a renderer; it's a comprehensive library that includes rendering capabilities along with features like display objects, animation, interaction handling, and more.\n\nSome key features of PIXI.js include:\n\n1. **Display Objects:** PIXI allows you to work with a hierarchy of display objects, such as sprites, containers, text, and graphics.\n\n2. **WebGL and Canvas Rendering:** PIXI.js can utilize WebGL for hardware-accelerated rendering when available, providing better performance. It also has a fallback to the 2D canvas for compatibility with a wider range of devices.\n\n3. **Filters and Effects:** PIXI supports a variety of filters and effects that can be applied to display objects, allowing for advanced visual enhancements.\n\n4. **Interactivity:** PIXI provides built-in support for handling user interactions, making it easy to create interactive applications and games.\n\n5. **Asset Loader:** PIXI includes a flexible asset loader for handling the loading of images, spritesheets, and other resources.\n\n6. **Animation:** PIXI supports animations and tweening, making it easier to create dynamic and fluid movement in your applications.\n\n7. **Compatibility:** PIXI is designed to work across different platforms and devices, providing a consistent experience.\n\nIn summary, PIXI.js is a feature-rich 2D rendering engine that goes beyond a simple renderer, offering a robust set of tools and capabilities for building interactive and visually appealing web applications and games.",
+          "dateTime": "2023-11-17T19:06:51.764Z"
         }
       ]
     }
