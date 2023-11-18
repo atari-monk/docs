@@ -650,6 +650,41 @@
           "dateTime": "2023-11-18T22:55:24.726Z"
         }
       ]
+    },
+    {
+      "title": "Random Number Generator",
+      "chats": [
+        {
+          "indexTitle": "Assumptions",
+          "question": "Assumptions",
+          "answer": "1. ",
+          "dateTime": "2023-11-18T23:27:46.192Z"
+        },
+        {
+          "indexTitle": "API",
+          "question": "API",
+          "answer": "```typescript\nexport default interface IRandomNumberGenerator {\n  getRandomInt(min: number, max: number): number;\n  getRandomFloat(min: number, max: number): number;\n  getRandomBoolean(): boolean;\n  getRandomArrayElement<T>(array: T[]): T;\n}\n```",
+          "dateTime": "2023-11-18T23:28:45.389Z"
+        },
+        {
+          "indexTitle": "RandomNumberGenerator",
+          "question": "RandomNumberGenerator",
+          "answer": "```typescript\nexport default class RandomNumberGenerator implements IRandomNumberGenerator {\n  getRandomInt(min: number, max: number): number {\n    return Math.floor(Math.random() * (max - min + 1)) + min;\n  }\n\n  getRandomFloat(min: number, max: number): number {\n    return Math.random() * (max - min) + min;\n  }\n\n  getRandomBoolean(): boolean {\n    return Math.random() < 0.5; // 50% chance of true or false\n  }\n\n  getRandomArrayElement<T>(array: T[]): T {\n    const randomIndex = this.getRandomInt(0, array.length - 1);\n    return array[randomIndex];\n  }\n}\n```",
+          "dateTime": "2023-11-18T23:29:39.039Z"
+        },
+        {
+          "indexTitle": "Tests",
+          "question": "Tests",
+          "answer": "```typescript\n//RandomNumberGenerator.test.ts\n\nimport { IRandomNumberGenerator } from 'engine_api';\n\ndescribe('RandomNumberGenerator', () => {\n  let rng: IRandomNumberGenerator ;\n\n  beforeEach(() => {\n    rng = new RandomNumberGenerator();\n  });\n\n  test('getRandomInt should generate a random integer within the specified range', () => {\n    const result = rng.getRandomInt(1, 10);\n    expect(result).toBeGreaterThanOrEqual(1);\n    expect(result).toBeLessThanOrEqual(10);\n    expect(result % 1).toBe(0); // Ensure it's an integer\n  });\n\n  test('getRandomFloat should generate a random float within the specified range', () => {\n    const result = rng.getRandomFloat(0.5, 1.5);\n    expect(result).toBeGreaterThanOrEqual(0.5);\n    expect(result).toBeLessThanOrEqual(1.5);\n  });\n\n  test('getRandomBoolean should generate a random boolean value', () => {\n    const result = rng.getRandomBoolean();\n    expect(typeof result).toBe('boolean');\n  });\n\n  test('getRandomArrayElement should pick a random element from the array', () => {\n    const fruits = ['Apple', 'Banana', 'Orange', 'Grapes'];\n    const result = rng.getRandomArrayElement(fruits);\n    expect(fruits).toContain(result);\n  });\n});\n```",
+          "dateTime": "2023-11-18T23:31:28.375Z"
+        },
+        {
+          "indexTitle": "Usage Example",
+          "question": "Usage Example",
+          "answer": "```typescript\nconst rng: IRandomNumberGenerator = new RandomNumberGenerator();\n\n// Generate random integer\nconst randomInt = rng.getRandomInt(1, 10);\nconsole.log(`Random Integer: ${randomInt}`);\n\n// Generate random float\nconst randomFloat = rng.getRandomFloat(0.5, 1.5);\nconsole.log(`Random Float: ${randomFloat}`);\n\n// Generate random boolean\nconst randomBoolean = rng.getRandomBoolean();\nconsole.log(`Random Boolean: ${randomBoolean}`);\n\n// Pick a random element from an array\nconst fruits = ['Apple', 'Banana', 'Orange', 'Grapes'];\nconst randomFruit = rng.getRandomArrayElement(fruits);\nconsole.log(`Random Fruit: ${randomFruit}`);\n```",
+          "dateTime": "2023-11-18T23:32:36.109Z"
+        }
+      ]
     }
   ]
 }
