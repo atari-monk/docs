@@ -337,7 +337,7 @@
         }
       ]
     },
-	{
+    {
       "title": "Event System",
       "chats": [
         {
@@ -683,6 +683,41 @@
           "question": "Pixi is a renderer only much more advanced right ?",
           "answer": "Yes, that's correct. PIXI.js is a powerful 2D rendering engine for the web that provides a wide range of features for creating rich and interactive graphics. It is more than just a renderer; it's a comprehensive library that includes rendering capabilities along with features like display objects, animation, interaction handling, and more.\n\nSome key features of PIXI.js include:\n\n1. **Display Objects:** PIXI allows you to work with a hierarchy of display objects, such as sprites, containers, text, and graphics.\n\n2. **WebGL and Canvas Rendering:** PIXI.js can utilize WebGL for hardware-accelerated rendering when available, providing better performance. It also has a fallback to the 2D canvas for compatibility with a wider range of devices.\n\n3. **Filters and Effects:** PIXI supports a variety of filters and effects that can be applied to display objects, allowing for advanced visual enhancements.\n\n4. **Interactivity:** PIXI provides built-in support for handling user interactions, making it easy to create interactive applications and games.\n\n5. **Asset Loader:** PIXI includes a flexible asset loader for handling the loading of images, spritesheets, and other resources.\n\n6. **Animation:** PIXI supports animations and tweening, making it easier to create dynamic and fluid movement in your applications.\n\n7. **Compatibility:** PIXI is designed to work across different platforms and devices, providing a consistent experience.\n\nIn summary, PIXI.js is a feature-rich 2D rendering engine that goes beyond a simple renderer, offering a robust set of tools and capabilities for building interactive and visually appealing web applications and games.",
           "dateTime": "2023-11-17T19:06:51.764Z"
+        }
+      ]
+    },
+    {
+      "title": "Game Manager",
+      "chats": [
+        {
+          "indexTitle": "Assumptions",
+          "question": "Assumptions",
+          "answer": "1. ",
+          "dateTime": "2023-11-19T16:29:14.288Z"
+        },
+        {
+          "indexTitle": "API",
+          "question": "API",
+          "answer": "```typescript\nexport default interface IConfigOptions {\n  [key: string]: boolean | string | number;\n}\n```\n```typescript\nexport default interface IConfigurationManager<T extends IConfigOptions> {\n  getConfig(): T;\n  updateConfig(newConfig: Partial<T>): void;\n}\n```",
+          "dateTime": "2023-11-19T16:31:01.426Z"
+        },
+        {
+          "indexTitle": "GameManager",
+          "question": "GameManager ",
+          "answer": "```typescript\nexport default class GameManager<T extends IConfigOptions> implements IConfigurationManager<T> {\n  private config: T;\n\n  constructor(initialConfig: T) {\n    this.config = { ...initialConfig };\n  }\n\n  getConfig(): T {\n    return { ...this.config };\n  }\n\n  updateConfig(newConfig: Partial<T>): void {\n    this.config = { ...this.config, ...newConfig };\n  }\n}\n```",
+          "dateTime": "2023-11-19T16:39:46.968Z"
+        },
+        {
+          "indexTitle": "Tests",
+          "question": "Tests",
+          "answer": "```typescript\n// ConfigurationManager.test.ts\nimport { GameManager } from './ConfigurationManager';\n\nexport default interface IGameConfig {\n  soundEnabled: boolean;\n  difficulty: string;\n}\n\ndescribe('GameManager', () => {\n  let gameConfigManager: GameManager<IGameConfig>;\n\n  beforeEach(() => {\n    gameConfigManager = new GameManager({\n      soundEnabled: true,\n      difficulty: 'medium',\n    });\n  });\n\n  test('getConfig returns the current configuration', () => {\n    const config = gameConfigManager.getConfig();\n    expect(config).toEqual({\n      soundEnabled: true,\n      difficulty: 'medium',\n    });\n  });\n\n  test('updateConfig updates the configuration', () => {\n    gameConfigManager.updateConfig({ soundEnabled: false, difficulty: 'hard' });\n    const updatedConfig = gameConfigManager.getConfig();\n    expect(updatedConfig).toEqual({\n      soundEnabled: false,\n      difficulty: 'hard',\n    });\n  });\n});\n```",
+          "dateTime": "2023-11-19T16:42:32.986Z"
+        },
+        {
+          "indexTitle": "Usage Example",
+          "question": "Usage Example",
+          "answer": "```typescript\nexport default interface IGameConfig {\n  soundEnabled: boolean;\n  difficulty: string;\n}\n\nconst gameConfigManager = new GameManager<IGameConfig>({\n  soundEnabled: true,\n  difficulty: 'medium',\n});\n\n// Get the current game configuration\nconst currentGameConfig = gameConfigManager.getConfig();\nconsole.log(currentGameConfig);\n\n// Update game configuration\ngameConfigManager.updateConfig({ soundEnabled: false, difficulty: 'hard' });\nconsole.log(gameConfigManager.getConfig());\n```",
+          "dateTime": "2023-11-19T16:45:09.967Z"
         }
       ]
     }
