@@ -860,6 +860,41 @@
           "dateTime": "2023-11-19T19:07:59.164Z"
         }
       ]
+    },
+    {
+      "title": "Camera",
+      "chats": [
+        {
+          "indexTitle": "Assumptions",
+          "question": "Assumptions",
+          "answer": "1. ",
+          "dateTime": "2023-11-19T19:27:00.489Z"
+        },
+        {
+          "indexTitle": "API",
+          "question": "API",
+          "answer": "```typescript\nexport default interface ICamera {\n  setPosition(x: number, y: number): void;\n  translate(context: CanvasRenderingContext2D): void;\n}\n```",
+          "dateTime": "2023-11-19T19:28:13.287Z"
+        },
+        {
+          "indexTitle": "Camera ",
+          "question": "Camera ",
+          "answer": "```typescript\nexport default class Camera implements ICamera {\n  private position: IVector2 = new Vector2(0, 0);\n\n  setPosition(x: number, y: number): void {\n    this.position = new Vector2(x, y);\n  }\n\n  applyTransform(context: CanvasRenderingContext2D): void {\n    context.save();\n    const { x, y } = this.position;\n    context.translate(-x, -y);\n    context.restore();\n  }\n}\n```",
+          "dateTime": "2023-11-19T19:32:31.061Z"
+        },
+        {
+          "indexTitle": "Tests",
+          "question": "Tests",
+          "answer": "```typescript\n//Camera.test.ts\n\nimport Camera from './Camera';\nimport { IVector2 } from './YourVector2Implementation'; // Make sure to replace with the actual path\n\ndescribe('Camera', () => {\n  let camera: Camera;\n\n  beforeEach(() => {\n    camera = new Camera();\n  });\n\n  test('should set position correctly', () => {\n    const x = 10;\n    const y = 20;\n\n    camera.setPosition(x, y);\n\n    // Check if the position is set correctly\n    expect(camera['position']).toMatchObject({ x, y });\n  });\n\n  test('should apply transform correctly', () => {\n    const mockContext: any = {\n      save: jest.fn(),\n      translate: jest.fn(),\n      restore: jest.fn(),\n    };\n\n    camera.applyTransform(mockContext);\n\n    // Check if the save, translate, and restore functions are called\n    expect(mockContext.save).toHaveBeenCalled();\n    expect(mockContext.translate).toHaveBeenCalledWith(-camera['position'].x, -camera['position'].y);\n    expect(mockContext.restore).toHaveBeenCalled();\n  });\n\n  // Add more tests as needed\n\n});\n```",
+          "dateTime": "2023-11-19T19:35:58.288Z"
+        },
+        {
+          "indexTitle": "Usage Example",
+          "question": "Usage Example",
+          "answer": "```typescript\nclass SimpleGame implements IGame {\n  private camera: Camera;\n\n  constructor() {\n    this.camera = new Camera();\n    this.init();\n  }\n\n  init(): void {\n    // Set up your game here (e.g., initialize variables, load assets)\n  }\n\n  update(): void {\n    // Update game logic here\n    // Example: move the player, handle input, etc.\n  }\n\n  render(context: CanvasRenderingContext2D): void {\n    // Render game objects here\n    // Example: draw the player, enemies, background, etc.\n  }\n\n  gameLoop(): void {\n    const canvas = document.getElementById('gameCanvas') as HTMLCanvasElement;\n    const context = canvas.getContext('2d')!;\n\n    // Clear canvas\n    context.clearRect(0, 0, canvas.width, canvas.height);\n\n    // Update game logic\n    this.update();\n\n    // Set the camera position (e.g., follow a player)\n    const playerPosition: IVector2 = new Vector2(50, 50);\n    this.camera.setPosition(playerPosition.x, playerPosition.y);\n\n    // Apply camera transformation\n    this.camera.translate(context);\n\n    // Render game objects\n    this.render(context);\n\n    // Continue the game loop\n    requestAnimationFrame(() => this.gameLoop());\n  }\n\n  startGame(): void {\n    // Start the game loop\n    this.gameLoop();\n  }\n}\n\n// Example usage:\nconst simpleGame: IGame = new SimpleGame();\nsimpleGame.startGame();\n```",
+          "dateTime": "2023-11-19T19:44:31.931Z"
+        }
+      ]
     }
   ]
 }
