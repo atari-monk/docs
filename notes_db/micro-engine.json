@@ -790,6 +790,41 @@
           "dateTime": "2023-11-19T18:19:04.258Z"
         }
       ]
+    },
+    {
+      "title": "Path Finding",
+      "chats": [
+        {
+          "indexTitle": "Assumptions",
+          "question": "Assumptions",
+          "answer": "1. ",
+          "dateTime": "2023-11-19T18:28:56.620Z"
+        },
+        {
+          "indexTitle": "API",
+          "question": "API",
+          "answer": "```typescript\nexport default interface IGridNode {\n  x: number;\n  y: number;\n  walkable: boolean;\n  parent?: GridNode;\n}\n```\n```typescript\nexport default interface IPathfindingResult {\n  success: boolean;\n  path: GridNode[] | null;\n}\n```\n```typescript\nexport default interface IPathfinding {\n  findPath(start: GridNode, end: GridNode): PathfindingResult;\n}\n```",
+          "dateTime": "2023-11-19T18:39:20.775Z"
+        },
+        {
+          "indexTitle": "Pathfinding",
+          "question": "Pathfinding",
+          "answer": "```typescript\nexport default class Grid {\n  private grid: GridNode[][];\n\n  constructor(grid: GridNode[][]) {\n    this.grid = grid;\n  }\n\n  getNeighbors(node: GridNode): GridNode[] {\n    const neighbors: GridNode[] = [];\n\n    // Implement logic to get valid neighbors here\n    // For example, add neighboring nodes to the left, right, top, and bottom\n\n    return neighbors;\n  }\n}\n```\n```typescript\nexport default class Pathfinding implements IPathfinding {\n  private grid: Grid;\n\n  constructor(grid: Grid) {\n    this.grid = grid;\n  }\n\n  findPath(start: GridNode, end: GridNode): PathfindingResult {\n    const openSet: GridNode[] = [start];\n    const closedSet: GridNode[] = [];\n\n    while (openSet.length > 0) {\n      const currentNode = openSet[0];\n      openSet.splice(0, 1);\n      closedSet.push(currentNode);\n\n      if (currentNode === end) {\n        return { success: true, path: this.reconstructPath(start, end) };\n      }\n\n      const neighbors = this.grid.getNeighbors(currentNode);\n\n      for (const neighbor of neighbors) {\n        if (closedSet.includes(neighbor) || !neighbor.walkable) {\n          continue;\n        }\n\n        openSet.push(neighbor);\n      }\n    }\n\n    return { success: false, path: null };\n  }\n\n  private reconstructPath(start: GridNode, end: GridNode): GridNode[] {\n    const path: GridNode[] = [];\n    let currentNode = end;\n\n    while (currentNode !== start) {\n      path.unshift(currentNode);\n      currentNode = currentNode.parent!;\n    }\n\n    path.unshift(start);\n    return path;\n  }\n}\n```",
+          "dateTime": "2023-11-19T18:41:38.535Z"
+        },
+        {
+          "indexTitle": "Tests",
+          "question": "Tests",
+          "answer": "```typescript\n// grid.test.ts\n\nimport { Grid, GridNode } from './grid'; // Adjust the import path based on your project structure\n\ndescribe('Grid', () => {\n  test('getNeighbors should return valid neighbors', () => {\n    const grid: GridNode[][] = [\n      [{ x: 0, y: 0, walkable: true }, { x: 0, y: 1, walkable: true }],\n      [{ x: 1, y: 0, walkable: true }, { x: 1, y: 1, walkable: true }],\n    ];\n\n    const gridInstance = new Grid(grid);\n    const neighbors = gridInstance.getNeighbors(grid[0][0]);\n\n    expect(neighbors).toEqual(expect.any(Array));\n    expect(neighbors).toHaveLength(2);\n    expect(neighbors).toContainEqual({ x: 0, y: 1, walkable: true });\n    expect(neighbors).toContainEqual({ x: 1, y: 0, walkable: true });\n  });\n});\n\n// pathfinding.test.ts\n\nimport { Pathfinding, Grid, GridNode } from './pathfinding'; // Adjust the import path based on your project structure\n\ndescribe('Pathfinding', () => {\n  test('findPath should return a valid path', () => {\n    const grid: GridNode[][] = [\n      [{ x: 0, y: 0, walkable: true }, { x: 0, y: 1, walkable: true }],\n      [{ x: 1, y: 0, walkable: true }, { x: 1, y: 1, walkable: true }],\n    ];\n\n    const gridInstance = new Grid(grid);\n    const pathfinding = new Pathfinding(gridInstance);\n\n    const startNode: GridNode = { x: 0, y: 0, walkable: true };\n    const endNode: GridNode = { x: 1, y: 1, walkable: true };\n\n    const result = pathfinding.findPath(startNode, endNode);\n\n    expect(result.success).toBe(true);\n    expect(result.path).toEqual(expect.any(Array));\n    expect(result.path).toHaveLength(2);\n    expect(result.path).toContainEqual({ x: 0, y: 0, walkable: true });\n    expect(result.path).toContainEqual({ x: 1, y: 1, walkable: true });\n  });\n\n  test('findPath should return null if no path is found', () => {\n    const grid: GridNode[][] = [\n      [{ x: 0, y: 0, walkable: true }, { x: 0, y: 1, walkable: true }],\n      [{ x: 1, y: 0, walkable: true }, { x: 1, y: 1, walkable: true }],\n    ];\n\n    const gridInstance = new Grid(grid);\n    const pathfinding = new Pathfinding(gridInstance);\n\n    const startNode: GridNode = { x: 0, y: 0, walkable: true };\n    const endNode: GridNode = { x: 2, y: 2, walkable: true }; // Assuming this is an invalid endNode\n\n    const result = pathfinding.findPath(startNode, endNode);\n\n    expect(result.success).toBe(false);\n    expect(result.path).toBe(null);\n  });\n});\n```",
+          "dateTime": "2023-11-19T18:42:51.668Z"
+        },
+        {
+          "indexTitle": "Usage Example",
+          "question": "Usage Example",
+          "answer": "```typescript\nconst grid = new Grid(/* Initialize your grid here */);\nconst pathfinding: PathfindingInterface = new Pathfinding(grid);\n\nconst startNode: GridNode = { x: 0, y: 0, walkable: true };\nconst endNode: GridNode = { x: 5, y: 5, walkable: true };\n\nconst result = pathfinding.findPath(startNode, endNode);\nconsole.log(result.path);\n```",
+          "dateTime": "2023-11-19T18:43:37.947Z"
+        }
+      ]
     }
   ]
 }
