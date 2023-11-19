@@ -755,6 +755,41 @@
           "dateTime": "2023-11-19T17:08:09.713Z"
         }
       ]
+    },
+    {
+      "title": "Log Manager",
+      "chats": [
+        {
+          "indexTitle": "Assumptions",
+          "question": "Assumptions",
+          "answer": "1. ",
+          "dateTime": "2023-11-19T18:14:22.074Z"
+        },
+        {
+          "indexTitle": "API",
+          "question": "API",
+          "answer": "```typescript\nexport default enum LogLevel {\n  INFO,\n  WARNING,\n  ERROR\n}\n```\n```typescript\nexport default interface ILogger {\n  log(message: string): void;\n  warn(message: string): void;\n  error(message: string): void;\n}\n```",
+          "dateTime": "2023-11-19T18:15:35.226Z"
+        },
+        {
+          "indexTitle": "LogManager",
+          "question": "LogManager ",
+          "answer": "```typescript\nexport default class LogManager implements ILogger {\n  private logLevel: LogLevel;\n\n  constructor(logLevel: LogLevel = LogLevel.INFO) {\n    this.logLevel = logLevel;\n  }\n\n  setLogLevel(logLevel: LogLevel): void {\n    this.logLevel = logLevel;\n  }\n\n  private shouldLog(level: LogLevel): boolean {\n    return level >= this.logLevel;\n  }\n\n  log(message: string): void {\n    if (this.shouldLog(LogLevel.INFO)) {\n      console.log(`[Game Log] ${message}`);\n    }\n  }\n\n  warn(message: string): void {\n    if (this.shouldLog(LogLevel.WARNING)) {\n      console.warn(`[Game Warning] ${message}`);\n    }\n  }\n\n  error(message: string): void {\n    if (this.shouldLog(LogLevel.ERROR)) {\n      console.error(`[Game Error] ${message}`);\n    }\n  }\n}\n```",
+          "dateTime": "2023-11-19T18:16:42.201Z"
+        },
+        {
+          "indexTitle": "Tests",
+          "question": "Tests",
+          "answer": "```typescript\n//logManager.test.ts\n\nimport { LogManager, LogLevel } from './logManager'; // Make sure to adjust the import path based on your project structure\n\ndescribe('LogManager', () => {\n  let logManager: LogManager;\n\n  beforeEach(() => {\n    logManager = new LogManager();\n  });\n\n  it('logs messages with INFO level', () => {\n    const consoleLogSpy = jest.spyOn(console, 'log');\n    logManager.log('Test Log Message');\n    expect(consoleLogSpy).toHaveBeenCalledWith('[Game Log] Test Log Message');\n  });\n\n  it('does not log messages below the set log level', () => {\n    const consoleLogSpy = jest.spyOn(console, 'log');\n    logManager.setLogLevel(LogLevel.WARNING);\n    logManager.log('Test Log Message');\n    expect(consoleLogSpy).not.toHaveBeenCalled();\n  });\n\n  it('logs warnings with WARNING level', () => {\n    const consoleWarnSpy = jest.spyOn(console, 'warn');\n    logManager.warn('Test Warning Message');\n    expect(consoleWarnSpy).toHaveBeenCalledWith('[Game Warning] Test Warning Message');\n  });\n\n  it('does not log warnings below the set log level', () => {\n    const consoleWarnSpy = jest.spyOn(console, 'warn');\n    logManager.setLogLevel(LogLevel.ERROR);\n    logManager.warn('Test Warning Message');\n    expect(consoleWarnSpy).not.toHaveBeenCalled();\n  });\n\n  it('logs errors with ERROR level', () => {\n    const consoleErrorSpy = jest.spyOn(console, 'error');\n    logManager.error('Test Error Message');\n    expect(consoleErrorSpy).toHaveBeenCalledWith('[Game Error] Test Error Message');\n  });\n\n  it('does not log errors below the set log level', () => {\n    const consoleErrorSpy = jest.spyOn(console, 'error');\n    logManager.setLogLevel(LogLevel.WARNING);\n    logManager.error('Test Error Message');\n    expect(consoleErrorSpy).not.toHaveBeenCalled();\n  });\n});\n```",
+          "dateTime": "2023-11-19T18:18:06.703Z"
+        },
+        {
+          "indexTitle": "Usage Example",
+          "question": "Usage Example",
+          "answer": "```typescript\nconst logManager: Logger = new LogManager();\n\n// Log messages with default log level (INFO)\nlogManager.log('Game started');\nlogManager.warn('Low health detected');\nlogManager.error('Critical error: unable to load assets');\n\n// Set log level to WARNING\n(logManager as LogManager).setLogLevel(LogLevel.WARNING);\n\n// Log messages with log level WARNING and ERROR\nlogManager.log('This message will not be logged');\nlogManager.warn('Another warning');\nlogManager.error('Another error');\n```",
+          "dateTime": "2023-11-19T18:19:04.258Z"
+        }
+      ]
     }
   ]
 }
