@@ -825,6 +825,41 @@
           "dateTime": "2023-11-19T18:43:37.947Z"
         }
       ]
+    },
+    {
+      "title": "Particle System",
+      "chats": [
+        {
+          "indexTitle": "Assumptions",
+          "question": "Assumptions",
+          "answer": "1. ",
+          "dateTime": "2023-11-19T18:48:49.852Z"
+        },
+        {
+          "indexTitle": "API",
+          "question": "API",
+          "answer": "```typescript\nexport default interface IParticle {\n  position: IVector2;\n  velocity: IVector2;\n  size: number;\n  color: string;\n  life: number;\n}\n```\n```typescript\nexport default interface IParticleSystem {\n  createParticle(position: IVector2, velocity: IVector2, size: number, color: string, life: number): void;\n  updateParticles(): void;\n  renderParticles(context: CanvasRenderingContext2D): void;\n}\n```",
+          "dateTime": "2023-11-19T18:52:41.875Z"
+        },
+        {
+          "indexTitle": "ParticleSystem",
+          "question": "ParticleSystem",
+          "answer": "```typescript\nexport default class ParticleSystem implements IParticleSystem {\n  private particles: IParticle[] = [];\n\n  createParticle(position: IVector2, velocity: IVector2, size: number, color: string, life: number): void {\n    const particle: IParticle = {\n      position,\n      velocity,\n      size,\n      color,\n      life,\n    };\n    this.particles.push(particle);\n  }\n\n  updateParticles(): void {\n    for (let i = this.particles.length - 1; i >= 0; i--) {\n      const particle = this.particles[i];\n\n      // Update particle position based on velocity\n      particle.position = particle.position.add(particle.velocity);\n\n      // Reduce particle life\n      particle.life--;\n\n      if (particle.life <= 0) {\n        // Remove dead particles\n        this.particles.splice(i, 1);\n      }\n    }\n  }\n\n  renderParticles(context: CanvasRenderingContext2D): void {\n    for (const particle of this.particles) {\n      // Render each particle\n      context.fillStyle = particle.color;\n      context.beginPath();\n      context.arc(particle.position.x, particle.position.y, particle.size, 0, Math.PI * 2);\n      context.fill();\n    }\n  }\n}\n```",
+          "dateTime": "2023-11-19T18:56:19.239Z"
+        },
+        {
+          "indexTitle": "Tests",
+          "question": "Tests",
+          "answer": "```typescript\n//\nimport { IParticleSystem, IVector2 } from 'engine_api';\nimport { ParticleSystem } from 'engine';\n\ndescribe('ParticleSystem', () => {\n  let particleSystem: IParticleSystem;\n\n  beforeEach(() => {\n    particleSystem = new ParticleSystem();\n  });\n\n  test('creates and updates particles', () => {\n    // Create a particle\n    const position: IVector2 = { x: 0, y: 0 };\n    const velocity: IVector2 = { x: 1, y: 1 };\n    const size = 5;\n    const color = 'rgba(255, 0, 0, 1)';\n    const life = 3;\n\n    particleSystem.createParticle(position, velocity, size, color, life);\n\n    // Update particles\n    particleSystem.updateParticles();\n\n    // There should be one particle after update\n    expect(particleSystem['particles']).toHaveLength(1);\n\n    // After life cycles, the particle should be removed\n    for (let i = 0; i < life; i++) {\n      particleSystem.updateParticles();\n    }\n\n    // There should be no particles after the end of life\n    expect(particleSystem['particles']).toHaveLength(0);\n  });\n\n  test('renders particles', () => {\n    const canvasMock: any = {\n      getContext: jest.fn(() => ({ clearRect: jest.fn(), fill: jest.fn(), beginPath: jest.fn(), arc: jest.fn() })),\n    };\n\n    // Mock the canvas element\n    document.getElementById = jest.fn(() => canvasMock);\n\n    // Create a particle\n    const position: IVector2 = { x: 50, y: 50 };\n    const velocity: IVector2 = { x: 0, y: 0 };\n    const size = 10;\n    const color = 'rgba(0, 0, 255, 1)';\n    const life = 3;\n\n    particleSystem.createParticle(position, velocity, size, color, life);\n\n    // Render particles\n    particleSystem.renderParticles(canvasMock.getContext('2d'));\n\n    // Verify that the rendering methods were called\n    expect(canvasMock.getContext('2d').beginPath).toHaveBeenCalled();\n    expect(canvasMock.getContext('2d').arc).toHaveBeenCalledWith(position.x, position.y, size, 0, Math.PI * 2);\n    expect(canvasMock.getContext('2d').fill).toHaveBeenCalled();\n  });\n});\n```",
+          "dateTime": "2023-11-19T19:04:44.581Z"
+        },
+        {
+          "indexTitle": "Usage Example",
+          "question": "Usage Example",
+          "answer": "```typescript\nconst particleSystem: IParticleSystem = new ParticleSystem();\n\n// Create particles\nfor (let i = 0; i < 50; i++) {\n  particleSystem.createParticle(\n    { x: Math.random() * 500, y: Math.random() * 500 },\n    { x: Math.random() - 0.5, y: Math.random() - 0.5 },\n    Math.random() * 5 + 2,\n    'rgba(255, 165, 0, 0.7)',\n    Math.random() * 30 + 20\n  );\n}\n\n// Update and render particles in your game loop\nfunction gameLoop() {\n  const canvas = document.getElementById('gameCanvas') as HTMLCanvasElement;\n  const context = canvas.getContext('2d')!;\n  \n  particleSystem.updateParticles();\n  \n  // Clear canvas\n  context.clearRect(0, 0, canvas.width, canvas.height);\n  \n  // Render particles\n  particleSystem.renderParticles(context);\n  \n  requestAnimationFrame(gameLoop);\n}\n\n// Start the game loop\ngameLoop();\n```",
+          "dateTime": "2023-11-19T19:07:59.164Z"
+        }
+      ]
     }
   ]
 }
