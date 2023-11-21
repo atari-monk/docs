@@ -201,7 +201,7 @@
           "answer": "```bash\nEntityComponent.test.ts\n```\n```typescript\nimport { Entity, Component } from 'engine'\n\ndescribe('Entity and Component tests', () => {\n  test('Entity can add a component', () => {\n    const entity = new Entity()\n    const component = new Component()\n\n    entity.addComponent(component)\n\n    expect(entity['components']).toContain(component)\n  })\n\n  test('Entity update calls update on all components', () => {\n    const entity = new Entity()\n    const component1 = new Component()\n    const component2 = new Component()\n\n    entity.addComponent(component1)\n    entity.addComponent(component2)\n\n    const updateSpy1 = jest.spyOn(component1, 'update')\n    const updateSpy2 = jest.spyOn(component2, 'update')\n\n    entity.update()\n\n    expect(updateSpy1).toHaveBeenCalled()\n    expect(updateSpy2).toHaveBeenCalled()\n  })\n\n  test('Entity render calls render on all components', () => {\n    const entity = new Entity()\n    const component1 = new Component()\n    const component2 = new Component()\n\n    entity.addComponent(component1)\n    entity.addComponent(component2)\n\n    const renderSpy1 = jest.spyOn(component1, 'render')\n    const renderSpy2 = jest.spyOn(component2, 'render')\n\n    entity.render()\n\n    expect(renderSpy1).toHaveBeenCalled()\n    expect(renderSpy2).toHaveBeenCalled()\n  })\n})\n```",
           "dateTime": "2023-11-17T13:40:02.793Z"
         },
-		{
+        {
           "indexTitle": "Usage",
           "question": "Usage",
           "answer": "```typescript\nclass Component {\n    update() {\n        // Implement component update logic\n    }\n\n    render() {\n        // Implement component render logic\n    }\n}\n\nclass Entity {\n    private components: Component[] = [];\n\n    addComponent(component: Component) {\n        this.components.push(component);\n    }\n\n    update() {\n        for (const component of this.components) {\n            component.update();\n        }\n    }\n\n    render() {\n        for (const component of this.components) {\n            component.render();\n        }\n    }\n}\n\n// Example usage:\nclass RenderComponent extends Component {\n    render() {\n        console.log(\"Rendering...\");\n    }\n}\n\nclass MovementComponent extends Component {\n    update() {\n        console.log(\"Updating position...\");\n    }\n}\n\nconst playerEntity = new Entity();\nplayerEntity.addComponent(new RenderComponent());\nplayerEntity.addComponent(new MovementComponent());\n\n// Update and render the entity\nplayerEntity.update();\nplayerEntity.render();\n```",
@@ -215,20 +215,61 @@
         {
           "indexTitle": "Assumptions",
           "question": "Assumptions",
-          "answer": "1. Not sure if this is correct, to make Entity from such small elements, but maybe each bite send counts",
-          "dateTime": "2023-11-17T13:46:20.974Z"
+          "answer": "1. Components to build larger Entity\n2. ObjectComponent is a data model\n3. RenderComponent handles rendering\n4. MovmentComponent handles input",
+          "dateTime": "2023-11-21T12:21:24.501Z"
         },
         {
-          "indexTitle": "PositionComponent",
-          "question": "PositionComponent",
-          "answer": "```typescript\nimport { IComponent, IVector2 } from 'engine_api'\nimport Vector2 from '../math/Vector2'\n\nexport default class PositionComponent implements IComponent {\n  public position: IVector2\n\n  constructor(initialPosition: IVector2 = Vector2.zero()) {\n    this.position = initialPosition\n  }\n\n  update() {}\n\n  render() {}\n}\n```",
-          "dateTime": "2023-11-17T13:24:25.157Z"
+          "indexTitle": "API",
+          "question": "API",
+          "answer": "```typescript\nimport IVector2 from '../math/IVector2'\n\nexport default interface IObject {\n  position: IVector2\n  size: IVector2\n  color: string\n  speed: IVector2\n}\n```\n```typescript\nimport IObject from './IObject'\n\nexport default interface IObjectConfig extends IObject {}\n```",
+          "dateTime": "2023-11-21T12:28:42.778Z"
+        },
+        {
+          "indexTitle": "ObjectComponent",
+          "question": "ObjectComponent",
+          "answer": "```typescript\nimport { IComponent, IObject, IObjectConfig, IVector2 } from 'engine_api'\n\nexport default class ObjectComponent implements IComponent, IObject {\n  public position: IVector2\n  public size: IVector2\n  public color: string\n  public speed: IVector2\n\n  constructor(objectConfig: IObjectConfig) {\n    this.position = objectConfig.position\n    this.size = objectConfig.size\n    this.color = objectConfig.color\n    this.speed = objectConfig.speed\n  }\n\n  update() {}\n\n  render() {}\n}\n```",
+          "dateTime": "2023-11-21T12:40:14.353Z"
+        },
+        {
+          "indexTitle": "RenderComponent",
+          "question": "RenderComponent",
+          "answer": "```typescript\nimport { IComponent, IObject, IRendererV2 } from 'engine_api'\n\nexport default class RenderComponent implements IComponent {\n  constructor(\n    private readonly _object: IObject,\n    private readonly _renderer: IRendererV2\n  ) {}\n\n  update() {}\n\n  render() {\n    this._renderer.drawRect(\n      this._object.position,\n      this._object.size,\n      this._object.color\n    )\n  }\n}\n```",
+          "dateTime": "2023-11-21T12:44:18.154Z"
+        },
+        {
+          "indexTitle": "MovementComponent",
+          "question": "MovementComponent",
+          "answer": "```typescript\nimport { IComponent, IInputManager, ILogger, IObject } from 'engine_api'\n\nexport default class MovementComponent implements IComponent {\n  constructor(object: IObject, input: IInputManager, logger: ILogger) {\n    input.subscribeInputEvent('KeyDown', (key) => {\n      switch (key) {\n        case 'ArrowLeft':\n          object.position.x -= object.speed.x\n          logger.log('ArrowLeft')\n          break\n        case 'ArrowRight':\n          object.position.x += object.speed.x\n          logger.log('ArrowRight')\n          break\n        case 'ArrowUp':\n          object.position.y -= object.speed.y\n          logger.log('ArrowUp')\n          break\n        case 'ArrowDown':\n          object.position.y += object.speed.y\n          logger.log('ArrowDown')\n          break\n        default:\n          // Handle other keys or ignore\n          break\n      }\n    })\n  }\n\n  update() {}\n\n  render() {}\n}\n```",
+          "dateTime": "2023-11-21T12:54:01.441Z"
         },
         {
           "indexTitle": "Tests",
           "question": "Tests",
-          "answer": "```bash\nPositionComponent.test.ts\n```\n```typescript\nimport { PositionComponent, Vector2 } from 'engine'\n\ndescribe('PositionComponent tests', () => {\n  test('PositionComponent initializes with the correct position', () => {\n    const initialPosition = new Vector2(10, 20)\n    const positionComponent = new PositionComponent(initialPosition)\n\n    expect(positionComponent.position).toEqual(initialPosition)\n  })\n\n  test('PositionComponent can set and get the position', () => {\n    const positionComponent = new PositionComponent()\n    const newPosition = new Vector2(30, 40)\n\n    positionComponent.position = newPosition\n\n    expect(positionComponent.position).toEqual(newPosition)\n  })\n})\n```",
-          "dateTime": "2023-11-17T13:42:56.582Z"
+          "answer": "**todo**\n\n```bash\n```\n```typescript\n```",
+          "dateTime": "2023-11-21T13:04:33.446Z"
+        }
+      ]
+    },
+    {
+      "title": "Entity",
+      "chats": [
+        {
+          "indexTitle": "Assumptions",
+          "question": "Assumptions",
+          "answer": "1. ObjectEntity is a game entity",
+          "dateTime": "2023-11-21T12:36:32.197Z"
+        },
+        {
+          "indexTitle": "API",
+          "question": "API",
+          "answer": "```typescript\nimport IObjectConfig from '../component/IObjectConfig'\nimport IInputManager from '../input_manager/IInputManager'\nimport ILogger from '../log_manager/ILogger'\nimport IRendererV2 from '../renderer/IRendererV2'\n\nexport default interface IObjectEntityConfig {\n  objectConfig: IObjectConfig\n  renderer: IRendererV2\n  input: IInputManager\n  logger: ILogger\n}\n```",
+          "dateTime": "2023-11-21T12:33:01.290Z"
+        },
+        {
+          "indexTitle": "ObjectEntity",
+          "question": "ObjectEntity",
+          "answer": "```typescript\nimport { IObjectEntityConfig } from 'engine_api'\nimport ObjectComponent from '../component/ObjectComponent'\nimport Entity from '../entity_component/Entity'\nimport RenderComponent from '../component/RenderComponent'\nimport MovementComponent from '../component/MovementComponent'\n\nexport default class ObjectEntity extends Entity {\n  constructor(config: IObjectEntityConfig) {\n    super()\n    const object = new ObjectComponent(config.objectConfig)\n    const render = new RenderComponent(object, config.renderer)\n    const move = new MovementComponent(object, config.input, config.logger)\n    this.addComponent(object)\n    this.addComponent(render)\n    this.addComponent(move)\n  }\n}\n```",
+          "dateTime": "2023-11-21T13:08:35.281Z"
         }
       ]
     },
@@ -938,7 +979,7 @@
         }
       ]
     },
-	{
+    {
       "title": "Engine",
       "chats": [
         {
@@ -950,14 +991,14 @@
         {
           "indexTitle": "API",
           "question": "API",
-          "answer": "```typescript\nimport IGameLoop from '../game_loop/IGameLoop'\nimport ILogger from '../log_manager/ILogger'\nimport IRendererV2 from '../renderer/IRendererV2'\n\nexport default interface IEngineConfig {\n  gameLoop: IGameLoop\n  renderer: IRendererV2\n  logger: ILogger\n}\n```\n```typescript\n```\n```typescript\n```",
-          "dateTime": "2023-11-20T21:50:11.644Z"
+          "answer": "```typescript\nimport IEntity from '../entity_component/IEntity'\nimport IGameLoop from '../game_loop/IGameLoop'\nimport IInputManager from '../input_manager/IInputManager'\nimport ILogger from '../log_manager/ILogger'\nimport IRendererV2 from '../renderer/IRendererV2'\n\nexport default interface IEngineConfig {\n  gameLoop: IGameLoop\n  renderer: IRendererV2\n  logger: ILogger\n  input: IInputManager\n  entities: IEntity[]\n}\n```",
+          "dateTime": "2023-11-21T12:56:44.969Z"
         },
         {
           "indexTitle": "Engine",
           "question": "Engine",
-          "answer": "```typescript\nimport { IEngineConfig, IGameLoop, ILogger, IRendererV2 } from 'engine_api'\nimport Vector2 from '../math/Vector2'\n\nexport default class Engine {\n  private readonly _gameLoop: IGameLoop\n  private readonly _renderer: IRendererV2\n  private readonly _logger: ILogger\n\n  constructor(private readonly _engineConfig: IEngineConfig) {\n    this._gameLoop = this._engineConfig.gameLoop\n    this._renderer = this._engineConfig.renderer\n    this._logger = this._engineConfig.logger\n  }\n\n  updateCallback = (deltaTime: number) => {}\n\n  renderCallback = (deltaTime: number) => {\n    this._renderer.clearCanvas()\n    this._renderer.drawRect(new Vector2(0, 0), new Vector2(100, 100), 'red')\n  }\n\n  initializeEngine() {\n    this._logger.log(`Initializing Engine`)\n    this._logger.log(`Subscribe To Update`)\n    this._gameLoop.subscribeToUpdate(this.updateCallback)\n    this._logger.log(`Subscribe To Render`)\n    this._gameLoop.subscribeToRender(this.renderCallback)\n    this._logger.log(`Starting Game Loop`)\n    this._gameLoop.startLoop()\n  }\n}\n```\n```typescript\nimport { IEngineConfig, LogLevel } from 'engine_api'\nimport GameLoop from '../game_loop/GameLoop'\nimport LogManager from '../log_manager/LogManager'\nimport RendererV2 from '../renderer/RendererV2'\nimport Engine from './Engine'\n\nexport default class EngineFactory {\n  createEngineConfig(canvasId: string) {\n    const engineConfig: IEngineConfig = {\n      gameLoop: new GameLoop(),\n      renderer: new RendererV2(canvasId),\n      logger: new LogManager(LogLevel.INFO),\n    }\n    return engineConfig\n  }\n\n  createEngine(canvasId: string) {\n    return new Engine(this.createEngineConfig(canvasId))\n  }\n}\n```",
-          "dateTime": "2023-11-20T21:51:12.488Z"
+          "answer": "```typescript\nimport {\n  IEngineConfig,\n  IEntity,\n  IGameLoop,\n  IInputManager,\n  ILogger,\n  IRendererV2,\n} from 'engine_api'\n\nexport default class Engine {\n  private readonly _gameLoop: IGameLoop\n  private readonly _renderer: IRendererV2\n  private readonly _logger: ILogger\n  private readonly _input: IInputManager\n  private readonly _entities: IEntity[]\n\n  constructor(private readonly _engineConfig: IEngineConfig) {\n    this._gameLoop = this._engineConfig.gameLoop\n    this._renderer = this._engineConfig.renderer\n    this._logger = this._engineConfig.logger\n    this._input = this._engineConfig.input\n    this._entities = this._engineConfig.entities\n  }\n\n  updateCallback = (deltaTime: number) => {\n    this._entities.forEach((entity) => {\n      entity.update()\n    })\n  }\n\n  renderCallback = (deltaTime: number) => {\n    this._renderer.clearCanvas()\n    this._entities.forEach((entity) => {\n      entity.render()\n    })\n  }\n\n  initializeEngine() {\n    this._logger.log(`Initializing Engine`)\n    this._logger.log(`Subscribe To Update`)\n    this._gameLoop.subscribeToUpdate(this.updateCallback)\n    this._logger.log(`Subscribe To Render`)\n    this._gameLoop.subscribeToRender(this.renderCallback)\n    this._logger.log(`Starting Game Loop`)\n    this._gameLoop.startLoop()\n  }\n}\n```\n```typescript\nimport {\n  IEngineConfig,\n  IObjectConfig,\n  IObjectEntityConfig,\n  LogLevel,\n} from 'engine_api'\nimport GameLoop from '../game_loop/GameLoop'\nimport LogManager from '../log_manager/LogManager'\nimport RendererV2 from '../renderer/RendererV2'\nimport Engine from './Engine'\nimport InputManager from '../input_manager/InputManager'\nimport ObjectEntity from '../entity/ObjectEntity'\nimport Vector2 from '../math/Vector2'\n\nexport default class EngineFactory {\n  private objectConfig: IObjectConfig\n\n  constructor() {\n    this.objectConfig = {\n      color: 'red',\n      position: new Vector2(0, 0),\n      size: new Vector2(50, 150),\n      speed: new Vector2(10, 10),\n    }\n  }\n\n  createEngineConfig(canvasId: string) {\n    const renderer = new RendererV2(canvasId)\n    const input = new InputManager()\n    document.addEventListener('keydown', (event) => {\n      input.handleKeyDown(event.key)\n    })\n    const logger = new LogManager(LogLevel.INFO)\n    const objectEntityConfig: IObjectEntityConfig = {\n      objectConfig: this.objectConfig,\n      renderer: renderer,\n      input: input,\n      logger: logger,\n    }\n\n    const engineConfig: IEngineConfig = {\n      gameLoop: new GameLoop(),\n      renderer: renderer,\n      logger: new LogManager(LogLevel.INFO),\n      input: input,\n      entities: [new ObjectEntity(objectEntityConfig)],\n    }\n    return engineConfig\n  }\n\n  createEngine(canvasId: string) {\n    return new Engine(this.createEngineConfig(canvasId))\n  }\n}\n```",
+          "dateTime": "2023-11-21T12:58:20.389Z"
         },
         {
           "indexTitle": "Tests",
