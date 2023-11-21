@@ -1041,6 +1041,28 @@
           "dateTime": "2023-11-17T19:06:51.764Z"
         }
       ]
+    },
+    {
+      "title": "Plan",
+      "chats": [
+        {
+          "indexTitle": "Plan",
+          "question": "Plan",
+          "answer": "1. Separate EntitiesFactory from EngineFactory. Nealry done.  \n  * Create PlayerEntity and ObjectEntity where ObjectEntity dosent have MovementComponent.\n  * Add player data, name and ObjectEntityConfig data\n2. Create EntitiesManager. Done\n3. Add more components to engine\n4. Move towards producing ball_game_3 with engine\n5. Produce many small games prototypes with engine ",
+          "dateTime": "2023-11-21T16:15:50.264Z"
+        }
+      ]
+    },
+    {
+      "title": "ToDo",
+      "chats": [
+        {
+          "indexTitle": "ToDo",
+          "question": "ToDo",
+          "answer": "1. Doc about desktop_client\n2. Tests of Component",
+          "dateTime": "2023-11-21T13:17:54.252Z"
+        }
+      ]
     }
   ]
 }
