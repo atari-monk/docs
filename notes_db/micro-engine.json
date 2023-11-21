@@ -1020,8 +1020,8 @@
         {
           "indexTitle": "Big Picture Plan",
           "question": "Big Picture Plan",
-          "answer": "1. Add as many components to engine as fits\n2. Move towards producing ball_game_3 with engine\n3. Produce many small games prototypes with engine ",
-          "dateTime": "2023-11-21T18:40:15.881Z"
+          "answer": "1. Add as many components to engine as fits\n2. Create single player engine and client and server versions of engines\n3. Move towards producing ball_game_3 with engine\n4. Produce many small games prototypes with engine ",
+          "dateTime": "2023-11-21T19:01:56.472Z"
         },
         {
           "indexTitle": "ToDo",
@@ -1045,6 +1045,18 @@
           "question": "Task 2.  \nCreate PlayerEntity and ObjectEntity where ObjectEntity dosent have MovementComponent.",
           "answer": "* PlayerEntity, added to EntityFactory",
           "dateTime": "2023-11-21T18:35:48.216Z"
+        },
+        {
+          "indexTitle": "Task 3.",
+          "question": "Task 3.  \nAdd Tile map component to entity and show this entity.  Add factory for tile map data.",
+          "answer": "* updated TileMap and TileMapDataFctory, MapComponent, MapEntity, EntityFactory, Engine, EngineFactory\n* tile map renders",
+          "dateTime": "2023-11-21T21:24:52.813Z"
+        },
+        {
+          "indexTitle": "Task 4.",
+          "question": "Make data factories so they can be set in engine in particular game, also from client.",
+          "answer": "* ",
+          "dateTime": "2023-11-21T21:32:03.568Z"
         }
       ]
     },
