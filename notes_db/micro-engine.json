@@ -1054,9 +1054,15 @@
         },
         {
           "indexTitle": "Task 4.",
-          "question": "Make data factories so they can be set in engine in particular game, also from client.",
-          "answer": "* ",
-          "dateTime": "2023-11-21T21:32:03.568Z"
+          "question": "Task 4.  \nMake data factories so they can be set in engine in particular game, also from client.",
+          "answer": "* Data encapsulation, moved data as ctor param of engine.",
+          "dateTime": "2023-11-22T11:55:20.210Z"
+        },
+        {
+          "indexTitle": "Task 5.",
+          "question": "Task 5.  \nEnable game data reload. In engine, separete dependencies from data driven game creation, so it can be repeated for sets of data.",
+          "answer": "* Engine data reload done,  \n    clearing all data,  \n    unsubscribing from callbacks,  \n    fixed bug where position was not created in ObjectComponent,  \n    in ctor, but only referenced.",
+          "dateTime": "2023-11-22T16:38:43.496Z"
         }
       ]
     },
