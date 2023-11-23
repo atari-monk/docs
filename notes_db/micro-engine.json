@@ -140,6 +140,52 @@
       ]
     },
     {
+      "title": "Project desktop_client",
+      "chats": [
+        {
+          "indexTitle": "Assumptions",
+          "question": "Assumptions",
+          "answer": "1. Desktop client for single player mode of engine",
+          "dateTime": "2023-11-23T15:32:32.561Z"
+        },
+        {
+          "indexTitle": "Project",
+          "question": "Project",
+          "answer": "tsconfig.json\n```json\n{\n  \"compilerOptions\": {\n    \"target\": \"ES2022\",\n    \"outDir\": \"./build\",\n    \"rootDir\": \"./src\",\n    \"module\": \"ESNext\",\n    \"moduleResolution\": \"node\",\n    \"strict\": true,\n    \"declaration\": true\n  }\n}\n```\npackage.json\n```json\n{\n  \"name\": \"desktop_client\",\n  \"version\": \"1.0.0\",\n  \"description\": \"\",\n  \"main\": \"index.js\",\n  \"scripts\": {\n    \"build-ts\": \"tsc\",\n    \"build\": \"npx webpack --config webpack.config.js\"\n  },\n  \"keywords\": [],\n  \"author\": \"\",\n  \"license\": \"ISC\",\n  \"dependencies\": {\n    \"engine\": \"file:engine-1.0.0.tgz\",\n    \"engine_api\": \"file:engine_api-1.0.0.tgz\",\n    \"p-limit\": \"^5.0.0\"\n  },\n  \"devDependencies\": {\n    \"copy-webpack-plugin\": \"^11.0.0\",\n    \"css-loader\": \"^6.8.1\",\n    \"file-loader\": \"^6.2.0\",\n    \"mini-css-extract-plugin\": \"^2.7.6\",\n    \"ts-loader\": \"^9.4.4\",\n    \"typescript\": \"^5.2.2\",\n    \"webpack\": \"^5.88.2\",\n    \"webpack-cli\": \"^5.1.4\"\n  }\n}\n```\nwebpack.config.js\n```javascript\nconst path = require('path')\nconst CopyWebpackPlugin = require('copy-webpack-plugin')\nconst MiniCssExtractPlugin = require('mini-css-extract-plugin')\n\nmodule.exports = () => {\n  return {\n    mode: 'development',\n    devtool: false,\n    entry: './src/index.ts',\n    output: {\n      filename: 'index.js',\n      path: path.resolve(__dirname, 'build'),\n    },\n    resolve: {\n      extensions: ['.ts', '.js'],\n    },\n    module: {\n      rules: [\n        {\n          test: /\\.ts$/,\n          use: 'ts-loader',\n          exclude: /node_modules/,\n        },\n        {\n          test: /\\.css$/,\n          use: [MiniCssExtractPlugin.loader, 'css-loader'],\n        },\n        {\n          test: /\\.(png|jpg|jpeg|gif|svg)$/,\n          use: [\n            {\n              loader: 'file-loader',\n              options: {\n                name: 'assets/[name].[ext]',\n              },\n            },\n          ],\n        },\n      ],\n    },\n    plugins: [\n      new CopyWebpackPlugin({\n        patterns: [{ from: 'src/index.html', to: 'index.html' }],\n      }),\n      new MiniCssExtractPlugin({\n        filename: 'styles.css',\n      }),\n    ],\n  }\n}\n```",
+          "dateTime": "2023-11-23T15:36:15.996Z"
+        },
+        {
+          "indexTitle": "Code",
+          "question": "Code",
+          "answer": "index.html\n```html\n<!DOCTYPE html>\n<html>\n  <head>\n    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1\" />\n    <title>engine_test</title>\n    <link rel=\"stylesheet\" type=\"text/css\" href=\"./styles.css\" />\n  </head>\n  <body>\n    <div id=\"canvas_container\">\n      <canvas id=\"canvas\" width=\"1920\" height=\"1080\"> </canvas>\n    </div>\n    <script src=\"index.js\"></script>\n  </body>\n</html>\n```\nstyles.css\n```css\n* {\n  margin: 0;\n  padding: 0;\n}\n\nhtml,\nbody {\n  height: 100%;\n  background-color: black;\n}\n\nbutton {\n  margin-left: 10px;\n  padding: 10px 20px;\n  border: none;\n  background-color: transparent;\n  color: #333;\n  font-size: 16px;\n  font-weight: 900;\n  cursor: pointer;\n  border-radius: 4px;\n  transition: background-color 0.3s ease, color 0.3s ease;\n}\n\nbutton:hover {\n  background-color: #333;\n  color: #fff;\n}\n\n#canvas_container {\n  width: 100%;\n  height: 100%;\n  display: flex;\n  flex-direction: column;\n  justify-content: center;\n  align-items: center;\n  background-color: black;\n  position: relative;\n  z-index: 1;\n}\n\n#canvas {\n  max-width: 100%;\n  max-height: 100%;\n  width: auto;\n  height: auto;\n  display: block;\n  /* border: 1px solid red; */\n  box-sizing: border-box;\n  margin: auto;\n  position: absolute;\n  top: 50%;\n  left: 50%;\n  transform: translate(-50%, -50%);\n}\n\n.hidden {\n  display: none;\n}\n```\nindex.ts\n```\nimport { EngineFactory, GameData } from 'engine'\nimport './css/styles.css'\nimport ObjectDataFactory from './gameData/ObjectDataFactory'\nimport TilemapDataFactory from './gameData/TilemapDataFactory'\n\nconst engineFactory = new EngineFactory('canvas')\n\nconst gameData = new GameData(engineFactory.renderer)\nconst gameData2 = new GameData(engineFactory.renderer)\ngameData2.objectData = new ObjectDataFactory(engineFactory.renderer)\ngameData2.tileMapData = new TilemapDataFactory()\n\nlet engine = engineFactory.createEngine(gameData)\nengine.startEngine()\n\ndocument.addEventListener('keydown', (event: KeyboardEvent) => {\n  if (event.key.toLowerCase() === 'o') {\n    console.log('The \"o\" key was pressed!')\n    engine.stopEngine()\n    engineFactory.reloadEngine(gameData2)\n    engine.startEngine()\n  }\n  if (event.key.toLowerCase() === 'p') {\n    console.log('The \"p\" key was pressed!')\n    engine.stopEngine()\n    engineFactory.reloadEngine(gameData)\n    engine.startEngine()\n  }\n})\n```\ngameData\n```typescript\nimport { IObjectConfig, IRendererV2 } from 'engine_api'\nimport { ObjectDataManager, Vector2 } from 'engine'\n\nexport default class ObjectDataFactory extends ObjectDataManager {\n  constructor(private readonly _renderer: IRendererV2) {\n    super()\n    this.createData()\n  }\n\n  createData() {\n    const center = this._renderer.getCenter()\n\n    this.addObjectData('object', {\n      color: 'yellow',\n      position: new Vector2(550, 400),\n      size: new Vector2(70, 50),\n      speed: new Vector2(10, 10),\n    } as IObjectConfig)\n\n    this.addObjectData('player', {\n      color: 'pink',\n      position: new Vector2(center.x, center.y + 330),\n      size: new Vector2(50, 150),\n      speed: new Vector2(10, 10),\n    } as IObjectConfig)\n  }\n}\n```\n```typescript\nimport {\n  IImmutableVector2,\n  ITile,\n  ITilemapDataFactory,\n  IVector2,\n} from 'engine_api'\nimport { ImmutableVector2 } from 'engine'\n\nexport default class TilemapDataFactory implements ITilemapDataFactory {\n  private readonly _resolution = new ImmutableVector2(1920, 1080)\n  private readonly _tileSize = new ImmutableVector2(20, 20)\n  private readonly _mapOffset = new ImmutableVector2(0, 330)\n\n  get mapOffset(): IImmutableVector2 {\n    return this._mapOffset\n  }\n\n  createTiles(): ITile[] {\n    return [\n      {\n        id: 1,\n        size: this._tileSize,\n        rgba: 'rgba(139, 69, 19, 1)',\n        desc: 'Brown color for earth',\n      },\n      {\n        id: 2,\n        size: this._tileSize,\n        rgba: 'rgba(0, 128, 0, 1)',\n        desc: 'Green color for grass',\n      },\n      {\n        id: 3,\n        size: this._tileSize,\n        rgba: 'rgba(135, 206, 250, 1)',\n        desc: 'Light blue color for sky',\n      },\n    ]\n  }\n\n  private generateTable(tableSize: IVector2, tileId: number): number[][] {\n    const table: number[][] = []\n\n    for (let i = 0; i < tableSize.y; i++) {\n      const row: number[] = []\n      for (let j = 0; j < tableSize.x; j++) {\n        row.push(tileId)\n      }\n      table.push(row)\n    }\n\n    return table\n  }\n\n  fillRow(table: number[][], rowIndex: number, tileId: number) {\n    if (rowIndex < 0 || rowIndex >= table.length) {\n      console.error('Invalid rowIndex. Please provide a valid row index.')\n      return table\n    }\n    for (let i = 0; i < table[rowIndex].length; i++) {\n      table[rowIndex][i] = tileId\n    }\n    return table\n  }\n\n  createMap(): number[][] {\n    const tableSize = this._resolution.divide(this._tileSize)\n    console.log('tableSize', tableSize)\n    const table = this.generateTable(tableSize, 3)\n    this.fillRow(table, tableSize.y - 1, 1)\n    this.fillRow(table, tableSize.y - 2, 1)\n    this.fillRow(table, tableSize.y - 3, 2)\n    return table\n  }\n}\n```",
+          "dateTime": "2023-11-23T17:23:30.253Z"
+        }
+      ]
+    },
+    {
+      "title": "Project server",
+      "chats": [
+        {
+          "indexTitle": "Assumptions",
+          "question": "Assumptions",
+          "answer": "1. Server for micro-engine project",
+          "dateTime": "2023-11-23T19:22:44.251Z"
+        },
+        {
+          "indexTitle": "Project",
+          "question": "Project",
+          "answer": "tsconfig.json\n```json\n{\n  \"compilerOptions\": {\n    \"target\": \"ES2022\",\n    \"module\": \"commonjs\",\n    \"esModuleInterop\": true,\n    \"forceConsistentCasingInFileNames\": true,\n    \"strict\": true,\n    \"skipLibCheck\": true,\n    \"rootDir\": \"./src\",\n    \"outDir\": \"./build\",\n    \"declaration\": true\n  }\n}\n```\npackage.json\n```json\n{\n  \"name\": \"server\",\n  \"version\": \"1.0.0\",\n  \"description\": \"\",\n  \"main\": \"server.js\",\n  \"scripts\": {\n    \"build\": \"tsc\",\n    \"start\": \"node ./build/server.js\",\n    \"debug\": \"ndb ./build/server.js\"\n  },\n  \"keywords\": [],\n  \"author\": \"atarimonk\",\n  \"license\": \"ISC\",\n  \"dependencies\": {\n    \"cors\": \"^2.8.5\",\n    \"express\": \"^4.18.2\",\n    \"socket.io\": \"^4.7.2\",\n    \"uuid\": \"^9.0.0\"\n  },\n  \"devDependencies\": {\n    \"@types/cors\": \"^2.8.17\",\n    \"@types/express\": \"^4.17.17\",\n    \"@types/uuid\": \"^9.0.3\",\n    \"typescript\": \"^5.2.2\"\n  }\n}\n```",
+          "dateTime": "2023-11-23T19:24:46.173Z"
+        },
+        {
+          "indexTitle": "Code",
+          "question": "Code",
+          "answer": "```typescript\nimport express from 'express'\nimport http from 'http'\nimport { Server } from 'socket.io'\nimport cors from 'cors'\n\nconst app = express()\nconst server = http.createServer(app)\nconst io = new Server(server, {\n  cors: {\n    origin: '*',\n    methods: ['GET', 'POST'],\n    allowedHeaders: ['Content-Type'],\n  },\n})\n\napp.use(cors())\n\n//engine\n\nconst PORT = process.env.PORT || 3001\nserver.listen(PORT, () => {\n  console.log(`Server is running on port ${PORT}`)\n})\n```",
+          "dateTime": "2023-11-23T19:25:29.465Z"
+        }
+      ]
+    },
+    {
       "title": "Vector2",
       "chats": [
         {
@@ -1069,6 +1115,12 @@
           "question": "Task 6.  \nAdd Camera to CameraComponent and prolly to player Entity.",
           "answer": "* Camera added to main render method, look in example section, but it was a little moddified from that and need inquiry still, since i dont quite get it.",
           "dateTime": "2023-11-22T23:47:05.783Z"
+        },
+        {
+          "indexTitle": "Task 7.",
+          "question": "Task 7.\nAdd server component connecting clients",
+          "answer": "* base it on ball-game-2\n1. Copied proj from ball-game-2, ajusted, build, updated docs.\n2. Create GameServer class in engine and start to flesh it out\n3. Had to backtrack, all server stuf is not in server-lib folder in server proj, same for client.  \n    Engine_api and engine are pure ts, no libs, external libs are only in apps server and clients.\n    Had to do it that way, it was imposible to build webpack clients with server and client in engine lib.\n    Maybe someday i will try to make server lib and client lib, but not today.\n4. But client connected to server, now i need to find a way to integrate engine with server and client.  \n    I think some kind of events from engine will run server and client events",
+          "dateTime": "2023-11-23T23:07:25.697Z"
         }
       ]
     },
