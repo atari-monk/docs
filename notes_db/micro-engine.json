@@ -1125,8 +1125,8 @@
         {
           "indexTitle": "Task 8.",
           "question": "Task 8.  \nCommunication server clients on player position",
-          "answer": "1. SocketEvents.GameDataFrame added\n2. Refactored MovementComponent from switch to key, method pairs js object\n3. Created ServerMovementComponent that collects input data to dto object  \n4. I mistook ClientMovementComponent  for ServerMovementComponent, need to change that\n5. ClientMovementComponent is acceptable becouse it adds dont destroy engine that was already\n6. Server version of engine, i started to create another suit of classes without renderer, i dont want that, i will do empty renderer, but wont change engine\n7. Managed to send direction to server from client at last\n8. Fixed removing key state after key up\n9. Passed engine to client\n * I need to have client id and at leat two players with assigned id to be able to update their possitions  ",
-          "dateTime": "2023-11-25T14:21:06.472Z"
+          "answer": "1. SocketEvents.GameDataFrame added\n2. Refactored MovementComponent from switch to key, method pairs js object\n3. Created ServerMovementComponent that collects input data to dto object  \n4. I mistook ClientMovementComponent  for ServerMovementComponent, need to change that\n5. ClientMovementComponent is acceptable becouse it adds dont destroy engine that was already\n6. Server version of engine, i started to create another suit of classes without renderer, i dont want that, i will do empty renderer, but wont change engine\n7. Managed to send direction to server from client at last\n8. Fixed removing key state after key up\n9. Passed engine to client\n10. Added id to IObject, removed IObjectConfig and use just IObject,  \n        added Vector2.fromObject(objectConfig.speed)\n * I need to have client id and at leat two players with assigned id to be able to update their possitions",
+          "dateTime": "2023-11-25T16:23:51.819Z"
         }
       ]
     },
