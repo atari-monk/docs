@@ -1121,6 +1121,12 @@
           "question": "Task 7.\nAdd server component connecting clients",
           "answer": "* base it on ball-game-2\n1. Copied proj from ball-game-2, ajusted, build, updated docs.\n2. Create GameServer class in engine and start to flesh it out\n3. Had to backtrack, all server stuf is not in server-lib folder in server proj, same for client.  \n    Engine_api and engine are pure ts, no libs, external libs are only in apps server and clients.\n    Had to do it that way, it was imposible to build webpack clients with server and client in engine lib.\n    Maybe someday i will try to make server lib and client lib, but not today.\n4. But client connected to server, now i need to find a way to integrate engine with server and client.  \n    I think some kind of events from engine will run server and client events",
           "dateTime": "2023-11-23T23:07:25.697Z"
+        },
+        {
+          "indexTitle": "Task 8.",
+          "question": "Task 8.  \nCommunication server clients on player position",
+          "answer": "1. SocketEvents.GameDataFrame added\n2. Refactored MovementComponent from switch to key, method pairs js object\n3. Created ServerMovementComponent that collects input data to dto object  \n4. I mistook ClientMovementComponent  for ServerMovementComponent, need to change that\n5. ClientMovementComponent is acceptable becouse it adds dont destroy engine that was already\n6. Server version of engine, i started to create another suit of classes without renderer, i dont want that, i will do empty renderer, but wont change engine\n7. Managed to send direction to server from client at last",
+          "dateTime": "2023-11-25T00:26:19.625Z"
         }
       ]
     },
