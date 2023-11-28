@@ -1078,6 +1078,17 @@
       ]
     },
     {
+      "title": "Server Client",
+      "chats": [
+        {
+          "indexTitle": "Schemes",
+          "question": "Schemes",
+          "answer": "![Matchmaking](../../../../docs/notes_db/micro_engine_architecture_1.png)  \n![Gameframe](../../../../docs/notes_db/micro_engine_architecture_2.png)\n",
+          "dateTime": "2023-11-28T18:08:25.788Z"
+        }
+      ]
+    },
+    {
       "title": "Tasks",
       "chats": [
         {
@@ -1167,6 +1178,17 @@
           "question": "Pixi is a renderer only much more advanced right ?",
           "answer": "Yes, that's correct. PIXI.js is a powerful 2D rendering engine for the web that provides a wide range of features for creating rich and interactive graphics. It is more than just a renderer; it's a comprehensive library that includes rendering capabilities along with features like display objects, animation, interaction handling, and more.\n\nSome key features of PIXI.js include:\n\n1. **Display Objects:** PIXI allows you to work with a hierarchy of display objects, such as sprites, containers, text, and graphics.\n\n2. **WebGL and Canvas Rendering:** PIXI.js can utilize WebGL for hardware-accelerated rendering when available, providing better performance. It also has a fallback to the 2D canvas for compatibility with a wider range of devices.\n\n3. **Filters and Effects:** PIXI supports a variety of filters and effects that can be applied to display objects, allowing for advanced visual enhancements.\n\n4. **Interactivity:** PIXI provides built-in support for handling user interactions, making it easy to create interactive applications and games.\n\n5. **Asset Loader:** PIXI includes a flexible asset loader for handling the loading of images, spritesheets, and other resources.\n\n6. **Animation:** PIXI supports animations and tweening, making it easier to create dynamic and fluid movement in your applications.\n\n7. **Compatibility:** PIXI is designed to work across different platforms and devices, providing a consistent experience.\n\nIn summary, PIXI.js is a feature-rich 2D rendering engine that goes beyond a simple renderer, offering a robust set of tools and capabilities for building interactive and visually appealing web applications and games.",
           "dateTime": "2023-11-17T19:06:51.764Z"
+        }
+      ]
+    },
+    {
+      "title": "Problems",
+      "chats": [
+        {
+          "indexTitle": "Serialization with socketIO",
+          "question": "Serialization with socketIO",
+          "answer": "Had to send class like a js object\nSerialization had problem with class getters\nNasty problem becouse i have other concerns than this  \nWorth to note for next occurence\n```typescript\nsendInput(inputDto: InputDto) {\n    if (inputDto.direction && inputDto.direction.length > 0) {\n      inputDto.id = this._engine!.getPlayer1Id()\n      this._socket.emit(SocketEvents.GameDataFrame, {\n        id: inputDto.id,\n        direction: inputDto.direction,\n      })\n    }\n  }\n```",
+          "dateTime": "2023-11-28T23:15:56.637Z"
         }
       ]
     }

@@ -1,0 +1,814 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   width="633.20361"
+   height="970.46973"
+   viewBox="0 0 167.53512 256.77011"
+   version="1.1"
+   id="svg1"
+   inkscape:version="1.3 (0e150ed6c4, 2023-07-21)"
+   sodipodi:docname="micro_engine_architecture.svg"
+   inkscape:export-filename="architecture1.png"
+   inkscape:export-xdpi="96"
+   inkscape:export-ydpi="96"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:svg="http://www.w3.org/2000/svg">
+  <sodipodi:namedview
+     id="namedview1"
+     pagecolor="#000000"
+     bordercolor="#000000"
+     borderopacity="0.24705882"
+     inkscape:showpageshadow="2"
+     inkscape:pageopacity="0.0"
+     inkscape:pagecheckerboard="0"
+     inkscape:deskcolor="#000000"
+     inkscape:document-units="px"
+     inkscape:export-bgcolor="#000000ff"
+     inkscape:zoom="1"
+     inkscape:cx="400"
+     inkscape:cy="484.5"
+     inkscape:window-width="2400"
+     inkscape:window-height="1261"
+     inkscape:window-x="-9"
+     inkscape:window-y="-9"
+     inkscape:window-maximized="1"
+     inkscape:current-layer="layer5" />
+  <defs
+     id="defs1">
+    <inkscape:path-effect
+       effect="fillet_chamfer"
+       id="path-effect39"
+       is_visible="true"
+       lpeversion="1"
+       nodesatellites_param="F,0,0,1,0,0,0,1 @ F,0,0,1,0,0,0,1"
+       radius="0"
+       unit="px"
+       method="auto"
+       mode="F"
+       chamfer_steps="1"
+       flexible="false"
+       use_knot_distance="true"
+       apply_no_radius="true"
+       apply_with_radius="true"
+       only_selected="false"
+       hide_knots="false" />
+    <inkscape:path-effect
+       effect="fillet_chamfer"
+       id="path-effect37"
+       is_visible="true"
+       lpeversion="1"
+       nodesatellites_param="F,0,0,1,0,0,0,1 @ F,0,0,1,0,0,0,1"
+       radius="0"
+       unit="px"
+       method="auto"
+       mode="F"
+       chamfer_steps="1"
+       flexible="false"
+       use_knot_distance="true"
+       apply_no_radius="true"
+       apply_with_radius="true"
+       only_selected="false"
+       hide_knots="false" />
+    <inkscape:path-effect
+       effect="fillet_chamfer"
+       id="path-effect33"
+       is_visible="true"
+       lpeversion="1"
+       nodesatellites_param="F,0,0,1,0,0,0,1 @ F,0,0,1,0,0,0,1"
+       radius="0"
+       unit="px"
+       method="auto"
+       mode="F"
+       chamfer_steps="1"
+       flexible="false"
+       use_knot_distance="true"
+       apply_no_radius="true"
+       apply_with_radius="true"
+       only_selected="false"
+       hide_knots="false" />
+    <inkscape:path-effect
+       effect="fillet_chamfer"
+       id="path-effect29"
+       is_visible="true"
+       lpeversion="1"
+       nodesatellites_param="F,0,0,1,0,0,0,1 @ F,0,0,1,0,0,0,1"
+       radius="0"
+       unit="px"
+       method="auto"
+       mode="F"
+       chamfer_steps="1"
+       flexible="false"
+       use_knot_distance="true"
+       apply_no_radius="true"
+       apply_with_radius="true"
+       only_selected="false"
+       hide_knots="false" />
+    <inkscape:path-effect
+       effect="fillet_chamfer"
+       id="path-effect25"
+       is_visible="true"
+       lpeversion="1"
+       nodesatellites_param="F,0,0,1,0,0,0,1 @ F,0,0,1,0,0,0,1"
+       radius="0"
+       unit="px"
+       method="auto"
+       mode="F"
+       chamfer_steps="1"
+       flexible="false"
+       use_knot_distance="true"
+       apply_no_radius="true"
+       apply_with_radius="true"
+       only_selected="false"
+       hide_knots="false" />
+    <inkscape:path-effect
+       effect="fillet_chamfer"
+       id="path-effect23"
+       is_visible="true"
+       lpeversion="1"
+       nodesatellites_param="F,0,0,1,0,0,0,1 @ F,0,0,1,0,0,0,1"
+       radius="0"
+       unit="px"
+       method="auto"
+       mode="F"
+       chamfer_steps="1"
+       flexible="false"
+       use_knot_distance="true"
+       apply_no_radius="true"
+       apply_with_radius="true"
+       only_selected="false"
+       hide_knots="false" />
+    <inkscape:path-effect
+       effect="fillet_chamfer"
+       id="path-effect21"
+       is_visible="true"
+       lpeversion="1"
+       nodesatellites_param="F,0,0,1,0,0,0,1 @ F,0,0,1,0,0,0,1"
+       radius="0"
+       unit="px"
+       method="auto"
+       mode="F"
+       chamfer_steps="1"
+       flexible="false"
+       use_knot_distance="true"
+       apply_no_radius="true"
+       apply_with_radius="true"
+       only_selected="false"
+       hide_knots="false" />
+    <inkscape:path-effect
+       effect="fillet_chamfer"
+       id="path-effect20"
+       is_visible="true"
+       lpeversion="1"
+       nodesatellites_param="F,0,0,1,0,0,0,1 @ F,0,0,1,0,0,0,1"
+       radius="0"
+       unit="px"
+       method="auto"
+       mode="F"
+       chamfer_steps="1"
+       flexible="false"
+       use_knot_distance="true"
+       apply_no_radius="true"
+       apply_with_radius="true"
+       only_selected="false"
+       hide_knots="false" />
+    <linearGradient
+       id="swatch3"
+       inkscape:swatch="solid">
+      <stop
+         style="stop-color:#ffffff;stop-opacity:1;"
+         offset="0"
+         id="stop3" />
+    </linearGradient>
+    <rect
+       x="366.73502"
+       y="198.17993"
+       width="276.83899"
+       height="198.17993"
+       id="rect1" />
+    <inkscape:path-effect
+       effect="fillet_chamfer"
+       id="path-effect21-5"
+       is_visible="true"
+       lpeversion="1"
+       nodesatellites_param="F,0,0,1,0,0,0,1 @ F,0,0,1,0,0,0,1"
+       radius="0"
+       unit="px"
+       method="auto"
+       mode="F"
+       chamfer_steps="1"
+       flexible="false"
+       use_knot_distance="true"
+       apply_no_radius="true"
+       apply_with_radius="true"
+       only_selected="false"
+       hide_knots="false" />
+    <inkscape:path-effect
+       effect="fillet_chamfer"
+       id="path-effect20-4"
+       is_visible="true"
+       lpeversion="1"
+       nodesatellites_param="F,0,0,1,0,0,0,1 @ F,0,0,1,0,0,0,1"
+       radius="0"
+       unit="px"
+       method="auto"
+       mode="F"
+       chamfer_steps="1"
+       flexible="false"
+       use_knot_distance="true"
+       apply_no_radius="true"
+       apply_with_radius="true"
+       only_selected="false"
+       hide_knots="false" />
+    <inkscape:path-effect
+       effect="fillet_chamfer"
+       id="path-effect37-2"
+       is_visible="true"
+       lpeversion="1"
+       nodesatellites_param="F,0,0,1,0,0,0,1 @ F,0,0,1,0,0,0,1"
+       radius="0"
+       unit="px"
+       method="auto"
+       mode="F"
+       chamfer_steps="1"
+       flexible="false"
+       use_knot_distance="true"
+       apply_no_radius="true"
+       apply_with_radius="true"
+       only_selected="false"
+       hide_knots="false" />
+    <inkscape:path-effect
+       effect="fillet_chamfer"
+       id="path-effect23-9"
+       is_visible="true"
+       lpeversion="1"
+       nodesatellites_param="F,0,0,1,0,0,0,1 @ F,0,0,1,0,0,0,1"
+       radius="0"
+       unit="px"
+       method="auto"
+       mode="F"
+       chamfer_steps="1"
+       flexible="false"
+       use_knot_distance="true"
+       apply_no_radius="true"
+       apply_with_radius="true"
+       only_selected="false"
+       hide_knots="false" />
+    <inkscape:path-effect
+       effect="fillet_chamfer"
+       id="path-effect25-8"
+       is_visible="true"
+       lpeversion="1"
+       nodesatellites_param="F,0,0,1,0,0,0,1 @ F,0,0,1,0,0,0,1"
+       radius="0"
+       unit="px"
+       method="auto"
+       mode="F"
+       chamfer_steps="1"
+       flexible="false"
+       use_knot_distance="true"
+       apply_no_radius="true"
+       apply_with_radius="true"
+       only_selected="false"
+       hide_knots="false" />
+    <inkscape:path-effect
+       effect="fillet_chamfer"
+       id="path-effect21-3"
+       is_visible="true"
+       lpeversion="1"
+       nodesatellites_param="F,0,0,1,0,0,0,1 @ F,0,0,1,0,0,0,1"
+       radius="0"
+       unit="px"
+       method="auto"
+       mode="F"
+       chamfer_steps="1"
+       flexible="false"
+       use_knot_distance="true"
+       apply_no_radius="true"
+       apply_with_radius="true"
+       only_selected="false"
+       hide_knots="false" />
+    <inkscape:path-effect
+       effect="fillet_chamfer"
+       id="path-effect20-9"
+       is_visible="true"
+       lpeversion="1"
+       nodesatellites_param="F,0,0,1,0,0,0,1 @ F,0,0,1,0,0,0,1"
+       radius="0"
+       unit="px"
+       method="auto"
+       mode="F"
+       chamfer_steps="1"
+       flexible="false"
+       use_knot_distance="true"
+       apply_no_radius="true"
+       apply_with_radius="true"
+       only_selected="false"
+       hide_knots="false" />
+  </defs>
+  <g
+     inkscape:groupmode="layer"
+     id="layer2"
+     inkscape:label="Apps"
+     style="display:inline;fill:#000000;fill-opacity:1"
+     transform="translate(-120.02662,-28.670646)">
+    <ellipse
+       style="font-variation-settings:normal;opacity:1;vector-effect:none;fill:#000000;fill-opacity:1;fill-rule:evenodd;stroke:#ffffff;stroke-width:0.311466;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1;-inkscape-stroke:none;stop-color:#000000;stop-opacity:1"
+       id="path4"
+       ry="14.013659"
+       rx="20.230196"
+       cy="42.840038"
+       cx="140.94171"
+       inkscape:label="server" />
+    <rect
+       style="fill:#000000;fill-opacity:1;stroke:#ffffff;stroke-width:0.374436;stroke-opacity:1"
+       id="rect5"
+       width="44.1814"
+       height="22.558674"
+       x="243.72227"
+       y="31.020119"
+       inkscape:label="client" />
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:4.58611px;line-height:0;font-family:Consolas;-inkscape-font-specification:Consolas;font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;fill:#c72e7e;fill-opacity:1;fill-rule:nonzero;stroke:#ffffff;stroke-width:0.499533;stroke-opacity:1"
+       x="257.34537"
+       y="44.81023"
+       id="text40"
+       inkscape:label="clientName"><tspan
+         sodipodi:role="line"
+         id="tspan40"
+         style="font-size:4.58611px;stroke-width:0.499533"
+         x="257.34537"
+         y="44.81023">CLIENT</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:4.58611px;font-family:Consolas;-inkscape-font-specification:Consolas;fill:#ffffff;fill-opacity:1;stroke:#ffffff;stroke-width:0.499533;stroke-opacity:1"
+       x="133.59505"
+       y="44.178993"
+       id="text14"
+       inkscape:label="serverName"><tspan
+         sodipodi:role="line"
+         id="tspan14"
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:4.58611px;font-family:Consolas;-inkscape-font-specification:Consolas;font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;stroke-width:0.499533"
+         x="133.59505"
+         y="44.178993">SERVER</tspan></text>
+  </g>
+  <g
+     inkscape:groupmode="layer"
+     id="layer3"
+     inkscape:label="Matchmaking_Connections"
+     transform="translate(-120.02662,-28.670647)"
+     style="display:none">
+    <g
+       id="g19"
+       style="fill:#ced748;fill-opacity:1"
+       transform="translate(0,15.875004)"
+       inkscape:label="connection1">
+      <path
+         style="fill:#ced748;fill-opacity:1;fill-rule:evenodd;stroke:#ffffff;stroke-width:0.264583px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+         d="m 160.96529,41.923627 82.05678,0.221488"
+         id="path13"
+         inkscape:connector-type="polyline"
+         inkscape:connector-curvature="0"
+         sodipodi:nodetypes="cc"
+         inkscape:original-d="m 160.96529,41.923627 82.05678,0.221488"
+         inkscape:path-effect="#path-effect21" />
+      <path
+         style="fill:#ced748;fill-opacity:1;stroke:#000000;stroke-width:0.140295"
+         inkscape:label="Triangle"
+         d="m 167.18915,44.940148 v -6.32168 l -6.741,3.16084 z"
+         id="path17"
+         sodipodi:nodetypes="cccc" />
+    </g>
+    <g
+       id="g20"
+       transform="rotate(180,202.42686,67.894465)"
+       style="fill:#c74a2e;fill-opacity:1"
+       inkscape:label="connection2">
+      <path
+         style="fill:#c74a2e;fill-opacity:1;fill-rule:evenodd;stroke:#ffffff;stroke-width:0.264583px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+         d="m 160.96529,41.923627 82.05678,0.221488"
+         id="path19"
+         inkscape:connector-type="polyline"
+         inkscape:connector-curvature="0"
+         sodipodi:nodetypes="cc"
+         inkscape:original-d="m 160.96529,41.923627 82.05678,0.221488"
+         inkscape:path-effect="#path-effect20" />
+      <path
+         style="fill:#c74a2e;fill-opacity:1;stroke:#000000;stroke-width:0.140295"
+         inkscape:label="Triangle"
+         d="m 167.18915,44.940148 v -6.32168 l -6.741,3.16084 z"
+         id="path20"
+         sodipodi:nodetypes="cccc" />
+    </g>
+    <g
+       id="g20-9"
+       transform="rotate(180,201.92138,115.8928)"
+       style="fill:#c74a2e;fill-opacity:1"
+       inkscape:label="connection4">
+      <path
+         style="fill:#c74a2e;fill-opacity:1;fill-rule:evenodd;stroke:#ffffff;stroke-width:0.264583px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+         d="m 160.96529,41.923627 82.05678,0.221488"
+         id="path19-4"
+         inkscape:connector-type="polyline"
+         inkscape:connector-curvature="0"
+         sodipodi:nodetypes="cc"
+         inkscape:original-d="m 160.96529,41.923627 82.05678,0.221488"
+         inkscape:path-effect="#path-effect20-4" />
+      <path
+         style="fill:#c74a2e;fill-opacity:1;stroke:#000000;stroke-width:0.140295"
+         inkscape:label="Triangle"
+         d="m 167.18915,44.940148 v -6.32168 l -6.741,3.16084 z"
+         id="path20-3"
+         sodipodi:nodetypes="cccc" />
+    </g>
+    <g
+       id="g22"
+       transform="matrix(0,-2.9131331,0.97911562,0,119.97215,750.43395)"
+       inkscape:label="pipe1">
+      <path
+         style="fill:none;fill-rule:evenodd;stroke:#ffffff;stroke-width:0.264583px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+         d="m 160.96529,41.923627 82.05678,0.221488"
+         id="path21"
+         inkscape:connector-type="polyline"
+         inkscape:connector-curvature="0"
+         sodipodi:nodetypes="cc"
+         inkscape:original-d="m 160.96529,41.923627 82.05678,0.221488"
+         inkscape:path-effect="#path-effect23" />
+      <path
+         style="fill:#ffffff;fill-opacity:1;stroke:#000000;stroke-width:0.140295"
+         inkscape:label="Triangle"
+         d="m 167.18915,44.940148 v -6.32168 l -6.741,3.16084 z"
+         id="path22"
+         sodipodi:nodetypes="cccc" />
+    </g>
+    <g
+       id="g24"
+       transform="matrix(0,-2.9323369,0.97895003,0,202.73086,755.44427)"
+       inkscape:label="pipe2">
+      <path
+         style="fill:none;fill-rule:evenodd;stroke:#ffffff;stroke-width:0.264583px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+         d="m 160.96529,41.923627 82.05678,0.221488"
+         id="path23"
+         inkscape:connector-type="polyline"
+         inkscape:connector-curvature="0"
+         sodipodi:nodetypes="cc"
+         inkscape:original-d="m 160.96529,41.923627 82.05678,0.221488"
+         inkscape:path-effect="#path-effect25" />
+      <path
+         style="fill:#ffffff;fill-opacity:1;stroke:#000000;stroke-width:0.140295"
+         inkscape:label="Triangle"
+         d="m 167.18915,44.940148 v -6.32168 l -6.741,3.16084 z"
+         id="path24"
+         sodipodi:nodetypes="cccc" />
+    </g>
+    <g
+       id="g19-4"
+       style="fill:#ced748;fill-opacity:1"
+       transform="translate(0.60293599,109.93423)"
+       inkscape:label="connection3">
+      <path
+         style="fill:#ced748;fill-opacity:1;fill-rule:evenodd;stroke:#ffffff;stroke-width:0.264583px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+         d="m 160.96529,41.923627 82.05678,0.221488"
+         id="path13-3"
+         inkscape:connector-type="polyline"
+         inkscape:connector-curvature="0"
+         sodipodi:nodetypes="cc"
+         inkscape:original-d="m 160.96529,41.923627 82.05678,0.221488"
+         inkscape:path-effect="#path-effect21-5" />
+      <path
+         style="fill:#ced748;fill-opacity:1;stroke:#000000;stroke-width:0.140295"
+         inkscape:label="Triangle"
+         d="m 167.18915,44.940148 v -6.32168 l -6.741,3.16084 z"
+         id="path17-9"
+         sodipodi:nodetypes="cccc" />
+    </g>
+    <g
+       id="g36"
+       transform="rotate(180,202.16228,142.63902)"
+       style="fill:#c72e7e;fill-opacity:1"
+       inkscape:label="connection5">
+      <path
+         style="fill:#c72e7e;fill-opacity:1;fill-rule:evenodd;stroke:#ffffff;stroke-width:0.264583px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+         d="m 160.96529,41.923627 82.05678,0.221488"
+         id="path35"
+         inkscape:connector-type="polyline"
+         inkscape:connector-curvature="0"
+         sodipodi:nodetypes="cc"
+         inkscape:original-d="m 160.96529,41.923627 82.05678,0.221488"
+         inkscape:path-effect="#path-effect37" />
+      <path
+         style="fill:#c72e7e;fill-opacity:1;stroke:#000000;stroke-width:0.140295"
+         inkscape:label="Triangle"
+         d="m 167.18915,44.940148 v -6.32168 l -6.741,3.16084 z"
+         id="path36"
+         sodipodi:nodetypes="cccc" />
+    </g>
+    <g
+       id="g36-6"
+       transform="rotate(180,202.06421,146.19503)"
+       style="fill:#c72e7e;fill-opacity:1"
+       inkscape:label="connection6">
+      <path
+         style="fill:#c72e7e;fill-opacity:1;fill-rule:evenodd;stroke:#ffffff;stroke-width:0.264583px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+         d="m 160.96529,41.923627 82.05678,0.221488"
+         id="path35-3"
+         inkscape:connector-type="polyline"
+         inkscape:connector-curvature="0"
+         sodipodi:nodetypes="cc"
+         inkscape:original-d="m 160.96529,41.923627 82.05678,0.221488"
+         inkscape:path-effect="#path-effect37-2" />
+      <path
+         style="fill:#c72e7e;fill-opacity:1;stroke:#000000;stroke-width:0.140295"
+         inkscape:label="Triangle"
+         d="m 167.18915,44.940148 v -6.32168 l -6.741,3.16084 z"
+         id="path36-4"
+         sodipodi:nodetypes="cccc" />
+    </g>
+  </g>
+  <g
+     inkscape:label="Matchmaking"
+     inkscape:groupmode="layer"
+     id="layer1"
+     style="display:none;fill:#000000;fill-opacity:1"
+     transform="translate(-120.02662,-28.670647)">
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:4.93889px;font-family:Consolas;-inkscape-font-specification:Consolas;font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;fill:#ffffff;fill-opacity:1;stroke:#ffffff;stroke-width:0.499533;stroke-opacity:1"
+       x="174.70059"
+       y="53.450199"
+       id="text13"
+       inkscape:label="connectClient1"><tspan
+         sodipodi:role="line"
+         id="tspan13"
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:4.93889px;font-family:Consolas;-inkscape-font-specification:Consolas;font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;stroke-width:0.499533"
+         x="174.70059"
+         y="53.450199">OnConnection</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:4.93889px;line-height:0;font-family:Consolas;-inkscape-font-specification:Consolas;font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;fill:#ffffff;fill-opacity:1;stroke:#ffffff;stroke-width:0.499533;stroke-opacity:1"
+       x="165.4437"
+       y="65.679039"
+       id="text17"
+       inkscape:label="serverAddPlayer1"><tspan
+         sodipodi:role="line"
+         id="tspan17"
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:4.93889px;font-family:Consolas;-inkscape-font-specification:Consolas;font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;stroke-width:0.499533"
+         x="165.4437"
+         y="65.679039">.addPlayer(socket.id)</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:4.93889px;line-height:0;font-family:Consolas;-inkscape-font-specification:Consolas;font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;fill:#ffffff;fill-opacity:1;fill-rule:nonzero;stroke:#ffffff;stroke-width:0.499533;stroke-opacity:1"
+       x="197.37904"
+       y="89.693756"
+       id="text25"
+       inkscape:label="confirmConnection1"><tspan
+         sodipodi:role="line"
+         id="tspan25"
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:4.93889px;font-family:Consolas;-inkscape-font-specification:Consolas;font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;stroke-width:0.499533"
+         x="197.37904"
+         y="89.693756">PlayerJoined</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:4.93889px;line-height:0;font-family:Consolas;-inkscape-font-specification:Consolas;font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;fill:#ffffff;fill-opacity:1;fill-rule:nonzero;stroke:#ffffff;stroke-width:0.499533;stroke-opacity:1"
+       x="187.85423"
+       y="103.18746"
+       id="text27"
+       inkscape:label="clientAddPlayer1"><tspan
+         sodipodi:role="line"
+         id="tspan27"
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:4.93889px;font-family:Consolas;-inkscape-font-specification:Consolas;font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;stroke-width:0.499533"
+         x="187.85423"
+         y="103.18746">.addPlayer(socketId)</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:4.93889px;font-family:Consolas;-inkscape-font-specification:Consolas;fill:#ffffff;fill-opacity:1;stroke:#ffffff;stroke-width:0.499533;stroke-opacity:1"
+       x="176.55264"
+       y="147.11241"
+       id="text29"
+       inkscape:label="connectClient2"><tspan
+         sodipodi:role="line"
+         id="tspan29"
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:4.93889px;font-family:Consolas;-inkscape-font-specification:Consolas;font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;stroke-width:0.499533"
+         x="176.55264"
+         y="147.11241">OnConnection</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:4.93889px;line-height:0;font-family:Consolas;-inkscape-font-specification:Consolas;font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;fill:#ffffff;fill-opacity:1;stroke:#ffffff;stroke-width:0.499533;stroke-opacity:1"
+       x="164.64999"
+       y="160.9288"
+       id="text31"
+       inkscape:label="serverAddPlayer2"><tspan
+         sodipodi:role="line"
+         id="tspan31"
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:4.93889px;font-family:Consolas;-inkscape-font-specification:Consolas;font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;stroke-width:0.499533"
+         x="164.64999"
+         y="160.9288">.addPlayer(socket.id)</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:4.93889px;line-height:0;font-family:Consolas;-inkscape-font-specification:Consolas;font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;fill:#ffffff;fill-opacity:1;fill-rule:nonzero;stroke:#ffffff;stroke-width:0.499533;stroke-opacity:1"
+       x="195.79156"
+       y="186.00171"
+       id="text33"
+       inkscape:label="confirmConnection2"><tspan
+         sodipodi:role="line"
+         id="tspan33"
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:4.93889px;font-family:Consolas;-inkscape-font-specification:Consolas;stroke-width:0.499533"
+         x="195.79156"
+         y="186.00171">PlayerJoined</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:4.93889px;line-height:0;font-family:Consolas;-inkscape-font-specification:Consolas;font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;fill:#ffffff;fill-opacity:1;fill-rule:nonzero;stroke:#ffffff;stroke-width:0.499533;stroke-opacity:1"
+       x="187.85422"
+       y="199.23102"
+       id="text35"
+       inkscape:label="clientAddPlayer2"><tspan
+         sodipodi:role="line"
+         id="tspan35"
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:4.93889px;font-family:Consolas;-inkscape-font-specification:Consolas;stroke-width:0.499533"
+         x="187.85422"
+         y="199.23102">.addPlayer(socketId)</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:4.93889px;line-height:0;font-family:Consolas;-inkscape-font-specification:Consolas;font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;fill:#ffffff;fill-opacity:1;fill-rule:nonzero;stroke:#ffffff;stroke-width:0.499533;stroke-opacity:1"
+       x="189.17708"
+       y="239.18282"
+       id="text37"
+       inkscape:label="gameStarts"><tspan
+         sodipodi:role="line"
+         id="tspan37"
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:4.93889px;font-family:Consolas;-inkscape-font-specification:Consolas;stroke-width:0.499533"
+         x="189.17708"
+         y="239.18282">GameStarts</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:4.9389px;line-height:0;font-family:Consolas;-inkscape-font-specification:Consolas;font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;fill:#c72e7e;fill-opacity:1;fill-rule:nonzero;stroke:#ffffff;stroke-width:0.499533;stroke-opacity:1"
+       x="202.04735"
+       y="258.59357"
+       id="text41"
+       inkscape:label="addPlayer2OnClient"><tspan
+         sodipodi:role="line"
+         id="tspan41"
+         style="stroke-width:0.499533"
+         x="202.04735"
+         y="258.59357">addPlayer2</tspan></text>
+  </g>
+  <g
+     inkscape:groupmode="layer"
+     id="layer4"
+     inkscape:label="GameFrame_Connections"
+     style="display:inline">
+    <g
+       id="g22-8"
+       transform="matrix(0,-1.3325067,0.9956248,0,-0.82279914,341.32956)"
+       inkscape:label="pipe1"
+       style="display:inline">
+      <path
+         style="fill:none;fill-rule:evenodd;stroke:#ffffff;stroke-width:0.264583px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+         d="m 160.96529,41.923627 82.05678,0.221488"
+         id="path21-9"
+         inkscape:connector-type="polyline"
+         inkscape:connector-curvature="0"
+         sodipodi:nodetypes="cc"
+         inkscape:original-d="m 160.96529,41.923627 82.05678,0.221488"
+         inkscape:path-effect="#path-effect23-9" />
+      <path
+         style="fill:#ffffff;fill-opacity:1;stroke:#000000;stroke-width:0.140295"
+         inkscape:label="Triangle"
+         d="m 167.18915,44.940148 v -6.32168 l -6.741,3.16084 z"
+         id="path22-0"
+         sodipodi:nodetypes="cccc" />
+    </g>
+    <g
+       id="g24-8"
+       transform="matrix(0,-1.2301302,0.99698332,0,81.87219,324.20413)"
+       inkscape:label="pipe2"
+       style="display:inline">
+      <path
+         style="fill:none;fill-rule:evenodd;stroke:#ffffff;stroke-width:0.264583px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+         d="m 160.96529,41.923627 82.05678,0.221488"
+         id="path23-7"
+         inkscape:connector-type="polyline"
+         inkscape:connector-curvature="0"
+         sodipodi:nodetypes="cc"
+         inkscape:original-d="m 160.96529,41.923627 82.05678,0.221488"
+         inkscape:path-effect="#path-effect25-8" />
+      <path
+         style="fill:#ffffff;fill-opacity:1;stroke:#000000;stroke-width:0.140295"
+         inkscape:label="Triangle"
+         d="m 167.18915,44.940148 v -6.32168 l -6.741,3.16084 z"
+         id="path24-0"
+         sodipodi:nodetypes="cccc" />
+    </g>
+    <g
+       id="g19-43"
+       style="display:inline;fill:#ced748;fill-opacity:1"
+       transform="translate(-119.2725,-9.1393496)"
+       inkscape:label="connection1">
+      <path
+         style="fill:#ced748;fill-opacity:1;fill-rule:evenodd;stroke:#ffffff;stroke-width:0.264583px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+         d="m 160.96529,41.923627 82.05678,0.221488"
+         id="path13-8"
+         inkscape:connector-type="polyline"
+         inkscape:connector-curvature="0"
+         sodipodi:nodetypes="cc"
+         inkscape:original-d="m 160.96529,41.923627 82.05678,0.221488"
+         inkscape:path-effect="#path-effect21-3" />
+      <path
+         style="fill:#ced748;fill-opacity:1;stroke:#000000;stroke-width:0.140295"
+         inkscape:label="Triangle"
+         d="m 167.18915,44.940148 v -6.32168 l -6.741,3.16084 z"
+         id="path17-6"
+         sodipodi:nodetypes="cccc" />
+    </g>
+    <g
+       id="g20-2"
+       transform="rotate(180,142.41355,57.79247)"
+       style="display:inline;fill:#c74a2e;fill-opacity:1"
+       inkscape:label="connection2">
+      <path
+         style="fill:#c74a2e;fill-opacity:1;fill-rule:evenodd;stroke:#ffffff;stroke-width:0.264583px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+         d="m 160.96529,41.923627 82.05678,0.221488"
+         id="path19-8"
+         inkscape:connector-type="polyline"
+         inkscape:connector-curvature="0"
+         sodipodi:nodetypes="cc"
+         inkscape:original-d="m 160.96529,41.923627 82.05678,0.221488"
+         inkscape:path-effect="#path-effect20-9" />
+      <path
+         style="fill:#c74a2e;fill-opacity:1;stroke:#000000;stroke-width:0.140295"
+         inkscape:label="Triangle"
+         d="m 167.18915,44.940148 v -6.32168 l -6.741,3.16084 z"
+         id="path20-0"
+         sodipodi:nodetypes="cccc" />
+    </g>
+  </g>
+  <g
+     inkscape:groupmode="layer"
+     id="layer5"
+     inkscape:label="GameFrame"
+     style="display:inline">
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:4.9389px;line-height:0;font-family:Consolas;-inkscape-font-specification:Consolas;font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;fill:#c72e7e;fill-opacity:1;fill-rule:nonzero;stroke:#ffffff;stroke-width:0.499533;stroke-opacity:1"
+       x="83.34375"
+       y="27.78125"
+       id="text42"
+       inkscape:label="clientEvent1"><tspan
+         sodipodi:role="line"
+         id="tspan42"
+         style="stroke-width:0.499533"
+         x="83.34375"
+         y="27.78125">GameDataFrame</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:4.9389px;line-height:0;font-family:Consolas;-inkscape-font-specification:Consolas;font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;fill:#c72e7e;fill-opacity:1;fill-rule:nonzero;stroke:#ffffff;stroke-width:0.499533;stroke-opacity:1"
+       x="80.962502"
+       y="41.010418"
+       id="text43"
+       inkscape:label="clientAction1"><tspan
+         sodipodi:role="line"
+         id="tspan43"
+         style="stroke-width:0.499533"
+         x="80.962502"
+         y="41.010418">sendPlayerInput</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:4.9389px;line-height:0;font-family:Consolas;-inkscape-font-specification:Consolas;font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;fill:#c72e7e;fill-opacity:1;fill-rule:nonzero;stroke:#ffffff;stroke-width:0.499533;stroke-opacity:1"
+       x="45.598934"
+       y="68.5326"
+       id="text42-8"
+       inkscape:label="serverEvent1"><tspan
+         sodipodi:role="line"
+         id="tspan42-9"
+         style="stroke-width:0.499533"
+         x="45.598934"
+         y="68.5326">GameDataFrame</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:4.9389px;line-height:0;font-family:Consolas;-inkscape-font-specification:Consolas;font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;fill:#c72e7e;fill-opacity:1;fill-rule:nonzero;stroke:#ffffff;stroke-width:0.499533;stroke-opacity:1"
+       x="45.243748"
+       y="81.227081"
+       id="text44"
+       inkscape:label="serverAction1"><tspan
+         sodipodi:role="line"
+         id="tspan44"
+         style="stroke-width:0.499533"
+         x="45.243748"
+         y="81.227081">sendGameFrameData</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-size:4.9389px;line-height:0;font-family:Consolas;-inkscape-font-specification:Consolas;fill:#c72e7e;stroke:#ffffff;stroke-width:0.499533"
+       x="53.445831"
+       y="90.752083"
+       id="text1"
+       inkscape:label="serverAction1Data"><tspan
+         sodipodi:role="line"
+         id="tspan1"
+         style="stroke-width:0.499533"
+         x="53.445831"
+         y="90.752083">playersFrameData</tspan></text>
+  </g>
+</svg>
