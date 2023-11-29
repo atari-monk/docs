@@ -1,0 +1,349 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   width="210mm"
+   height="297mm"
+   viewBox="0 0 210 297"
+   version="1.1"
+   id="svg1"
+   inkscape:version="1.3 (0e150ed6c4, 2023-07-21)"
+   sodipodi:docname="mental_map.svg"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:svg="http://www.w3.org/2000/svg">
+  <sodipodi:namedview
+     id="namedview1"
+     pagecolor="#000000"
+     bordercolor="#000000"
+     borderopacity="0.25"
+     inkscape:showpageshadow="2"
+     inkscape:pageopacity="0.0"
+     inkscape:pagecheckerboard="0"
+     inkscape:deskcolor="#000000"
+     inkscape:document-units="mm"
+     inkscape:zoom="0.66691529"
+     inkscape:cx="372.61104"
+     inkscape:cy="-305.1362"
+     inkscape:window-width="1920"
+     inkscape:window-height="991"
+     inkscape:window-x="2391"
+     inkscape:window-y="-9"
+     inkscape:window-maximized="1"
+     inkscape:current-layer="layer3" />
+  <defs
+     id="defs1">
+    <marker
+       style="overflow:visible"
+       id="marker39"
+       refX="0"
+       refY="0"
+       orient="auto-start-reverse"
+       inkscape:stockid="Triangle arrow"
+       markerWidth="1"
+       markerHeight="1"
+       viewBox="0 0 1 1"
+       inkscape:isstock="true"
+       inkscape:collect="always"
+       preserveAspectRatio="xMidYMid">
+      <path
+         transform="scale(0.5)"
+         style="fill:context-stroke;fill-rule:evenodd;stroke:context-stroke;stroke-width:1pt"
+         d="M 5.77,0 -2.88,5 V -5 Z"
+         id="path39" />
+    </marker>
+    <marker
+       style="overflow:visible"
+       id="marker37"
+       refX="0"
+       refY="0"
+       orient="auto-start-reverse"
+       inkscape:stockid="Triangle arrow"
+       markerWidth="1"
+       markerHeight="1"
+       viewBox="0 0 1 1"
+       inkscape:isstock="true"
+       inkscape:collect="always"
+       preserveAspectRatio="xMidYMid">
+      <path
+         transform="scale(0.5)"
+         style="fill:context-stroke;fill-rule:evenodd;stroke:context-stroke;stroke-width:1pt"
+         d="M 5.77,0 -2.88,5 V -5 Z"
+         id="path37" />
+    </marker>
+    <marker
+       style="overflow:visible"
+       id="Triangle"
+       refX="0"
+       refY="0"
+       orient="auto"
+       inkscape:stockid="Triangle arrow"
+       markerWidth="1"
+       markerHeight="1"
+       viewBox="0 0 1 1"
+       inkscape:isstock="true"
+       inkscape:collect="always"
+       preserveAspectRatio="xMidYMid">
+      <path
+         transform="scale(0.5)"
+         style="fill:context-stroke;fill-rule:evenodd;stroke:context-stroke;stroke-width:1pt"
+         d="M 5.77,0 -2.88,5 V -5 Z"
+         id="path135" />
+    </marker>
+    <inkscape:path-effect
+       effect="powerstroke"
+       id="path-effect28"
+       is_visible="true"
+       lpeversion="1.3"
+       scale_width="1"
+       interpolator_type="CubicBezierJohan"
+       interpolator_beta="0.2"
+       start_linecap_type="zerowidth"
+       end_linecap_type="zerowidth"
+       offset_points="3,4.9921382"
+       linejoin_type="extrp_arc"
+       miter_limit="4"
+       not_jump="false"
+       sort_points="true"
+       message="&lt;b&gt;Ctrl + click&lt;/b&gt; on existing node and move it" />
+    <inkscape:path-effect
+       effect="spiro"
+       id="path-effect27"
+       is_visible="true"
+       lpeversion="1" />
+    <inkscape:path-effect
+       effect="spiro"
+       id="path-effect26"
+       is_visible="true"
+       lpeversion="1" />
+    <inkscape:path-effect
+       effect="fill_between_many"
+       method="bsplinespiro"
+       autoreverse="false"
+       close="false"
+       join="false"
+       linkedpaths="#path27,0,1"
+       id="path-effect29" />
+  </defs>
+  <g
+     inkscape:groupmode="layer"
+     id="layer3"
+     inkscape:label="Server"
+     style="display:inline">
+    <rect
+       style="fill:#000000;fill-opacity:1;stroke:#ffffff;stroke-width:0.329857"
+       id="rect6"
+       width="214.9882"
+       height="124.07135"
+       x="132.72215"
+       y="-203.81844"
+       inkscape:label="border" />
+    <text
+       xml:space="preserve"
+       style="font-size:7.05556px;line-height:0;font-family:Consolas;-inkscape-font-specification:Consolas;fill:#000000;fill-opacity:1;stroke:#ffffff;stroke-width:0.499533"
+       x="216.51855"
+       y="-208.70268"
+       id="text6"
+       inkscape:label="name"><tspan
+         sodipodi:role="line"
+         id="tspan6"
+         style="stroke-width:0.499533"
+         x="216.51855"
+         y="-208.70268">SERVER ENGINE</tspan></text>
+    <rect
+       style="fill:#000000;fill-opacity:1;stroke:#ffffff;stroke-width:0.279326"
+       id="rect12"
+       width="215.03874"
+       height="88.949211"
+       x="132.69688"
+       y="-30.277035"
+       inkscape:label="border" />
+    <text
+       xml:space="preserve"
+       style="font-size:7.05556px;line-height:0;font-family:Consolas;-inkscape-font-specification:Consolas;fill:#000000;fill-opacity:1;stroke:#ffffff;stroke-width:0.499533"
+       x="216.51855"
+       y="-35.136017"
+       id="text13"
+       inkscape:label="name"><tspan
+         sodipodi:role="line"
+         id="tspan13"
+         style="stroke-width:0.499533"
+         x="216.51855"
+         y="-35.136017">SERVER APP</tspan><tspan
+         sodipodi:role="line"
+         style="stroke-width:0.499533"
+         x="216.51855"
+         y="-35.136017"
+         id="tspan16" /></text>
+    <text
+       xml:space="preserve"
+       style="font-size:7.05556px;line-height:0;font-family:Consolas;-inkscape-font-specification:Consolas;fill:#ffffff;fill-opacity:1;stroke:#ffffff;stroke-width:0.499533;stroke-opacity:1"
+       x="154.34145"
+       y="-84.633804"
+       id="text22"><tspan
+         sodipodi:role="line"
+         id="tspan22"
+         style="stroke-width:0.499533"
+         x="154.34145"
+         y="-84.633804">Engine::passClientInputToPlayerMovementComponent</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-size:7.05556px;line-height:0;font-family:Consolas;-inkscape-font-specification:Consolas;fill:#ffffff;fill-opacity:1;stroke:#ffffff;stroke-width:0.499999;stroke-dasharray:none;stroke-opacity:1;paint-order:markers stroke fill"
+       x="158.77908"
+       y="-15.990118"
+       id="text41"><tspan
+         sodipodi:role="line"
+         id="tspan41"
+         style="fill:#ffffff;fill-opacity:1;stroke-width:0.5"
+         x="158.77908"
+         y="-15.990118">ConnectionManager</tspan></text>
+  </g>
+  <g
+     inkscape:groupmode="layer"
+     id="layer2"
+     inkscape:label="Client"
+     style="display:inline">
+    <text
+       xml:space="preserve"
+       style="font-size:7.05556px;line-height:0;font-family:Consolas;-inkscape-font-specification:Consolas;fill:#000000;fill-opacity:1;stroke:#ffffff;stroke-width:0.499533"
+       x="-160.00127"
+       y="-214.29953"
+       id="text4"
+       inkscape:label="name"><tspan
+         sodipodi:role="line"
+         id="tspan4"
+         style="stroke-width:0.499533"
+         x="-160.00127"
+         y="-214.29953">CLIENT ENGINE</tspan></text>
+    <rect
+       style="fill:#000000;fill-opacity:1;stroke:#ffffff;stroke-width:0.399787"
+       id="rect4"
+       width="211.74327"
+       height="83.050079"
+       x="-160.55815"
+       y="-207.94778"
+       inkscape:label="boder" />
+    <text
+       xml:space="preserve"
+       style="font-size:7.05556px;line-height:0;font-family:Consolas;-inkscape-font-specification:Consolas;fill:#000000;fill-opacity:1;stroke:#ffffff;stroke-width:0.499533"
+       x="-159.62709"
+       y="-47.366245"
+       id="text10"
+       inkscape:label="name"><tspan
+         sodipodi:role="line"
+         id="tspan10"
+         style="stroke-width:0.499533"
+         x="-159.62709"
+         y="-47.366245">CLIENT APP</tspan></text>
+    <rect
+       style="fill:#000000;fill-opacity:1;stroke:#ffffff;stroke-width:0.357118"
+       id="rect10"
+       width="211.78593"
+       height="66.254768"
+       x="-161.70203"
+       y="-38.790791"
+       inkscape:label="boder" />
+    <text
+       xml:space="preserve"
+       style="font-size:7.05556px;line-height:0;font-family:Consolas;-inkscape-font-specification:Consolas;fill:#ffffff;fill-opacity:1;stroke:#ffffff;stroke-width:0.499533;stroke-opacity:1"
+       x="-130.58789"
+       y="-25.444057"
+       id="text17"><tspan
+         sodipodi:role="line"
+         id="tspan17"
+         style="stroke-width:0.499533"
+         x="-130.58789"
+         y="-25.444057">GameClient</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-size:7.05556px;line-height:0;font-family:Consolas;-inkscape-font-specification:Consolas;fill:#ffffff;fill-opacity:1;stroke:#ffffff;stroke-width:0.499533;stroke-opacity:1"
+       x="-118.79577"
+       y="-10.476964"
+       id="text18"><tspan
+         sodipodi:role="line"
+         id="tspan18"
+         style="stroke-width:0.499533"
+         x="-118.79577"
+         y="-10.476964">sendInput</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-size:7.05556px;line-height:0;font-family:Consolas;-inkscape-font-specification:Consolas;fill:#ffffff;fill-opacity:1;stroke:#ffffff;stroke-width:0.499533;stroke-opacity:1"
+       x="-113.00155"
+       y="-130.58789"
+       id="text19"><tspan
+         sodipodi:role="line"
+         id="tspan19"
+         style="stroke-width:0.499533"
+         x="-113.00155"
+         y="-130.58789">GameLoop</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-size:7.05556px;line-height:0;font-family:Consolas;-inkscape-font-specification:Consolas;fill:#ffffff;fill-opacity:1;stroke:#ffffff;stroke-width:0.499533;stroke-opacity:1"
+       x="139.75453"
+       y="-190.62097"
+       id="text40"><tspan
+         sodipodi:role="line"
+         id="tspan40"
+         style="stroke-width:0.499533"
+         x="139.75453"
+         y="-190.62097">GameLoop</tspan></text>
+  </g>
+  <g
+     inkscape:label="Dtos"
+     inkscape:groupmode="layer"
+     id="layer1"
+     style="display:inline">
+    <text
+       xml:space="preserve"
+       style="font-size:7.05556px;line-height:0;font-family:Consolas;-inkscape-font-specification:Consolas;fill:#dde32a;fill-opacity:1;stroke:none;stroke-width:0.5;stroke-opacity:1;stroke-dasharray:none"
+       x="-116.13387"
+       y="-174.59663"
+       id="text3"
+       inkscape:label="input"><tspan
+         sodipodi:role="line"
+         id="tspan3"
+         style="fill:#dde32a;fill-opacity:1;stroke:none;stroke-width:0.5;stroke-opacity:1;stroke-dasharray:none"
+         x="-116.13387"
+         y="-174.59663">InputDto</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-size:7.05556px;line-height:0;font-family:Consolas;-inkscape-font-specification:Consolas;fill:#c72e7e;stroke:#ffffff;stroke-width:0.499533"
+       x="-152.36488"
+       y="-192.19987"
+       id="text9"
+       inkscape:label="component"><tspan
+         sodipodi:role="line"
+         id="tspan9"
+         style="stroke-width:0.499533"
+         x="-152.36488"
+         y="-192.19987">MovementComponent</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-size:7.05556px;line-height:0;font-family:Consolas;-inkscape-font-specification:Consolas;fill:#c72e7e;stroke:#ffffff;stroke-width:0.499533"
+       x="148.09868"
+       y="-117.6395"
+       id="text37"
+       inkscape:label="component"><tspan
+         sodipodi:role="line"
+         id="tspan37"
+         style="stroke-width:0.499533"
+         x="148.09868"
+         y="-117.6395">MovementComponent</tspan></text>
+    <path
+       style="fill:#000000;fill-opacity:0;stroke:#ffffff;stroke-width:2;stroke-dasharray:none;stroke-opacity:1;marker-end:url(#marker39);paint-order:markers stroke fill"
+       d="m 148.5484,-16.463803 0.74836,-87.936237"
+       id="path38"
+       sodipodi:nodetypes="cc" />
+  </g>
+  <g
+     inkscape:groupmode="layer"
+     id="layer4"
+     inkscape:label="Paths">
+    <path
+       style="fill:#000000;fill-opacity:0;stroke:#ffffff;stroke-width:2;stroke-dasharray:none;stroke-opacity:1;marker-start:url(#Triangle);marker-end:url(#marker37);paint-order:markers stroke fill"
+       d="m -76.615562,-195.32057 -0.09079,177.360058 220.666922,1.268176"
+       id="path36"
+       sodipodi:nodetypes="ccc" />
+  </g>
+</svg>
