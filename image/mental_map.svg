@@ -2,13 +2,16 @@
 <!-- Created with Inkscape (http://www.inkscape.org/) -->
 
 <svg
-   width="210mm"
-   height="297mm"
-   viewBox="0 0 210 297"
+   width="467.95178mm"
+   height="212.88989mm"
+   viewBox="0 0 467.95178 212.88989"
    version="1.1"
    id="svg1"
    inkscape:version="1.3 (0e150ed6c4, 2023-07-21)"
    sodipodi:docname="mental_map.svg"
+   inkscape:export-filename="mental_map.png"
+   inkscape:export-xdpi="71.586304"
+   inkscape:export-ydpi="71.586304"
    xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
    xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
    xmlns="http://www.w3.org/2000/svg"
@@ -23,15 +26,16 @@
      inkscape:pagecheckerboard="0"
      inkscape:deskcolor="#000000"
      inkscape:document-units="mm"
-     inkscape:zoom="0.66691529"
-     inkscape:cx="326.8781"
-     inkscape:cy="-387.60545"
-     inkscape:window-width="1920"
-     inkscape:window-height="1009"
-     inkscape:window-x="-8"
-     inkscape:window-y="-8"
+     inkscape:zoom="0.94316065"
+     inkscape:cx="978.62437"
+     inkscape:cy="398.12942"
+     inkscape:window-width="2400"
+     inkscape:window-height="1261"
+     inkscape:window-x="-9"
+     inkscape:window-y="-9"
      inkscape:window-maximized="1"
-     inkscape:current-layer="layer1" />
+     inkscape:current-layer="layer1"
+     inkscape:export-bgcolor="#000000ff" />
   <defs
      id="defs1">
     <marker
@@ -124,13 +128,16 @@
        close="false"
        join="false"
        linkedpaths="#path27,0,1"
-       id="path-effect29" />
+       id="path-effect29"
+       is_visible="true"
+       lpeversion="0" />
   </defs>
   <g
      inkscape:groupmode="layer"
      id="layer3"
      inkscape:label="Server"
-     style="display:inline">
+     style="display:inline"
+     transform="translate(161.88059,219.11405)">
     <rect
        style="fill:#000000;fill-opacity:1;stroke:#ffffff;stroke-width:0.329857"
        id="rect6"
@@ -203,7 +210,8 @@
      inkscape:groupmode="layer"
      id="layer2"
      inkscape:label="Client"
-     style="display:inline">
+     style="display:inline"
+     transform="translate(161.88059,219.11405)">
     <text
        xml:space="preserve"
        style="font-size:7.05556px;line-height:0;font-family:Consolas;-inkscape-font-specification:Consolas;fill:#000000;fill-opacity:1;stroke:#ffffff;stroke-width:0.499533"
@@ -304,17 +312,18 @@
      inkscape:label="Dtos"
      inkscape:groupmode="layer"
      id="layer1"
-     style="display:inline">
+     style="display:inline"
+     transform="translate(161.88059,219.11405)">
     <text
        xml:space="preserve"
-       style="font-size:7.05556px;line-height:0;font-family:Consolas;-inkscape-font-specification:Consolas;fill:#dde32a;fill-opacity:1;stroke:none;stroke-width:0.5;stroke-opacity:1;stroke-dasharray:none"
+       style="font-size:7.05556px;line-height:0;font-family:Consolas;-inkscape-font-specification:Consolas;fill:#dde32a;fill-opacity:1;stroke:none;stroke-width:0.5;stroke-dasharray:none;stroke-opacity:1"
        x="-116.13387"
        y="-174.59663"
        id="text3"
        inkscape:label="input"><tspan
          sodipodi:role="line"
          id="tspan3"
-         style="fill:#dde32a;fill-opacity:1;stroke:none;stroke-width:0.5;stroke-opacity:1;stroke-dasharray:none"
+         style="fill:#dde32a;fill-opacity:1;stroke:none;stroke-width:0.5;stroke-dasharray:none;stroke-opacity:1"
          x="-116.13387"
          y="-174.59663">InputDto</tspan></text>
     <text
@@ -348,14 +357,15 @@
        sodipodi:nodetypes="cc" />
     <path
        style="fill:#000000;fill-opacity:0;stroke:#ffffff;stroke-width:2;stroke-dasharray:none;stroke-opacity:1;marker-end:url(#marker39);paint-order:markers stroke fill"
-       d="m 106.49243,-187.42146 -79.998739,0.30997"
+       d="m 106.49243,-184.77561 -79.998739,0.30997"
        id="path1"
        sodipodi:nodetypes="cc" />
   </g>
   <g
      inkscape:groupmode="layer"
      id="layer4"
-     inkscape:label="Paths">
+     inkscape:label="Paths"
+     transform="translate(161.88059,219.11405)">
     <path
        style="fill:#000000;fill-opacity:0;stroke:#ffffff;stroke-width:2;stroke-dasharray:none;stroke-opacity:1;marker-start:url(#Triangle);marker-end:url(#marker37);paint-order:markers stroke fill"
        d="m -76.615562,-195.32057 -0.09079,139.789225 177.275252,1.268176"

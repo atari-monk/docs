@@ -1,6 +1,98 @@
 {
   "sections": [
     {
+      "title": "Plan",
+      "chats": [
+        {
+          "indexTitle": "Big Picture Plan",
+          "question": "Big Picture Plan",
+          "answer": "1. Add as many components to engine as fits\n2. Create single player engine and client and server versions of engines\n3. Move towards producing ball_game_3 with engine\n4. Produce many small games prototypes with engine ",
+          "dateTime": "2023-11-21T19:01:56.472Z"
+        },
+        {
+          "indexTitle": "ToDo",
+          "question": "ToDo",
+          "answer": "1. Doc about desktop_client\n2. Tests of Component",
+          "dateTime": "2023-11-21T13:17:54.252Z"
+        }
+      ]
+    },
+    {
+      "title": "Server Client",
+      "chats": [
+        {
+          "indexTitle": "Schemes",
+          "question": "Schemes",
+          "answer": "**Browser Engine** is single player engine.  \nApi library defines interfaces.  \nEngine library is implementation.  \nIt's build with engine parts, stored in folders named 'tech'.  \nTogether with **Desktop Client**, it is a test of engine parts.  \n\n---\n\n**Client Engine** is engine specific to client app.  \n**Server Engine** is engine specific to server app.  \nBoth Client and Server engine can contain Browser Engine.  \n \n---\n\n**Synchronizig players and id's**:\n\n* Scheme of socket events and methods:\n\n![Matchmaking](../../../../docs/notes_db/micro_engine_architecture_1.png)  \n\n**Synchronizig position**:\n\n* Scheme of socket events and methods:\n\n![Gameframe](../../../../docs/notes_db/micro_engine_architecture_2.png)  \n\n* Scheme of components and data flow when syncing position:\n\n![Data Flow](../../../../docs/notes_db/mental_map.png)  \n\n1. **MovementComponent** of Client Engine, uses input manager, to put input data in InputDto  \n2. Client Engine **GameLoop**, loads InputDto from player1 (this is a bug! it should use client id/player id).  \n    At end of each frame of game loop, sendFrame is invoked, witch uses Client App api, to send inputDto to server, with SocketEvents.ClientFrame.  \n3. Server **ConnectionManager** handles SocketEvents.ClientFrame.  \n    It recreates type InputDto from plain data.  \n    It sends inputDto to Server Engine.  \n    It puts it in Player entity MovementComponent.",
+          "dateTime": "2023-11-30T22:33:33.214Z"
+        }
+      ]
+    },
+    {
+      "title": "Tasks",
+      "chats": [
+        {
+          "indexTitle": "Task 1.",
+          "question": "Task 1.  \nAdd player data, name and ObjectEntityConfig data",
+          "answer": "* ObjectDataManager and ObjectDataFactory, for manipulating and producing data",
+          "dateTime": "2023-11-21T18:17:21.990Z"
+        },
+        {
+          "indexTitle": "Task 2.",
+          "question": "Task 2.  \nCreate PlayerEntity and ObjectEntity where ObjectEntity dosent have MovementComponent.",
+          "answer": "* PlayerEntity, added to EntityFactory",
+          "dateTime": "2023-11-21T18:35:48.216Z"
+        },
+        {
+          "indexTitle": "Task 3.",
+          "question": "Task 3.  \nAdd Tile map component to entity and show this entity.  Add factory for tile map data.",
+          "answer": "* updated TileMap and TileMapDataFctory, MapComponent, MapEntity, EntityFactory, Engine, EngineFactory\n* tile map renders",
+          "dateTime": "2023-11-21T21:24:52.813Z"
+        },
+        {
+          "indexTitle": "Task 4.",
+          "question": "Task 4.  \nMake data factories so they can be set in engine in particular game, also from client.",
+          "answer": "* Data encapsulation, moved data as ctor param of engine.",
+          "dateTime": "2023-11-22T11:55:20.210Z"
+        },
+        {
+          "indexTitle": "Task 5.",
+          "question": "Task 5.  \nEnable game data reload. In engine, separete dependencies from data driven game creation, so it can be repeated for sets of data.",
+          "answer": "* Engine data reload done,  \n    clearing all data,  \n    unsubscribing from callbacks,  \n    fixed bug where position was not created in ObjectComponent,  \n    in ctor, but only referenced.",
+          "dateTime": "2023-11-22T16:38:43.496Z"
+        },
+        {
+          "indexTitle": "Task 6.",
+          "question": "Task 6.  \nAdd Camera to CameraComponent and prolly to player Entity.",
+          "answer": "* Camera added to main render method, look in example section, but it was a little moddified from that and need inquiry still, since i dont quite get it.",
+          "dateTime": "2023-11-22T23:47:05.783Z"
+        },
+        {
+          "indexTitle": "Task 7.",
+          "question": "Task 7.\nAdd server component connecting clients",
+          "answer": "* base it on ball-game-2\n1. Copied proj from ball-game-2, ajusted, build, updated docs.\n2. Create GameServer class in engine and start to flesh it out\n3. Had to backtrack, all server stuf is not in server-lib folder in server proj, same for client.  \n    Engine_api and engine are pure ts, no libs, external libs are only in apps server and clients.\n    Had to do it that way, it was imposible to build webpack clients with server and client in engine lib.\n    Maybe someday i will try to make server lib and client lib, but not today.\n4. But client connected to server, now i need to find a way to integrate engine with server and client.  \n    I think some kind of events from engine will run server and client events",
+          "dateTime": "2023-11-23T23:07:25.697Z"
+        },
+        {
+          "indexTitle": "Task 8.",
+          "question": "Task 8.  \nCommunication server clients on player position",
+          "answer": "1. SocketEvents.GameDataFrame added\n2. Refactored MovementComponent from switch to key, method pairs js object\n3. Created ServerMovementComponent that collects input data to dto object  \n4. I mistook ClientMovementComponent  for ServerMovementComponent, need to change that\n5. ClientMovementComponent is acceptable becouse it adds dont destroy engine that was already\n6. Server version of engine, i started to create another suit of classes without renderer, i dont want that, i will do empty renderer, but wont change engine\n7. Managed to send direction to server from client at last\n8. Fixed removing key state after key up\n9. Passed engine to client\n10. Added id to IObject, removed IObjectConfig and use just IObject,  \n        added Vector2.fromObject(objectConfig.speed)\n11. GameServer needs to load IEngineServerApi\n12. Refactored, removed interface as one param in entities, made bunch of separate classes for server and client, independent of single player engine\n13. Added SocketEvents.PlayerJoined, added player with id on server and on client as a process of connecting client\n14. Changes:\n  1. Id prop in InputDto\n  2. this._engine?.getPlayer1Id(), send id in sendInput\n  3. pass input to movment of player on server, pass server frame to client",
+          "dateTime": "2023-11-26T21:57:46.622Z"
+        }
+      ]
+    },
+    {
+      "title": "Problems",
+      "chats": [
+        {
+          "indexTitle": "Serialization with socketIO",
+          "question": "Serialization with socketIO",
+          "answer": "Had to send class like a js object\nSerialization had problem with class getters\nNasty problem becouse i have other concerns than this  \nWorth to note for next occurence\n```typescript\nsendInput(inputDto: InputDto) {\n    if (inputDto.direction && inputDto.direction.length > 0) {\n      inputDto.id = this._engine!.getPlayer1Id()\n      this._socket.emit(SocketEvents.GameDataFrame, {\n        id: inputDto.id,\n        direction: inputDto.direction,\n      })\n    }\n  }\n```",
+          "dateTime": "2023-11-28T23:15:56.637Z"
+        }
+      ]
+    },
+    {
       "title": "Main Project micro-engine",
       "chats": [
         {
@@ -1061,87 +1153,6 @@
       ]
     },
     {
-      "title": "Plan",
-      "chats": [
-        {
-          "indexTitle": "Big Picture Plan",
-          "question": "Big Picture Plan",
-          "answer": "1. Add as many components to engine as fits\n2. Create single player engine and client and server versions of engines\n3. Move towards producing ball_game_3 with engine\n4. Produce many small games prototypes with engine ",
-          "dateTime": "2023-11-21T19:01:56.472Z"
-        },
-        {
-          "indexTitle": "ToDo",
-          "question": "ToDo",
-          "answer": "1. Doc about desktop_client\n2. Tests of Component",
-          "dateTime": "2023-11-21T13:17:54.252Z"
-        }
-      ]
-    },
-    {
-      "title": "Server Client",
-      "chats": [
-        {
-          "indexTitle": "Schemes",
-          "question": "Schemes",
-          "answer": "![Matchmaking](../../../../docs/notes_db/micro_engine_architecture_1.png)  \n![Gameframe](../../../../docs/notes_db/micro_engine_architecture_2.png)\n",
-          "dateTime": "2023-11-28T18:08:25.788Z"
-        }
-      ]
-    },
-    {
-      "title": "Tasks",
-      "chats": [
-        {
-          "indexTitle": "Task 1.",
-          "question": "Task 1.  \nAdd player data, name and ObjectEntityConfig data",
-          "answer": "* ObjectDataManager and ObjectDataFactory, for manipulating and producing data",
-          "dateTime": "2023-11-21T18:17:21.990Z"
-        },
-        {
-          "indexTitle": "Task 2.",
-          "question": "Task 2.  \nCreate PlayerEntity and ObjectEntity where ObjectEntity dosent have MovementComponent.",
-          "answer": "* PlayerEntity, added to EntityFactory",
-          "dateTime": "2023-11-21T18:35:48.216Z"
-        },
-        {
-          "indexTitle": "Task 3.",
-          "question": "Task 3.  \nAdd Tile map component to entity and show this entity.  Add factory for tile map data.",
-          "answer": "* updated TileMap and TileMapDataFctory, MapComponent, MapEntity, EntityFactory, Engine, EngineFactory\n* tile map renders",
-          "dateTime": "2023-11-21T21:24:52.813Z"
-        },
-        {
-          "indexTitle": "Task 4.",
-          "question": "Task 4.  \nMake data factories so they can be set in engine in particular game, also from client.",
-          "answer": "* Data encapsulation, moved data as ctor param of engine.",
-          "dateTime": "2023-11-22T11:55:20.210Z"
-        },
-        {
-          "indexTitle": "Task 5.",
-          "question": "Task 5.  \nEnable game data reload. In engine, separete dependencies from data driven game creation, so it can be repeated for sets of data.",
-          "answer": "* Engine data reload done,  \n    clearing all data,  \n    unsubscribing from callbacks,  \n    fixed bug where position was not created in ObjectComponent,  \n    in ctor, but only referenced.",
-          "dateTime": "2023-11-22T16:38:43.496Z"
-        },
-        {
-          "indexTitle": "Task 6.",
-          "question": "Task 6.  \nAdd Camera to CameraComponent and prolly to player Entity.",
-          "answer": "* Camera added to main render method, look in example section, but it was a little moddified from that and need inquiry still, since i dont quite get it.",
-          "dateTime": "2023-11-22T23:47:05.783Z"
-        },
-        {
-          "indexTitle": "Task 7.",
-          "question": "Task 7.\nAdd server component connecting clients",
-          "answer": "* base it on ball-game-2\n1. Copied proj from ball-game-2, ajusted, build, updated docs.\n2. Create GameServer class in engine and start to flesh it out\n3. Had to backtrack, all server stuf is not in server-lib folder in server proj, same for client.  \n    Engine_api and engine are pure ts, no libs, external libs are only in apps server and clients.\n    Had to do it that way, it was imposible to build webpack clients with server and client in engine lib.\n    Maybe someday i will try to make server lib and client lib, but not today.\n4. But client connected to server, now i need to find a way to integrate engine with server and client.  \n    I think some kind of events from engine will run server and client events",
-          "dateTime": "2023-11-23T23:07:25.697Z"
-        },
-        {
-          "indexTitle": "Task 8.",
-          "question": "Task 8.  \nCommunication server clients on player position",
-          "answer": "1. SocketEvents.GameDataFrame added\n2. Refactored MovementComponent from switch to key, method pairs js object\n3. Created ServerMovementComponent that collects input data to dto object  \n4. I mistook ClientMovementComponent  for ServerMovementComponent, need to change that\n5. ClientMovementComponent is acceptable becouse it adds dont destroy engine that was already\n6. Server version of engine, i started to create another suit of classes without renderer, i dont want that, i will do empty renderer, but wont change engine\n7. Managed to send direction to server from client at last\n8. Fixed removing key state after key up\n9. Passed engine to client\n10. Added id to IObject, removed IObjectConfig and use just IObject,  \n        added Vector2.fromObject(objectConfig.speed)\n11. GameServer needs to load IEngineServerApi\n12. Refactored, removed interface as one param in entities, made bunch of separate classes for server and client, independent of single player engine\n13. Added SocketEvents.PlayerJoined, added player with id on server and on client as a process of connecting client\n14. Changes:\n  1. Id prop in InputDto\n  2. this._engine?.getPlayer1Id(), send id in sendInput\n  3. pass input to movment of player on server, pass server frame to client",
-          "dateTime": "2023-11-26T21:57:46.622Z"
-        }
-      ]
-    },
-    {
       "title": "Examples",
       "chats": [
         {
@@ -1178,17 +1189,6 @@
           "question": "Pixi is a renderer only much more advanced right ?",
           "answer": "Yes, that's correct. PIXI.js is a powerful 2D rendering engine for the web that provides a wide range of features for creating rich and interactive graphics. It is more than just a renderer; it's a comprehensive library that includes rendering capabilities along with features like display objects, animation, interaction handling, and more.\n\nSome key features of PIXI.js include:\n\n1. **Display Objects:** PIXI allows you to work with a hierarchy of display objects, such as sprites, containers, text, and graphics.\n\n2. **WebGL and Canvas Rendering:** PIXI.js can utilize WebGL for hardware-accelerated rendering when available, providing better performance. It also has a fallback to the 2D canvas for compatibility with a wider range of devices.\n\n3. **Filters and Effects:** PIXI supports a variety of filters and effects that can be applied to display objects, allowing for advanced visual enhancements.\n\n4. **Interactivity:** PIXI provides built-in support for handling user interactions, making it easy to create interactive applications and games.\n\n5. **Asset Loader:** PIXI includes a flexible asset loader for handling the loading of images, spritesheets, and other resources.\n\n6. **Animation:** PIXI supports animations and tweening, making it easier to create dynamic and fluid movement in your applications.\n\n7. **Compatibility:** PIXI is designed to work across different platforms and devices, providing a consistent experience.\n\nIn summary, PIXI.js is a feature-rich 2D rendering engine that goes beyond a simple renderer, offering a robust set of tools and capabilities for building interactive and visually appealing web applications and games.",
           "dateTime": "2023-11-17T19:06:51.764Z"
-        }
-      ]
-    },
-    {
-      "title": "Problems",
-      "chats": [
-        {
-          "indexTitle": "Serialization with socketIO",
-          "question": "Serialization with socketIO",
-          "answer": "Had to send class like a js object\nSerialization had problem with class getters\nNasty problem becouse i have other concerns than this  \nWorth to note for next occurence\n```typescript\nsendInput(inputDto: InputDto) {\n    if (inputDto.direction && inputDto.direction.length > 0) {\n      inputDto.id = this._engine!.getPlayer1Id()\n      this._socket.emit(SocketEvents.GameDataFrame, {\n        id: inputDto.id,\n        direction: inputDto.direction,\n      })\n    }\n  }\n```",
-          "dateTime": "2023-11-28T23:15:56.637Z"
         }
       ]
     }
