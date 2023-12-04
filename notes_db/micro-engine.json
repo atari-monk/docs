@@ -96,6 +96,12 @@
           "question": "Task 11.  \nEvent of start game",
           "answer": "1. first just send event and log it  \n* SocketEvents.SendPlayers and SocketEvents.GameStarts\n* IGameServerApi.sendPlayers(frameDto: any): void\n* ",
           "dateTime": "2023-12-02T19:40:14.846Z"
+        },
+        {
+          "indexTitle": "Task 12.",
+          "question": "Task 12.  \nHow can i make my code more robust ?",
+          "answer": "* EntityManager2 using Map",
+          "dateTime": "2023-12-04T00:15:33.591Z"
         }
       ]
     },
