@@ -113,8 +113,8 @@
         {
           "indexTitle": "Task 16.",
           "question": "Task 16.  \nCreate object with sprite",
-          "answer": "1. pomodoro x2, trying to introduce sprites to creators but i dont understand them\n2. pomodoro 3, introducing sprite entity creators\n3. pomodoro  4, MapManager, fix test, refactor; lost track, took hours; gone of topic for MapManager, becouse dataManager for animations is needed\n4. pomodoro x4, refactored Manager interface to IManager<T> and implement base class on record and map, use it on objectDataManager  ",
-          "dateTime": "2023-12-11T01:34:09.182Z"
+          "answer": "1. pomodoro x2, trying to introduce sprites to creators but i dont understand them\n2. pomodoro 3, introducing sprite entity creators\n3. pomodoro  4, MapManager, fix test, refactor; lost track, took hours; gone of topic for MapManager, becouse dataManager for animations is needed\n4. pomodoro x4, refactored Manager interface to IManager<T> and implement base class on record and map, use it on objectDataManager  \n5. pomodoro x4, tested, closed mapManager refactor, added Sprite manager and Data",
+          "dateTime": "2023-12-11T19:54:33.997Z"
         }
       ]
     },
