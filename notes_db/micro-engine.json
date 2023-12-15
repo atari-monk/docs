@@ -113,8 +113,26 @@
         {
           "indexTitle": "Task 16.",
           "question": "Task 16.  \nCreate object with sprite",
-          "answer": "1. pomodoro x2, trying to introduce sprites to creators but i dont understand them\n2. pomodoro 3, introducing sprite entity creators\n3. pomodoro  4, MapManager, fix test, refactor; lost track, took hours; gone of topic for MapManager, becouse dataManager for animations is needed\n4. pomodoro x4, refactored Manager interface to IManager<T> and implement base class on record and map, use it on objectDataManager  \n5. pomodoro x4, tested, closed mapManager refactor, added Sprite manager and Data",
-          "dateTime": "2023-12-11T19:54:33.997Z"
+          "answer": "1. pomodoro x2, trying to introduce sprites to creators but i dont understand them\n2. pomodoro 3, introducing sprite entity creators\n3. pomodoro  4, MapManager, fix test, refactor; lost track, took hours; gone of topic for MapManager, becouse dataManager for animations is needed\n4. pomodoro x4, refactored Manager interface to IManager<T> and implement base class on record and map, use it on objectDataManager  \n5. pomodoro x4, tested, closed mapManager refactor, added Sprite manager and Data\n6. 2x pomodoro, shown ball sprite (very crude building of data and objects)",
+          "dateTime": "2023-12-12T23:19:27.902Z"
+        },
+        {
+          "indexTitle": "Task 17.",
+          "question": "Task 17.  \n",
+          "answer": "Each point is a pomodoro\n1. Try to simplify entity builders\n2. Deal with removal of EntityFactory class, EntityBuilder, EntityDependencyListBuilder, EntityFactoryBuilder,  \n write Builder pattern for MapEntity \n3. Done ObjectEntityBuilder, PlayerEntityBuilder, SpriteObjectEntityBuilder\n4. MapEntityBuilder fixed to produce new insctance evry build invoke\n5. Fixed all builders, removed all old junk (a lot)\n6. Use new builders for browser, tested spriteEntityCreator",
+          "dateTime": "2023-12-13T22:03:07.572Z"
+        },
+        {
+          "indexTitle": "Task 18.",
+          "question": "Task 18.  \nSimplify builders of entities in browser, client and server; then try to simplify engine and engine factory or builder",
+          "answer": "Each point is a pomodoro\n1. fixed bug to run simple and sprite entity creator in browser;  \n    fixed entity builder and creator in client\n2. fix entity builders to take data as params;  \n    fix engine factory in client; \n3. fix entity builder, creator and engine factory in server\n4. Mistake of using interfaces on builders. Remove interfaces on builders, implement independent creators (no inheritance)\ntest client server, commit entity creation refactor",
+          "dateTime": "2023-12-14T18:51:07.972Z"
+        },
+        {
+          "indexTitle": "Task 19.",
+          "question": "Task 19.  \n",
+          "answer": "1. Remove files exported from engine that are not used by client code  \n    From now on point means pomodoro\n2. New Engine class to use with builder in browser\n3. EngineDirector witch uses builder to return engine instance\n4. Engine Director uses EngineBuilder  \n5. ... Move stuff from EngineFactory to engine  \n6. \n7.\n8. tested engine builder, works, still needs a push",
+          "dateTime": "2023-12-15T19:52:44.814Z"
         }
       ]
     },

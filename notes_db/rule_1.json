@@ -1,0 +1,32 @@
+{
+  "sections": [
+    {
+      "title": "Rules",
+      "chats": [
+        {
+          "indexTitle": "Rule 1",
+          "question": "Rule 1",
+          "answer": "1. No coding past 19:30 !  \n2. No computers past 20:00 !\n3. No mobile phone past 22:00 ! \n",
+          "dateTime": "2023-12-14T19:01:25.771Z"
+        }
+      ]
+    },
+    {
+      "title": "Log",
+      "chats": [
+        {
+          "indexTitle": "14.12.2023",
+          "question": "14.12.2023",
+          "answer": "Phone fail, no sleep, late start",
+          "dateTime": "2023-12-15T19:56:27.969Z"
+        },
+        {
+          "indexTitle": "15.12.2023",
+          "question": "15.12.2023",
+          "answer": "Pc 21, ",
+          "dateTime": "2023-12-15T19:57:20.027Z"
+        }
+      ]
+    }
+  ]
+}
