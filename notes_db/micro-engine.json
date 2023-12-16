@@ -133,6 +133,12 @@
           "question": "Task 19.  \n",
           "answer": "1. Remove files exported from engine that are not used by client code  \n    From now on point means pomodoro\n2. New Engine class to use with builder in browser\n3. EngineDirector witch uses builder to return engine instance\n4. Engine Director uses EngineBuilder  \n5. ... Move stuff from EngineFactory to engine  \n6. \n7.\n8. tested engine builder, works, still needs a push",
           "dateTime": "2023-12-15T19:52:44.814Z"
+        },
+        {
+          "indexTitle": "Task 20.",
+          "question": "Task 20.  \n1. Use builders in server and client\n2. Use only EntityCreator and data will decide wheter what type of entity it is\n3. Fix data reloading feature",
+          "answer": "Each point is a pomodoro\n1. Remove factory and redundant entity creators from browser\n  * removed Engine and renamed Engine2 to Engine\n  * move resetEngine from EngineFactory to Engine \n  * removed engineFactory\n  * delete ObjectData, rename SpriteData to EntityData\n  * remove ObjectDataManager, rename SpriteDataManager to EnityDataManager\n  * rename ISprite to IEntityDataModel\n  * deleted entity creators beside EntityCreator\n2. Compile browser and test\n  * fixed IGameData, now it has entityData and tileMapData, in api\n  * removed IEngineConfig from api\n  * removed IClientEngineConfig \n  * compiled engine_api and engine\n3. Compile browser and test\n  * fix data in desktop_client, tested works\n  * problem in client, need to use PlayerEntityBuilder from client but dont want to write another EntityCreator\n  * removed simpleEntityCreator from client\n4. Refactor EngineBuilder to be able to use diffrent builders\n5. Refactor EngineBuilder to be able to use diffrent builders\n6. Refactor EngineBuilder to be able to use diffrent builders\n7. Refactor EngineBuilder to be able to use diffrent builders\n8. Refactor EngineBuilder to be able to use diffrent builders, browser version works",
+          "dateTime": "2023-12-16T21:14:44.472Z"
         }
       ]
     },

@@ -1,0 +1,26 @@
+{
+  "sections": [
+    {
+      "title": "Rules",
+      "chats": [
+        {
+          "indexTitle": "Rule 2",
+          "question": "Rule 2",
+          "answer": "1. No more \"twitch, yt, web sites\" than 2h daily.  \nTutorials or use on legit stuff dosent count.\n",
+          "dateTime": "2023-12-16T21:26:31.305Z"
+        }
+      ]
+    },
+    {
+      "title": "Log",
+      "chats": [
+        {
+          "indexTitle": "16.12.2023",
+          "question": "16.12.2023",
+          "answer": "Prolly failed",
+          "dateTime": "2023-12-16T21:27:11.916Z"
+        }
+      ]
+    }
+  ]
+}
