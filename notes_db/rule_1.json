@@ -6,8 +6,8 @@
         {
           "indexTitle": "Rule 1",
           "question": "Rule 1",
-          "answer": "1. No coding past 19:30 !  \n2. No computers past 20:00 !\n3. No mobile phone past 22:00 ! \n",
-          "dateTime": "2023-12-14T19:01:25.771Z"
+          "answer": "1. Start coding as early as possible !  \n2. No coding past 19:30 !  \n3. No computers past 20:00 !\n4. No mobile phone past 22:00 !  \n5. Sleep 8 hrs, from 23:00 most late\n",
+          "dateTime": "2023-12-18T19:26:37.284Z"
         }
       ]
     },
@@ -17,26 +17,32 @@
         {
           "indexTitle": "14.12.2023",
           "question": "14.12.2023",
-          "answer": "late start, Phone fail, no sleep ",
-          "dateTime": "2023-12-16T21:17:49.221Z"
+          "answer": "1. fail  \n2. pass  \n3. pass  \n4. fail  \n5. fail  ",
+          "dateTime": "2023-12-18T19:27:41.132Z"
         },
         {
           "indexTitle": "15.12.2023",
           "question": "15.12.2023",
-          "answer": "still late start, Pc 21, phone later",
-          "dateTime": "2023-12-16T21:18:07.065Z"
+          "answer": "1. fail  \n2. fail  \n3. fail, 21  \n4. fail  \n5. ?  ",
+          "dateTime": "2023-12-18T19:55:35.803Z"
         },
         {
           "indexTitle": "16.12.2023",
           "question": "16.12.2023",
-          "answer": "late start, PC 22, phone 23:30",
-          "dateTime": "2023-12-16T21:19:26.167Z"
+          "answer": "1. fail  \n2. fail  \n3. fail, 22  \n4. fail, 23:30  \n5. ?  ",
+          "dateTime": "2023-12-18T19:33:11.901Z"
         },
         {
           "indexTitle": "17.12.2023",
           "question": "17.12.2023",
-          "answer": "late start, PC 21, phone 23",
-          "dateTime": "2023-12-17T19:54:01.773Z"
+          "answer": "1. fail  \n2. fail  \n3. fail, 21  \n4. fail, 23  \n5. ?  ",
+          "dateTime": "2023-12-18T20:02:49.705Z"
+        },
+        {
+          "indexTitle": "18.12.2023",
+          "question": "18.12.2023",
+          "answer": "1. fail, 12    \n2. fail, 20  \n3. fail, 23  \n4. fail  \n5. ?  ",
+          "dateTime": "2023-12-18T21:48:48.374Z"
         }
       ]
     }
