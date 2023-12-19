@@ -145,6 +145,18 @@
           "question": "Task 21.  \nFix player movement server client comms failure bug",
           "answer": "This is second time, why this always gets wrecked on refactoring ?  \n* i can set a logger in client, 'Logger not set' in console\n* i can check scheme in docs and check it in code\nEvery point is pomodoro:  \n1. \n* set logger for client\n* this._gameLoop.load is not a function\n* refactor game loop\n2.\n* compile\n3. \n* compiled, exception fix,\n4. I think i sit longer so i add this pomodoro, tested, position sync in server client works, commited  \nOptions for next task:  \n    1. Some defensive/diagnostic code on chain that makes server/client position sync work and not break or repair faster\n    2. Add state for animations of sprites, first locally, than server client",
           "dateTime": "2023-12-18T18:41:10.214Z"
+        },
+        {
+          "indexTitle": "Task 22.",
+          "question": "Task 22.  \nAdd support for state machines for entities",
+          "answer": "Each point is a pomodoro\n1. move state machine from ball_game_2 to micro_engine or get one using chatgpt to establish pattern  \n* added IState to api\n2. decide how states, transitions and relation to ecs should be defined, should states be a component or just state machine  \n* ",
+          "dateTime": "2023-12-19T14:53:11.662Z"
+        },
+        {
+          "indexTitle": "Task 23.",
+          "question": "Task 23.  \nRefactor to have only one entity builder, keep them named in map in entityCreator",
+          "answer": "Each point is pomodoro  \n1. One EntityBuilder builds them all, map and object  \n2. also player  and sprite\n3. how to do builder ?\n4. builder \n5. builder \n6. builder \n7. made one builder instead of many, it works with operations, one has param of datakey, it builds all entities, tested using entitycreator class becouse it is embened in engine order of execution that way (after data is loaded to engine, in fact this may be redundant step to remove)",
+          "dateTime": "2023-12-19T22:36:30.541Z"
         }
       ]
     },
