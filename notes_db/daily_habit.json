@@ -6,8 +6,8 @@
         {
           "indexTitle": "Rules",
           "question": "Rules",
-          "answer": "1. Drink 4/5 glasses of water !  \n2. 1 coffe !  \n3. 1 tea !  \n---\n4. No more screen time that 2hrs, other than coding or tutorials !  \n---\n5. Start coding by 7 !  \n6. Code for 4 hrs daily !  \n7. Tutorials for 1hr daily !  \n---\n8. No coding past 18:00 !  \n9. No computers past 20:00 !  \n10. No mobile phone past 22:00 !\n---\n11. Sleep 8 hrs, from 23:00 most late !  \n---\n12. Exercice daily !  \n13. Walk at least weekly !  \n",
-          "dateTime": "2023-12-19T22:59:14.298Z"
+          "answer": "1. Drink 4/5 glasses of water !  \n2. max 1 coffe, 1 tea, 1 milk daily !    \n---\n3. No more screen time that 2hrs, other than coding or tutorials !  \n---\n4. Start coding by 7 !  \n5. Code for 4 hrs daily !  \n6. Tutorials for 1hr daily !  \n---\n7. No coding past 18:00 !  \n8. No computers past 20:00 !  \n9. No mobile phone past 22:00 !\n---\n10. Sleep 8 hrs, from 23:00 most late !  \n---\n11. Exercice daily !  \n12. Walk at least weekly !  \n",
+          "dateTime": "2023-12-20T20:32:17.640Z"
         }
       ]
     },
@@ -17,8 +17,14 @@
         {
           "indexTitle": "19.12.2023",
           "question": "19.12.2023",
-          "answer": "1. pass\n2. fail \n3. fail\n---\n4. fail\n---  \n5. fail  \n6. pass\n7. fail\n---\n8. fail  \n9. fail  \n10. fail  \n---\n11. fail  \n---\n12. fail  ",
-          "dateTime": "2023-12-19T23:01:45.976Z"
+          "answer": "1. pass\n2. fail \n---\n3. fail\n---\n4. fail  \n5. pass  \n6. fail  \n---\n7. fail\n8. fail  \n9. fail\n---  \n10. fail  \n---\n11. fail",
+          "dateTime": "2023-12-20T20:40:24.511Z"
+        },
+        {
+          "indexTitle": "20.12.2023",
+          "question": "20.12.2023",
+          "answer": "1. pass  \n2. pass  \n---\n3. fail, to time it\n---\n4. fail, 11:30    \n5. pass  \n6. fail  \n---\n7. fail\n8. fail  \n9. fail\n---  \n10. fail, 1-9\n---\n11. fail",
+          "dateTime": "2023-12-20T20:41:23.408Z"
         }
       ]
     }
