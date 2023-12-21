@@ -1,0 +1,26 @@
+{
+  "sections": [
+    {
+      "title": "test",
+      "chats": [
+        {
+          "indexTitle": "bla",
+          "question": "dsfsdf",
+          "answer": "sdfsdf",
+          "dateTime": "2023-11-15T15:23:40.159Z"
+        }
+      ]
+    },
+    {
+      "title": "Recipes",
+      "chats": [
+        {
+          "indexTitle": "Pancakes",
+          "question": "Pancakes",
+          "answer": "Making pancakes can be quite simple. Here's a basic recipe for you:\n\n**Ingredients:**\n- 1 cup all-purpose flour\n- 2 tablespoons sugar\n- 1 teaspoon baking powder\n- 1/2 teaspoon baking soda\n- 1/4 teaspoon salt\n- 3/4 cup buttermilk (or milk)\n- 1/4 cup plain yogurt\n- 1 large egg\n- 2 tablespoons melted butter\n- Cooking spray or additional butter for greasing the pan\n\n**Instructions:**\n1. In a mixing bowl, whisk together the flour, sugar, baking powder, baking soda, and salt.\n2. In another bowl, whisk together the buttermilk, yogurt, egg, and melted butter.\n3. Pour the wet ingredients into the dry ingredients and gently stir until just combined. It's okay if there are a few lumps.\n4. Heat a skillet or griddle over medium heat and lightly coat it with cooking spray or butter.\n5. Pour 1/4 cup portions of batter onto the skillet to form each pancake.\n6. Cook until bubbles form on the surface, then flip and cook the other side until golden brown.\n7. Repeat until all the batter is used.\n\nServe your pancakes with your favorite toppings, such as maple syrup, fruit, or whipped cream. Enjoy your simple and delicious homemade pancakes!",
+          "dateTime": "2023-12-21T15:53:57.662Z"
+        }
+      ]
+    }
+  ]
+}
