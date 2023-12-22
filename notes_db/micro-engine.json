@@ -163,6 +163,12 @@
           "question": "Task 24.  \nRefactor server to use EntityBuilder",
           "answer": "Each point is pomodoro  \n1. EngineBuilder for server using EngineBuilder from single\n2. Bug in client, \n3. Thouth ()=>new Entity() was a problem\n4. Fixed by newing entity in defered operation, run in build  \n5. Uncaught (in promise) Error: Component of type ClientMovementComponent not found.  \nEntity Builders at last fixed. Removed some folders to simpliffy. Tested.  \n6. Added state component, ball spinning anim test  \n7. I think it's time to add ball_game project  \n8. Problem with player position (would not be in unity)  \nAdded config manager tech to engine, to enable/disable camera",
           "dateTime": "2023-12-21T23:15:44.410Z"
+        },
+        {
+          "indexTitle": "Task 25.",
+          "question": "Task 25.  \nRecreate ball game",
+          "answer": "Each point is pomodoro:\n1. I need to fix player movement.  \n* First i want to have a switch that will enable testing in single mode.\n2. Need to introduce master engine config, in addition to configs in single and multi engines.\n * center ball in the middle of screen in both versions.\n3. second player \n4. adding file for entity creator\n5. saved EntityData to json\n6. \n7. entity data from file",
+          "dateTime": "2023-12-22T23:19:50.877Z"
         }
       ]
     },

@@ -6,8 +6,8 @@
         {
           "indexTitle": "Rules",
           "question": "Rules",
-          "answer": "1. Drink 4/5 glasses of water !  \n2. max 1 coffe, 1 tea, 1 milk daily !    \n---\n3. No more screen time that 2hrs, other than coding or tutorials !  \n---\n4. Start coding by 7 !  \n5. Code for 4 hrs daily !  \n6. Tutorials for 1hr daily !  \n---\n7. No coding past 18:00 !  \n8. No computers past 20:00 !  \n9. No mobile phone past 22:00 !\n---\n10. Sleep 8 hrs, from 23:00 most late !  \n---\n11. Exercice daily !  \n12. Walk at least weekly !  \n",
-          "dateTime": "2023-12-20T20:32:17.640Z"
+          "answer": "1. Drink 3/4 glasses of water !  \n2. max 1 coffe, 1 tea, 1 milk daily !    \n---\n3. No more screen time that 2hrs, other than coding or tutorials !  \n---\n4. Start coding by 7 !  \n5. Code for 4 hrs daily !  \n6. Tutorials for 1hr daily !  \n---\n7. No coding past 18:00 !  \n8. No computers past 20:00 !  \n9. No mobile phone past 22:00 !\n---\n10. Sleep 8 hrs, from 23:00 most late !  \n---\n11. Exercice daily !  \n12. Walk at least weekly !  \n",
+          "dateTime": "2023-12-22T23:33:54.360Z"
         }
       ]
     },
@@ -31,6 +31,12 @@
           "question": "21.12.2023",
           "answer": "1. fail\n2. pass  \n---\n3. fail, to time it\n---\n4. fail    \n5. pass  \n6. fail  \n---\n7. fail\n8. fail  \n9. fail\n---  \n10. fail, 1-9\n---\n11. fail",
           "dateTime": "2023-12-21T23:18:24.456Z"
+        },
+        {
+          "indexTitle": "22.12.2023",
+          "question": "22.12.2023",
+          "answer": "1. pass  \n2. pass  \n---\n3. fail, to time it\n---\n4. fail    \n5. pass  \n6. fail  \n---\n7. fail\n8. fail  \n9. fail\n---  \n10. fail, 1-9\n---\n11. fail",
+          "dateTime": "2023-12-22T23:32:40.251Z"
         }
       ]
     }
