@@ -167,8 +167,14 @@
         {
           "indexTitle": "Task 25.",
           "question": "Task 25.  \nRecreate ball game",
-          "answer": "Each point is pomodoro:\n1. I need to fix player movement.  \n* First i want to have a switch that will enable testing in single mode.\n2. Need to introduce master engine config, in addition to configs in single and multi engines.\n * center ball in the middle of screen in both versions.\n3. second player \n4. adding file for entity creator\n5. saved EntityData to json\n6. \n7. entity data from file",
-          "dateTime": "2023-12-22T23:19:50.877Z"
+          "answer": "Each point is pomodoro:\n1. I need to fix player movement.  \n* First i want to have a switch that will enable testing in single mode.\n2. Need to introduce master engine config, in addition to configs in single and multi engines.\n * center ball in the middle of screen in both versions.\n3. second player \n4. adding file for entity creator\n5. saved EntityData to json\n6. \n7. entity data from file  \n---\n1. Anims for players  \n2. Offset for sprites  \n3. Center ball and players",
+          "dateTime": "2023-12-23T21:53:49.923Z"
+        },
+        {
+          "indexTitle": "Task 26.",
+          "question": "Task 26.  \nIntegrate collision detector to engine",
+          "answer": "Each point is pomodoro\n1. Addind collision componet, adding collisionDetector to engine  \n2. Added player ball collider for single version  \n3. Collision detection player ball  \n4. CollisionHandlerComponent\n5. tested",
+          "dateTime": "2023-12-24T22:10:02.730Z"
         }
       ]
     },
