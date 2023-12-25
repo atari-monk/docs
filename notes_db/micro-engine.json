@@ -175,6 +175,12 @@
           "question": "Task 26.  \nIntegrate collision detector to engine",
           "answer": "Each point is pomodoro\n1. Addind collision componet, adding collisionDetector to engine  \n2. Added player ball collider for single version  \n3. Collision detection player ball  \n4. CollisionHandlerComponent\n5. tested",
           "dateTime": "2023-12-24T22:10:02.730Z"
+        },
+        {
+          "indexTitle": "Task 27.",
+          "question": "Task 27.  \nIntegrate kinematics component with engine",
+          "answer": "Each point is pomodoro  \n1. Find kinematics in ball_game_2, extract it to component\n2. Debuging, fix bind bug in collision handler, need vector tests\n3. Fix exports from engine for tests proj\n4. Fixing collisionHandler  \n5. Trying to calculate collision handling and kinematics so that vectors are not overriden  \n6. Console.log revels that collision of red player and ball is triggered twice and secod one zeros speed  \n7. After moving subscription from ctor to event after entoty creation collision handler is subscribed once (not twice)  \n8. Make player v imune to collision, setup second player, refactor, commit  \ntodo: speed is inputStep, add velocity to data",
+          "dateTime": "2023-12-25T23:18:13.826Z"
         }
       ]
     },
