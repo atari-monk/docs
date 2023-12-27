@@ -181,6 +181,18 @@
           "question": "Task 27.  \nIntegrate kinematics component with engine",
           "answer": "Each point is pomodoro  \n1. Find kinematics in ball_game_2, extract it to component\n2. Debuging, fix bind bug in collision handler, need vector tests\n3. Fix exports from engine for tests proj\n4. Fixing collisionHandler  \n5. Trying to calculate collision handling and kinematics so that vectors are not overriden  \n6. Console.log revels that collision of red player and ball is triggered twice and secod one zeros speed  \n7. After moving subscription from ctor to event after entoty creation collision handler is subscribed once (not twice)  \n8. Make player v imune to collision, setup second player, refactor, commit  \ntodo: speed is inputStep, add velocity to data",
           "dateTime": "2023-12-25T23:18:13.826Z"
+        },
+        {
+          "indexTitle": "Task 28.",
+          "question": "Task 28.\nAdd velocity, add movement wall",
+          "answer": "Each point is pomodoro  \n1. velocity  \n2.  \n3. fix velocity, vector renderer  \n4. limit player movement to canvas size",
+          "dateTime": "2023-12-26T15:32:03.609Z"
+        },
+        {
+          "indexTitle": "Task 29.",
+          "question": "Task 29.  \nMovement wall for ball; anim state; goals detection; points text; sprites for field and goal posts; virtual joypad; direction for ball kick; make it multiplayer",
+          "answer": "Each point is pomodoro  \n1. Movement wall for ball; Component class;  \n2. Integrated to engine; failed to make it pixel perfect since position point is in top left of collision rectangle and not in center i think  \n3. Trying to put point in center  \n4. Using code data to fix messed up positions  \n5. Fixed tile map position by adding drawRect from top left, objects have drawRectAroundPoint now  \n6. Drawing around position fixed bouncing ball constraint, chatgpt helped fixed LimitMoveComponent for players. Adding collision manager that can be switched betwen collision detectors, i have 2 for position as lefttop and as center.    \n7. Tested, switched back to json data saved from code data; fixed collisions to center point now.\n8. Fix data bug, minor fixes  \n9. Step to create entity builder in game app  ",
+          "dateTime": "2023-12-27T21:58:52.491Z"
         }
       ]
     },
