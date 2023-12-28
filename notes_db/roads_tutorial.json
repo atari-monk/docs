@@ -1,0 +1,21 @@
+{
+  "sections": [
+    {
+      "title": "First session",
+      "chats": [
+        {
+          "indexTitle": "Setup",
+          "question": "**Setup**  \n",
+          "answer": "1. [My Repo](https://github.com/atari-monk/roads-tutorial.git)\n",
+          "dateTime": "2023-12-28T20:49:51.548Z"
+        },
+        {
+          "indexTitle": "Pomodoro 1",
+          "question": "Pomodoro 1",
+          "answer": "1. Graph visualized",
+          "dateTime": "2023-12-28T21:32:31.413Z"
+        }
+      ]
+    }
+  ]
+}
