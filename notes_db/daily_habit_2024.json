@@ -1,0 +1,26 @@
+{
+  "sections": [
+    {
+      "title": "Rules",
+      "chats": [
+        {
+          "indexTitle": "Rules",
+          "question": "Rules",
+          "answer": "1. Drink 3/4 glasses of water or water with syrup or juice !    \n2. Max 1 coffe, 1 tea, 1 milk daily !    \n---\n3. No more screen time that 2hrs, other than coding or tutorials !  \n---\n4. Start coding by 7 !  \n5. Code for 4 hrs daily !  \n6. Tutorials for 1hr daily !  \n---\n7. No coding past 18:00 !  \n8. No computers past 20:00 !  \n9. No mobile phone past 22:00 !\n---\n10. Sleep 8 hrs, from 23:00 most late !  \n---\n11. Exercice daily !  \n12. Walk at least weekly !  \n---  \nPut pass/fail daily for these points. \n",
+          "dateTime": "2023-12-28T19:17:34.799Z"
+        }
+      ]
+    },
+    {
+      "title": "Log",
+      "chats": [
+        {
+          "indexTitle": "01.01.2024",
+          "question": "01.01.2024",
+          "answer": "1. pass\n2. fail \n---\n3. fail\n---\n4. fail  \n5. pass  \n6. fail  \n---\n7. fail\n8. fail  \n9. fail\n---  \n10. fail  \n---\n11. fail  \n12. fail",
+          "dateTime": "2023-12-28T19:18:32.677Z"
+        }
+      ]
+    }
+  ]
+}
