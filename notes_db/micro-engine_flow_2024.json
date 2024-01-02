@@ -1,0 +1,68 @@
+{
+  "sections": [
+    {
+      "title": "MovementComponent",
+      "chats": [
+        {
+          "indexTitle": "Refactoring",
+          "question": "Refactoring",
+          "answer": "I think i want to refactor my ECS.  \nNo revolution, i want to have it working all the time.  \nI need to introduce components that have only data and systems that have logic on that.    \nI need system that will load them with data from json files.  \nNext i will refactor so that old components that have data and logic confotm to that.\n",
+          "dateTime": "2024-01-02T12:34:04.517Z"
+        },
+        {
+          "indexTitle": "MovementComponent",
+          "question": "MovementComponent",
+          "answer": "Writing data loader from json is not possible now.  \nFirst i need compenents only with data and logic in systems.  \nThis is my initial MovementComponent:  \n```typescript\nimport { IEventSystem, IInputManager, IObject } from 'engine_api'\nimport Component from '../entity_component/Component'\nimport Vector2 from '../../math/vector/Vector2'\n\ntype KeyAction = () => void\n\nexport default class MovementComponent extends Component {\n  private readonly _keyActions: { [key: string]: KeyAction }\n  private readonly _cumulativeDirection: Vector2\n  private _pressedKeys: Set<string> = new Set()\n\n  constructor(\n    private readonly _object: IObject,\n    private readonly _eventSystem: IEventSystem,\n    private readonly _input: IInputManager,\n    private readonly _useArrowKeys: boolean = true\n  ) {\n    super('MovementComponent')\n\n    this._cumulativeDirection = new Vector2()\n    this._keyActions = this.initializeKeyActions()\n\n    this._input.subscribeInputEvent('KeyDown', (key) => {\n      this._pressedKeys.add(key)\n      this.handleKeys()\n    })\n\n    this._input.subscribeInputEvent('KeyUp', (key) => {\n      this._pressedKeys.delete(key)\n      this.handleKeys()\n    })\n  }\n\n  private initializeKeyActions(): { [key: string]: KeyAction } {\n    const keyActions: { [key: string]: KeyAction } = {}\n\n    if (this._useArrowKeys) {\n      keyActions['ArrowLeft'] = () => this.updateDirection(-1, 0)\n      keyActions['ArrowRight'] = () => this.updateDirection(1, 0)\n      keyActions['ArrowUp'] = () => this.updateDirection(0, -1)\n      keyActions['ArrowDown'] = () => this.updateDirection(0, 1)\n    } else {\n      keyActions['a'] = () => this.updateDirection(-1, 0)\n      keyActions['d'] = () => this.updateDirection(1, 0)\n      keyActions['w'] = () => this.updateDirection(0, -1)\n      keyActions['s'] = () => this.updateDirection(0, 1)\n    }\n\n    return keyActions\n  }\n\n  private updateDirection(x: number, y: number): void {\n    this._cumulativeDirection.x += x\n    this._cumulativeDirection.y += y\n  }\n\n  private handleKeys(): void {\n    //console.log('Before handling keys:', this._cumulativeDirection)\n\n    this._cumulativeDirection.x = 0\n    this._cumulativeDirection.y = 0\n\n    this._pressedKeys.forEach((key) => {\n      const action = this._keyActions[key]\n      if (action) {\n        action()\n      }\n    })\n\n    const direction = this._cumulativeDirection.clone().normalize()\n\n    const scaledDirection = new Vector2(\n      direction.x * this._object.moveStep.x,\n      direction.y * this._object.moveStep.y\n    )\n\n    this._object.velocity.setValues(scaledDirection)\n    this._eventSystem.publish('playerMove', this._object.id)\n  }\n}\n```",
+          "dateTime": "2024-01-02T19:23:11.814Z"
+        },
+        {
+          "indexTitle": "Refactored MovementComponent",
+          "question": "Refactored MovementComponent",
+          "answer": "Still now used for now, but much simpler :)\n```typescript\nimport { IVector2 } from 'engine_api'\nimport Component from '../entity_component/Component'\nimport Vector2 from '../../math/vector/Vector2'\n\nexport default class MovementComponent extends Component {\n  public velocity: IVector2 = Vector2.zero\n  public useArrowKeys: boolean = true\n  public moveSpeed: number = 50\n\n  constructor() {\n    super('MovementComponent')\n  }\n}\n```",
+          "dateTime": "2024-01-02T19:27:53.394Z"
+        },
+        {
+          "indexTitle": "MovementSubSystem",
+          "question": "MovementSubSystem",
+          "answer": "```typescript\nimport { IEventSystem, IInputManager } from 'engine_api'\nimport Vector2 from '../../../math/vector/Vector2'\nimport MovementComponent from '../../component/MovementComponent'\nimport ObjectComponent from '../../component/ObjectComponent'\n\ntype KeyAction = () => void\n\nexport default class MovementSubSystem {\n  private readonly _keyAction: { [key: string]: KeyAction }\n  private readonly _cumulativeDirection: Vector2 = new Vector2()\n  private _pressedKey: Set<string> = new Set()\n\n  constructor(\n    private readonly _input: IInputManager,\n    private readonly _eventSystem: IEventSystem,\n    private readonly _id: string,\n    useArrowKeys: boolean = true\n  ) {\n    this._keyAction = useArrowKeys\n      ? this.initArrowKeyAction()\n      : this.initWSADKeyAction()\n  }\n\n  private initArrowKeyAction(): { [key: string]: KeyAction } {\n    const keyActions: { [key: string]: KeyAction } = {}\n\n    keyActions['ArrowLeft'] = () => this.updateDirection(-1, 0)\n    keyActions['ArrowRight'] = () => this.updateDirection(1, 0)\n    keyActions['ArrowUp'] = () => this.updateDirection(0, -1)\n    keyActions['ArrowDown'] = () => this.updateDirection(0, 1)\n\n    return keyActions\n  }\n\n  private initWSADKeyAction(): { [key: string]: KeyAction } {\n    const keyActions: { [key: string]: KeyAction } = {}\n\n    keyActions['a'] = () => this.updateDirection(-1, 0)\n    keyActions['d'] = () => this.updateDirection(1, 0)\n    keyActions['w'] = () => this.updateDirection(0, -1)\n    keyActions['s'] = () => this.updateDirection(0, 1)\n\n    return keyActions\n  }\n\n  private updateDirection(x: number, y: number): void {\n    this._cumulativeDirection.x += x\n    this._cumulativeDirection.y += y\n  }\n\n  subscribeInput(objectComponent: ObjectComponent) {\n    this._input.subscribeInputEvent('KeyDown', (key) => {\n      if (!this._keyAction.hasOwnProperty(key)) return\n      this._pressedKey.add(key)\n      this.handleKeys(objectComponent)\n    })\n\n    this._input.subscribeInputEvent('KeyUp', (key) => {\n      if (!this._keyAction.hasOwnProperty(key)) return\n      this._pressedKey.delete(key)\n      this.handleKeys(objectComponent)\n    })\n  }\n\n  private handleKeys(objectComponent: ObjectComponent): void {\n    this._cumulativeDirection.x = 0\n    this._cumulativeDirection.y = 0\n\n    this._pressedKey.forEach((key) => {\n      const action = this._keyAction[key]\n      if (action) {\n        action()\n      }\n    })\n\n    const direction = this._cumulativeDirection.clone().normalize()\n\n    const scaledDirection = new Vector2(\n      direction.x * objectComponent.moveStep.x,\n      direction.y * objectComponent.moveStep.x\n    )\n\n    objectComponent.velocity.setValues(scaledDirection)\n    this._eventSystem.publish('playerMove', this._id)\n  }\n}\n```",
+          "dateTime": "2024-01-02T19:30:29.093Z"
+        },
+        {
+          "indexTitle": "MovementSystem",
+          "question": "MovementSystem",
+          "answer": "```typescript\nimport {\n  IEntity,\n  IEntityManager,\n  IEventSystem,\n  IInputManager,\n} from 'engine_api'\nimport MovementComponent from '../../component/MovementComponent'\nimport ObjectComponent from '../../component/ObjectComponent'\nimport MovementSubSystem from './MovementSubSystem'\nimport InitLogicSystemBase from './InitLogicSystemBase'\n\nexport default class MovementSystem extends InitLogicSystemBase {\n  private _subSystem: MovementSubSystem[] = []\n\n  constructor(\n    entityManager: IEntityManager,\n    private readonly _input: IInputManager,\n    private readonly _eventSystem: IEventSystem\n  ) {\n    super(entityManager)\n  }\n\n  initLogic(entity: IEntity) {\n    const movementComponent = entity.getComponentByType(MovementComponent)\n    const objectComponent = entity.getComponentByType(ObjectComponent)\n\n    const movementSubSystem = new MovementSubSystem(\n      this._input,\n      this._eventSystem,\n      objectComponent.id,\n      movementComponent.useArrowKeys\n    )\n    movementSubSystem.subscribeInput(objectComponent)\n    this._subSystem.push(movementSubSystem)\n  }\n}\n```",
+          "dateTime": "2024-01-02T19:31:03.109Z"
+        },
+        {
+          "indexTitle": "InitLogicSystemManager",
+          "question": "InitLogicSystemManager",
+          "answer": "This is added to engine and user can add systems that need to init on entities once.  \n```typescript\nimport MapManager from '../../entity_component/MapManager'\nimport IInitLogicSystem from './IInitLogicSystem'\nimport IInitLogicSystemManager from './IInitLogicSystemManager'\n\nexport default class InitLogicSystemManager\n  extends MapManager<IInitLogicSystem>\n  implements IInitLogicSystemManager\n{\n  init(): void {\n    for (const system of this.values()) {\n      system.init()\n    }\n  }\n}\n```",
+          "dateTime": "2024-01-02T19:34:35.727Z"
+        }
+      ]
+    },
+    {
+      "title": "KinematicsComponent",
+      "chats": [
+        {
+          "indexTitle": "KinematicsComponent",
+          "question": "KinematicsComponent",
+          "answer": "Initially:  \n```typescript\nimport { IEntity, IEventSystem, IObject } from 'engine_api'\nimport Component from '../entity_component/Component'\nimport ObjectComponent from './ObjectComponent'\nimport Vector2 from '../../math/vector/Vector2'\n\nexport class KinematicsComponent extends Component {\n  private _objectComponent: IObject\n  private readonly frictionCoefficient: number = 0.85\n  private readonly stopThreshold: number = 3\n\n  constructor(\n    private readonly _entity: IEntity,\n    private readonly _eventSystem: IEventSystem\n  ) {\n    super('KinematicsComponent')\n    this._objectComponent = this._entity.getComponentByType(ObjectComponent)\n  }\n\n  update(dt: number) {\n    this._objectComponent.position.add(\n      Vector2.getNew(this._objectComponent.velocity).multiply(dt)\n    )\n\n    this._objectComponent.velocity.multiply(\n      Math.pow(this.frictionCoefficient, dt)\n    )\n\n    if (this._objectComponent.velocity.length() < this.stopThreshold) {\n      if (\n        this._objectComponent.velocity.x !== 0 ||\n        this._objectComponent.velocity.y !== 0\n      ) {\n        this._objectComponent.velocity.x = 0\n        this._objectComponent.velocity.y = 0\n        this._eventSystem.publish('ballStop')\n      }\n    }\n  }\n}\n```",
+          "dateTime": "2024-01-02T20:15:08.921Z"
+        },
+        {
+          "indexTitle": "Refactor KinematicsComponent",
+          "question": "Refactor KinematicsComponent",
+          "answer": "```typescript\nimport Component from '../entity_component/Component'\n\nexport class KinematicsComponent extends Component {\n  public frictionCoefficient: number = 0\n  public stopThreshold: number = 0\n\n  constructor() {\n    super('KinematicsComponent')\n  }\n}\n```",
+          "dateTime": "2024-01-02T21:34:02.871Z"
+        },
+        {
+          "indexTitle": "KinematicsSystem ",
+          "question": "KinematicsSystem ",
+          "answer": "```typescript\nimport { IEntity, IEntityManager, IEventSystem } from 'engine_api'\nimport LogicSystemBase from './LogicSystemBase'\nimport ObjectComponent from '../../component/ObjectComponent'\nimport Vector2 from '../../../math/vector/Vector2'\nimport { KinematicsComponent } from '../../component/KinematicsComponent'\n\nexport default class KinematicsSystem extends LogicSystemBase {\n  constructor(\n    entityManager: IEntityManager,\n    private readonly _eventSystem: IEventSystem\n  ) {\n    super(entityManager)\n  }\n\n  updateLogic(deltaTime: number, entity: IEntity): void {\n    const objectComponent = entity.getComponentByType(ObjectComponent)\n    const kinematicsComponent = entity.getComponentByType(KinematicsComponent)\n\n    objectComponent.position.add(\n      Vector2.getNew(objectComponent.velocity).multiply(deltaTime)\n    )\n\n    if (kinematicsComponent.frictionCoefficient > 0) {\n      objectComponent.velocity.multiply(\n        Math.pow(kinematicsComponent.frictionCoefficient, deltaTime)\n      )\n    }\n\n    if (\n      kinematicsComponent.stopThreshold > 0 &&\n      objectComponent.velocity.length() < kinematicsComponent.stopThreshold\n    ) {\n      if (\n        objectComponent.velocity.x !== 0 ||\n        objectComponent.velocity.y !== 0\n      ) {\n        objectComponent.velocity.x = 0\n        objectComponent.velocity.y = 0\n        this._eventSystem.publish('entityStopped', objectComponent.id)\n      }\n    }\n  }\n}\n```",
+          "dateTime": "2024-01-02T21:36:16.110Z"
+        }
+      ]
+    }
+  ]
+}

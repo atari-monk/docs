@@ -199,6 +199,12 @@
           "question": "Task 30.  \nRefactor ECS of BouncingBall to unity style ECS",
           "answer": "Each point is pomodoro\n1. Decide to do unity style ECS  \n2. Thinking how to do a unity style ECS (data in components, logic in systems)\n3. Implement ball wall in new way  \n4. Implement ball wall in new way  \n5. Implement ball wall in new way  \n6. integrate systems with engine  \n7. update entity to have new components; InsideWallsCollisionSystem introduced  \n8. Unity syle TransformComponent\n",
           "dateTime": "2024-01-01T21:31:58.286Z"
+        },
+        {
+          "indexTitle": "Task 31.",
+          "question": "Task 31.  \nCreate system able to load data to TransformComponent from json file (turned out to hard for now)\nInstead refactor MovementComponent   to data component and system",
+          "answer": "Each point is pomodoro  \n1. Ponder what to do  \n2. Make notes and plan  \n3. Start refactor MovementComponent  \n4. Add system  \n5. Implementing system  \n6. Integrating with engine  \n7. Debuging bugs  \n8. Debuging bugs; commit (10 min left)  \n---\n9. Bonus one, KinematicsComponent refactor\n10. \n11. 3 Bonus ones where nice refactor of KinematicsComponent  and adding of KinematicsSystem was done",
+          "dateTime": "2024-01-02T21:38:25.780Z"
         }
       ]
     },

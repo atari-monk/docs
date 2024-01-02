@@ -1,7 +1,7 @@
 {
   "sections": [
     {
-      "title": "First session",
+      "title": "Log",
       "chats": [
         {
           "indexTitle": "Setup",
@@ -18,8 +18,14 @@
         {
           "indexTitle": "Pomodoro 2, 3",
           "question": "Pomodoro 2, 3",
-          "answer": "1. Example of old ui, during building graph class.",
-          "dateTime": "2024-01-01T22:40:01.762Z"
+          "answer": "1. Example of old ui, during building graph class.  \nEnds 48 min.\nFolder: old_ui_example",
+          "dateTime": "2024-01-02T17:33:56.275Z"
+        },
+        {
+          "indexTitle": "Pomodoro 4, 5",
+          "question": "Pomodoro 4, 5",
+          "answer": "Starts 48 min.  \nFolder: editor\nPomodoro 4:\nended on distance in utils  \nPomodoro 5:\nended on 1:10, on topic: dragging  points with mouse\nOverall it was about how to write modern editor for mouse",
+          "dateTime": "2024-01-02T19:17:32.818Z"
         }
       ]
     }

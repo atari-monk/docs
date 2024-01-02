@@ -5,9 +5,9 @@
       "chats": [
         {
           "indexTitle": "Rules",
-          "question": "Rules",
-          "answer": "1. Drink 3/4 glasses of water or water with syrup or juice !    \n2. Max 1 coffe, 1 tea, 1 milk daily !    \n---\n3. No more screen time that 2hrs, other than coding or tutorials !  \n---\n4. Start coding by 7 !  \n5. Code for 4 hrs daily !  \n6. Tutorials for 1hr daily !  \n---\n7. No coding past 18:00 !  \n8. No computers past 20:00 !  \n9. No mobile phone past 22:00 !\n---\n10. Sleep 8 hrs, from 23:00 most late !  \n---\n11. Exercice daily !  \n12. Walk at least weekly !  \n---  \nPut pass/fail daily for these points. \n",
-          "dateTime": "2023-12-28T19:17:34.799Z"
+          "question": "## Rules",
+          "answer": "### 1. Drink 3/4 glasses of water or water with syrup or juice !  \n### 2. Max 1 coffe, 1 tea, 1 milk daily !  \n---\n### 3. No more screen time that 2hrs, other than coding or tutorials !  \n---\n### 4. Start coding by 7 !  \n### 5. Code for 4 hrs daily !  \n### 6. Tutorials for 1hr daily !  \n---\n### 7. No coding past 18:00 !  \n### 8. No computers past 20:00 !  \n### 9. No mobile phone past 22:00 !\n---\n### 10. Sleep 8 hrs, from 23:00 most late !  \n---\n### 11. Exercice daily !  \n### 12. Walk at least weekly !  \n--- \n",
+          "dateTime": "2024-01-02T21:58:42.598Z"
         }
       ]
     },
@@ -17,8 +17,14 @@
         {
           "indexTitle": "01.01.2024",
           "question": "01.01.2024",
-          "answer": "1. pass\n2. pass  \n---\n3. fail\n---\n4. fail  \n5. pass, 8 pomodoro  \n6. pass, 2 pomodoro  \n---\n7. fail\n8. fail  \n9. fail\n---  \n10. fail  \n---\n11. fail  \n12. fail",
-          "dateTime": "2024-01-01T22:46:43.376Z"
+          "answer": "| Rule     | Result  | Note     |\n| :---------|:----------:|----------:|\n| 1.  | 1|  |\n| 2.  | 1 |  |\n| 3.  | 0 |  |\n| 4.  | 0|  |\n| 5.  | 1 | 8 pomodoro |\n| 6.  | 1 | 2 pomodoro |\n| 7.  | 0|  |\n| 8.  | 0 |  |\n| 9.  | 0 |  |\n| 10.  | 0|  |\n| 11.  | 0 |  |\n| 12.  | 0 |  |",
+          "dateTime": "2024-01-02T22:12:47.482Z"
+        },
+        {
+          "indexTitle": "02.01.2024",
+          "question": "02.01.2024",
+          "answer": "| Rule     | Result  | Note             |\n|:----------|:----------:|-----------------:|\n| 1.         | 1           |                     |\n| 2.         | 0           | Syroup end  |\n| 3.         | 0           |                     |\n| 4.         | 0           |                     |\n| 5.         | 1           | 11 pomodoro |\n| 6.         | 1           | 2 pomodoro |\n| 7.         | 0           |                     |\n| 8.         | 0           |                     |\n| 9.         | 0           |                     |\n| 10.       | 0           |                     |\n| 11.       | 0           |                     |\n| 12.       | 0           |                     |",
+          "dateTime": "2024-01-02T22:19:02.946Z"
         }
       ]
     }
