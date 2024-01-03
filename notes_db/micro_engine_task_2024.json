@@ -35,8 +35,8 @@
         {
           "indexTitle": "Task 32.",
           "question": "Task 32.  \nRefactor CollisionComponent to ECS in style of unity.  \nComponent should be only data, simple public fields with default values at that.  \nCollisionSystem should be added, where collision logic resides and each entity with required components (data) can be registered to have that logic.  \nThere will be subsystems handling collision detection in here.",
-          "answer": "1. Plan: Produce component with only data, produce system with logic. Include subsystems needed in system. Integrate it with engine. Test.  \n2. Work on system  \n3. Integrate system with engine\n4. Integrate system with game  \n5. Commit CollisionComponent refactor; lunch; unpause for refactor of    \n6. x  \n7. x  \n8. x    ",
-          "dateTime": "2024-01-03T13:39:54.847Z"
+          "answer": "1. Plan: Produce component with only data, produce system with logic. Include subsystems needed in system. Integrate it with engine. Test.  \n2. Work on system  \n3. Integrate system with engine\n4. Integrate system with game  \n5. Commit CollisionComponent refactor; lunch; unpause for refactor of LimitMoveComponent.  \n    First refactor InsideWallsCollisionSystem to SimpleCollisionSystem and InsideBoxCollisionSubSystem.  \n    Then LimitMoveComponent to component with data and LimitMoveSubSystem used in SimpleCollisionSystem  \n6. Continue 5\n7. Refactor SpriteComponent and RenderComponent to RenderSystem, SubSystems and data based components\n8. Continue 7  \n9. Finish with render system (first draft)  \n10. Commit, docs",
+          "dateTime": "2024-01-03T19:45:07.670Z"
         }
       ]
     }
