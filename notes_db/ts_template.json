@@ -1,0 +1,26 @@
+{
+  "sections": [
+    {
+      "title": "Rules",
+      "chats": [
+        {
+          "indexTitle": "bla",
+          "question": "dsfsdf",
+          "answer": "sdfsdf",
+          "dateTime": "2023-11-15T15:23:40.159Z"
+        }
+      ]
+    },
+    {
+      "title": "Template",
+      "chats": [
+        {
+          "indexTitle": "Class",
+          "question": "Class",
+          "answer": "```typescript\nexport default class ClassName {\n    \n}\n```\n```typescript\nexport default class ClassName extends BaseClassName {\n    \n}\n```\n```typescript\nexport default class ClassName extends BaseClassName implements IInterfaceName{\n    \n}\n```",
+          "dateTime": "2024-01-03T11:57:42.963Z"
+        }
+      ]
+    }
+  ]
+}

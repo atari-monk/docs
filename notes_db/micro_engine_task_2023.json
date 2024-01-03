@@ -1,0 +1,194 @@
+{
+  "sections": [
+    {
+      "title": "Rules",
+      "chats": [
+        {
+          "indexTitle": "Big Picture Plan",
+          "question": "Big Picture Plan",
+          "answer": "1. Add as many components to engine as fits\n2. Create single player engine and client and server versions of engines\n3. Move towards producing ball_game_3 with engine\n4. Produce many small games prototypes with engine ",
+          "dateTime": "2023-11-21T19:01:56.472Z"
+        }
+      ]
+    },
+    {
+      "title": "Tasks",
+      "chats": [
+        {
+          "indexTitle": "Task 1.",
+          "question": "Task 1.  \nAdd player data, name and ObjectEntityConfig data",
+          "answer": "* ObjectDataManager and ObjectDataFactory, for manipulating and producing data",
+          "dateTime": "2023-11-21T18:17:21.990Z"
+        },
+        {
+          "indexTitle": "Task 2.",
+          "question": "Task 2.  \nCreate PlayerEntity and ObjectEntity where ObjectEntity dosent have MovementComponent.",
+          "answer": "* PlayerEntity, added to EntityFactory",
+          "dateTime": "2023-11-21T18:35:48.216Z"
+        },
+        {
+          "indexTitle": "Task 3.",
+          "question": "Task 3.  \nAdd Tile map component to entity and show this entity.  Add factory for tile map data.",
+          "answer": "* updated TileMap and TileMapDataFctory, MapComponent, MapEntity, EntityFactory, Engine, EngineFactory\n* tile map renders",
+          "dateTime": "2023-11-21T21:24:52.813Z"
+        },
+        {
+          "indexTitle": "Task 4.",
+          "question": "Task 4.  \nMake data factories so they can be set in engine in particular game, also from client.",
+          "answer": "* Data encapsulation, moved data as ctor param of engine.",
+          "dateTime": "2023-11-22T11:55:20.210Z"
+        },
+        {
+          "indexTitle": "Task 5.",
+          "question": "Task 5.  \nEnable game data reload. In engine, separete dependencies from data driven game creation, so it can be repeated for sets of data.",
+          "answer": "* Engine data reload done,  \n    clearing all data,  \n    unsubscribing from callbacks,  \n    fixed bug where position was not created in ObjectComponent,  \n    in ctor, but only referenced.",
+          "dateTime": "2023-11-22T16:38:43.496Z"
+        },
+        {
+          "indexTitle": "Task 6.",
+          "question": "Task 6.  \nAdd Camera to CameraComponent and prolly to player Entity.",
+          "answer": "* Camera added to main render method, look in example section, but it was a little moddified from that and need inquiry still, since i dont quite get it.",
+          "dateTime": "2023-11-22T23:47:05.783Z"
+        },
+        {
+          "indexTitle": "Task 7.",
+          "question": "Task 7.\nAdd server component connecting clients",
+          "answer": "* base it on ball-game-2\n1. Copied proj from ball-game-2, ajusted, build, updated docs.\n2. Create GameServer class in engine and start to flesh it out\n3. Had to backtrack, all server stuf is not in server-lib folder in server proj, same for client.  \n    Engine_api and engine are pure ts, no libs, external libs are only in apps server and clients.\n    Had to do it that way, it was imposible to build webpack clients with server and client in engine lib.\n    Maybe someday i will try to make server lib and client lib, but not today.\n4. But client connected to server, now i need to find a way to integrate engine with server and client.  \n    I think some kind of events from engine will run server and client events",
+          "dateTime": "2023-11-23T23:07:25.697Z"
+        },
+        {
+          "indexTitle": "Task 8.",
+          "question": "Task 8.  \nCommunication server clients on player position",
+          "answer": "1. SocketEvents.GameDataFrame added\n2. Refactored MovementComponent from switch to key, method pairs js object\n3. Created ServerMovementComponent that collects input data to dto object  \n4. I mistook ClientMovementComponent  for ServerMovementComponent, need to change that\n5. ClientMovementComponent is acceptable becouse it adds dont destroy engine that was already\n6. Server version of engine, i started to create another suit of classes without renderer, i dont want that, i will do empty renderer, but wont change engine\n7. Managed to send direction to server from client at last\n8. Fixed removing key state after key up\n9. Passed engine to client\n10. Added id to IObject, removed IObjectConfig and use just IObject,  \n        added Vector2.fromObject(objectConfig.speed)\n11. GameServer needs to load IEngineServerApi\n12. Refactored, removed interface as one param in entities, made bunch of separate classes for server and client, independent of single player engine\n13. Added SocketEvents.PlayerJoined, added player with id on server and on client as a process of connecting client\n14. Changes:\n  1. Id prop in InputDto\n  2. this._engine?.getPlayer1Id(), send id in sendInput\n  3. pass input to movment of player on server, pass server frame to client",
+          "dateTime": "2023-11-26T21:57:46.622Z"
+        },
+        {
+          "indexTitle": "Task 9.",
+          "question": "Task 9.  \nDocumentation on matchmaking",
+          "answer": "1. Added some description on mechanism of matchmaking.",
+          "dateTime": "2023-12-02T19:12:35.929Z"
+        },
+        {
+          "indexTitle": "Task 10.",
+          "question": "Task 10.  \nLog state after two player login",
+          "answer": "1. Making documentation didnt help\n2. I will try to log the state and see what is going on...\n    After a while of logging in couple of places, it helped to see what is a bit.  \n    Aparently, logs as shown below, show that _playerManager has only one player, that of the client,  \n    so i need one more event send after 2 players is on server to add second player to BOTH! clients\n```typescript\nupdatePlayer(gameFrameDto: GameFrameDto): void {\n    gameFrameDto.players.forEach((playerDto, id) => {\n      const allPlayers = this._playerManager.getAllEntities()\n      for (const player of Object.values(allPlayers)) {\n        const object =\n          player.getComponentByType<ObjectComponent>(ObjectComponent)\n        if (!object) continue\n        console.log('playerdto:', playerDto.id)\n        console.log('player:', object.id)\n        if (playerDto.id !== object.id) continue\n        //console.log('pos upd:', playerDto.id)\n        object.position.setValues(playerDto.position)\n      }\n    })\n``` \n   ",
+          "dateTime": "2023-12-02T17:41:55.831Z"
+        },
+        {
+          "indexTitle": "Task 11.",
+          "question": "Task 11.  \nEvent of start game",
+          "answer": "1. first just send event and log it  \n* SocketEvents.SendPlayers and SocketEvents.GameStarts\n* IGameServerApi.sendPlayers(frameDto: any): void\n* ",
+          "dateTime": "2023-12-02T19:40:14.846Z"
+        },
+        {
+          "indexTitle": "Task 12.",
+          "question": "Task 12.  \nHow can i make my code more robust ?",
+          "answer": "1. improved Logger\n* debug\n2. improved Entity  \n* logger\n* log and throw error in case component not found (general assumption to show where problem is)\n3. improved IEntityManager\n* removed getAll and getAllByRecord methods\n4. improved EntityManager\n* removed getAll and getAllByRecord methods\n* logger\n* log and throw error in case entity not found\n5. EntityManager2\n* using map instead of Record\n* logger\n* log and throw error in case entity not found\n6. Improve factories  \n7. Improve client Engine\n* create PlayerManager\n* move it to factory\n* fix bug, addPlayer must take player from entityManager to add it to playerManager",
+          "dateTime": "2023-12-04T18:17:34.760Z"
+        },
+        {
+          "indexTitle": "Task 13.",
+          "question": "Task 13.  \nAdd sprite to ObjectEntity2",
+          "answer": "1.  Add SpriteAnimator, SpriteComponent\n2. Use it in ObjectComponent\n3. Consider BuilderPattern for Entities",
+          "dateTime": "2023-12-06T13:56:21.542Z"
+        },
+        {
+          "indexTitle": "Task 14.",
+          "question": "Task 14.  \nRepair bug introduced by refactor",
+          "answer": "* pomodoro 1  \n1. For some reason 2 players are added before SendPlayers event ?\n2. Debug shows that entity manager has player1 and player2 with same client id, why ?\n3. Found that builder was creating only one instance on entity instead new one each time\n4. Unfortunatly players on both client dosent move on input, why ?  \n\n* pomodoro 2  \n1. Fixed log in clinet playermanager `updatePlayer: (${playerDto.position.x}, ${playerDto.position.y})`  \nto show position, it is not changing on input\n2. Fixed log in server playermanager1 and 2 `setPlayerInput: ${inputDto.id} ${inputDto.direction}`, input is on server  \n\n* pomodoro 3  \n1. changed port of live server in VSC (File -> Preferences -> Extensions -> Edit in file link)  \n\n* pomodoro 4  \n1. Debug server, just cant see why position is not updated  \n\n* pomodoro 5  \n1. i think i found it, Player builder for server passed objectData instead of object component to movement component, that is why position was not updating\n\n* pomodoro 6  \n1. fixed problem and tested server and 2 clients\n2. todo: EntityCreator class\n\n* pomodoro 7\n1. read changes before commit  \n2. add methods to assert dependencies in Entity DependencyListBuilder  \n3. adding assertion for dependencies\n\n* pomodoro 8  \n1. removing renderer for server ObjectEntityBuilder\n2. tested, commited",
+          "dateTime": "2023-12-08T11:09:59.172Z"
+        },
+        {
+          "indexTitle": "Task 15.",
+          "question": "Task 15.  \nExtract EntityCreator class from EngineFactory",
+          "answer": "1. Investigate Builder Pattern\n2. Write class for browser engine\n3. Commiting to builder pattern in evry class of it\n\npomodoro 1 to 3\nwasted\n\npomodoro 4\n1. done EntityCreator,  EntityFactoryBuilder and EntityCreatorBuilder  \n\npomodoro 5\n1. test EntityCreator of browser engine, it works\n\npomodoro 6  \n1. create and use in client \n2. using inheritance from browser\n3. failed to implement in time\n\npomodoro 7  \n1. tested, worked\n2. use inheritance to create server version of entityCrator and builder\n\npomodoro 8  \n1. tested version for server\n\nQuite low preformance today, high distraction, twich ?",
+          "dateTime": "2023-12-08T22:26:27.332Z"
+        },
+        {
+          "indexTitle": "Task 16.",
+          "question": "Task 16.  \nCreate object with sprite",
+          "answer": "1. pomodoro x2, trying to introduce sprites to creators but i dont understand them\n2. pomodoro 3, introducing sprite entity creators\n3. pomodoro  4, MapManager, fix test, refactor; lost track, took hours; gone of topic for MapManager, becouse dataManager for animations is needed\n4. pomodoro x4, refactored Manager interface to IManager<T> and implement base class on record and map, use it on objectDataManager  \n5. pomodoro x4, tested, closed mapManager refactor, added Sprite manager and Data\n6. 2x pomodoro, shown ball sprite (very crude building of data and objects)",
+          "dateTime": "2023-12-12T23:19:27.902Z"
+        },
+        {
+          "indexTitle": "Task 17.",
+          "question": "Task 17.  \n",
+          "answer": "Each point is a pomodoro\n1. Try to simplify entity builders\n2. Deal with removal of EntityFactory class, EntityBuilder, EntityDependencyListBuilder, EntityFactoryBuilder,  \n write Builder pattern for MapEntity \n3. Done ObjectEntityBuilder, PlayerEntityBuilder, SpriteObjectEntityBuilder\n4. MapEntityBuilder fixed to produce new insctance evry build invoke\n5. Fixed all builders, removed all old junk (a lot)\n6. Use new builders for browser, tested spriteEntityCreator",
+          "dateTime": "2023-12-13T22:03:07.572Z"
+        },
+        {
+          "indexTitle": "Task 18.",
+          "question": "Task 18.  \nSimplify builders of entities in browser, client and server; then try to simplify engine and engine factory or builder",
+          "answer": "Each point is a pomodoro\n1. fixed bug to run simple and sprite entity creator in browser;  \n    fixed entity builder and creator in client\n2. fix entity builders to take data as params;  \n    fix engine factory in client; \n3. fix entity builder, creator and engine factory in server\n4. Mistake of using interfaces on builders. Remove interfaces on builders, implement independent creators (no inheritance)\ntest client server, commit entity creation refactor",
+          "dateTime": "2023-12-14T18:51:07.972Z"
+        },
+        {
+          "indexTitle": "Task 19.",
+          "question": "Task 19.  \n",
+          "answer": "1. Remove files exported from engine that are not used by client code  \n    From now on point means pomodoro\n2. New Engine class to use with builder in browser\n3. EngineDirector witch uses builder to return engine instance\n4. Engine Director uses EngineBuilder  \n5. ... Move stuff from EngineFactory to engine  \n6. \n7.\n8. tested engine builder, works, still needs a push",
+          "dateTime": "2023-12-15T19:52:44.814Z"
+        },
+        {
+          "indexTitle": "Task 20.",
+          "question": "Task 20.  \n1. Use builders in server and client\n2. Use only EntityCreator and data will decide wheter what type of entity it is\n3. Fix data reloading feature",
+          "answer": "Each point is a pomodoro\n1. Remove factory and redundant entity creators from browser\n  * removed Engine and renamed Engine2 to Engine\n  * move resetEngine from EngineFactory to Engine \n  * removed engineFactory\n  * delete ObjectData, rename SpriteData to EntityData\n  * remove ObjectDataManager, rename SpriteDataManager to EnityDataManager\n  * rename ISprite to IEntityDataModel\n  * deleted entity creators beside EntityCreator\n2. Compile browser and test\n  * fixed IGameData, now it has entityData and tileMapData, in api\n  * removed IEngineConfig from api\n  * removed IClientEngineConfig \n  * compiled engine_api and engine\n3. Compile browser and test\n  * fix data in desktop_client, tested works\n  * problem in client, need to use PlayerEntityBuilder from client but dont want to write another EntityCreator\n  * removed simpleEntityCreator from client\n4. Refactor EngineBuilder to be able to use diffrent builders\n5. Refactor EngineBuilder to be able to use diffrent builders\n6. Refactor EngineBuilder to be able to use diffrent builders\n7. Refactor EngineBuilder to be able to use diffrent builders\n8. Refactor EngineBuilder to be able to use diffrent builders, browser version works\n---\nEach point is a pomodoro\n1. Do on client what was done on browser\n  *  pondering how to make PlayerEntityBuilder more flexible\n2. Still pondering how unity does ecs\n  * done player builder with ineritance\n3. Inherited Engine from browser and added client stuff\n4. Ihereted EngineBuilder and director, compiled client  \n5. Engine and engine builder for server  \n6. server classes finished\n7. testing\n8. bug fixin, ended with runtime bugs",
+          "dateTime": "2023-12-17T19:51:02.998Z"
+        },
+        {
+          "indexTitle": "Task 21.",
+          "question": "Task 21.  \nFix player movement server client comms failure bug",
+          "answer": "This is second time, why this always gets wrecked on refactoring ?  \n* i can set a logger in client, 'Logger not set' in console\n* i can check scheme in docs and check it in code\nEvery point is pomodoro:  \n1. \n* set logger for client\n* this._gameLoop.load is not a function\n* refactor game loop\n2.\n* compile\n3. \n* compiled, exception fix,\n4. I think i sit longer so i add this pomodoro, tested, position sync in server client works, commited  \nOptions for next task:  \n    1. Some defensive/diagnostic code on chain that makes server/client position sync work and not break or repair faster\n    2. Add state for animations of sprites, first locally, than server client",
+          "dateTime": "2023-12-18T18:41:10.214Z"
+        },
+        {
+          "indexTitle": "Task 22.",
+          "question": "Task 22.  \nAdd support for state machines for entities",
+          "answer": "Each point is a pomodoro\n1. move state machine from ball_game_2 to micro_engine or get one using chatgpt to establish pattern  \n* added IState to api\n2. decide how states, transitions and relation to ecs should be defined, should states be a component or just state machine  \n* ",
+          "dateTime": "2023-12-19T14:53:11.662Z"
+        },
+        {
+          "indexTitle": "Task 23.",
+          "question": "Task 23.  \nRefactor to have only one entity builder, keep them named in map in entityCreator",
+          "answer": "Each point is pomodoro  \n1. One EntityBuilder builds them all, map and object  \n2. also player  and sprite\n3. how to do builder ?\n4. builder \n5. builder \n6. builder \n7. made one builder instead of many, it works with operations, one has param of datakey, it builds all entities, tested using entitycreator class becouse it is embened in engine order of execution that way (after data is loaded to engine, in fact this may be redundant step to remove)  \n---  \n1. Remove about 10 files connected to old builders, now replaced by one that can create all entities. They will be available on commit before in source control. Files I deleted: From engine builder, method withEntityCreator; From engine director, using of that method and the classes; EntityCreator; Interface IEntityCreatorWithBuilders; A bunch of interfaces from entity Builder API file; Builder base; Map Builder; Object Builder; Player Builder; Sprite Builder; Fixed 38 errors  \nI still need to update client and server engine.   \nOverride entity builders for them because they have their own components to build.\n2. In my next pomodoro; I will start by extracting operation and operation map also operation Queue to utils folder because I don't think it's engine element but it's useful.\n3. In my next pomodoro I want to slap interface on entity Builder and store it in map with some name in the class entity creator. Because now it is not extendable. New entity building setup done. 6 typecheck compilation errors.  \n4. Uncaught Error: Assertion target \"entity\" must be set.\n5. Uncaught TypeError: Cannot read properties of undefined (reading 'addBuilder'); Logger not set; Uncaught Error: Object with name '' not found!; browser version works;\n6. Use inheritance to make client version for EntityBuilder, retracted, just added another method\n7.  \n8. \n9. EngineBuilder updated for client and used in client in quite efficient way, some error left (no player1); moved a lot of files to SIMPLIFFY",
+          "dateTime": "2023-12-20T20:28:21.191Z"
+        },
+        {
+          "indexTitle": "Task 24.",
+          "question": "Task 24.  \nRefactor server to use EntityBuilder",
+          "answer": "Each point is pomodoro  \n1. EngineBuilder for server using EngineBuilder from single\n2. Bug in client, \n3. Thouth ()=>new Entity() was a problem\n4. Fixed by newing entity in defered operation, run in build  \n5. Uncaught (in promise) Error: Component of type ClientMovementComponent not found.  \nEntity Builders at last fixed. Removed some folders to simpliffy. Tested.  \n6. Added state component, ball spinning anim test  \n7. I think it's time to add ball_game project  \n8. Problem with player position (would not be in unity)  \nAdded config manager tech to engine, to enable/disable camera",
+          "dateTime": "2023-12-21T23:15:44.410Z"
+        },
+        {
+          "indexTitle": "Task 25.",
+          "question": "Task 25.  \nRecreate ball game",
+          "answer": "Each point is pomodoro:\n1. I need to fix player movement.  \n* First i want to have a switch that will enable testing in single mode.\n2. Need to introduce master engine config, in addition to configs in single and multi engines.\n * center ball in the middle of screen in both versions.\n3. second player \n4. adding file for entity creator\n5. saved EntityData to json\n6. \n7. entity data from file  \n---\n1. Anims for players  \n2. Offset for sprites  \n3. Center ball and players",
+          "dateTime": "2023-12-23T21:53:49.923Z"
+        },
+        {
+          "indexTitle": "Task 26.",
+          "question": "Task 26.  \nIntegrate collision detector to engine",
+          "answer": "Each point is pomodoro\n1. Addind collision componet, adding collisionDetector to engine  \n2. Added player ball collider for single version  \n3. Collision detection player ball  \n4. CollisionHandlerComponent\n5. tested",
+          "dateTime": "2023-12-24T22:10:02.730Z"
+        },
+        {
+          "indexTitle": "Task 27.",
+          "question": "Task 27.  \nIntegrate kinematics component with engine",
+          "answer": "Each point is pomodoro  \n1. Find kinematics in ball_game_2, extract it to component\n2. Debuging, fix bind bug in collision handler, need vector tests\n3. Fix exports from engine for tests proj\n4. Fixing collisionHandler  \n5. Trying to calculate collision handling and kinematics so that vectors are not overriden  \n6. Console.log revels that collision of red player and ball is triggered twice and secod one zeros speed  \n7. After moving subscription from ctor to event after entoty creation collision handler is subscribed once (not twice)  \n8. Make player v imune to collision, setup second player, refactor, commit  \ntodo: speed is inputStep, add velocity to data",
+          "dateTime": "2023-12-25T23:18:13.826Z"
+        },
+        {
+          "indexTitle": "Task 28.",
+          "question": "Task 28.\nAdd velocity, add movement wall",
+          "answer": "Each point is pomodoro  \n1. velocity  \n2.  \n3. fix velocity, vector renderer  \n4. limit player movement to canvas size",
+          "dateTime": "2023-12-26T15:32:03.609Z"
+        },
+        {
+          "indexTitle": "Task 29.",
+          "question": "Task 29.  \nMovement wall for ball; goals detection; points text; wsad for player1; anim state; sprites for field and goal posts;",
+          "answer": "Each point is pomodoro  \n1. Movement wall for ball; Component class;  \n2. Integrated to engine; failed to make it pixel perfect since position point is in top left of collision rectangle and not in center i think  \n3. Trying to put point in center  \n4. Using code data to fix messed up positions  \n5. Fixed tile map position by adding drawRect from top left, objects have drawRectAroundPoint now  \n6. Drawing around position fixed bouncing ball constraint, chatgpt helped fixed LimitMoveComponent for players. Adding collision manager that can be switched betwen collision detectors, i have 2 for position as lefttop and as center.    \n7. Tested, switched back to json data saved from code data; fixed collisions to center point now.\n8. Fix data bug, minor fixes  \n9. Step to create entity builder in game app  \n---  \n1. **Goals detection, but first, move entity creation to game from engine**\n2. **Trying to provide right api for custom builders and predefined ones**  \n3. **Refactored entity builders to form builders library**\n4. **Refactored EngineBuilder to encapsulate entityBuilders better**; (commit encapsulate entity builders)  \n5. Refactored collision handler  \n6. Detecting collision of ball with left gate but no idea how it works and why it also triggers when player ball collides  \n7. How collision detection works?; Refactoring CollisionDetectors to run callbacks for specific object pairs  \n8. Set up pairs, set up id's; no collision for player1, ball and right gate ball; cant commit and end like that    \n9. Fixed collisions by registering all handlers\n---  \n1. Handle collision by reset positions\n2. Need to introduce score for player and IGameState for last collision\n3. Introduced eventSystem\n4. GameStateComponent  \n5. Score on player  \n6. Storing last collision in GameStateComponent with event from PlayerBallCollisionHandler, handling reset and score from gateBallCollision  \n---  \n1. I need to add text rendering to my renderer and engine  \nAdded text rendering, in renderer and GameStateComponent, using eventSystem to update score in GameStateComponent from GateBallCollisionHandler, render it in render method of GameStateComponent  \n2. Testting  \n3. Fixing  \n4. Score printing works; Next i want to do wsad input for player1  \n5. Control wsad or arrow from object data, tested, player1 wsad, player2 arrows  \n6. Switch to idle anim as default; how to switch ball to move when it has some velocity ?  \n7. Introduced friction  \n8. Done ball animation switching, friction stops ball witch turns on idle with event, collision with player sends move event  \n---  \n1. Add anim for player  \n2. Add goal gate sprites  \n3. Fix isFlipped for sprite; add field  \n4. Fix bug introduced by field; fix ball kinematic bug  \n5. Make field playable  \n6. Make some field; make it playable  \n7. Amend collision by moving ball out of player collision box  \n8. Improve player movment  \n9. Testing  \n10. Arrows and diagonal movment",
+          "dateTime": "2024-01-01T00:33:02.729Z"
+        }
+      ]
+    }
+  ]
+}

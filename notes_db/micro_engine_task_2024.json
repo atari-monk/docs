@@ -1,0 +1,44 @@
+{
+  "sections": [
+    {
+      "title": "Rules",
+      "chats": [
+        {
+          "indexTitle": "Rules of this document",
+          "question": "Rules of this document",
+          "answer": "Put task in Tasks section.  \nTask should have template where fields should have values:  \nIndex Title: Task X.  \nQuestion: Task X.  Description of Task  \nAnswer: List of points where each point is a description and number of pomodoro done on task",
+          "dateTime": "2024-01-03T10:08:44.441Z"
+        },
+        {
+          "indexTitle": "Template to copy",
+          "question": "Template to copy",
+          "answer": "```json\nTask X.\n```\n```json\nTask X.  \nDescription\n```\n```json\n1. x    \n2. x  \n3. x  \n4. x  \n5. x  \n6. x  \n7. x  \n8. x  \n```",
+          "dateTime": "2024-01-03T10:18:56.294Z"
+        }
+      ]
+    },
+    {
+      "title": "Tasks",
+      "chats": [
+        {
+          "indexTitle": "Task 30.",
+          "question": "Task 30.  \nRefactor ECS of BouncingBall to unity style ECS",
+          "answer": "1. Decide to do unity style ECS  \n2. Thinking how to do a unity style ECS (data in components, logic in systems)\n3. Implement ball wall in new way  \n4. Implement ball wall in new way  \n5. Implement ball wall in new way  \n6. Integrate systems with engine  \n7. Update entity to have new components; InsideWallsCollisionSystem introduced  \n8. Unity syle TransformComponent (later deleted)\n",
+          "dateTime": "2024-01-03T10:04:02.861Z"
+        },
+        {
+          "indexTitle": "Task 31.",
+          "question": "Task 31.  \nCreate system able to load data to TransformComponent from json file (turned out to hard for now)\nInstead refactor MovementComponent   to data component and system",
+          "answer": "1. Ponder what to do  \n2. Make notes and plan  \n3. Start refactor MovementComponent  \n4. Add system  \n5. Implementing system  \n6. Integrating with engine  \n7. Debuging bugs  \n8. Debuging bugs; commit  \n---\n9. KinematicsComponent refactor\n10. Above continued\n11. Nice refactor of KinematicsComponent  and adding of KinematicsSystem was done",
+          "dateTime": "2024-01-03T10:11:38.501Z"
+        },
+        {
+          "indexTitle": "Task 32.",
+          "question": "Task 32.  \nRefactor CollisionComponent to ECS in style of unity.  \nComponent should be only data, simple public fields with default values at that.  \nCollisionSystem should be added, where collision logic resides and each entity with required components (data) can be registered to have that logic.  \nThere will be subsystems handling collision detection in here.",
+          "answer": "1. Plan: Produce component with only data, produce system with logic. Include subsystems needed in system. Integrate it with engine. Test.  \n2. Work on system  \n3. Integrate system with engine\n4. Integrate system with game  \n5. Commit CollisionComponent refactor; lunch; unpause for refactor of    \n6. x  \n7. x  \n8. x    ",
+          "dateTime": "2024-01-03T13:39:54.847Z"
+        }
+      ]
+    }
+  ]
+}
