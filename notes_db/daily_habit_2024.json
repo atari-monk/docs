@@ -6,8 +6,8 @@
         {
           "indexTitle": "Rules",
           "question": "## Rules",
-          "answer": "### 1. Drink 3/4 glasses of water or water with syrup or juice !  \n### 2. Max 1 coffe, 1 tea, 1 milk daily !  \n---\n### 3. No more screen time that 2hrs, other than coding or tutorials !  \n---\n### 4. Start coding by 7 !  \n### 5. Code for 4 hrs daily !  \n### 6. Tutorials for 1hr daily !  \n---\n### 7. No coding past 18:00 !  \n### 8. No computers past 20:00 !  \n### 9. No mobile phone past 22:00 !\n---\n### 10. Sleep 8 hrs, from 23:00 most late !  \n---\n### 11. Exercice daily !  \n### 12. Walk at least weekly !  \n--- \n",
-          "dateTime": "2024-01-02T21:58:42.598Z"
+          "answer": "### 1. Drink 3 glasses of water daily !  \n### 2. Max 1 of each and total max 3 of coffe, tea, milk, syroup with water daily !  \n---\n### 3. No more screen time that 2hrs, other than coding or tutorials !  \n---\n### 4. Start coding by 7 !  \n### 5. Code for 4 hrs daily !  \n### 6. Tutorials for 1hr daily !  \n---\n### 7. No coding past 18:00 !  \n### 8. No computers past 20:00 !  \n### 9. No mobile phone past 22:00 !\n---\n### 10. Sleep 8 hrs, from 23:00 most late !  \n---\n### 11. Exercice daily !  \n### 12. Walk at least weekly !  \n--- \n",
+          "dateTime": "2024-01-06T23:09:49.749Z"
         },
         {
           "indexTitle": "Template",
@@ -49,6 +49,12 @@
           "question": "05.01.2024",
           "answer": "| Rule     | Result  | Note             |\n|:----------|:----------:|-----------------:|\n| 1.         | 1           |                     |\n| 2.         | 0           |                     |\n| 3.         | 0           |                     |\n| 4.         | 0           |                     |\n| 5.         | 1           | 8 pomodoro |\n| 6.         | 1           | 2 pomodoro |\n| 7.         | 0           |                     |\n| 8.         | 0           |                     |\n| 9.         | 0           |                     |\n| 10.       | 0           |                     |\n| 11.       | 0           |                     |\n| 12.       | 1           | biedronka    |\n",
           "dateTime": "2024-01-05T23:54:26.381Z"
+        },
+        {
+          "indexTitle": "06.01.2024",
+          "question": "06.01.2024",
+          "answer": "| Rule     | Result  | Note             |\n|:----------|:----------:|-----------------:|\n| 1.         | 0           |                     |\n| 2.         | 0           |                     |\n| 3.         | 0           |                     |\n| 4.         | 0           |                     |\n| 5.         | 0           | 4 pomodoro |\n| 6.         | 1           | 2 pomodoro |\n| 7.         | 0           |                     |\n| 8.         | 0           |                     |\n| 9.         | 0           |                     |\n| 10.       | 0           |                     |\n| 11.       | 0           |                     |\n| 12.       | 0           |                     |\n",
+          "dateTime": "2024-01-06T23:07:25.748Z"
         }
       ]
     }

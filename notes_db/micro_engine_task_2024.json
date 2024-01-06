@@ -49,6 +49,12 @@
           "question": "Task 34.",
           "answer": "StateComponent refactor  \nDone 8x pomodoros\nRemoving strings and replacing them with typed, kind of typed i guess, js objects  \nAdded StateSystem\n",
           "dateTime": "2024-01-05T23:51:49.805Z"
+        },
+        {
+          "indexTitle": "Task 35.",
+          "question": "Task 35.  \nJust refactor whatever component left\nComponent just data, logic to system",
+          "answer": "1. MovementSubSystem refactor (data type fix, better data type)\n2. add unsubscribeInput, to input and to MovementSubSystem, add interface  \n3. MovementSystem unsubscribe  \n4. IFactory<T>, updated MovementSystem to store subsystems in manager,  \nto be able to unsubscribe input; it is ready to be extended",
+          "dateTime": "2024-01-06T23:03:27.913Z"
         }
       ]
     }
