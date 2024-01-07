@@ -50,6 +50,12 @@
           "question": "Pomodoro 12, 13",
           "answer": "Pomodoro 12: \nstarts 2:07  \nPomodoro 13:\nended on 2:28 (util methods)",
           "dateTime": "2024-01-06T15:52:24.469Z"
+        },
+        {
+          "indexTitle": "Pomodoro 14, 15",
+          "question": "Pomodoro 14, 15",
+          "answer": "Pomodoro 14:  \nstarts 2:28\nPomodoro 15:\nended on 2:47  \nthere is some bug, despite adding 1,5 pomodoro above 2 standard, i could not fixed it",
+          "dateTime": "2024-01-07T21:49:15.149Z"
         }
       ]
     }
