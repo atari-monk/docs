@@ -54,8 +54,26 @@
         {
           "indexTitle": "Pomodoro 14, 15",
           "question": "Pomodoro 14, 15",
-          "answer": "Pomodoro 14:  \nstarts 2:28\nPomodoro 15:\nended on 2:47  \nthere is some bug, despite adding 1,5 pomodoro above 2 standard, i could not fixed it",
-          "dateTime": "2024-01-07T21:49:15.149Z"
+          "answer": "Pomodoro 14:  \nstarts 2:28  \nPomodoro 15:  \nended on 2:47  \nthere is some bug, despite adding 1,5 pomodoro above 2 standard, i could not fixed it",
+          "dateTime": "2024-01-08T10:34:50.394Z"
+        },
+        {
+          "indexTitle": "Pomodoro 16, 17",
+          "question": "Pomodoro 16, 17",
+          "answer": "fixed mistakes done in pomodoro 14,15, it was 3 typos, but hard to find,  \nnow i commit more offen, when it seems to work\nmade YT short video from this tutorial content",
+          "dateTime": "2024-01-09T12:46:41.867Z"
+        },
+        {
+          "indexTitle": "Pomodoro 18, 19",
+          "question": "Pomodoro 18, 19",
+          "answer": "generating buildings along roads  \nended on 3:08",
+          "dateTime": "2024-01-09T12:50:58.346Z"
+        },
+        {
+          "indexTitle": "Pomodoro 20, 21",
+          "question": "Pomodoro 20, 21 ",
+          "answer": "Pomodoro 20, 21 + fixes\n3:23",
+          "dateTime": "2024-01-10T12:20:48.759Z"
         }
       ]
     }
