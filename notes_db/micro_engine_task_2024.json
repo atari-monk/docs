@@ -53,8 +53,8 @@
         {
           "indexTitle": "Task 35.",
           "question": "Task 35.  \nJust refactor whatever component left\nComponent just data, logic to system",
-          "answer": "1. MovementSubSystem refactor (data type fix, better data type)\n2. add unsubscribeInput, to input and to MovementSubSystem, add interface  \n3. MovementSystem unsubscribe  \n4. IFactory<T>, updated MovementSystem to store subsystems in manager,  \nto be able to unsubscribe input; it is ready to be extended\n---\n2,5 pomodoro refactored StepMovementComponent  \nRemoved it and added StepMovementSubSystem instead  \nSo i can switch beetween movement systems, this seem nice ",
-          "dateTime": "2024-01-07T21:47:33.538Z"
+          "answer": "1. MovementSubSystem refactor (data type fix, better data type)\n2. add unsubscribeInput, to input and to MovementSubSystem, add interface  \n3. MovementSystem unsubscribe  \n4. IFactory<T>, updated MovementSystem to store subsystems in manager,  \nto be able to unsubscribe input; it is ready to be extended  \n---\n* added 2,5 pomodoro refactored StepMovementComponent  \nRemoved it and added StepMovementSubSystem instead  \nSo i can switch beetween movement systems, this seem nice  \n---\n* 6 pomodoro  \nrefactored to use new component system  \nonly data in components, logic in systems",
+          "dateTime": "2024-01-11T20:30:45.196Z"
         }
       ]
     }
