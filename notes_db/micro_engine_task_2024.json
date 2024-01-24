@@ -61,6 +61,12 @@
           "question": "Task 36.",
           "answer": "Lets assume format for json  ",
           "dateTime": "2024-01-12T12:18:34.571Z"
+        },
+        {
+          "indexTitle": "Task 37.",
+          "question": "Task 37.",
+          "answer": "1. fix, player can sore for rival team by scroring own gate  \n2. fix, score position  \n3. ball_game package to have one version for all platforms  \n4. sucked in to produce nice builders, iron out with chatgpt  \n---\n1. LocalGameBuilder\n2. draft of game builders that are more SRP",
+          "dateTime": "2024-01-20T19:11:39.472Z"
         }
       ]
     }
