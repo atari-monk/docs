@@ -1,0 +1,27 @@
+{
+  "sections": [
+    {
+      "title": "Misc Notes",
+      "chats": [
+        {
+          "indexTitle": "Sleep Time Change",
+          "question": "Sleep Time Change",
+          "answer": "Gradually adjust your alarm by 15-30 minutes earlier   \neach day until you reach your target wake-up time,   \nallowing your body to adapt to the new sleep schedule.",
+          "dateTime": "2024-01-31T16:54:14.704Z"
+        },
+        {
+          "indexTitle": "Speach to text",
+          "question": "Speach to text",
+          "answer": "Windows Settings  \nAccessibility  \nSpeech  \nVoice access",
+          "dateTime": "2024-01-31T16:56:43.044Z"
+        },
+        {
+          "indexTitle": "Cut mp3",
+          "question": "Cut mp3",
+          "answer": "Sure, to cut an MP3 with Alan Watts' audio and female vocals, you can use a tool like FFmpeg.  \nHere's a basic command to get you started:\n\n```bash\nffmpeg -i input.mp3 -t 00:05:00 -ss 00:02:00 -acodec copy output.mp3\n```\n\nThis command cuts a 5-minute segment starting from the 2-minute mark of the input.mp3 file.  \nAdjust the duration and starting point according to your preferences.  \nFor combining audio, you'll need a more complex script;",
+          "dateTime": "2024-01-31T16:58:08.691Z"
+        }
+      ]
+    }
+  ]
+}

@@ -1,32 +1,25 @@
 {
   "sections": [
     {
-      "title": "Food",
+      "title": "To-Do",
       "chats": [
         {
-          "question": "Prepare food for tomorrow: \n  1. Store cooked white beans\n  2. Cook grean beans\n  3. Cook pasta",
-          "answer": "* Stored white beans in 4 middle size jars\n* Stored cooked green beans in container in frige\n* Stored cooked  pasta in 3 jars in frige",
-          "dateTime": "2023-11-14T21:34:46.971Z"
-        }
-      ]
-    },
-    {
-      "title": "House",
-      "chats": [
+          "indexTitle": "mbank",
+          "question": "mbank",
+          "answer": "zlikwidować konto w mbanku",
+          "dateTime": "2024-01-31T17:02:27.380Z"
+        },
         {
-          "question": "Add strings to tarp on the balcony",
-          "answer": "*",
-          "dateTime": "2023-11-14T21:35:08.412Z"
-        }
-      ]
-    },
-    {
-      "title": "Notes Proj",
-      "chats": [
+          "indexTitle": "relax audio",
+          "question": "relax audio",
+          "answer": "cut agni sutra 19 to induce relax",
+          "dateTime": "2024-01-31T17:03:21.949Z"
+        },
         {
-          "question": "Task List:\n1. Fix all the data in notes db (format changed)\n2. Fix index, add string for index in data, make section more on left and chats under it to right\n2. Add created and last edited timestamp and show them in Notes and Reader\n3. Rename db folder",
-          "answer": "1. Fixed notes format and some data",
-          "dateTime": "2023-11-14T21:38:34.201Z"
+          "indexTitle": "accounts",
+          "question": "accounts",
+          "answer": "Check and/or close my online public service accounts",
+          "dateTime": "2024-01-31T17:16:14.719Z"
         }
       ]
     }

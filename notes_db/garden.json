@@ -1,0 +1,57 @@
+{
+  "sections": [
+    {
+      "title": "Start Garden",
+      "chats": [
+        {
+          "indexTitle": "start",
+          "question": "Kiedy i jakie rośliny rozsadzić w lutym na wiosenny ogród",
+          "answer": "W lutym można rozsadzać rośliny takie jak pomidory, papryka, bakłażany, oraz zioła, takie jak bazylia czy pietruszka. Warto także zacząć wysiew nasion warzyw liściowych, takich jak sałata czy szpinak. Pamiętaj o tym, żeby utrzymywać odpowiednią temperaturę i wilgotność dla rozwoju nasion.",
+          "dateTime": "2024-01-30T21:01:04.541Z"
+        },
+        {
+          "indexTitle": "list",
+          "question": "Wymień warzywa",
+          "answer": "Pomidory, papryka, bakłażany, sałata, szpinak, pietruszka, oraz bazylia są dobrymi opcjami do rozsady w lutym.",
+          "dateTime": "2024-01-30T21:01:31.064Z"
+        },
+        {
+          "indexTitle": "time",
+          "question": "Ale u mnie dopiero od 15 maja mówi się ze nie ma przymrozki",
+          "answer": "Rozsiew nasion pomidorów, papryki, bakłażanów i ziół możesz zacząć około 8-10 tygodni przed przewidywanym datą bez przymrozków. W twoim przypadku, rozpoczęcie tego procesu w okolicach końca lutego do początku marca byłoby odpowiednie, aby rośliny były gotowe do sadzenia na zewnątrz w okolicach 15 maja.",
+          "dateTime": "2024-01-30T21:02:05.578Z"
+        },
+        {
+          "indexTitle": "raised bed",
+          "question": "Mam tylko 2 duże donice 2m około 60 cm szerokość i wysokości",
+          "answer": "W takim przypadku zalecam posadzenie roślin, które są odpowiednie do uprawy w pojemnikach. Możesz rozsadzić pomidory, paprykę, bakłażany, oraz zioła, takie jak bazylia, w tych dużych donicach. Upewnij się, że donice mają odpowiednią drenaż oraz użyj dobrego podłoża do uprawy w pojemnikach. Regularne podlewanie i dostarczanie odpowiednich składników odżywczych będą kluczowe dla sukcesu uprawy w donicach.",
+          "dateTime": "2024-01-30T21:02:45.191Z"
+        },
+        {
+          "indexTitle": "count",
+          "question": "To wybiorę pomidory i paprykę ile roślin wysiać",
+          "answer": "W dużych donicach o wymiarach 2m x 60cm x 60cm, możesz zasadzić około 3-4 rośliny pomidorów oraz 2-3 rośliny papryki. Pamiętaj o odpowiednim odstępie między nimi, aby umożliwić roślinom swobodny wzrost.",
+          "dateTime": "2024-01-30T21:03:33.974Z"
+        },
+        {
+          "indexTitle": "pots",
+          "question": "Mam jeszcze 6 donic 41cm kwadrat i 2 mniejsze",
+          "answer": "W mniejszych donicach o wymiarach 41cm x 41cm możesz zasadzić po jednej roślinie pomidora lub papryki. Co do mniejszych donic, dostosuj liczbę roślin w zależności od ich rozmiaru. Warto zachować pewien odstęp między roślinami, aby zapewnić im wystarczającą przestrzeń na rozwój.",
+          "dateTime": "2024-01-30T21:03:54.924Z"
+        },
+        {
+          "indexTitle": "nawóz",
+          "question": "Jak nawozić",
+          "answer": "Nawożenie roślin w pojemnikach jest istotne dla zapewnienia im odpowiednich składników odżywczych. Możesz zastosować nawozy wieloskładnikowe dostosowane do warzyw, dostępne w formie granulowanej lub płynnej. Pamiętaj, aby przestrzegać zaleceń dotyczących dawkowania na opakowaniu nawozu. Również, regularne podlewanie jest kluczowe. Upewnij się, że podłoże w donicach jest wilgotne, ale nie przemoczne. Przy zastosowaniu nawozów, zaleca się ich stosowanie zgodnie z zaleceniami producenta, zwykle co 2-4 tygodnie.",
+          "dateTime": "2024-01-30T21:04:41.741Z"
+        },
+        {
+          "indexTitle": "szkodniki",
+          "question": "A jak chronić przed ślimaka mi i chorobami",
+          "answer": "Aby chronić rośliny przed ślimakami, możesz zastosować różne metody. Jedną z nich jest umieszczenie bariery, na przykład z ostrym piaskiem lub łuskami jajek wokół donic. Możesz także używać środków chemicznych dostępnych w handlu, które odstraszają ślimaki. Aby zapobiec chorobom, ważne jest utrzymanie odpowiedniej higieny w ogrodzie. Unikaj nadmiernego podlewania, utrzymuj odpowiednią przestrzeń między roślinami, aby poprawić wentylację, i usuwaj martwe liście czy inne zainfekowane części roślin. Stosowanie fungicydów tylko w razie potrzeby może również pomóc w ochronie przed chorobami grzybowymi.",
+          "dateTime": "2024-01-30T21:05:26.430Z"
+        }
+      ]
+    }
+  ]
+}
