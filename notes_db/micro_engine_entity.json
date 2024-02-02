@@ -1,0 +1,33 @@
+{
+  "sections": [
+    {
+      "title": "Version 1",
+      "chats": [
+        {
+          "indexTitle": "Description",
+          "question": "Description",
+          "answer": "* Named Entity  \n* Entity part of Entity Component System in game engine  \n* It has string id and stores components of game object that i call Entity",
+          "dateTime": "2024-02-02T13:41:25.284Z"
+        },
+        {
+          "indexTitle": "File Structure",
+          "question": "File Structure",
+          "answer": "```plaintext\n|-- engine_api/\n|   |-- src/\n|       |-- ecs\n|           |-- entity\n|               |-- IEntity.ts\n|               |-- IEntityWithComponents.ts\n|               |-- IRenderable.ts\n|               |-- IUpdatable.ts\n```\n```plaintext\n|-- engine/\n|   |-- src/\n|       |-- ecs\n|           |-- entity\n|               |-- Entity.ts\n```",
+          "dateTime": "2024-02-02T13:46:52.270Z"
+        },
+        {
+          "indexTitle": "Api",
+          "question": "Api",
+          "answer": "```typescript\nimport IEntityWithComponents from './IEntityWithComponents'\n\nexport default interface IEntity extends IEntityWithComponents {\n  id: string\n}\n```\n```typescript\nimport { ClassType } from '../../tech/entity_component/ClassType'\nimport IComponent from '../../tech/entity_component/IComponent'\nimport IRenderable from './IRenderable'\nimport IUpdatable from './IUpdatable'\n\nexport default interface IEntityWithComponents extends IUpdatable, IRenderable {\n  addComponent(component: IComponent): void\n  addComponents(components: IComponent[]): void\n  getComponentStrict<T extends IComponent>(\n    componentType: ClassType<T>,\n    id?: string\n  ): T\n  getComponent<T extends IComponent>(\n    componentType: ClassType<T>,\n    id?: string\n  ): T | undefined\n}\n```\n```typescript\nexport default interface IRenderable {\n  render(deltaTime: number): void\n}\n```\n```typescript\nexport default interface IUpdatable {\n  update(deltaTime: number): void\n}\n```",
+          "dateTime": "2024-02-02T13:49:17.477Z"
+        },
+        {
+          "indexTitle": "Entity",
+          "question": "Entity",
+          "answer": "```typescript\nimport {\n  ClassType,\n  IComponent,\n  IEntity,\n  IEntityWithComponents,\n} from 'engine_api'\n\nexport default class Entity implements IEntityWithComponents, IEntity {\n  private _components = new Map<ClassType<IComponent>, IComponent[]>()\n  private _id!: string\n\n  get id(): string {\n    return this._id\n  }\n\n  set id(id: string) {\n    this._id = id\n  }\n\n  addComponent(component: IComponent): void {\n    this.addComponentToEntity(component)\n  }\n\n  addComponents(components: IComponent[]): void {\n    for (const component of components) {\n      this.addComponentToEntity(component)\n    }\n  }\n\n  private addComponentToEntity(component: IComponent) {\n    const componentType = component.constructor as ClassType<IComponent>\n\n    if (!this._components.has(componentType)) {\n      this._components.set(componentType, [component])\n    } else {\n      this._components.get(componentType)!.push(component)\n    }\n  }\n\n  getComponent<T extends IComponent>(\n    componentType: ClassType<T>,\n    id?: string\n  ): T | undefined {\n    const components = this._components.get(componentType)\n\n    if (components) {\n      if (id) {\n        return components.find((item) => item.id === id) as T | undefined\n      } else {\n        return components[0] as T | undefined\n      }\n    }\n\n    return undefined\n  }\n\n  getComponentStrict<T extends IComponent>(\n    componentType: ClassType<T>,\n    id?: string\n  ): T {\n    const components = this._components.get(componentType)\n    const errorMessage = (id?: string) =>\n      id\n        ? `Component of type ${componentType.name} and id ${id} not found.`\n        : `No components of type ${componentType.name} found.`\n    if (components) {\n      if (id) {\n        const component = components.find((item) => item.id === id) as\n          | T\n          | undefined\n\n        if (component) {\n          return component\n        } else {\n          throw new Error(errorMessage(id))\n        }\n      } else {\n        const firstComponent = components[0] as T | undefined\n\n        if (firstComponent) {\n          return firstComponent\n        } else {\n          throw new Error(errorMessage())\n        }\n      }\n    } else {\n      throw new Error(errorMessage())\n    }\n  }\n\n  update(deltaTime: number): void {\n    for (const componentArrays of this._components.values()) {\n      for (const component of componentArrays) {\n        component.update(deltaTime)\n      }\n    }\n  }\n\n  render(deltaTime: number): void {\n    for (const componentArrays of this._components.values()) {\n      for (const component of componentArrays) {\n        component.render(deltaTime)\n      }\n    }\n  }\n}\n```",
+          "dateTime": "2024-02-02T13:50:16.460Z"
+        }
+      ]
+    }
+  ]
+}
