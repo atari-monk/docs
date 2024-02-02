@@ -1,0 +1,33 @@
+{
+  "sections": [
+    {
+      "title": "Version 1",
+      "chats": [
+        {
+          "indexTitle": "Description",
+          "question": "Description",
+          "answer": "* Named Component  \n* Component part of Entity Component System in game engine  \n* This type defines data model and content of Entity",
+          "dateTime": "2024-02-02T15:51:02.902Z"
+        },
+        {
+          "indexTitle": "File Structure",
+          "question": "File Structure",
+          "answer": "```plaintext\n|-- engine_api/\n|   |-- src/\n|       |-- ecs/\n|           |-- component/\n|               |-- ClassType.ts\n|               |-- IComponent.ts\n```\n```plaintext\n|-- engine/\n|   |-- src/\n|       |-- ecs/\n|           |-- component/\n|               |-- Component.ts\n```",
+          "dateTime": "2024-02-02T15:56:44.952Z"
+        },
+        {
+          "indexTitle": "Api",
+          "question": "Api",
+          "answer": "```typescript\nexport type ClassType<T> = abstract new (...args: any[]) => T\n```\n```typescript\nexport default interface IComponent {\n  update(deltaTime: number): void\n  render(deltaTime: number): void\n  get id(): string\n  set id(id: string)\n}\n```",
+          "dateTime": "2024-02-02T15:57:38.895Z"
+        },
+        {
+          "indexTitle": "Component",
+          "question": "Component",
+          "answer": "```typescript\nimport { IComponent } from 'engine_api'\n\nexport default abstract class Component implements IComponent {\n  private _id!: string\n\n  get id(): string {\n    return this._id\n  }\n\n  set id(id: string) {\n    this._id = id\n  }\n\n  update(_deltaTime: number) {}\n\n  render(_deltaTime: number) {}\n}\n```",
+          "dateTime": "2024-02-02T15:58:45.970Z"
+        }
+      ]
+    }
+  ]
+}
