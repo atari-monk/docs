@@ -28,8 +28,8 @@
         {
           "indexTitle": "Create Project",
           "question": "Create Project",
-          "answer": "1. Install Unity Hub manager\n2. Install Unity with optional Visual Studio IDE code editor\n3. In Hub Create New Project Button\n4. Settings: 2D, name, path\n5. Scene is like a level. Kepp 2D btn on for 2d view.\n6. Basic Controls:  \n\n    1. Middle mouse button, or Hand btn on - Pan the view\n    2. Mouse wheel - zoom\n    3. Use Icons (hand, arrows, circle ...) or keys qwerty\n    4. Views are dragable and customizable, Top right, layout menu, set default\n\n",
-          "dateTime": "2023-12-11T21:39:50.140Z"
+          "answer": "[github unity_2d_tutorial](https://github.com/atari-monk/unity_2d_tutorial)  \n1. Install Unity Hub manager\n2. Install Unity with optional Visual Studio IDE code editor (Unity Editor Version 2022.3.4f1)  \n3. In Hub Create New Project Button\n4. Settings: 2D, name, path\n5. Scene is like a level. Kepp 2D btn on for 2d view.\n6. Basic Controls:  \n    1. Middle mouse button, or Hand btn on - Pan the view\n    2. Mouse wheel - zoom\n    3. Use Icons (hand, arrows, circle ...) or keys qwerty\n    4. Views are dragable and customizable, Top right, layout menu, set default  ",
+          "dateTime": "2024-02-07T19:49:13.733Z"
         },
         {
           "indexTitle": "Tilemap",
