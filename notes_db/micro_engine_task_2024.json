@@ -103,6 +103,12 @@
           "question": "Task 43  \nProvide ability to map keys to system logic  \nHitting keys should invoke some console log in system logic",
           "answer": "* Preparation:  \n  1. State plan in doc micro_engine_flow_2024 for Task 43  \n  2. Create documentation files for code base parts that will be used or update it   \n* Plan:  \n  1. Should be executed in 3 pomodoros  \n  2. Make a draft of new class with chatgpt, refactor and integrate with existing code  \n  3. Test and ajust till working  \n  4. Notes in doc micro_engine_flow_2024 for Task 43\n\n",
           "dateTime": "2024-02-01T15:53:13.470Z"
+        },
+        {
+          "indexTitle": "Task 48",
+          "question": "Task 48  \nKickball with Z key.",
+          "answer": "* Just create simple system, or modify existing ones.  \n  Probably sending event about z key to ball kinematics system.",
+          "dateTime": "2024-02-08T11:53:52.780Z"
         }
       ]
     }
