@@ -1,12 +1,12 @@
 {
   "sections": [
     {
-      "title": "test",
+      "title": "placeholder",
       "chats": [
         {
-          "indexTitle": "bla",
-          "question": "dsfsdf",
-          "answer": "sdfsdf",
+          "indexTitle": "placeholder",
+          "question": "placeholder",
+          "answer": "placeholder",
           "dateTime": "2023-11-15T15:23:40.159Z"
         }
       ]
