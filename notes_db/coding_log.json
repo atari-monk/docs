@@ -59,8 +59,14 @@
         {
           "indexTitle": "27",
           "question": "27",
-          "answer": "|||\n| ------:|:-----------|\n| **Type:**|Feature|\n| **Time:**|9 pomodoro|\n| **Task:**|Center of kick collision box must be mirrored along player position, on left, right|\n| **Result_1:**|Failed this task|\n| **Result_2:**|Introduced system for list of registered entities|\n| **Result_3:**|Refactored movement system to use it|\n| **Result_4:**|Old classes still exist for now|\n| **Result_5:**|Added Sprite flip system on new base|\n| **Difficulty:**|Medium, confusing|\n| **Next:**|Do player flip, add direction and kick box|\n| **Description:**|\n- Added new System base where all registered entities are handled  \n- That means one system for all entities, instead of one system for each entity  \n- One system for one entity is convinent becouse each component can be stored at start once  \n- So components are set once, not search for each frame  \n- But then there is to many system insctances  \n- So i will try to have one system and also set on start what will be possible  \n- Unless something needs to be dynamic  \n- I dont know wheter i should keep old base  \n---\n",
-          "dateTime": "2024-02-27T20:12:30.729Z"
+          "answer": "|||\n| ------:|:-----------|\n| **Type:**|Feature|\n| **Time:**|9 pomodoro|\n| **Task:**|Center of kick collision box must be mirrored along player position, on left, right|\n| **Result_1:**|Failed this task|\n| **Result_2:**|Introduced system for list of registered entities|\n| **Result_3:**|Refactored movement system to use it|\n| **Result_4:**|Old classes still exist for now|\n| **Result_5:**|Added Sprite flip system on new base|\n| **Difficulty:**|Medium, confusing|\n| **Next:**|Do player flip, add direction and kick box|\n---\n",
+          "dateTime": "2024-02-28T10:09:58.772Z"
+        },
+        {
+          "indexTitle": "28",
+          "question": "28",
+          "answer": "|||\n| ------:|:-----------|\n| **Type:**|Feature|\n| **Time:**|4 pomodoro|\n| **Task:**|Center of kick collision box must be mirrored along player position, on left, righ|\n| **Result:**||\n| **Difficulty:**||\n| **Next:**||\n---\n",
+          "dateTime": "2024-02-28T19:14:03.691Z"
         }
       ]
     }
