@@ -65,8 +65,8 @@
         {
           "indexTitle": "28",
           "question": "28",
-          "answer": "|||\n| ------:|:-----------|\n| **Type:**|Feature|\n| **Time:**|4 pomodoro|\n| **Task:**|Center of kick collision box must be mirrored along player position, on left, righ|\n| **Result:**||\n| **Difficulty:**||\n| **Next:**||\n---\n",
-          "dateTime": "2024-02-28T19:14:03.691Z"
+          "answer": "|||\n| ------:|:-----------|\n| **Project:**|micro_engine|\n| **Type:**|Feature|\n| **Time:**|6 pomodoro|\n| **Task:**|Center of kick collision box must be mirrored along player position, on left, righ|\n| **Result_1:**|Added FlipBox in ball_game to flip kick box and direction on left right|\n| **Result_2:**|Markers component|\n| **Result_3:**|Updated center in collision algo when flip occures, this is to lame ? or efficient ?|\n| **Difficulty:**|Medium|\n| **Next:**|This is to complex, maybe put some data in component and update it evry frame so no events needed ?|\n---\n\n|||\n| ------:|:-----------|\n| **Project:**|3d_unity|\n| **Type:**|Tutorial|\n| **Time:**|2 pomodoro|\n| **Task:**|Add Level 2|\n| **Result:**|Done|\n| **Difficulty:**|Easy but lot clicking|\n| **Next:**|Next part|\n---\n",
+          "dateTime": "2024-02-28T23:08:47.361Z"
         }
       ]
     }
