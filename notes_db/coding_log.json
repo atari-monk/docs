@@ -106,8 +106,8 @@
         {
           "indexTitle": "5",
           "question": "5",
-          "answer": "|Task||\n| ------:|:-----------|\n| **Project:**|micro_engine|\n| **TaskNr:**|58|\n| **TaskType:**|Feature|\n| **Description:**|Move points to top of field|\n| **CommitsNr:**|1|\n| **PomodoroNr:**|1|\n| **Result_1:**|Expanded Score component data, used in score render system|\n| **Difficulty:**|Easy|\n| **Next:**||\n---\n",
-          "dateTime": "2024-03-05T08:53:13.246Z"
+          "answer": "|Task||\n| ------:|:-----------|\n| **Project:**|micro_engine|\n| **TaskNr:**|58|\n| **TaskType:**|Feature|\n| **Description:**|Move points to top of field|\n| **CommitsNr:**|2|\n| **PomodoroNr:**|3|\n| **Result_1:**|Expanded Score component data, used in score render system|\n| **Result_2:**|Control from data|\n| **Difficulty:**|Easy|\n| **Next:**|?|\n---\n|Task||\n| ------:|:-----------|\n| **Project:**|micro_engine|\n| **TaskNr:**|59|\n| **TaskType:**|Feature|\n| **Description:**|Upgrade visuals of desktop version|\n| **CommitsNr:**|1|\n| **PomodoroNr:**|2|\n| **Result:**|Scaled goal post asset in size x2, positioned with data|\n| **ToDo:**|Asset needs to be rendered, not scaled with irfan|\n| **Difficulty:**|Medium|\n| **Next:**|?|\n---\n|Task||\n| ------:|:-----------|\n| **Project:**|micro_engine|\n| **TaskNr:**|60|\n| **TaskType:**|Feature|\n| **Description:**|Upgrade collision boxes of field|\n| **CommitsNr:**|1|\n| **PomodoroNr:**|4|\n| **Result:**|Field have collision boxes|\n| **Difficulty:**|Medium, one letter bug wasted time|\n| **Next:**|Refactor collision system, becouse this is bad now|\n---\n",
+          "dateTime": "2024-03-05T17:30:01.608Z"
         }
       ]
     }
