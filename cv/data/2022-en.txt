@@ -1,0 +1,27 @@
+Krzysztof Mazanek
+ul. Żabiniec 79 
+31-215 Cracow Poland
+kmazanek@gmail.com
++48 501 681 104
+github.com/krzm
+
+Experience as programmer
+Pirios 2018-2019
+Coder in agile team for VoIP products. C#, WPF, MSSQL.
+Instytut Zootechniki-Państwowy Instytut Badawczy 2012-2017
+Programming database applications supporting laboratory workflow. C#, WPF, MSSQL.
+Ericpol 2012
+Coder in agile team of mobile communication company.
+BmsCreative 2011
+Coding features for CRM product.
+Interia.pl 2010
+Coding prototypes for web media company.
+
+Skills
+C#, Entity Framework, DI Containers, SOLID, Wpf
+Winforms, Powershell, Git, VS Code, VS
+MVVM, TDD, CommandDotNet, C++, APIs
+English
+
+Education
+M. Sc. Eng.  Environmental Physics, AGH Cracow, 2010

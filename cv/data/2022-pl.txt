@@ -1,0 +1,22 @@
+Krzysztof
+Mazanek
+ul. Żabiniec 79, 31-215 Kraków
+kmazanek@gmail.com
+tel. 501 681 104
+https://github.com/krzm
+
+Doświadczenie jako programista
+Pirios 2018-2019
+Instytut Zootechniki-Państwowy Instytut Badawczy 2012-2017
+Ericpol 2012
+BmsCreative 2011
+Interia.pl 2010
+
+Umiejętności
+C#, Entity Framework, DI Containers, SOLID, Wpf 
+Winforms, Powershell, Git, VS Code, VS
+MVVM, TDD, CommandDotNet, C++, APIs
+Angielski
+
+Edukacja
+Mgr inż. Fizyka środowiska, AGH, 2010
