@@ -5,3 +5,11 @@ https://www.pracuj.pl/praca/full-stack-developer-krakow-kawiory-21,oferta,100317
 https://www.pracuj.pl/praca/programista-c%2b%2b-krakow-wielicka-22a,oferta,1003201223?sug=oferta_bottom_bd_5_tname_196_tgroup_A
 https://www.pracuj.pl/praca/trener-programowania-dla-dzieci-i-mlodziezy-krakow,oferta,1003224052?s=1e0c9c65&searchId=MTcxMDg4MTc0OTM2OS44NTM4
 https://www.pracuj.pl/praca/starszy-programista-starsza-programistka-full-stack-krakow,oferta,1003179950?sug=thankyou_offer_bd_4_tname_196_tgroup_A
+
+https://www.pracuj.pl/praca/software-engineer-krakow-stanislawa-zolkiewskiego-17b,oferta,1003197393?s=c693da39&searchId=MTcxMTA0NjIyNjE0Mi40MDY1
+https://www.pracuj.pl/praca/fullstack-developer-katowice-porcelanowa-23,oferta,1003197455?s=c693da39&searchId=MTcxMTA0NjIyNjE0Mi40MDY1
+https://www.pracuj.pl/praca/programista-web-developer-wroclaw-rybacka-9,oferta,1003209281?s=c693da39&searchId=MTcxMTA0NjIyNjE0Mi40MDY1
+https://www.pracuj.pl/praca/senior-fullstack-developer-node-js-react-wroclaw-plac-nowy-targ-28,oferta,1003220081?s=c693da39&searchId=MTcxMTA0NjIyNjE0Mi40MDY1
+https://www.pracuj.pl/praca/software-engineer-ii-fullstack-merchant-insights-warszawa-koszykowa-61,oferta,1003181317?s=c693da39&searchId=MTcxMTA0NjIyNjE0Mi40MDY1
+https://www.pracuj.pl/praca/fullstack-developer-wzu-warszawa-powazkowska-44c,oferta,1003187349?s=c693da39&searchId=MTcxMTA0NjIyNjE0Mi40MDY1
+https://www.pracuj.pl/praca/software-development-engineer-ii-krakow,oferta,1003205786?s=c693da39&searchId=MTcxMTA0NjIyNjE0Mi40MDY1
