@@ -162,6 +162,12 @@
           "question": "14",
           "answer": "|Task||\n| ------:|:-----------|\n| **Project:**|micro_engine|\n| **TaskNr:**|67|\n| **TaskType:**|Feature|\n| **Description:**|Update ball dribble system|\n| **CommitsNr:**|2|\n| **PomodoroNr:**|5|\n| **Result_1:**|Refactor BallDrible to extract BallHelper|\n| **Result_2:**|BallDrible flips ball on left, right when ball in dribble|\n| **Difficulty:**|Medium|\n| **Next:**|?|\n---\n|Task||\n| ------:|:-----------|\n| **Project:**|micro_engine|\n| **TaskNr:**|68|\n| **TaskType:**|Feature|\n| **Description:**||\n| **CommitsNr:**|1|\n| **PomodoroNr:**|1|\n| **Result_1:**|Removed jest tets, poor debug ability|\n| **Difficulty:**||\n| **Next:**||\n---\n",
           "dateTime": "2024-03-14T18:27:46.288Z"
+        },
+        {
+          "indexTitle": "22",
+          "question": "22",
+          "answer": "|Task||\n| ------:|:-----------|\n| **Project:**|micro_engine|\n| **TaskNr:**|69|\n| **TaskType:**|Feature|\n| **Description:**|Introduce dribble state|\n| **CommitsNr:**||\n| **PomodoroNr:**||\n| **Result:**||\n| **Difficulty:**||\n| **Next:**||\n---\n",
+          "dateTime": "2024-03-22T20:14:13.652Z"
         }
       ]
     }
